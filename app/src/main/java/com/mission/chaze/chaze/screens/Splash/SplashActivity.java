@@ -1,5 +1,3 @@
-
-
 package com.mission.chaze.chaze.screens.Splash;
 
 
@@ -7,6 +5,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.mission.chaze.chaze.R;
+
+import com.mission.chaze.chaze.screens.Splash.SplashContract;
+
 import com.mission.chaze.chaze.screens.base.BaseActivity;
 
 /**
