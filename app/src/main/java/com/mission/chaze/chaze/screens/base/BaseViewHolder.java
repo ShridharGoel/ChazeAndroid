@@ -1,5 +1,3 @@
-
-
 package com.mission.chaze.chaze.screens.base;
 
 import android.support.v7.widget.RecyclerView;
