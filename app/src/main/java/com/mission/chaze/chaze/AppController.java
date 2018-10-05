@@ -22,10 +22,10 @@ public class AppController extends Application {
     ApplicationComponent mApplicationComponent;
 
     @Inject
-    private SessionManager mSessionManager;
+    SessionManager mSessionManager;
 
     @Inject
-    private CartManager mCartManager;
+    CartManager mCartManager;
 
 
 
@@ -37,7 +37,7 @@ public class AppController extends Application {
         mApplicationComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this)).build();
 
-        mApplicationComponent.inject(this);
+       // mApplicationComponent.inject(this);
 
 
         init();
