@@ -3,6 +3,7 @@
     package="com.mission.chaze.chaze">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:name=".AppController"
         android:allowBackup="true"
@@ -11,22 +12,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".screens.Homepage.HomeActivity">
+        <!--<activity android:name=".screens.Homepage.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
             </intent-filter>
-        </activity>
-
-        <activity android:name=".screens.Splash.SplashActivity">
+        </activity>-->
+        <activity android:name=".BottomNav">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
+        <!--<activity
+            android:name=".BottomNav"
+            android:label="@string/title_activity_bottom_nav"></activity>-->
     </application>
 
 </manifest>
