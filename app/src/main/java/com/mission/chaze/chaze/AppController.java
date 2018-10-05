@@ -10,11 +10,9 @@ import com.mission.chaze.chaze.repository.session.SessionManager;
 import com.mission.chaze.chaze.utils.TimberLogger;
 import com.squareup.leakcanary.LeakCanary;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
 import javax.inject.Inject;
 
+import retrofit2.Retrofit;
 import timber.log.Timber;
 
 public class AppController extends Application {
@@ -27,8 +25,8 @@ public class AppController extends Application {
     @Inject
     CartManager mCartManager;
 
-
-
+    @Inject
+    Retrofit retrofit;
 
     @Override
     public void onCreate() {
@@ -37,7 +35,7 @@ public class AppController extends Application {
         mApplicationComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this)).build();
 
-       // mApplicationComponent.inject(this);
+        mApplicationComponent.inject(this);
 
 
         init();
