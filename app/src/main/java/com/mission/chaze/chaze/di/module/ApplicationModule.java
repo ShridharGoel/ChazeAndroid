@@ -7,6 +7,8 @@ import android.content.Context;
 
 
 import com.mission.chaze.chaze.di.ApplicationContext;
+import com.mission.chaze.chaze.repository.CartManager;
+import com.mission.chaze.chaze.repository.session.SessionManager;
 
 import dagger.Module;
 import dagger.Provides;
@@ -36,4 +38,11 @@ public class ApplicationModule {
     }
 
 
+    SessionManager provideSessionManager(@ApplicationContext Context c){
+        return new SessionManager(c);
+    }
+
+    CartManager cartManager(@ApplicationContext Context c){
+        return new CartManager(c);
+    }
 }

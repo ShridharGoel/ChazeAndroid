@@ -5,11 +5,15 @@ import android.app.Application;
 import com.mission.chaze.chaze.di.component.ApplicationComponent;
 import com.mission.chaze.chaze.di.component.DaggerApplicationComponent;
 import com.mission.chaze.chaze.di.module.ApplicationModule;
+import com.mission.chaze.chaze.repository.CartManager;
+import com.mission.chaze.chaze.repository.session.SessionManager;
 import com.mission.chaze.chaze.utils.TimberLogger;
 import com.squareup.leakcanary.LeakCanary;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import javax.inject.Inject;
 
 import timber.log.Timber;
 
@@ -17,12 +21,24 @@ public class AppController extends Application {
 
     ApplicationComponent mApplicationComponent;
 
+    @Inject
+    private SessionManager mSessionManager;
+
+    @Inject
+    private CartManager mCartManager;
+
+
+
+
     @Override
     public void onCreate() {
         super.onCreate();
 
         mApplicationComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this)).build();
+
+        mApplicationComponent.inject(this);
+
 
         init();
 
