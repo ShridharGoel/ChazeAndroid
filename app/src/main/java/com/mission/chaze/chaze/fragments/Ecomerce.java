@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 
 import com.mission.chaze.chaze.R;
+import com.mission.chaze.chaze.adapters.EcommercePagerAdapter;
 import com.mission.chaze.chaze.adapters.ecomerceCategoryAdapter;
 import com.mission.chaze.chaze.models.ecomerceCategory;
 
@@ -37,6 +38,7 @@ public class Ecomerce extends Fragment {
     ArrayList<ecomerceCategory> categoryList;
     ViewPager viewPager;
     TabLayout tabLayout;
+
     public Ecomerce() {
     }
 
@@ -44,32 +46,36 @@ public class Ecomerce extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        Toast.makeText(getContext(),"Ecommerce", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "Ecommerce", Toast.LENGTH_SHORT).show();
 
 
-
-
-        return inflater.inflate(R.layout.fragment_ecomerce,container,false);
+        return inflater.inflate(R.layout.fragment_ecomerce, container, false);
     }
 
     private void addItemsToAdapter() {
-        categoryList.add(new ecomerceCategory("people","bdbdbdb"));
+
+        for (int i = 0; i < 40; i++)
+            categoryList.add(new ecomerceCategory("people", "bdbdbdb"));
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        categoryList=new ArrayList<>();
+        categoryList = new ArrayList<>();
         addItemsToAdapter();
         //recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView=getActivity().findViewById(R.id.ecomerceRecyclerView);
-        mLayoutManager=new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.HORIZONTAL,false);
-        adapter=new ecomerceCategoryAdapter(getActivity().getApplicationContext(),categoryList);
+        recyclerView = getActivity().findViewById(R.id.ecomerceRecyclerView);
+        mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
+        adapter = new ecomerceCategoryAdapter(getActivity().getApplicationContext(), categoryList);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(mLayoutManager);
 
-        viewPager=getActivity().findViewById(R.id.tab_viewpager);
-        tabLayout = (TabLayout) getActivity().findViewById(R.id.tablayout);
+        viewPager = view.findViewById(R.id.ecommerce_view_pager);
+        tabLayout = (TabLayout) view.findViewById(R.id.ecommerce_slider);
+
+        EcommercePagerAdapter restaurantMenuFragmentPagerAdapter = new EcommercePagerAdapter(getActivity().getSupportFragmentManager());
+        viewPager.setAdapter(restaurantMenuFragmentPagerAdapter);
+
         tabLayout.setupWithViewPager(viewPager);
 
     }

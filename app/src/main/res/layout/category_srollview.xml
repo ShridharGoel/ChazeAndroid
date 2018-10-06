@@ -7,7 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="40dp"
+        android:layout_width="match_parent"
         android:layout_height="40dp"
             android:id="@+id/categoryImage"
             android:src="@color/colorAccent"
