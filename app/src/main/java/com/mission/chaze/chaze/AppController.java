@@ -40,6 +40,7 @@ public class AppController extends Application {
 
         init();
 
+
     }
 
     private void init() {

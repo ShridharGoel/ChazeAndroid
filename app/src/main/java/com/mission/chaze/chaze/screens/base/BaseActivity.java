@@ -11,6 +11,8 @@ import com.mission.chaze.chaze.di.component.ActivityComponent;
 import com.mission.chaze.chaze.di.component.DaggerActivityComponent;
 import com.mission.chaze.chaze.di.module.ActivityModule;
 
+import butterknife.Unbinder;
+
 
 /**
  * Created by Shubham Vishwakarma on 4/10/18.
@@ -19,7 +21,9 @@ import com.mission.chaze.chaze.di.module.ActivityModule;
 public abstract class BaseActivity extends AppCompatActivity
         implements MvpContract.View {
 
+
     ActivityComponent mActivityComponent;
+    private Unbinder mUnBinder;
 
 
     @Override
@@ -35,6 +39,50 @@ public abstract class BaseActivity extends AppCompatActivity
 
     public ActivityComponent getActivityComponent() {
         return mActivityComponent;
+    }
+
+
+    public void setUnBinder(Unbinder unBinder) {
+        mUnBinder = unBinder;
+    }
+
+    @Override
+    protected void onDestroy() {
+
+        if (mUnBinder != null) {
+            mUnBinder.unbind();
+        }
+        super.onDestroy();
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void onError(String message) {
+
+    }
+
+    @Override
+    public void showMessage(String message) {
+
+    }
+
+    @Override
+    public boolean isNetworkConnected() {
+        return false;
+    }
+
+    @Override
+    public void hideKeyboard() {
+
     }
 
 }
