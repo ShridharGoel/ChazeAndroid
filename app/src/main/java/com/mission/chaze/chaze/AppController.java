@@ -17,7 +17,7 @@ import timber.log.Timber;
 
 public class AppController extends Application {
 
-    ApplicationComponent mApplicationComponent;
+    private static ApplicationComponent mApplicationComponent;
 
     @Inject
     SessionManager mSessionManager;
@@ -39,6 +39,7 @@ public class AppController extends Application {
 
 
         init();
+
 
     }
 

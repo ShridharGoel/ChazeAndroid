@@ -6,6 +6,7 @@ import com.mission.chaze.chaze.di.PerActivity;
 import com.mission.chaze.chaze.di.module.ActivityModule;
 import com.mission.chaze.chaze.screens.Homepage.HomeActivity;
 import com.mission.chaze.chaze.screens.Splash.SplashActivity;
+import com.mission.chaze.chaze.screens.base.BaseActivity;
 
 import dagger.Component;
 

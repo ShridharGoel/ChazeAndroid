@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 
 import com.mission.chaze.chaze.R;
 
+import timber.log.Timber;
+
 public class Localsearch extends Fragment {
     public Localsearch() {
 
@@ -17,6 +19,7 @@ public class Localsearch extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Timber.d("Loacal search");
         return inflater.inflate(R.layout.fragment_local_search,container,false);
     }
 }

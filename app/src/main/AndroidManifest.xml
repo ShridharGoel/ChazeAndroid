@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+
         <!--
         <activity android:name=".screens.Homepage.HomeActivity">
             <intent-filter>
@@ -20,8 +21,10 @@
             </intent-filter>
         </activity>
         -->
-        <activity
-            android:name=".HomeActivity"
+        <!--<activity
+            android:name=".HomeActivity"-->
+
+        <activity android:name=".HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

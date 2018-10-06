@@ -8,6 +8,8 @@ import com.mission.chaze.chaze.di.ApplicationContext;
 import com.mission.chaze.chaze.di.ApplicationScope;
 import com.mission.chaze.chaze.di.module.ApplicationModule;
 import com.mission.chaze.chaze.di.module.NetworkModule;
+import com.mission.chaze.chaze.repository.CartManager;
+import com.mission.chaze.chaze.repository.session.SessionManager;
 
 import javax.inject.Singleton;
 
@@ -22,4 +24,8 @@ public interface ApplicationComponent {
 
 
     void inject(AppController appController);
+
+    SessionManager getSessionManager();
+
+    CartManager getCartManager();
 }
