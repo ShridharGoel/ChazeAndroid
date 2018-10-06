@@ -12,11 +12,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-<<<<<<< HEAD
+
 import android.widget.LinearLayout;
-=======
+
 import android.widget.Toast;
->>>>>>> 6d7cd0bd8ca8696a2b0255cd19f5e50e882d30a4
+
 
 import com.mission.chaze.chaze.R;
 import com.mission.chaze.chaze.adapters.ecomerceCategoryAdapter;

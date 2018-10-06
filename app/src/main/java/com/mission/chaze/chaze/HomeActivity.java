@@ -165,6 +165,7 @@ public class HomeActivity extends AppCompatActivity
         ecomerce=new Ecomerce();
         food=new Food();
         home=new Home();
+        localsearch=new Localsearch();
         more_object=new more();
         adapter.addFragment(ecomerce);
         adapter.addFragment(food);
