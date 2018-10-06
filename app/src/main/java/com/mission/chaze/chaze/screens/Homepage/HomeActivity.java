@@ -101,6 +101,8 @@ public class HomeActivity extends BaseActivity
 
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,7 +120,7 @@ public class HomeActivity extends BaseActivity
 
         navigationView.setNavigationItemSelectedListener(this);
 
-
+        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         //Initializing the bottomNavigationView
         navigation.setOnNavigationItemSelectedListener(item-> {
 
@@ -140,6 +142,7 @@ public class HomeActivity extends BaseActivity
                             case R.id.navigation_5:
                                 viewPager.setCurrentItem(4);
                                 break;
+
                         }
                         return false;
                     });
@@ -201,7 +204,7 @@ public class HomeActivity extends BaseActivity
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -242,10 +245,11 @@ public class HomeActivity extends BaseActivity
         food = new Food();
         home = new Home();
         more_object = new more();
-        adapter.addFragment(ecomerce);
         adapter.addFragment(food);
         adapter.addFragment(home);
         adapter.addFragment(more_object);
+        adapter.addFragment(ecomerce);
+
         viewPager.setAdapter(adapter);
     }
 }

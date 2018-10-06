@@ -42,12 +42,13 @@
                     android:layout_height="?attr/actionBarSize"
                     android:background="?attr/colorAccent"
                     app:popupTheme="@style/AppTheme.PopupOverlay" />
+
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/ecomerceRecyclerView"
-                    android:paddingTop="60dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"/>
+                    android:orientation="horizontal"
+                    android:paddingTop="60dp" />
 
 
             </RelativeLayout>
@@ -55,27 +56,37 @@
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
-<!--
-        Put recycler view here-->
+        <!--
+                Put recycler view here-->
+
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/ecommerce_slider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabBackground="@color/colorPrimary"
+            app:tabGravity="fill"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="@color/red"
+            app:tabTextColor="@color/yellow" />
+
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/ecomerceShopProductRecycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"/>
+            android:orientation="vertical" />
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="@color/colorAccent"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="@color/colorAccent"/>
 
 
     </android.support.design.widget.AppBarLayout>
 
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/ecommerce_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </android.support.design.widget.CoordinatorLayout>
