@@ -1,6 +1,7 @@
 package com.mission.chaze.chaze.screens.base;
 
 
+import android.support.annotation.StringRes;
 
 /**
  * Created by Shubham Vishwakarma on 4/10/18.
@@ -10,7 +11,17 @@ public class MvpContract {
 
 
     public interface View {
+        void showLoading();
 
+        void hideLoading();
+
+        void onError(String message);
+
+        void showMessage(String message);
+
+        boolean isNetworkConnected();
+
+        void hideKeyboard();
 
     }
 
