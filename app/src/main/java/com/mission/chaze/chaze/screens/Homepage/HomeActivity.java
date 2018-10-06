@@ -14,12 +14,12 @@ import io.reactivex.Observable;
 
 public class HomeActivity extends BaseActivity {
 
-    @Inject
+    /*@Inject
     SessionManager sessionManager;
 
     @Inject
     CartManager mCartManager;
-
+*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

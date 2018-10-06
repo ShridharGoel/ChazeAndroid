@@ -1,5 +1,6 @@
 package com.mission.chaze.chaze;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -168,6 +169,7 @@ public class HomeActivity extends AppCompatActivity
         adapter.addFragment(ecomerce);
         adapter.addFragment(food);
         adapter.addFragment(home);
+        adapter.addFragment(localsearch);
         adapter.addFragment(more_object);
         viewPager.setAdapter(adapter);
     }
@@ -198,6 +200,8 @@ public class HomeActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent intent=new Intent(HomeActivity.this, PostOrderStatus.class);
+            startActivity(intent);
             return true;
         }
 

@@ -22,7 +22,7 @@ public class NetworkModule {
     @ApplicationScope
     Retrofit getRetrofit(OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
-                .baseUrl("url")
+                .baseUrl("https://google.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .build();

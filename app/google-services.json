@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "478672145708",
+    "firebase_url": "https://android-18294.firebaseio.com",
+    "project_id": "android-18294",
+    "storage_bucket": "android-18294.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:478672145708:android:00d27345b4751b84",
+        "android_client_info": {
+          "package_name": "com.mission.chaze.chaze"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "478672145708-1vlp6q12667stfsfmj73n3b9tclc5u2v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mission.chaze.chaze",
+            "certificate_hash": "4d88ab63f77f80ef3a510aaf89fb14fc7af30334"
+          }
+        },
+        {
+          "client_id": "478672145708-ve65nkbb3snq4db4vcnp4hrto47tj9so.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVu4ye7s2pn8uFwv40HtFWh9sZGFE2fCE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "478672145708-ve65nkbb3snq4db4vcnp4hrto47tj9so.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
