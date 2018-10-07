@@ -21,25 +21,23 @@ public class EcommercePagerAdapter extends FragmentStatePagerAdapter {
     private String TAG = EcommercePagerAdapter.class.getSimpleName();
 
 
-    private int numberOfTabs = 2;
     private Fragment fragment;
 
 
     public EcommercePagerAdapter(FragmentManager fm) {
         super(fm);
-        this.numberOfTabs = numberOfTabs;
     }
 
 
     @Override
     public Fragment getItem(int position) {
-        for (int i = 0; i < numberOfTabs; i++) {
-            if (i == position) {
+
+            if (position == 0) {
                 fragment = new ShopByProducts();
             } else {
                 fragment = new ShopByShop();
             }
-        }
+
         return fragment;
 
     }
@@ -47,7 +45,7 @@ public class EcommercePagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return numberOfTabs;
+        return 2;
     }
 
     @Override
