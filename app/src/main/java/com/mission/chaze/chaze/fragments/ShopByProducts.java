@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.mission.chaze.chaze.R;
-import com.mission.chaze.chaze.adapters.ecomerceCategoryAdapter;
+import com.mission.chaze.chaze.adapters.PostAdapter;
 import com.mission.chaze.chaze.models.ecomerceCategory;
 
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public class ShopByProducts extends Fragment {
 
     RecyclerView recyclerView;
     RecyclerView.LayoutManager mLayoutManager;
-    ecomerceCategoryAdapter adapter;
+    PostAdapter adapter;
 
     ArrayList<ecomerceCategory> categories;
 
@@ -54,7 +54,7 @@ public class ShopByProducts extends Fragment {
         //recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView = view.findViewById(R.id.ecomerceRecyclerView);
         mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.VERTICAL, false);
-        adapter = new ecomerceCategoryAdapter(getActivity().getApplicationContext(), categories);
+        adapter = new PostAdapter(getActivity().getApplicationContext(), categories);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(mLayoutManager);
         Toast.makeText(getContext(), "products", Toast.LENGTH_SHORT).show();

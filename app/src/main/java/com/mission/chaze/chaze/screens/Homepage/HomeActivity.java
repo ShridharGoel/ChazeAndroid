@@ -1,20 +1,21 @@
 package com.mission.chaze.chaze.screens.Homepage;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
+import android.view.View;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,166 +26,58 @@ import com.mission.chaze.chaze.fragments.Food;
 import com.mission.chaze.chaze.fragments.Home;
 import com.mission.chaze.chaze.fragments.Localsearch;
 import com.mission.chaze.chaze.fragments.more;
-import com.mission.chaze.chaze.screens.base.BaseActivity;
+import com.mission.chaze.chaze.repository.CartManager;
+import com.mission.chaze.chaze.screens.search.SearchActivity;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import timber.log.Timber;
+import javax.inject.Inject;
 
-public class HomeActivity extends BaseActivity
+public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
-    public HomeActivity() {
-    }
-
-    /*@BindView(R.id.message)
-    TextView mTextMessage;
-
-
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-*/
-    @BindView(R.id.drawer_layout)
-    DrawerLayout drawer;
-
-
-    /*@Inject
-    SessionManager sessionManager;
-
-    @Inject
-    CartManager mCartManager;
-*/
-
-    @BindView(R.id.nav_view)
-    NavigationView navigationView;
-    @BindView(R.id.navigation)
-    BottomNavigationView navigation;
-
-    //This is our viewPager
-    @BindView(R.id.viewpager)
+    BottomNavigationView bottomNavigationView;
     ViewPager viewPager;
-
-    TabLayout tabLayout;
     MenuItem prevMenuItem;
-    Ecomerce ecomerce;
-    Food food;
-    Home home;
-    Localsearch localsearch;
-    more more_object;
-    BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                   // mTextMessage.setText(R.string.title_home);
-
-                    return true;
-                case R.id.navigation_dashboard:
-                   // mTextMessage.setText(R.string.title_dashboard);
-                    return true;
-                case R.id.navigation_3:
-                 //   mTextMessage.setText(R.string.title_notifications);
-                    return true;
-                case R.id.navigation_4:
-                   // mTextMessage.setText(R.string.title_notifications);
-                    return true;
-                case R.id.navigation_5:
-                  //  mTextMessage.setText(R.string.title_notifications);
-                    return true;
-            }
-            return false;
-        }
-    };
-
-
-
+    TextView txtViewCount;
+    CartManager cartManager;
+    Toolbar toolbar;
+    DrawerLayout drawer;
+    NavigationView navigationView;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home2);
-
-        setUnBinder(ButterKnife.bind(this));
-
-       // setSupportActionBar(toolbar);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-      /*  ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();*/
-
-        navigationView.setNavigationItemSelectedListener(this);
-
-        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-        //Initializing the bottomNavigationView
-        navigation.setOnNavigationItemSelectedListener(item-> {
-
-
-
-                        switch (item.getItemId()) {
-                            case R.id.navigation_home:
-                                viewPager.setCurrentItem(0);
-                                break;
-                            case R.id.navigation_dashboard:
-                                viewPager.setCurrentItem(1);
-                                break;
-                            case R.id.navigation_3:
-                                viewPager.setCurrentItem(2);
-                                break;
-                            case R.id.navigation_4:
-                                viewPager.setCurrentItem(3);
-                                break;
-                            case R.id.navigation_5:
-                                viewPager.setCurrentItem(4);
-                                break;
-
-                        }
-                        return false;
-                    });
-
+        init();
+        setupBottomNavigation();
         setupViewPager(viewPager);
     }
-
 
 
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+        if (drawer.isDrawerOpen(GravityCompat.START)) drawer.closeDrawer(GravityCompat.START);
+        else super.onBackPressed();
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.home, menu);
-        return true;
+    public boolean onCreateOptionsMenu(final Menu menu) {
+        cartManager = new CartManager(HomeActivity.this);
+        getMenuInflater().inflate(R.menu.menu_just_cart, menu);
+        final View cart = menu.findItem(R.id.cart_icon_badge_action).getActionView();
+        final View search = menu.findItem(R.id.serchview).getActionView();
+        txtViewCount = (TextView) cart.findViewById(R.id.cart_count_badge);
+        txtViewCount.setText(String.valueOf(0));
+        search.setOnClickListener(v -> goToSearch());
+        cart.setOnClickListener(v -> {
+        });
+        return super.onCreateOptionsMenu(menu);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -204,9 +97,18 @@ public class HomeActivity extends BaseActivity
 
         }
 
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void init() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
+        setSupportActionBar(toolbar);
     }
 
 
@@ -220,17 +122,14 @@ public class HomeActivity extends BaseActivity
 
             @Override
             public void onPageSelected(int position) {
-
-                Toast.makeText(HomeActivity.this,""+ position, Toast.LENGTH_SHORT).show();
-
                 if (prevMenuItem != null) {
                     prevMenuItem.setChecked(false);
                 } else {
-                    navigation.getMenu().getItem(0).setChecked(false);
+                    bottomNavigationView.getMenu().getItem(0).setChecked(false);
                 }
-                Timber.d("onPageSelected: " + position);
-                navigation.getMenu().getItem(position).setChecked(true);
-                prevMenuItem = navigation.getMenu().getItem(position);
+                Log.d("page", "onPageSelected: " + position);
+                bottomNavigationView.getMenu().getItem(position).setChecked(true);
+                prevMenuItem = bottomNavigationView.getMenu().getItem(position);
 
             }
 
@@ -241,15 +140,76 @@ public class HomeActivity extends BaseActivity
         });
 
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        ecomerce = new Ecomerce();
-        food = new Food();
-        home = new Home();
-        more_object = new more();
+        Ecomerce ecomerce = new Ecomerce();
+        Food food = new Food();
+        Home home = new Home();
+        Localsearch localsearch = new Localsearch();
+        more more_object = new more();
+
+        adapter.addFragment(ecomerce);
         adapter.addFragment(food);
         adapter.addFragment(home);
+        adapter.addFragment(localsearch);
         adapter.addFragment(more_object);
-        adapter.addFragment(ecomerce);
-
         viewPager.setAdapter(adapter);
     }
+
+    private void goToSearch() {
+
+        Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
+        startActivity(intent);
+    }
+
+    private void setupBottomNavigation() {
+        BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+                = (item) -> {
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+                    return true;
+                case R.id.navigation_dashboard:
+                    return true;
+                case R.id.navigation_3:
+                    return true;
+                case R.id.navigation_4:
+                    return true;
+                case R.id.navigation_5:
+                    return true;
+            }
+            return false;
+        };
+        bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+
+        navigationView.setNavigationItemSelectedListener(this);
+
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+                item -> {
+                    switch (item.getItemId()) {
+                        case R.id.navigation_home:
+                            viewPager.setCurrentItem(0);
+                            break;
+                        case R.id.navigation_dashboard:
+                            viewPager.setCurrentItem(1);
+                            break;
+                        case R.id.navigation_3:
+                            viewPager.setCurrentItem(2);
+                            break;
+                        case R.id.navigation_4:
+                            viewPager.setCurrentItem(3);
+                            break;
+                        case R.id.navigation_5:
+                            viewPager.setCurrentItem(4);
+                            break;
+                    }
+                    return false;
+                });
+
+    }
+
 }
