@@ -167,9 +167,9 @@ public class HomeActivity extends AppCompatActivity
         home=new Home();
         localsearch=new Localsearch();
         more_object=new more();
+        adapter.addFragment(home);
         adapter.addFragment(ecomerce);
         adapter.addFragment(food);
-        adapter.addFragment(home);
         adapter.addFragment(localsearch);
         adapter.addFragment(more_object);
         viewPager.setAdapter(adapter);
