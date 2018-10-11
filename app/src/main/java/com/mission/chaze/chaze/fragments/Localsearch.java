@@ -9,10 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.mission.chaze.chaze.R;
+import com.mission.chaze.chaze.screens.base.BaseFragment;
 
 import timber.log.Timber;
 
-public class Localsearch extends Fragment {
+public class Localsearch extends BaseFragment {
     public Localsearch() {
 
     }
@@ -21,5 +22,35 @@ public class Localsearch extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Timber.d("Loacal search");
         return inflater.inflate(R.layout.fragment_local_search,container,false);
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void onError(String message) {
+
+    }
+
+    @Override
+    public void showMessage(String message) {
+
+    }
+
+    @Override
+    public boolean isNetworkConnected() {
+        return false;
+    }
+
+    @Override
+    public void hideKeyboard() {
+
     }
 }

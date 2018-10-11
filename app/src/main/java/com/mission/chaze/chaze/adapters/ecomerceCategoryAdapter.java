@@ -27,7 +27,7 @@ public class ecomerceCategoryAdapter extends RecyclerView.Adapter<ecomerceCatego
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.category_srollview, viewGroup, false);
+                .inflate(R.layout.category_scrollview, viewGroup, false);
 
         return new ViewHolder(itemView);
     }

@@ -1,4 +1,4 @@
-package com.mission.chaze.chaze.screens.Homepage;
+package com.mission.chaze.chaze.screens.search;
 
 import com.mission.chaze.chaze.screens.base.MvpContract;
 
@@ -7,7 +7,7 @@ import com.mission.chaze.chaze.screens.base.MvpContract;
  * Created by Shubham Vishwakarma on 4/10/18.
  */
 
-public class HomeContract {
+public class SearchContract {
 
     public interface View extends MvpContract.View {
 

@@ -12,12 +12,13 @@ import android.widget.GridView;
 import com.mission.chaze.chaze.R;
 import com.mission.chaze.chaze.adapters.HomeGridAdapter;
 import com.mission.chaze.chaze.models.HomeGrid;
+import com.mission.chaze.chaze.screens.base.BaseFragment;
 
 import java.util.ArrayList;
 
 import timber.log.Timber;
 
-public class Home extends Fragment {
+public class Home extends BaseFragment {
     GridView grid;
     ArrayList<HomeGrid> gridList=new ArrayList<HomeGrid>();
     private String[] gridText={
@@ -74,5 +75,35 @@ public class Home extends Fragment {
     public void onDestroyView() {
         gridList.clear();
         super.onDestroyView();
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void onError(String message) {
+
+    }
+
+    @Override
+    public void showMessage(String message) {
+
+    }
+
+    @Override
+    public boolean isNetworkConnected() {
+        return false;
+    }
+
+    @Override
+    public void hideKeyboard() {
+
     }
 }

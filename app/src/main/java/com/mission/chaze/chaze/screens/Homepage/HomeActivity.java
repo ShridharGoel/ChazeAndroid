@@ -2,9 +2,7 @@ package com.mission.chaze.chaze.screens.Homepage;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -13,12 +11,10 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.mission.chaze.chaze.R;
 import com.mission.chaze.chaze.ViewPagerAdapter;
@@ -28,12 +24,11 @@ import com.mission.chaze.chaze.fragments.Home;
 import com.mission.chaze.chaze.fragments.Localsearch;
 import com.mission.chaze.chaze.fragments.more;
 import com.mission.chaze.chaze.repository.CartManager;
+import com.mission.chaze.chaze.screens.base.BaseActivity;
 import com.mission.chaze.chaze.screens.search.SearchActivity;
 
-import javax.inject.Inject;
-
-public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class HomeActivity extends BaseActivity
+        implements NavigationView.OnNavigationItemSelectedListener, HomeContract.View {
 
 
     BottomNavigationView bottomNavigationView;
@@ -50,58 +45,12 @@ public class HomeActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home2);
+        setContentView(R.layout.activity_home);
         init();
         setupBottomNavigation();
         setupViewPager(viewPager);
     }
 
-
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) drawer.closeDrawer(GravityCompat.START);
-        else super.onBackPressed();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(final Menu menu) {
-        cartManager = new CartManager(HomeActivity.this);
-        getMenuInflater().inflate(R.menu.menu_just_cart, menu);
-        final View cart = menu.findItem(R.id.cart_icon_badge_action).getActionView();
-        final View search = menu.findItem(R.id.serchview).getActionView();
-        txtViewCount = (TextView) cart.findViewById(R.id.cart_count_badge);
-        txtViewCount.setText(String.valueOf(0));
-        search.setOnClickListener(v -> goToSearch());
-        cart.setOnClickListener(v -> {
-        });
-        return super.onCreateOptionsMenu(menu);
-    }
-
-
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
 
     private void init() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -213,6 +162,34 @@ public class HomeActivity extends AppCompatActivity
                     return false;
                 });
 
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        if (drawer.isDrawerOpen(GravityCompat.START)) drawer.closeDrawer(GravityCompat.START);
+        else super.onBackPressed();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(final Menu menu) {
+        cartManager = new CartManager(HomeActivity.this);
+        getMenuInflater().inflate(R.menu.menu_just_cart, menu);
+        final View cart = menu.findItem(R.id.cart_icon_badge_action).getActionView();
+        final View search = menu.findItem(R.id.serchview).getActionView();
+        txtViewCount = (TextView) cart.findViewById(R.id.cart_count_badge);
+        txtViewCount.setText(String.valueOf(0));
+        search.setOnClickListener(v -> goToSearch());
+        cart.setOnClickListener(v -> {
+        });
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 
 }

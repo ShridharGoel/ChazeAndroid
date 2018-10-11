@@ -22,6 +22,7 @@ import com.mission.chaze.chaze.R;
 import com.mission.chaze.chaze.adapters.EcommercePagerAdapter;
 import com.mission.chaze.chaze.adapters.ecomerceCategoryAdapter;
 import com.mission.chaze.chaze.models.ecomerceCategory;
+import com.mission.chaze.chaze.screens.base.BaseFragment;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -31,7 +32,7 @@ import java.util.ListIterator;
 
 import timber.log.Timber;
 
-public class Ecomerce extends Fragment {
+public class Ecomerce extends BaseFragment {
     RecyclerView recyclerView;
     RecyclerView.LayoutManager mLayoutManager;
     ecomerceCategoryAdapter adapter;
@@ -77,6 +78,36 @@ public class Ecomerce extends Fragment {
         viewPager.setAdapter(restaurantMenuFragmentPagerAdapter);
 
         tabLayout.setupWithViewPager(viewPager);
+
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void onError(String message) {
+
+    }
+
+    @Override
+    public void showMessage(String message) {
+
+    }
+
+    @Override
+    public boolean isNetworkConnected() {
+        return false;
+    }
+
+    @Override
+    public void hideKeyboard() {
 
     }
 }
