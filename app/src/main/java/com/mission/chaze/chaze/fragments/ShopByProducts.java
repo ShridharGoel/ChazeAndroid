@@ -14,13 +14,14 @@ import android.widget.Toast;
 import com.mission.chaze.chaze.R;
 import com.mission.chaze.chaze.adapters.PostAdapter;
 import com.mission.chaze.chaze.models.ecomerceCategory;
+import com.mission.chaze.chaze.screens.base.BaseFragment;
 
 import java.util.ArrayList;
 import java.util.Locale;
 
 import timber.log.Timber;
 
-public class ShopByProducts extends Fragment {
+public class ShopByProducts extends BaseFragment {
     public ShopByProducts() {
     }
 
@@ -58,5 +59,35 @@ public class ShopByProducts extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(mLayoutManager);
         Toast.makeText(getContext(), "products", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void onError(String message) {
+
+    }
+
+    @Override
+    public void showMessage(String message) {
+
+    }
+
+    @Override
+    public boolean isNetworkConnected() {
+        return false;
+    }
+
+    @Override
+    public void hideKeyboard() {
+
     }
 }
