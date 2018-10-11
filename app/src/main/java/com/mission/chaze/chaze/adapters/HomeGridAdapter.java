@@ -11,13 +11,14 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.mission.chaze.chaze.models.HomeGrid;
 import com.mission.chaze.chaze.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeGridAdapter extends ArrayAdapter{
+public class HomeGridAdapter extends ArrayAdapter {
     ArrayList<HomeGrid> imageList;
 
     public HomeGridAdapter(@NonNull Context context, int resource, ArrayList<HomeGrid> imageList) {

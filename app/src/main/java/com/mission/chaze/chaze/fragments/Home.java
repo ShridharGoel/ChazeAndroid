@@ -63,7 +63,7 @@ public class Home extends Fragment {
         /*HomeGridAdapter adapter = new HomeGridAdapter(getContext(), gridText, gridImages);
         grid=(GridView)view.findViewById(R.id.grid);
         grid.setAdapter(adapter);*/
-        grid=(GridView) getActivity().findViewById(R.id.grid);
+        grid=(GridView) view.findViewById(R.id.grid);
 
 
         HomeGridAdapter adapter=new HomeGridAdapter(getContext(),R.layout.grid_single,gridList);
