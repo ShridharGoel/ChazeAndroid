@@ -26,6 +26,8 @@ import com.mission.chaze.chaze.repository.CartManager;
 import com.mission.chaze.chaze.screens.base.BaseActivity;
 import com.mission.chaze.chaze.screens.search.SearchActivity;
 
+import timber.log.Timber;
+
 public class HomeActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener, HomeContract.View {
 
@@ -88,6 +90,7 @@ public class HomeActivity extends BaseActivity
             }
         });
 
+
         HomeBottomNavPagerAdapter adapter = new HomeBottomNavPagerAdapter(getSupportFragmentManager());
         EcommerceFragment ecomerce = new EcommerceFragment();
         FoodFragment foodFragment = new FoodFragment();
@@ -95,9 +98,9 @@ public class HomeActivity extends BaseActivity
         LocalSearchFragment localsearch = new LocalSearchFragment();
         MoreFragment moreFragment_object = new MoreFragment();
 
+        adapter.addFragment(homeFragment);
         adapter.addFragment(ecomerce);
         adapter.addFragment(foodFragment);
-        adapter.addFragment(homeFragment);
         adapter.addFragment(localsearch);
         adapter.addFragment(moreFragment_object);
         viewPager.setAdapter(adapter);
@@ -106,6 +109,7 @@ public class HomeActivity extends BaseActivity
     private void goToSearch() {
 
         Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
+        intent.putExtra("SearchType", viewPager.getCurrentItem());
         ActivityOptionsCompat options = ActivityOptionsCompat.
                 makeSceneTransitionAnimation(this, (View) toolbar, "search");
         startActivity(intent, options.toBundle());
