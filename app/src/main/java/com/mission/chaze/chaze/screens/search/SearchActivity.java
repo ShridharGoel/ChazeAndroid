@@ -7,33 +7,30 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.WindowManager;
 import android.widget.SearchView;
-import android.widget.TextView;
-
 import com.mission.chaze.chaze.R;
 import com.mission.chaze.chaze.models.SearchResult;
-import com.mission.chaze.chaze.models.ecomerceCategory;
-import com.mission.chaze.chaze.screens.Homepage.Ecommerce.ShopByProducts.ProductsPostAdapter;
 import com.mission.chaze.chaze.screens.base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
-import io.reactivex.functions.Predicate;
 import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
 public class SearchActivity extends BaseActivity implements SearchContract.View {
 
     int searchType;
+
+    @Inject
+    SearchContract.Presentor<SearchContract.View> mPresentor;
 
     @BindView(R.id.searchbar)
     SearchView searchView;
@@ -43,12 +40,19 @@ public class SearchActivity extends BaseActivity implements SearchContract.View 
     SearchSuggestionsAdapter adapter;
     ArrayList<SearchResult> searches;
 
+
+    SearchPresenter<SearchContract.View> mPresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-        Timber.d("SearchType: " + searchType);
+        Timber.d("SearchType: %s", searchType);
+
+        getActivityComponent().inject(this);
         setUnBinder(ButterKnife.bind(this));
+
+        mPresenter.onAttach(this);
 
         init();
     }

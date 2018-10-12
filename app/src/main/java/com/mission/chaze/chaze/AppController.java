@@ -6,6 +6,7 @@ import com.mission.chaze.chaze.di.component.ApplicationComponent;
 import com.mission.chaze.chaze.di.component.DaggerApplicationComponent;
 import com.mission.chaze.chaze.di.module.ApplicationModule;
 import com.mission.chaze.chaze.repository.CartManager;
+import com.mission.chaze.chaze.repository.network.ICommonAPIManager;
 import com.mission.chaze.chaze.repository.session.SessionManager;
 import com.mission.chaze.chaze.utils.TimberLogger;
 import com.squareup.leakcanary.LeakCanary;
@@ -26,7 +27,7 @@ public class AppController extends Application {
     CartManager mCartManager;
 
     @Inject
-    Retrofit retrofit;
+    ICommonAPIManager  iCommonAPIManager;
 
     @Override
     public void onCreate() {

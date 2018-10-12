@@ -8,6 +8,8 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.mission.chaze.chaze.di.ActivityContext;
 import com.mission.chaze.chaze.di.PerActivity;
+import com.mission.chaze.chaze.screens.search.SearchContract;
+import com.mission.chaze.chaze.screens.search.SearchPresenter;
 
 import java.util.ArrayList;
 
@@ -44,5 +46,10 @@ public class ActivityModule {
         return new CompositeDisposable();
     }
 
+    @Provides
+    SearchContract.Presentor<SearchContract.View> providesSearchPresentor(
+            SearchPresenter<SearchContract.View> presenter){
+        return presenter;
+    }
 
 }
