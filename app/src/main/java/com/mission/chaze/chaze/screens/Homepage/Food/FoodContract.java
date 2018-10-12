@@ -1,6 +1,10 @@
 package com.mission.chaze.chaze.screens.Homepage.Food;
 
+import com.mission.chaze.chaze.models.EcomerceCategory;
+import com.mission.chaze.chaze.models.Restaurant;
 import com.mission.chaze.chaze.screens.base.MvpContract;
+
+import java.util.List;
 
 
 /**
@@ -11,11 +15,10 @@ public class FoodContract {
 
     public interface View extends MvpContract.View {
 
-
     }
 
 
-    public interface Presentor<V extends View> extends MvpContract.Presenter<V> {
+    public interface Presenter<V extends View> extends MvpContract.Presenter<V> {
 
     }
 }
