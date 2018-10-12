@@ -1,4 +1,4 @@
-package com.mission.chaze.chaze.screens.Homepage.Ecommerce.ShopByProducts;
+package com.mission.chaze.chaze.screens.Homepage.Ecommerce.ShopByShops;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -14,11 +14,11 @@ import com.mission.chaze.chaze.models.EcomerceCategory;
 
 import java.util.List;
 
-public class ProductsPostAdapter extends RecyclerView.Adapter<ProductsPostAdapter.ViewHolder>{
+public class ShopsAdapter extends RecyclerView.Adapter<ShopsAdapter.ViewHolder>{
     Context context;
     List<EcomerceCategory> categoryList;
 
-    public ProductsPostAdapter(Context context, List<EcomerceCategory> categoryList) {
+    public ShopsAdapter(Context context, List<EcomerceCategory> categoryList) {
         this.context = context;
         this.categoryList = categoryList;
     }
