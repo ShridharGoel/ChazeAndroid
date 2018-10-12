@@ -44,7 +44,7 @@ public class AppController extends Application {
     }
 
     private void init() {
-        if (!BuildConfig.DEBUG) Timber.plant(new TimberLogger());
+        if (BuildConfig.DEBUG) Timber.plant(new TimberLogger());
 
         if (LeakCanary.isInAnalyzerProcess(this)) {
             // This process is dedicated to LeakCanary for heap analysis.

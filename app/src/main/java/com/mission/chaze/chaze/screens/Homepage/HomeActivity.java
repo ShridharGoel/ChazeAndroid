@@ -17,12 +17,11 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.mission.chaze.chaze.R;
-import com.mission.chaze.chaze.ViewPagerAdapter;
-import com.mission.chaze.chaze.fragments.Ecomerce;
-import com.mission.chaze.chaze.fragments.Food;
-import com.mission.chaze.chaze.fragments.Home;
-import com.mission.chaze.chaze.fragments.Localsearch;
-import com.mission.chaze.chaze.fragments.more;
+import com.mission.chaze.chaze.screens.Homepage.Ecommerce.EcommerceFragment;
+import com.mission.chaze.chaze.screens.Homepage.Food.FoodFragment;
+import com.mission.chaze.chaze.screens.Homepage.Home.HomeFragment;
+import com.mission.chaze.chaze.screens.Homepage.LocalSearch.LocalSearchFragment;
+import com.mission.chaze.chaze.screens.Homepage.More.MoreFragment;
 import com.mission.chaze.chaze.repository.CartManager;
 import com.mission.chaze.chaze.screens.base.BaseActivity;
 import com.mission.chaze.chaze.screens.search.SearchActivity;
@@ -89,18 +88,18 @@ public class HomeActivity extends BaseActivity
             }
         });
 
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        Ecomerce ecomerce = new Ecomerce();
-        Food food = new Food();
-        Home home = new Home();
-        Localsearch localsearch = new Localsearch();
-        more more_object = new more();
+        HomeBottomNavPagerAdapter adapter = new HomeBottomNavPagerAdapter(getSupportFragmentManager());
+        EcommerceFragment ecomerce = new EcommerceFragment();
+        FoodFragment foodFragment = new FoodFragment();
+        HomeFragment homeFragment = new HomeFragment();
+        LocalSearchFragment localsearch = new LocalSearchFragment();
+        MoreFragment moreFragment_object = new MoreFragment();
 
         adapter.addFragment(ecomerce);
-        adapter.addFragment(food);
-        adapter.addFragment(home);
+        adapter.addFragment(foodFragment);
+        adapter.addFragment(homeFragment);
         adapter.addFragment(localsearch);
-        adapter.addFragment(more_object);
+        adapter.addFragment(moreFragment_object);
         viewPager.setAdapter(adapter);
     }
 

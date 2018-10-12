@@ -6,8 +6,12 @@ import timber.log.Timber;
  * Created by Shubham Vishwakarma on 05/10/18.
  */
 
-public class TimberLogger extends Timber.Tree {
+public class TimberLogger extends Timber.DebugTree {
     @Override
-    protected void log(final int priority, final String tag, final String message, final Throwable throwable) {
+    protected String createStackElementTag(StackTraceElement element) {
+        return String.format("(%s:%s)#%s",
+                element.getFileName(),
+                element.getLineNumber(),
+                element.getMethodName());
     }
 }
