@@ -41,7 +41,7 @@ public class BasePresenter<V extends MvpContract.View> implements MvpContract.Pr
 
     @Override
     public void onAttach(V mvpView) {
-        mvpView = mvpView;
+        mMvpView = mvpView;
     }
 
     @Override

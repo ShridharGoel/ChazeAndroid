@@ -6,6 +6,8 @@ import com.mission.chaze.chaze.repository.network.ICommonAPIManager;
 import com.mission.chaze.chaze.screens.base.BasePresenter;
 import com.mission.chaze.chaze.utils.rx.SchedulerProvider;
 
+import javax.inject.Inject;
+
 import io.reactivex.disposables.CompositeDisposable;
 
 
@@ -16,6 +18,7 @@ import io.reactivex.disposables.CompositeDisposable;
 public class EcommercePresenter<V extends EcommerceContract.View> extends BasePresenter<V>
         implements EcommerceContract.Presentor<V> {
 
+    @Inject
     public EcommercePresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable) {
         super(dataManager, schedulerProvider, compositeDisposable);
     }

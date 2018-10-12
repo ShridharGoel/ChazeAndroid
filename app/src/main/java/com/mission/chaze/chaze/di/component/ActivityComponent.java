@@ -4,6 +4,9 @@ package com.mission.chaze.chaze.di.component;
 
 import com.mission.chaze.chaze.di.PerActivity;
 import com.mission.chaze.chaze.di.module.ActivityModule;
+import com.mission.chaze.chaze.screens.Homepage.Ecommerce.EcommerceFragment;
+import com.mission.chaze.chaze.screens.Homepage.Ecommerce.ShopByProducts.ShopByProductsFragment;
+import com.mission.chaze.chaze.screens.Homepage.Home.HomeFragment;
 import com.mission.chaze.chaze.screens.Homepage.HomeActivity;
 import com.mission.chaze.chaze.screens.Proflie.ProfileActivity;
 import com.mission.chaze.chaze.screens.Splash.SplashActivity;
@@ -24,10 +27,15 @@ public interface ActivityComponent {
 
     void inject(SplashActivity activity);
 
-    /*void inject(SearchActivity searchActivity);*/
 
     void inject(ProfileActivity profileActivity);
 
 
     void inject(SearchActivity searchActivity);
+
+    void inject(HomeFragment homeFragment);
+
+    void inject(EcommerceFragment ecommerceFragment);
+
+    void inject(ShopByProductsFragment shopByProductsFragment);
 }

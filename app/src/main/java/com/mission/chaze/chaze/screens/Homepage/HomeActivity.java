@@ -26,40 +26,52 @@ import com.mission.chaze.chaze.repository.CartManager;
 import com.mission.chaze.chaze.screens.base.BaseActivity;
 import com.mission.chaze.chaze.screens.search.SearchActivity;
 
+import javax.inject.Inject;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import timber.log.Timber;
 
 public class HomeActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener, HomeContract.View {
 
 
-    BottomNavigationView bottomNavigationView;
-    ViewPager viewPager;
     MenuItem prevMenuItem;
 
     TextView txtViewCount;
+
+    @Inject
     CartManager cartManager;
+
+    @Inject
+    HomeContract.Presenter<HomeContract.View> mPresenter;
+
+    @BindView(R.id.navigation)
+    BottomNavigationView bottomNavigationView;
+    @BindView(R.id.viewpager)
+    ViewPager viewPager;
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
+    @BindView(R.id.drawer_layout)
     DrawerLayout drawer;
+    @BindView(R.id.nav_view)
     NavigationView navigationView;
+
+    @Inject
+    HomeBottomNavPagerAdapter adapter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        init();
+        setUnBinder(ButterKnife.bind(this));
+        getActivityComponent().inject(this);
+
+        mPresenter.onAttach(this);
+        setSupportActionBar(toolbar);
         setupBottomNavigation();
         setupViewPager(viewPager);
-    }
-
-
-    private void init() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
-        bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
-        setSupportActionBar(toolbar);
     }
 
 
@@ -78,7 +90,7 @@ public class HomeActivity extends BaseActivity
                 } else {
                     bottomNavigationView.getMenu().getItem(0).setChecked(false);
                 }
-                Log.d("page", "onPageSelected: " + position);
+                Timber.d("page" + "onPageSelected: " + position);
                 bottomNavigationView.getMenu().getItem(position).setChecked(true);
                 prevMenuItem = bottomNavigationView.getMenu().getItem(position);
 
@@ -90,19 +102,6 @@ public class HomeActivity extends BaseActivity
             }
         });
 
-
-        HomeBottomNavPagerAdapter adapter = new HomeBottomNavPagerAdapter(getSupportFragmentManager());
-        EcommerceFragment ecomerce = new EcommerceFragment();
-        FoodFragment foodFragment = new FoodFragment();
-        HomeFragment homeFragment = new HomeFragment();
-        LocalSearchFragment localsearch = new LocalSearchFragment();
-        MoreFragment moreFragment_object = new MoreFragment();
-
-        adapter.addFragment(homeFragment);
-        adapter.addFragment(ecomerce);
-        adapter.addFragment(foodFragment);
-        adapter.addFragment(localsearch);
-        adapter.addFragment(moreFragment_object);
         viewPager.setAdapter(adapter);
     }
 
@@ -176,7 +175,6 @@ public class HomeActivity extends BaseActivity
 
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
-        cartManager = new CartManager(HomeActivity.this);
         getMenuInflater().inflate(R.menu.menu_just_cart, menu);
         final View cart = menu.findItem(R.id.cart_icon_badge_action).getActionView();
         final View search = menu.findItem(R.id.serchview).getActionView();

@@ -9,69 +9,50 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 
 import com.mission.chaze.chaze.R;
+import com.mission.chaze.chaze.di.component.ActivityComponent;
 import com.mission.chaze.chaze.models.HomeGrid;
 import com.mission.chaze.chaze.screens.base.BaseFragment;
 
 import java.util.ArrayList;
 
+import javax.inject.Inject;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import timber.log.Timber;
 
-public class HomeFragment extends BaseFragment {
-    GridView grid;
-    ArrayList<HomeGrid> gridList=new ArrayList<HomeGrid>();
-    private String[] gridText={
-            "icon_text","image_text",
-            "icon_text","image_text",
-            "icon_text","image_text",
-            "icon_text","image_text",
-            "icon_text","image_text",
-            "icon_text","image_text",
-    };
+public class HomeFragment extends BaseFragment implements HomeFragmentContract.View {
 
-    public Integer[] gridImages={
-            R.drawable.ic_dashboard_black_24dp, R.drawable.ic_dashboard_black_24dp,
-            R.drawable.ic_dashboard_black_24dp, R.drawable.ic_dashboard_black_24dp,
-            R.drawable.ic_dashboard_black_24dp, R.drawable.ic_dashboard_black_24dp,
-            R.drawable.ic_dashboard_black_24dp, R.drawable.ic_dashboard_black_24dp,
-            R.drawable.ic_dashboard_black_24dp, R.drawable.ic_dashboard_black_24dp,
-            R.drawable.ic_dashboard_black_24dp, R.drawable.ic_dashboard_black_24dp,
-    };
-    public HomeFragment() {
-    }
+    @BindView(R.id.grid)
+    GridView grid;
+    @Inject
+    HomeGridAdapter adapter;
+    @Inject
+    HomeFragmentContract.Presentor<HomeFragmentContract.View> mPresenter;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        onAttach(getContext());
+        getActivityComponent().inject(this);
+        setUnBinder(ButterKnife.bind(this, view));
+        mPresenter.onAttach(this);
 
-
-        Timber.d("Home");
-        gridList.add(new HomeGrid("nolnsv",R.drawable.ic_dashboard_black_24dp));
-        gridList.add(new HomeGrid("bgknf",R.drawable.ic_dashboard_black_24dp));
-        gridList.add(new HomeGrid("sbnls",R.drawable.ic_dashboard_black_24dp));
-        gridList.add(new HomeGrid("bnlsz",R.drawable.ic_dashboard_black_24dp));
-        gridList.add(new HomeGrid("bk,bskl",R.drawable.ic_dashboard_black_24dp));
-        gridList.add(new HomeGrid("dsvnlls",R.drawable.ic_dashboard_black_24dp));
-        gridList.add(new HomeGrid("dvkbk",R.drawable.ic_dashboard_black_24dp));
-        gridList.add(new HomeGrid("nvls",R.drawable.ic_dashboard_black_24dp));
-
-        return inflater.inflate(R.layout.fragment_home,container,false);
+        return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        /*HomeGridAdapter adapter = new HomeGridAdapter(getContext(), gridText, gridImages);
-        grid=(GridView)view.findViewById(R.id.grid);
-        grid.setAdapter(adapter);*/
-        grid=(GridView) view.findViewById(R.id.grid);
-
-
-        HomeGridAdapter adapter=new HomeGridAdapter(getContext(),R.layout.grid_single,gridList);
+        Timber.d("HomeFragment");
+        adapter.addItems();
         grid.setAdapter(adapter);
     }
 
     @Override
     public void onDestroyView() {
-        gridList.clear();
+        adapter.clear();
         super.onDestroyView();
     }
 

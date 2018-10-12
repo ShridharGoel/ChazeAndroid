@@ -13,16 +13,15 @@ import com.mission.chaze.chaze.screens.base.BaseFragment;
 import timber.log.Timber;
 
 public class ShopByShopsFragment extends BaseFragment {
-    public ShopByShopsFragment() {
-    }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
 
-        Timber.d("Home");
+        Timber.d("ShopByProductsFragment");
 
-        return inflater.inflate(R.layout.fragment_shop_by_shops,container,false);
+        View view = inflater.inflate(R.layout.fragment_shop_by_shops, container, false);
+        return view;
     }
 
 }
