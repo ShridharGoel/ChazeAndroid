@@ -9,6 +9,7 @@ import android.view.WindowManager;
 import android.widget.SearchView;
 
 import com.mission.chaze.chaze.R;
+import com.mission.chaze.chaze.di.LinLayoutVert;
 import com.mission.chaze.chaze.models.SearchResult;
 import com.mission.chaze.chaze.screens.base.BaseActivity;
 
@@ -34,6 +35,7 @@ public class SearchActivity extends BaseActivity implements SearchContract.View 
     SearchContract.Presentor<SearchContract.View> mPresenter;
 
     @Inject
+    @LinLayoutVert
     LinearLayoutManager mLayoutManager;
 
     @Inject

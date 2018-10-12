@@ -1,8 +1,13 @@
 package com.mission.chaze.chaze.screens.base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+
+import com.mission.chaze.chaze.di.component.ActivityComponent;
+
+import butterknife.Unbinder;
 
 /**
  * Created by Shubham Vishwakarma on 4/10/18.
@@ -10,6 +15,18 @@ import android.support.v4.app.Fragment;
 
 public abstract class BaseFragment extends Fragment implements MvpContract.View {
 
+
+    private BaseActivity mActivity;
+    private Unbinder mUnBinder;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof BaseActivity) {
+            BaseActivity activity = (BaseActivity) context;
+            this.mActivity = activity;
+        }
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,4 +63,17 @@ public abstract class BaseFragment extends Fragment implements MvpContract.View 
     public void hideKeyboard() {
 
     }
+
+
+    public void setUnBinder(Unbinder unBinder) {
+        mUnBinder = unBinder;
+    }
+
+    public ActivityComponent getActivityComponent() {
+        if (mActivity != null) {
+            return mActivity.getActivityComponent();
+        }
+        return null;
+    }
+
 }

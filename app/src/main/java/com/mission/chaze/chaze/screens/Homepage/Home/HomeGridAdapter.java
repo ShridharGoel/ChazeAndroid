@@ -21,8 +21,8 @@ import java.util.List;
 public class HomeGridAdapter extends ArrayAdapter {
     ArrayList<HomeGrid> imageList;
 
-    public HomeGridAdapter(@NonNull Context context, int resource, ArrayList<HomeGrid> imageList) {
-        super(context, resource, imageList);
+    public HomeGridAdapter(@NonNull Context context, ArrayList<HomeGrid> imageList) {
+        super(context, R.layout.grid_single, imageList);
         this.imageList = imageList;
     }
 
@@ -42,6 +42,19 @@ public class HomeGridAdapter extends ArrayAdapter {
         textView.setText(imageList.get(position).getText());
         imageView.setImageResource(imageList.get(position).getImage());
         return v;
+
+    }
+
+    public void addItems() {
+        imageList.add(new HomeGrid("nolnsv", R.drawable.ic_dashboard_black_24dp));
+        imageList.add(new HomeGrid("bgknf", R.drawable.ic_dashboard_black_24dp));
+        imageList.add(new HomeGrid("sbnls", R.drawable.ic_dashboard_black_24dp));
+        imageList.add(new HomeGrid("bnlsz", R.drawable.ic_dashboard_black_24dp));
+        imageList.add(new HomeGrid("bk,bskl", R.drawable.ic_dashboard_black_24dp));
+        imageList.add(new HomeGrid("dsvnlls", R.drawable.ic_dashboard_black_24dp));
+        imageList.add(new HomeGrid("dvkbk", R.drawable.ic_dashboard_black_24dp));
+        imageList.add(new HomeGrid("nvls", R.drawable.ic_dashboard_black_24dp));
+        notifyDataSetChanged();
 
     }
 }

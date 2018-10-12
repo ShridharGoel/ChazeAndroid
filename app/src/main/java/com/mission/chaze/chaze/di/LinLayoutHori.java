@@ -10,5 +10,5 @@ import javax.inject.Qualifier;
  */
 
 @Qualifier
-public @interface FoodOrderingAPIQual {
+public @interface LinLayoutHori {
 }

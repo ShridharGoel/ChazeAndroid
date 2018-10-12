@@ -2,11 +2,11 @@ package com.mission.chaze.chaze.models;
 
 import android.graphics.Bitmap;
 
-public class ecomerceCategory {
+public class EcomerceCategory {
     String category;
     String image;
 
-    public ecomerceCategory(String category, String image) {
+    public EcomerceCategory(String category, String image) {
         this.category = category;
         this.image = image;
     }

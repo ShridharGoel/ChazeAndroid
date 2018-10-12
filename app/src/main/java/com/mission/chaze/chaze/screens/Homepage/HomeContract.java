@@ -1,5 +1,6 @@
 package com.mission.chaze.chaze.screens.Homepage;
 
+import com.mission.chaze.chaze.screens.Homepage.Home.HomeFragmentContract;
 import com.mission.chaze.chaze.screens.base.MvpContract;
 
 
@@ -9,13 +10,13 @@ import com.mission.chaze.chaze.screens.base.MvpContract;
 
 public class HomeContract {
 
-    public interface View extends MvpContract.View {
+    public interface View extends MvpContract.View, HomeFragmentContract.View {
 
 
     }
 
 
-    public interface Presentor<V extends View> extends MvpContract.Presenter<V> {
+    public interface Presenter<V extends View> extends MvpContract.Presenter<V> {
 
     }
 }

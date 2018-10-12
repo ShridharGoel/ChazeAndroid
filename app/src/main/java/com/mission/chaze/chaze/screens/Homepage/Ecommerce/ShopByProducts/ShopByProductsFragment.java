@@ -11,49 +11,55 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.mission.chaze.chaze.R;
-import com.mission.chaze.chaze.models.ecomerceCategory;
+import com.mission.chaze.chaze.di.LinLayoutVert;
+import com.mission.chaze.chaze.models.EcomerceCategory;
 import com.mission.chaze.chaze.screens.base.BaseFragment;
 
 import java.util.ArrayList;
 
+import javax.inject.Inject;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import timber.log.Timber;
 
-public class ShopByProductsFragment extends BaseFragment {
+public class ShopByProductsFragment extends BaseFragment implements ShopByProductsContract.View {
     public ShopByProductsFragment() {
         Timber.e("ShopByProducts");
     }
 
 
+    @BindView(R.id.ecomerceRecyclerView)
     RecyclerView recyclerView;
-    RecyclerView.LayoutManager mLayoutManager;
+    @Inject
+    @LinLayoutVert
+    LinearLayoutManager mLayoutManager;
+    @Inject
     ProductsPostAdapter adapter;
 
-    ArrayList<ecomerceCategory> categories;
+    @Inject
+    ShopByProductsContract.Presentor<ShopByProductsContract.View> mPresentor;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
 
-        return inflater.inflate(R.layout.fragment_shop_by_products,container,false);
+        View view = inflater.inflate(R.layout.fragment_shop_by_products, container, false);
+
+        onAttach(getContext());
+        getActivityComponent().inject(this);
+        setUnBinder(ButterKnife.bind(this, view));
+        mPresentor.onAttach(this);
+        return view;
     }
 
-    private void addItemsToAdapter() {
-
-        for (int i = 0; i < 40; i++)
-            categories.add(new ecomerceCategory("people", "bdbdbdb"));
-    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        categories = new ArrayList<>();
-        addItemsToAdapter();
-        //recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView = view.findViewById(R.id.ecomerceRecyclerView);
-        mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.VERTICAL, false);
-        adapter = new ProductsPostAdapter(getActivity().getApplicationContext(), categories);
+        adapter.addItems();
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(mLayoutManager);
         Toast.makeText(getContext(), "products", Toast.LENGTH_SHORT).show();

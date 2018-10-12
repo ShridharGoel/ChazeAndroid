@@ -11,63 +11,67 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.widget.Toast;
-
 
 import com.mission.chaze.chaze.R;
-import com.mission.chaze.chaze.models.ecomerceCategory;
+import com.mission.chaze.chaze.di.LinLayoutHori;
+import com.mission.chaze.chaze.models.EcomerceCategory;
 import com.mission.chaze.chaze.screens.base.BaseFragment;
 
 import java.util.ArrayList;
 
+import javax.inject.Inject;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import timber.log.Timber;
 
-public class EcommerceFragment extends BaseFragment {
-    RecyclerView recyclerView;
-    RecyclerView.LayoutManager mLayoutManager;
-    EcommerceCategoryAdapter adapter;
-    ArrayList<ecomerceCategory> categoryList;
-    ViewPager viewPager;
-    TabLayout tabLayout;
+public class EcommerceFragment extends BaseFragment implements EcommerceContract.View {
 
-    public EcommerceFragment() {
-    }
+
+    @Inject
+    @LinLayoutHori
+    LinearLayoutManager mLayoutManager;
+    @Inject
+    EcommerceCategoryAdapter adapter;
+
+    @Inject
+    EcommercePagerAdapter ecommercePagerAdapter;
+
+    @BindView(R.id.ecommerce_view_pager)
+    ViewPager viewPager;
+    @BindView(R.id.ecommerce_slider)
+    TabLayout tabLayout;
+    @BindView(R.id.ecomerceRecyclerView)
+    RecyclerView recyclerView;
+
+    @Inject
+    EcommerceContract.Presentor<EcommerceContract.View> mPresenter;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        Toast.makeText(getContext(), "Ecommerce", Toast.LENGTH_SHORT).show();
-        Timber.e("ShopByProducts");
+        Timber.d("Ecommerce Fragment");
 
-        return inflater.inflate(R.layout.fragment_ecomerce, container, false);
+        View view = inflater.inflate(R.layout.fragment_ecomerce, container, false);
+
+        onAttach(getContext());
+        getActivityComponent().inject(this);
+        setUnBinder(ButterKnife.bind(this, view));
+        mPresenter.onAttach(this);
+        return view;
+
     }
 
-    private void addItemsToAdapter() {
-
-        for (int i = 0; i < 40; i++)
-            categoryList.add(new ecomerceCategory("people", "bdbdbdb"));
-    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Timber.e("Ecommerce View created");
-        categoryList = new ArrayList<>();
-        addItemsToAdapter();
-        //recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView = getActivity().findViewById(R.id.ecomerceRecyclerView);
-        mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
-        adapter = new EcommerceCategoryAdapter(getActivity().getApplicationContext(), categoryList);
+        adapter.addItems();
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(mLayoutManager);
-
-        viewPager = view.findViewById(R.id.ecommerce_view_pager);
-        tabLayout = (TabLayout) view.findViewById(R.id.ecommerce_slider);
-
-        EcommercePagerAdapter restaurantMenuFragmentPagerAdapter = new EcommercePagerAdapter(getActivity().getSupportFragmentManager());
-        viewPager.setAdapter(restaurantMenuFragmentPagerAdapter);
-
+        viewPager.setAdapter(ecommercePagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
     }

@@ -7,7 +7,7 @@ import com.mission.chaze.chaze.screens.base.MvpContract;
  * Created by Shubham Vishwakarma on 12/10/18.
  */
 
-public class HomeContract {
+public class HomeFragmentContract {
 
     public interface View extends MvpContract.View {
 

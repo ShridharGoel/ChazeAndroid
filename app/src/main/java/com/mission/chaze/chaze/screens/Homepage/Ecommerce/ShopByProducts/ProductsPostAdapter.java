@@ -10,15 +10,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mission.chaze.chaze.R;
-import com.mission.chaze.chaze.models.ecomerceCategory;
+import com.mission.chaze.chaze.models.EcomerceCategory;
 
 import java.util.List;
 
 public class ProductsPostAdapter extends RecyclerView.Adapter<ProductsPostAdapter.ViewHolder>{
     Context context;
-    List<ecomerceCategory> categoryList;
+    List<EcomerceCategory> categoryList;
 
-    public ProductsPostAdapter(Context context, List<ecomerceCategory> categoryList) {
+    public ProductsPostAdapter(Context context, List<EcomerceCategory> categoryList) {
         this.context = context;
         this.categoryList = categoryList;
     }
@@ -34,7 +34,7 @@ public class ProductsPostAdapter extends RecyclerView.Adapter<ProductsPostAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        ecomerceCategory item=categoryList.get(i);
+        EcomerceCategory item=categoryList.get(i);
         viewHolder.categoryText.setText(item.getCategory());
         //viewHolder.imageView.setImageDrawable(item.getImage());
 
@@ -43,6 +43,13 @@ public class ProductsPostAdapter extends RecyclerView.Adapter<ProductsPostAdapte
     @Override
     public int getItemCount() {
         return categoryList.size();
+    }
+
+    public void addItems() {
+        for (int i = 0; i < 40; i++)
+            categoryList.add(new EcomerceCategory("people", "bdbdbdb"));
+
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

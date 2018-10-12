@@ -11,6 +11,8 @@ import com.mission.chaze.chaze.di.ApplicationScope;
 import com.mission.chaze.chaze.repository.CartManager;
 import com.mission.chaze.chaze.repository.network.ChazeAPIService;
 import com.mission.chaze.chaze.repository.session.SessionManager;
+import com.mission.chaze.chaze.utils.rx.AppSchedulerProvider;
+import com.mission.chaze.chaze.utils.rx.SchedulerProvider;
 
 import dagger.Module;
 import dagger.Provides;
@@ -53,4 +55,11 @@ public class ApplicationModule {
     CartManager cartManager(@ApplicationContext Context c){
         return new CartManager(c);
     }
+
+    @Provides
+    @ApplicationScope
+    SchedulerProvider provideSchedulerProvider() {
+        return new AppSchedulerProvider();
+    }
+
 }
