@@ -18,6 +18,9 @@ import com.mission.chaze.chaze.screens.Homepage.Ecommerce.EcommercePresenter;
 import com.mission.chaze.chaze.screens.Homepage.Ecommerce.ShopByProducts.ProductsPostAdapter;
 import com.mission.chaze.chaze.screens.Homepage.Ecommerce.ShopByProducts.ShopByProductsContract;
 import com.mission.chaze.chaze.screens.Homepage.Ecommerce.ShopByProducts.ShopByProductsPresenter;
+import com.mission.chaze.chaze.screens.Homepage.Ecommerce.ShopByShops.ShopByShopsContract;
+import com.mission.chaze.chaze.screens.Homepage.Ecommerce.ShopByShops.ShopByShopsPresenter;
+import com.mission.chaze.chaze.screens.Homepage.Ecommerce.ShopByShops.ShopsAdapter;
 import com.mission.chaze.chaze.screens.Homepage.Food.FoodFragment;
 import com.mission.chaze.chaze.screens.Homepage.Home.HomeFragment;
 import com.mission.chaze.chaze.screens.Homepage.Home.HomeFragmentContract;
@@ -157,6 +160,18 @@ public class ActivityModule {
             ShopByProductsPresenter<ShopByProductsContract.View> presenter) {
         return presenter;
     }
+
+    @Provides
+    ShopsAdapter providesShopsAdapter() {
+        return new ShopsAdapter(mActivity, new ArrayList<>());
+    }
+
+    @Provides
+    ShopByShopsContract.Presentor<ShopByShopsContract.View> providesShopByShopsPresenter(
+            ShopByShopsPresenter<ShopByShopsContract.View> presenter) {
+        return presenter;
+    }
+
 
 
 }

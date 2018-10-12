@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.mission.chaze.chaze.R;
+import com.mission.chaze.chaze.models.EcomerceCategory;
 import com.mission.chaze.chaze.screens.Homepage.Ecommerce.EcommerceFragment;
 import com.mission.chaze.chaze.screens.Homepage.Food.FoodFragment;
 import com.mission.chaze.chaze.screens.Homepage.Home.HomeFragment;
@@ -25,6 +26,8 @@ import com.mission.chaze.chaze.screens.Homepage.More.MoreFragment;
 import com.mission.chaze.chaze.repository.CartManager;
 import com.mission.chaze.chaze.screens.base.BaseActivity;
 import com.mission.chaze.chaze.screens.search.SearchActivity;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -193,4 +196,8 @@ public class HomeActivity extends BaseActivity
         return true;
     }
 
+    @Override
+    public void addItems(List<EcomerceCategory> items) {
+
+    }
 }
