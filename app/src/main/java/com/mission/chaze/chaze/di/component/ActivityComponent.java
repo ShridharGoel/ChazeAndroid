@@ -5,8 +5,10 @@ package com.mission.chaze.chaze.di.component;
 import com.mission.chaze.chaze.di.PerActivity;
 import com.mission.chaze.chaze.di.module.ActivityModule;
 import com.mission.chaze.chaze.screens.Homepage.HomeActivity;
+import com.mission.chaze.chaze.screens.Proflie.ProfileActivity;
 import com.mission.chaze.chaze.screens.Splash.SplashActivity;
 import com.mission.chaze.chaze.screens.base.BaseActivity;
+import com.mission.chaze.chaze.screens.search.SearchActivity;
 
 import dagger.Component;
 
@@ -22,4 +24,10 @@ public interface ActivityComponent {
 
     void inject(SplashActivity activity);
 
+    /*void inject(SearchActivity searchActivity);*/
+
+    void inject(ProfileActivity profileActivity);
+
+
+    void inject(SearchActivity searchActivity);
 }

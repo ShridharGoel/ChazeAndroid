@@ -8,6 +8,9 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.mission.chaze.chaze.di.ActivityContext;
 import com.mission.chaze.chaze.di.PerActivity;
+import com.mission.chaze.chaze.screens.search.SearchContract;
+import com.mission.chaze.chaze.screens.search.SearchPresenter;
+import com.mission.chaze.chaze.screens.search.SearchSuggestionsAdapter;
 
 import java.util.ArrayList;
 
@@ -44,5 +47,20 @@ public class ActivityModule {
         return new CompositeDisposable();
     }
 
+    @Provides
+    SearchContract.Presentor<SearchContract.View> providesSearchPresentor(
+            SearchPresenter<SearchContract.View> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    LinearLayoutManager getLayoutManagerVert() {
+        return new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false);
+    }
+
+    @Provides
+    SearchSuggestionsAdapter getSearchSuggestionsAdapter() {
+        return new SearchSuggestionsAdapter(mActivity, new ArrayList<>());
+    }
 
 }

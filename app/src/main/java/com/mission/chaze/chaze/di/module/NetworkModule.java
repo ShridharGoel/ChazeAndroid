@@ -1,6 +1,16 @@
 package com.mission.chaze.chaze.di.module;
 
 import com.mission.chaze.chaze.di.ApplicationScope;
+import com.mission.chaze.chaze.di.ChazeAPIQual;
+import com.mission.chaze.chaze.di.EcommerceAPIQual;
+import com.mission.chaze.chaze.di.FoodOrderingAPIQual;
+import com.mission.chaze.chaze.di.SearchEngineAPIQual;
+import com.mission.chaze.chaze.repository.network.ChazeAPIService;
+import com.mission.chaze.chaze.repository.network.CommonAPIManager;
+import com.mission.chaze.chaze.repository.network.ECommerceAPIService;
+import com.mission.chaze.chaze.repository.network.FoodOrderingAPIService;
+import com.mission.chaze.chaze.repository.network.ICommonAPIManager;
+import com.mission.chaze.chaze.repository.network.SearchEngineAPIService;
 
 import dagger.Module;
 import dagger.Provides;
@@ -12,15 +22,70 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class NetworkModule {
 
-    /*@Provides
+    @Provides
     @ApplicationScope
-    APIInterface getApiInterface(Retrofit retroFit) {
-        return retroFit.create(APIInterface.class);
-    }*/
+    ChazeAPIService getChazeService(@ChazeAPIQual Retrofit retroFit) {
+        return retroFit.create(ChazeAPIService.class);
+    }
+
 
     @Provides
     @ApplicationScope
-    Retrofit getRetrofit(OkHttpClient okHttpClient) {
+    ECommerceAPIService getEcommerceService(@EcommerceAPIQual Retrofit retroFit) {
+        return retroFit.create(ECommerceAPIService.class);
+    }
+
+    @Provides
+    @ApplicationScope
+    FoodOrderingAPIService getFoodOrderingService(@FoodOrderingAPIQual Retrofit retroFit) {
+        return retroFit.create(FoodOrderingAPIService.class);
+    }
+
+    @Provides
+    @ApplicationScope
+    SearchEngineAPIService getSearchEngineService(@SearchEngineAPIQual Retrofit retroFit) {
+        return retroFit.create(SearchEngineAPIService.class);
+    }
+
+    @Provides
+    @ApplicationScope
+    @ChazeAPIQual
+    Retrofit getRetrofitChaze(OkHttpClient okHttpClient) {
+        return new Retrofit.Builder()
+                .baseUrl("https://google.com")
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(okHttpClient)
+                .build();
+    }
+
+
+    @Provides
+    @ApplicationScope
+    @EcommerceAPIQual
+    Retrofit getRetrofitEcommerce(OkHttpClient okHttpClient) {
+        return new Retrofit.Builder()
+                .baseUrl("https://google.com")
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(okHttpClient)
+                .build();
+    }
+
+
+    @Provides
+    @ApplicationScope
+    @FoodOrderingAPIQual
+    Retrofit getRetrofitFood(OkHttpClient okHttpClient) {
+        return new Retrofit.Builder()
+                .baseUrl("https://google.com")
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(okHttpClient)
+                .build();
+    }
+
+    @Provides
+    @ApplicationScope
+    @SearchEngineAPIQual
+    Retrofit getRetrofitSearchEngine(OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
                 .baseUrl("https://google.com")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -43,4 +108,12 @@ public class NetworkModule {
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         return httpLoggingInterceptor;
     }
+
+    @Provides
+    @ApplicationScope
+    ICommonAPIManager getCommonAPIManager(CommonAPIManager commonAPIManager) {
+        return commonAPIManager;
+    }
+
+
 }

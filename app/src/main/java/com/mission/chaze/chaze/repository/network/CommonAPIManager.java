@@ -1,28 +1,52 @@
 package com.mission.chaze.chaze.repository.network;
 
-public class CommonAPIManager implements ICommonAPIManager{
+import javax.inject.Inject;
+
+public class CommonAPIManager implements ICommonAPIManager {
 
 
 
+    private
+    ChazeAPIService mChazeAPIService;
 
+    private
+    FoodOrderingAPIService mFoodOrderingAPIService;
+
+    private
+    SearchEngineAPIService mSearchEngineAPIService;
+
+    private
+    ECommerceAPIService mECommerceAPIService;
+
+
+    @Inject
+    public CommonAPIManager(ChazeAPIService mChazeAPIService,
+                            FoodOrderingAPIService mFoodOrderingAPIService,
+                            SearchEngineAPIService mSearchEngineAPIService,
+                            ECommerceAPIService mECommerceAPIService) {
+        this.mChazeAPIService = mChazeAPIService;
+        this.mFoodOrderingAPIService = mFoodOrderingAPIService;
+        this.mSearchEngineAPIService = mSearchEngineAPIService;
+        this.mECommerceAPIService = mECommerceAPIService;
+    }
 
     @Override
     public ChazeAPIService getChazeAPIService() {
-        return null;
+        return mChazeAPIService;
     }
 
     @Override
     public FoodOrderingAPIService getFoodOrderingAPIService() {
-        return null;
+        return mFoodOrderingAPIService;
     }
 
     @Override
     public SearchEngineAPIService getSearchEngineAPIService() {
-        return null;
+        return mSearchEngineAPIService;
     }
 
     @Override
     public ECommerceAPIService getECommerceAPIService() {
-        return null;
+        return mECommerceAPIService;
     }
 }
