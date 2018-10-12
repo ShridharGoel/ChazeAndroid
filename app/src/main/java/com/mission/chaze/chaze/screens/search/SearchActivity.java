@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.WindowManager;
 import android.widget.SearchView;
+
 import com.mission.chaze.chaze.R;
 import com.mission.chaze.chaze.models.SearchResult;
 import com.mission.chaze.chaze.screens.base.BaseActivity;
@@ -30,18 +31,19 @@ public class SearchActivity extends BaseActivity implements SearchContract.View 
     int searchType;
 
     @Inject
-    SearchContract.Presentor<SearchContract.View> mPresentor;
+    SearchContract.Presentor<SearchContract.View> mPresenter;
+
+    @Inject
+    LinearLayoutManager mLayoutManager;
+
+    @Inject
+    SearchSuggestionsAdapter adapter;
 
     @BindView(R.id.searchbar)
     SearchView searchView;
     @BindView(R.id.recycler_view_search)
-
     RecyclerView recyclerView;
-    SearchSuggestionsAdapter adapter;
-    ArrayList<SearchResult> searches;
 
-
-    SearchPresenter<SearchContract.View> mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,14 +61,10 @@ public class SearchActivity extends BaseActivity implements SearchContract.View 
 
     private void init() {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-        searches = new ArrayList<>();
         searchView.setIconified(false);
 
-        setUpSearchObservable();
 
         //RecyclerView for suggestions...
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
-        adapter = new SearchSuggestionsAdapter(getApplicationContext(), searches);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(mLayoutManager);
 
@@ -75,72 +73,31 @@ public class SearchActivity extends BaseActivity implements SearchContract.View 
 
         switch (searchType) {
             case 0:
-                initSearchHome();
+                mPresenter.initSearchHome();
                 break;
 
             case 1:
-                initSearchEcommerce();
+                mPresenter.initSearchEcommerce();
                 break;
 
             case 2:
-                initSearchFood();
+                mPresenter.initSearchEngineFood();
                 break;
 
             case 3:
-                initLocalSearch();
+                mPresenter.initSearchEngineLocal();
 
         }
     }
 
-    private void addItemsToAdapter(String txt) {
 
-        for (int i = 0; i < 40; i++)
-            searches.add(new SearchResult(txt));
-    }
-
-    private void recreateList(String txt) {
-        searches.clear();
-        addItemsToAdapter(txt);
-        adapter.notifyDataSetChanged();
-
+    public void recreateList(String txt) {
+        adapter.recreateList(txt);
 
     }
 
-
-    @SuppressLint("CheckResult")
-    private void setUpSearchObservable() {
-        RxSearchObservable.fromView(searchView)
-                .debounce(300, TimeUnit.MILLISECONDS)
-                .distinctUntilChanged()
-                .switchMap((Function<String, ObservableSource<String>>) this::dataFromNetwork)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::recreateList, Timber::e, () -> Timber.d("completed"));
+    @Override
+    public SearchView getSearchView() {
+        return searchView;
     }
-
-    //Simulation of network data..
-    private Observable<String> dataFromNetwork(final String query) {
-        return Observable.just(true)
-                .delay(2, TimeUnit.SECONDS)
-                .map(value -> query);
-    }
-
-
-    private void initLocalSearch() {
-        Timber.d("LocalSearch");
-    }
-
-    private void initSearchFood() {
-        Timber.d("SearchFood");
-    }
-
-    private void initSearchEcommerce() {
-        Timber.d("SearchEcommerce");
-    }
-
-    private void initSearchHome() {
-        Timber.d("SearchHome");
-    }
-
-
 }

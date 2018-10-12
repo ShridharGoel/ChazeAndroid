@@ -17,11 +17,11 @@ import java.util.List;
 
 public class SearchSuggestionsAdapter extends RecyclerView.Adapter<SearchSuggestionsAdapter.ViewHolder> {
     Context context;
-    List<SearchResult> categoryList;
+    List<SearchResult> suggestions;
 
-    public SearchSuggestionsAdapter(Context context, List<SearchResult> categoryList) {
+    public SearchSuggestionsAdapter(Context context, List<SearchResult> suggestions) {
         this.context = context;
-        this.categoryList = categoryList;
+        this.suggestions = suggestions;
     }
 
     @NonNull
@@ -35,7 +35,7 @@ public class SearchSuggestionsAdapter extends RecyclerView.Adapter<SearchSuggest
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        SearchResult item = categoryList.get(i);
+        SearchResult item = suggestions.get(i);
         viewHolder.searchText.setText(item.getText());
         //viewHolder.imageView.setImageDrawable(item.getImage());
 
@@ -43,7 +43,17 @@ public class SearchSuggestionsAdapter extends RecyclerView.Adapter<SearchSuggest
 
     @Override
     public int getItemCount() {
-        return categoryList.size();
+        return suggestions.size();
+    }
+
+
+
+    public void recreateList(String txt) {
+        suggestions.clear();
+        for (int i = 0; i < 40; i++)
+            suggestions.add(new SearchResult(txt));
+
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
