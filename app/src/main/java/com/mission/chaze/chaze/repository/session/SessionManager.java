@@ -5,8 +5,8 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.mission.chaze.chaze.models.CartBusiness;
 import com.mission.chaze.chaze.models.CartEcommerce;
-import com.mission.chaze.chaze.models.CartFood;
 
 import java.util.Date;
 
@@ -170,7 +170,7 @@ public class SessionManager implements ISessionManager {
     }
 
     @Override
-    public void setCurrentCartStateFood(CartFood cartFood) {
+    public void setCurrentCartStateFood(CartBusiness cartFood) {
         Gson gson = new Gson();
         String json = gson.toJson(cartFood);
         editor.putString(KEY_CART_FOOD, json);
@@ -181,10 +181,10 @@ public class SessionManager implements ISessionManager {
     }
 
     @Override
-    public CartFood getCurrentCartStateFood() {
+    public CartBusiness getCurrentCartStateFood() {
         Gson gson = new Gson();
         String json = pref.getString(KEY_CART_FOOD, null);
-        CartFood cart = gson.fromJson(json, CartFood.class);
+        CartBusiness cart = gson.fromJson(json, CartBusiness.class);
 
         return cart;
     }
@@ -227,7 +227,7 @@ public class SessionManager implements ISessionManager {
     }
 
     @Override
-    public void setPreviousOrderCartFood(CartFood cartFood) {
+    public void setPreviousOrderCartFood(CartBusiness cartFood) {
 
         Date date = new Date(System.currentTimeMillis());
         long previousOrderTime = date.getTime();
@@ -253,11 +253,11 @@ public class SessionManager implements ISessionManager {
     }
 
     @Override
-    public CartFood getPreviousOrderCartFood() {
+    public CartBusiness getPreviousOrderCartFood() {
 
         Gson gson = new Gson();
         String json = pref.getString(PREVIOUS_ORDER_CART_FOOD, null);
-        CartFood cart = gson.fromJson(json, CartFood.class);
+        CartBusiness cart = gson.fromJson(json, CartBusiness.class);
 
         return cart;
     }

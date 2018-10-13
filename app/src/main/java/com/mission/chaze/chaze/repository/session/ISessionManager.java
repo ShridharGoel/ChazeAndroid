@@ -1,7 +1,7 @@
 package com.mission.chaze.chaze.repository.session;
 
+import com.mission.chaze.chaze.models.CartBusiness;
 import com.mission.chaze.chaze.models.CartEcommerce;
-import com.mission.chaze.chaze.models.CartFood;
 
 import java.util.Date;
 
@@ -44,9 +44,10 @@ public interface ISessionManager {
 
     String getSelectedService();
 
-    void setCurrentCartStateFood(CartFood cartFood);
 
-    CartFood getCurrentCartStateFood();
+    void setCurrentCartStateFood(CartBusiness cartFood);
+
+    CartBusiness getCurrentCartStateFood();
 
     void setCurrentCartStateEcommerce(CartEcommerce cartEcommerce);
 
@@ -55,11 +56,12 @@ public interface ISessionManager {
 
     void setPreviousOrderCartEcommerce(CartEcommerce cartEcommerce);
 
-    void setPreviousOrderCartFood(CartFood cartFood);
+
+    void setPreviousOrderCartFood(CartBusiness cartFood);
 
     CartEcommerce getPreviousOrderCartEcommerce();
 
-    CartFood getPreviousOrderCartFood();
+    CartBusiness getPreviousOrderCartFood();
 
 
     Date getPreviousOrderTime();

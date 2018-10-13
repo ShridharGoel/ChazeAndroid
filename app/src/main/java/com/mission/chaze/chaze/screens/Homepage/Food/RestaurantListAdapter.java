@@ -36,7 +36,7 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         Restaurant item = restaurantList.get(i);
-        viewHolder.categoryText.setText(item.getCategory());
+        viewHolder.categoryText.setText(item.getSpeciality());
 
 
     }
@@ -49,7 +49,7 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
     public void addItems() {
 
         for (int i = 0; i < 400; i++)
-            restaurantList.add(new Restaurant("people", "bdbdbdb"));
+            restaurantList.add(new Restaurant());
 
         notifyDataSetChanged();
     }

@@ -1,35 +1,28 @@
 package com.mission.chaze.chaze.models;
 
-public class Restaurant {
-    String category;
-    String image;
+import java.io.Serializable;
 
-    public Restaurant(String category, String image) {
-        this.category = category;
-        this.image = image;
+
+public class Restaurant extends Business implements Serializable {
+
+
+    private String speciality;
+
+
+    public Restaurant(String name, String contact, String address, String code, String imageResourceId, String minOrderAmount, String timing, String status, float rating, int messageStatus, String message, String taxDescription, double tax, String speciality) {
+        super(name, contact, address, code, imageResourceId, minOrderAmount, timing, status, rating, messageStatus, message, taxDescription, tax);
+        this.speciality = speciality;
     }
 
-    public String getCategory() {
-        return category;
+    public Restaurant() {
+        super();
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public String getSpeciality() {
+        return speciality;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    @Override
-    public String toString() {
-        return "ecomerceCategory{" +
-                "category='" + category + '\'' +
-                ", image='" + image + '\'' +
-                '}';
+    public void setSpeciality(String speciality) {
+        this.speciality = speciality;
     }
 }
