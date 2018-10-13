@@ -16,16 +16,19 @@
             android:name=".screens.Homepage.HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".screens.search.SearchActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".screens.Cart.CartActivity" />
+        <activity android:name=".screens.Authentication.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".screens.search.SearchActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".screens.Cart.CartActivity" />
+        <activity android:name=".screens.Authentication.SignUpActivity"></activity>
         <activity android:name=".screens.Proflie.ProfileActivity" />
         <activity android:name=".screens.MyOrders.MyOrdersActivity" />
         <activity android:name=".screens.MyWishList.MyWishListActivity" />
