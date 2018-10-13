@@ -5,7 +5,6 @@ import javax.inject.Inject;
 public class CommonAPIManager implements ICommonAPIManager {
 
 
-
     private
     ChazeAPIService mChazeAPIService;
 
@@ -18,21 +17,17 @@ public class CommonAPIManager implements ICommonAPIManager {
     private
     ECommerceAPIService mECommerceAPIService;
 
-    private
-    LoginAPIService mLoginAPIService;
-
 
     @Inject
     public CommonAPIManager(ChazeAPIService mChazeAPIService,
                             FoodOrderingAPIService mFoodOrderingAPIService,
                             SearchEngineAPIService mSearchEngineAPIService,
-                            ECommerceAPIService mECommerceAPIService,
-                            LoginAPIService mLoginAPIService) {
+                            ECommerceAPIService mECommerceAPIService) {
         this.mChazeAPIService = mChazeAPIService;
         this.mFoodOrderingAPIService = mFoodOrderingAPIService;
         this.mSearchEngineAPIService = mSearchEngineAPIService;
         this.mECommerceAPIService = mECommerceAPIService;
-        this.mLoginAPIService = mLoginAPIService;
+
     }
 
     @Override
@@ -55,8 +50,4 @@ public class CommonAPIManager implements ICommonAPIManager {
         return mECommerceAPIService;
     }
 
-    @Override
-    public LoginAPIService getLoginAPIService() {
-        return mLoginAPIService;
-    }
 }

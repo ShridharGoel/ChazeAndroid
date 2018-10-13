@@ -68,7 +68,7 @@ public class BasePresenter<V extends MvpContract.View> implements MvpContract.Pr
         return mCompositeDisposable;
     }
 
-    public ICommonAPIManager getDataManager() {
+    public ICommonAPIManager getCommonAPIManager() {
         return mCommonAPIManager;
     }
 

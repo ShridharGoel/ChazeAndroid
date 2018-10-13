@@ -37,5 +37,4 @@ public interface ApplicationComponent {
 
     SchedulerProvider getSchedulerProvider();
 
-    void inject(LoginActivity loginActivity);
 }

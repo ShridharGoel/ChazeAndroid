@@ -2,28 +2,19 @@ package com.mission.chaze.chaze.screens.Authentication;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.mission.chaze.chaze.AppController;
 import com.mission.chaze.chaze.R;
-import com.mission.chaze.chaze.models.LoginResponse;
-import com.mission.chaze.chaze.repository.network.LoginAPIService;
 import com.mission.chaze.chaze.screens.Homepage.HomeActivity;
+import com.mission.chaze.chaze.screens.base.BaseActivity;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     @BindView(R.id.login_btn)
     Button loginBtn;
@@ -40,7 +31,10 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.login_enter_pass)
     EditText loginPass;
 
-    Retrofit retrofit;
+
+    @Inject
+    LoginContract.Presenter<LoginContract.View> mPresenter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        ((AppController)getApplication()).getComponent().inject(this);
+        getActivityComponent().inject(this);
 
         getSupportActionBar().hide();
 
@@ -67,34 +61,11 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         });
 
-        loginBtn.setOnClickListener(v -> {
+        loginBtn.setOnClickListener(v -> mPresenter.doLogin(loginMobile.getText().toString(), loginPass.getText().toString()));
+    }
 
-            LoginAPIService loginAPIService =  retrofit.create(LoginAPIService.class);
+    @Override
+    public void showloginResult() {
 
-            Call<LoginResponse> call = loginAPIService.loginUser(loginMobile.getText().toString(),
-                                                                    loginPass.getText().toString());
-
-            call.enqueue(new Callback<LoginResponse>() {
-                @Override
-                public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                    LoginResponse loginResponse = response.body();
-
-                    if(!loginResponse.getLoginError())
-                    {
-                        //Login
-                    }
-                    else
-                    {
-                        Toast.makeText(LoginActivity.this, "Error occurred. Please try again." , Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<LoginResponse> call, Throwable t) {
-
-                }
-            });
-
-        });
     }
 }

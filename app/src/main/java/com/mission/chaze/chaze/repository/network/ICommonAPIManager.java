@@ -10,5 +10,4 @@ public interface ICommonAPIManager {
 
     ECommerceAPIService getECommerceAPIService();
 
-    LoginAPIService getLoginAPIService();
 }

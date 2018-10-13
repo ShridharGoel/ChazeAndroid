@@ -46,5 +46,5 @@ public interface ActivityComponent {
 
     void inject(FoodFragment foodFragment);
 
-    static void inject(LoginActivity loginActivity) {};
+    void inject(LoginActivity loginActivity);
 }
