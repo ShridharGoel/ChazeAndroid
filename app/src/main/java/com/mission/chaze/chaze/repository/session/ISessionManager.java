@@ -1,7 +1,6 @@
 package com.mission.chaze.chaze.repository.session;
 
 import com.mission.chaze.chaze.models.CartEcommerce;
-import com.mission.chaze.chaze.models.CartFood;
 
 import java.util.Date;
 

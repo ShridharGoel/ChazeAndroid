@@ -6,7 +6,6 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.mission.chaze.chaze.models.CartEcommerce;
-import com.mission.chaze.chaze.models.CartFood;
 
 import java.util.Date;
 
