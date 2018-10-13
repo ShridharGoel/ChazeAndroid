@@ -4,6 +4,7 @@ package com.mission.chaze.chaze.di.component;
 
 import com.mission.chaze.chaze.di.PerActivity;
 import com.mission.chaze.chaze.di.module.ActivityModule;
+import com.mission.chaze.chaze.screens.Authentication.LoginActivity;
 import com.mission.chaze.chaze.screens.Homepage.Ecommerce.EcommerceFragment;
 import com.mission.chaze.chaze.screens.Homepage.Ecommerce.ShopByProducts.ShopByProductsFragment;
 import com.mission.chaze.chaze.screens.Homepage.Ecommerce.ShopByShops.ShopByShopsFragment;
@@ -44,4 +45,6 @@ public interface ActivityComponent {
     void inject(ShopByShopsFragment shopByShopsFragment);
 
     void inject(FoodFragment foodFragment);
+
+    static void inject(LoginActivity loginActivity) {};
 }

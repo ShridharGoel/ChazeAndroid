@@ -9,4 +9,6 @@ public interface ICommonAPIManager {
     SearchEngineAPIService getSearchEngineAPIService();
 
     ECommerceAPIService getECommerceAPIService();
+
+    LoginAPIService getLoginAPIService();
 }
