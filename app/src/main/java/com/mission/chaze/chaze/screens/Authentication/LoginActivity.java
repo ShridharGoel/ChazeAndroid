@@ -2,8 +2,10 @@ package com.mission.chaze.chaze.screens.Authentication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.mission.chaze.chaze.R;
 import com.mission.chaze.chaze.screens.Homepage.HomeActivity;
@@ -30,6 +32,9 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     @BindView(R.id.login_enter_pass)
     EditText loginPass;
+
+    @BindView(R.id.login_submit_btn)
+    Button loginSubmitBtn;
 
 
     @Inject
@@ -61,7 +66,17 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
             finish();
         });
 
-        loginBtn.setOnClickListener(v -> mPresenter.doLogin(loginMobile.getText().toString(), loginPass.getText().toString()));
+        loginSubmitBtn.setOnClickListener(v ->
+        {
+            if(!TextUtils.isEmpty(loginMobile.getText().toString()) && !TextUtils.isEmpty(loginPass.getText().toString()))
+            mPresenter.doLogin(loginMobile.getText().toString(), loginPass.getText().toString());
+
+            else if(TextUtils.isEmpty(loginMobile.getText().toString()))
+                Toast.makeText(this, "Please enter your mobile number.", Toast.LENGTH_SHORT).show();
+
+            else if(TextUtils.isEmpty(loginPass.getText().toString()))
+                Toast.makeText(this, "Please enter your password.", Toast.LENGTH_SHORT).show();
+        });
     }
 
     @Override
