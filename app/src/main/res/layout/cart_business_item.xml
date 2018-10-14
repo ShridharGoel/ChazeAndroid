@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container_shop_info"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:background="@color/colorPrimary"
+    android:paddingBottom="10dp"
+    android:paddingStart="10dp"
+    android:paddingTop="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/cart_business_name_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Business_Name"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="16sp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/cart_business_image_view"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:src="@color/colorPrimaryDark" />
+
+
+        <LinearLayout
+            android:id="@+id/bill_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="2dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:text="Bill Total"
+                    android:textSize="@dimen/text_small" />
+
+                <TextView
+                    android:id="@+id/bill_total_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="000"
+                    android:textSize="@dimen/text_small" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/cart_restaurant_discount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Discount "
+                    android:textSize="@dimen/text_small" />
+
+                <ProgressBar
+                    android:id="@+id/discount_loading"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_toLeftOf="@+id/discount_applied" />
+
+                <TextView
+                    android:id="@+id/discount_applied"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="000"
+                    android:textSize="@dimen/text_small" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/taxContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <TextView
+                        android:id="@+id/tax_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:text="GST/TAX : "
+                        android:textSize="@dimen/text_small" />
+
+                    <TextView
+                        android:id="@+id/tax_applied"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:text="000"
+                        android:textSize="@dimen/text_small" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/amount_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="0000"
+                    android:textColor="@color/text_black_87"
+                    android:textSize="@dimen/text_small"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@+id/amount_total"
+                    android:text="Total Price :"
+                    android:layout_alignParentLeft="true"
+                    android:textColor="@color/text_black_87"
+                    android:textSize="@dimen/text_small"
+                    android:textStyle="bold" />
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/delivery_charge_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:text="Delivery Charge"
+                    android:textSize="@dimen/text_small" />
+
+
+                <ProgressBar
+                    android:id="@+id/delivery_charge_loading"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_toLeftOf="@+id/delivery_charge" />
+
+
+                <TextView
+                    android:id="@+id/delivery_charge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="000"
+                    android:textSize="@dimen/text_small" />
+
+            </RelativeLayout>
+
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+
+                <TextView
+                    android:id="@+id/amount_to_pay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="0000"
+                    android:textColor="@color/text_black_87"
+                    android:textSize="@dimen/text_small"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_toStartOf="@+id/amount_to_pay"
+                    android:text="To Pay"
+                    android:layout_alignParentLeft="true"
+                    android:textColor="@color/text_black_87"
+                    android:textSize="@dimen/text_small"
+                    android:textStyle="bold" />
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
+
