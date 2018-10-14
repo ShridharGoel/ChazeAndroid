@@ -2,9 +2,8 @@ package com.mission.chaze.chaze.screens.Homepage;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
@@ -12,103 +11,71 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.mission.chaze.chaze.R;
-import com.mission.chaze.chaze.ViewPagerAdapter;
-import com.mission.chaze.chaze.fragments.Ecomerce;
-import com.mission.chaze.chaze.fragments.Food;
-import com.mission.chaze.chaze.fragments.Home;
-import com.mission.chaze.chaze.fragments.Localsearch;
-import com.mission.chaze.chaze.fragments.more;
+import com.mission.chaze.chaze.models.EcomerceCategory;
+import com.mission.chaze.chaze.screens.Homepage.Ecommerce.EcommerceFragment;
+import com.mission.chaze.chaze.screens.Homepage.Food.FoodFragment;
+import com.mission.chaze.chaze.screens.Homepage.Home.HomeFragment;
+import com.mission.chaze.chaze.screens.Homepage.LocalSearch.LocalSearchFragment;
+import com.mission.chaze.chaze.screens.Homepage.More.MoreFragment;
 import com.mission.chaze.chaze.repository.CartManager;
+import com.mission.chaze.chaze.screens.Proflie.ProfileActivity;
+import com.mission.chaze.chaze.screens.base.BaseActivity;
 import com.mission.chaze.chaze.screens.search.SearchActivity;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
-public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import timber.log.Timber;
+
+public class HomeActivity extends BaseActivity
+        implements NavigationView.OnNavigationItemSelectedListener, HomeContract.View {
 
 
-    BottomNavigationView bottomNavigationView;
-    ViewPager viewPager;
     MenuItem prevMenuItem;
 
     TextView txtViewCount;
+
+    @Inject
     CartManager cartManager;
+
+    @Inject
+    HomeContract.Presenter<HomeContract.View> mPresenter;
+
+    @BindView(R.id.navigation)
+    BottomNavigationView bottomNavigationView;
+    @BindView(R.id.viewpager)
+    ViewPager viewPager;
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
+    @BindView(R.id.drawer_layout)
     DrawerLayout drawer;
+    @BindView(R.id.nav_view)
     NavigationView navigationView;
+
+    @Inject
+    HomeBottomNavPagerAdapter adapter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home2);
-        init();
+        setContentView(R.layout.activity_home);
+        setUnBinder(ButterKnife.bind(this));
+        getActivityComponent().inject(this);
+
+        mPresenter.onAttach(this);
+        setSupportActionBar(toolbar);
         setupBottomNavigation();
         setupViewPager(viewPager);
-    }
-
-
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) drawer.closeDrawer(GravityCompat.START);
-        else super.onBackPressed();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(final Menu menu) {
-        cartManager = new CartManager(HomeActivity.this);
-        getMenuInflater().inflate(R.menu.menu_just_cart, menu);
-        final View cart = menu.findItem(R.id.cart_icon_badge_action).getActionView();
-        final View search = menu.findItem(R.id.serchview).getActionView();
-        txtViewCount = (TextView) cart.findViewById(R.id.cart_count_badge);
-        txtViewCount.setText(String.valueOf(0));
-        search.setOnClickListener(v -> goToSearch());
-        cart.setOnClickListener(v -> {
-        });
-        return super.onCreateOptionsMenu(menu);
-    }
-
-
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
-
-    private void init() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
-        bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
-        setSupportActionBar(toolbar);
     }
 
 
@@ -127,7 +94,7 @@ public class HomeActivity extends AppCompatActivity
                 } else {
                     bottomNavigationView.getMenu().getItem(0).setChecked(false);
                 }
-                Log.d("page", "onPageSelected: " + position);
+                Timber.d("page" + "onPageSelected: " + position);
                 bottomNavigationView.getMenu().getItem(position).setChecked(true);
                 prevMenuItem = bottomNavigationView.getMenu().getItem(position);
 
@@ -139,25 +106,16 @@ public class HomeActivity extends AppCompatActivity
             }
         });
 
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        Ecomerce ecomerce = new Ecomerce();
-        Food food = new Food();
-        Home home = new Home();
-        Localsearch localsearch = new Localsearch();
-        more more_object = new more();
-
-        adapter.addFragment(ecomerce);
-        adapter.addFragment(food);
-        adapter.addFragment(home);
-        adapter.addFragment(localsearch);
-        adapter.addFragment(more_object);
         viewPager.setAdapter(adapter);
     }
 
     private void goToSearch() {
 
         Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
-        startActivity(intent);
+        intent.putExtra("SearchType", viewPager.getCurrentItem());
+        ActivityOptionsCompat options = ActivityOptionsCompat.
+                makeSceneTransitionAnimation(this, (View) toolbar, "search");
+        startActivity(intent, options.toBundle());
     }
 
     private void setupBottomNavigation() {
@@ -212,4 +170,40 @@ public class HomeActivity extends AppCompatActivity
 
     }
 
+
+    @Override
+    public void onBackPressed() {
+        if (drawer.isDrawerOpen(GravityCompat.START)) drawer.closeDrawer(GravityCompat.START);
+        else super.onBackPressed();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(final Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_just_cart, menu);
+        final View cart = menu.findItem(R.id.cart_icon_badge_action).getActionView();
+        final View search = menu.findItem(R.id.serchview).getActionView();
+        txtViewCount = (TextView) cart.findViewById(R.id.cart_count_badge);
+        txtViewCount.setText(String.valueOf(0));
+        search.setOnClickListener(v -> goToSearch());
+        cart.setOnClickListener(v -> {
+        });
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        int id=item.getItemId();
+        switch (id){
+            case R.id.nav_profile:Intent intent=new Intent(HomeActivity.this, ProfileActivity.class);
+            startActivity(intent);
+        }
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    @Override
+    public void addItems(List<EcomerceCategory> items) {
+
+    }
 }

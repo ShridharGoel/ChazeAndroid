@@ -12,45 +12,35 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <!--
-        <activity android:name=".screens.Homepage.HomeActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-        -->
-        <!--
-            <activity
-            android:name=".HomeActivity"
-        -->
-
         <activity
             android:name=".screens.Homepage.HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".screens.search.SearchActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".screens.Cart.CartActivity" />
+        <activity android:name=".screens.Authentication.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--
-            <activity
-            android:name=".BottomNav"
-            android:label="@string/title_activity_bottom_nav"></activity>
-        -->
-        <!--
-            <activity
-            android:name=".HomeActivity"
-            android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        -->
-        <activity android:name=".PostOrderStatus" />
-        <activity android:name=".screens.search.SearchActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+        <activity android:name=".screens.Authentication.SignUpActivity"></activity>
+        <activity android:name=".screens.Proflie.ProfileActivity" />
+        <activity android:name=".screens.MyOrders.MyOrdersActivity" />
+        <activity android:name=".screens.MyWishList.MyWishListActivity" />
+        <activity android:name=".screens.PostOrderStatus.PostOrderStatusActivity" />
+        <activity android:name=".screens.Authentication.AuthenticationActivity" />
+        <activity android:name=".screens.Checkout.CheckoutActivity" />
+        <activity android:name=".screens.MyOffers.MyOffersActivity" />
+        <activity android:name=".screens.ContactUs.ContactUsActivity" />
+        <activity android:name=".screens.ProductInfo.ProductInfoActivity" />
+        <activity android:name=".screens.Shop.ShopActivity" />
+        <activity android:name=".screens.Category.CategoryActivity" />
+        <activity android:name=".screens.Referral.ReferralActivity"></activity>
     </application>
 
 </manifest>
