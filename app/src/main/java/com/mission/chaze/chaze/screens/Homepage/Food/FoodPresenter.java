@@ -53,7 +53,7 @@ public class FoodPresenter<V extends FoodContract.View> extends BasePresenter<V>
                 .map(value -> {
                     List<Restaurant> items = new ArrayList<>();
                     for (int i = 1; i <= 10; i++) {
-                        items.add(new Restaurant("Item " + (page * 10 + i), "asdf"));
+                        items.add(new Restaurant());
                     }
                     return items;
                 });

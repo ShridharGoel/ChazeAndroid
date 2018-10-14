@@ -1,11 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#ffffff</color>
+    <color name="colorPrimaryDark">#d5d5df</color>
+    <color name="colorAccent">#f8cd01</color>
+    <color name="textColorPrimary">#353030</color>
+    <color name="colorOfferBanner">#be1021</color>
+
+    <color name="colorCyan">#eef4f4</color>
+    <color name="colorCyanDark">#65c5c5</color>
 
 
     <color name="red">#f55</color>
     <color name="yelloww">#bbb444</color>
     <color name="yellow">#fff222</color>
+    <color name="colorSplashBackground">#fdfffc</color>
+
+    <color name="colorBrownBackground">#3d2f2c</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorWhiteText">#d5d5df</color>
+    <color name="colorSeparator">#4b4547</color>
+    <color name="colorPinkDark">#d73749</color>
+    <color name="colorGrayLight">#d9d7d8</color>
+    <color name="colorGrayVeryLight">#e0e0e0</color>
+    <color name="colorGrayLightText">#adaeb0</color>
+    <color name="colorGray">#8d8f92</color>
+    <color name="colorPurple">#525188</color>
+    <color name="colorPurpleLight">#6c6b99</color>
+    <color name="colorPurpleVeryLight">#adacd1</color>
+    <color name="colorPurpleVeryVeryLight">#c5cae9</color>
+    <color name="colorYellow">#f8cd01</color>
+    <color name="colorYellowLight">#fffc62</color>
+    <color name="colorGreen">#31a133</color>
+    <color name="colorGreenLight">#c8e6c9</color>
+    <color name="colorGreenOffer">#8ac43e</color>
+    <color name="colorGreenLight2">#7BC242</color>
+
+
+    <color name="background_card">#fff</color>
+    <color name="text_black_87">#de000000</color>
+
+    <!-- dots inactive colors -->
+    <color name="dot_dark_screen1">#d1395c</color>
+    <color name="dot_dark_screen2">#14a895</color>
+    <color name="dot_dark_screen3">#2278d4</color>
+    <color name="dot_dark_screen4">#a854d4</color>
+
+    <!-- dots active colors -->
+    <color name="dot_light_screen1">#f98da5</color>
+    <color name="dot_light_screen2">#8cf9eb</color>
+    <color name="dot_light_screen3">#93c6fd</color>
+    <color name="dot_light_screen4">#e4b5fc</color>
+
+    <array name="array_dot_active">
+
+        <item>@color/dot_light_screen2</item>
+        <item>@color/dot_light_screen3</item>
+        <item>@color/dot_light_screen3</item>
+        <item>@color/dot_light_screen1</item>
+    </array>
+
+    <array name="array_dot_inactive">
+        <item>@color/dot_dark_screen2</item>
+        <item>@color/dot_dark_screen3</item>
+        <item>@color/dot_dark_screen3</item>
+        <item>@color/dot_dark_screen1</item>
+    </array>
 </resources>

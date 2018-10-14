@@ -11,6 +11,7 @@ import com.mission.chaze.chaze.di.module.NetworkModule;
 import com.mission.chaze.chaze.repository.CartManager;
 import com.mission.chaze.chaze.repository.network.ICommonAPIManager;
 import com.mission.chaze.chaze.repository.session.SessionManager;
+import com.mission.chaze.chaze.screens.Authentication.LoginActivity;
 import com.mission.chaze.chaze.utils.rx.SchedulerProvider;
 
 import javax.inject.Singleton;
@@ -35,4 +36,5 @@ public interface ApplicationComponent {
     ICommonAPIManager getICommonAPIManager();
 
     SchedulerProvider getSchedulerProvider();
+
 }

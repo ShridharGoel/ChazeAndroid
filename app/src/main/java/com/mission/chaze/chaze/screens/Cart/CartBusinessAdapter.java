@@ -1,4 +1,4 @@
-package com.mission.chaze.chaze.screens.Homepage.Food;
+package com.mission.chaze.chaze.screens.Cart;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -8,60 +8,68 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mission.chaze.chaze.R;
+import com.mission.chaze.chaze.models.CartBusiness;
 import com.mission.chaze.chaze.models.EcomerceCategory;
-import com.mission.chaze.chaze.models.Restaurant;
 
 import java.util.List;
 
-public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAdapter.ViewHolder> {
-    Context context;
-    List<Restaurant> restaurantList;
+import io.reactivex.subjects.PublishSubject;
+import timber.log.Timber;
 
-    public RestaurantListAdapter(Context context, List<Restaurant> restaurantList) {
+public class CartBusinessAdapter extends RecyclerView.Adapter<CartBusinessAdapter.ViewHolder>{
+    Context context;
+    List<CartBusiness> cartBusinesses;
+    PublishSubject<String> subject;
+
+    public void setSubject(PublishSubject<String> subject) {
+        this.subject = subject;
+    }
+
+    public CartBusinessAdapter(Context context, List<CartBusiness> cartBusinesses) {
         this.context = context;
-        this.restaurantList = restaurantList;
+        this.cartBusinesses = cartBusinesses;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.post_scroll_view, viewGroup, false);
+                .inflate(R.layout.cart_business_item, viewGroup, false);
 
         return new ViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        Restaurant item = restaurantList.get(i);
-        viewHolder.categoryText.setText(item.getSpeciality());
-
+        CartBusiness item=cartBusinesses.get(i);
+       // viewHolder.categoryText.setText("asdfsdfsdff");
 
     }
 
     @Override
     public int getItemCount() {
-        return restaurantList.size();
+        return cartBusinesses.size();
     }
 
     public void addItems() {
 
-        for (int i = 0; i < 400; i++)
-            restaurantList.add(new Restaurant());
-
-        notifyDataSetChanged();
+        for (int i = 0; i < 4; i++)
+            cartBusinesses.add(new CartBusiness());
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
         TextView categoryText;
-
         public ViewHolder(@NonNull View itemView) {
+
             super(itemView);
-            imageView = itemView.findViewById(R.id.categoryImage);
-            categoryText = itemView.findViewById(R.id.categoryName);
+
+            itemView.setOnClickListener(v->subject.onNext(""+getPosition()));
+          //  imageView=itemView.findViewById(R.id.categoryImage);
         }
+
     }
 }

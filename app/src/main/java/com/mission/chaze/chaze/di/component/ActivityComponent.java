@@ -4,6 +4,12 @@ package com.mission.chaze.chaze.di.component;
 
 import com.mission.chaze.chaze.di.PerActivity;
 import com.mission.chaze.chaze.di.module.ActivityModule;
+import com.mission.chaze.chaze.screens.Authentication.LoginActivity;
+
+import com.mission.chaze.chaze.screens.Cart.CartActivity;
+
+import com.mission.chaze.chaze.screens.Authentication.SignUpActivity;
+
 import com.mission.chaze.chaze.screens.Homepage.Ecommerce.EcommerceFragment;
 import com.mission.chaze.chaze.screens.Homepage.Ecommerce.ShopByProducts.ShopByProductsFragment;
 import com.mission.chaze.chaze.screens.Homepage.Ecommerce.ShopByShops.ShopByShopsFragment;
@@ -16,6 +22,7 @@ import com.mission.chaze.chaze.screens.base.BaseActivity;
 import com.mission.chaze.chaze.screens.search.SearchActivity;
 
 import dagger.Component;
+
 
 /**
  * Created by Shubham Vishwakarma on 4/10/18.
@@ -44,4 +51,12 @@ public interface ActivityComponent {
     void inject(ShopByShopsFragment shopByShopsFragment);
 
     void inject(FoodFragment foodFragment);
+
+    void inject(LoginActivity loginActivity);
+
+
+    void inject(CartActivity cartActivity);
+
+    void inject(SignUpActivity signUpActivity);
+
 }

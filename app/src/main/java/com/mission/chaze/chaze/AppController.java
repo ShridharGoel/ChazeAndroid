@@ -13,21 +13,24 @@ import com.squareup.leakcanary.LeakCanary;
 
 import javax.inject.Inject;
 
-import retrofit2.Retrofit;
 import timber.log.Timber;
 
 public class AppController extends Application {
 
     private static ApplicationComponent mApplicationComponent;
 
+    public AppController() {
+    }
+
     @Inject
+
     SessionManager mSessionManager;
 
     @Inject
     CartManager mCartManager;
 
     @Inject
-    ICommonAPIManager  iCommonAPIManager;
+    ICommonAPIManager iCommonAPIManager;
 
     @Override
     public void onCreate() {
@@ -54,6 +57,7 @@ public class AppController extends Application {
         }
         LeakCanary.install(this);
     }
+
 
     public ApplicationComponent getComponent() {
         return mApplicationComponent;

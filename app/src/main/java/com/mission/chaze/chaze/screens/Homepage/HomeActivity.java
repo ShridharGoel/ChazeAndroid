@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.mission.chaze.chaze.R;
 import com.mission.chaze.chaze.models.EcomerceCategory;
+import com.mission.chaze.chaze.screens.Cart.CartActivity;
 import com.mission.chaze.chaze.screens.Homepage.Ecommerce.EcommerceFragment;
 import com.mission.chaze.chaze.screens.Homepage.Food.FoodFragment;
 import com.mission.chaze.chaze.screens.Homepage.Home.HomeFragment;
@@ -186,6 +187,7 @@ public class HomeActivity extends BaseActivity
         txtViewCount.setText(String.valueOf(0));
         search.setOnClickListener(v -> goToSearch());
         cart.setOnClickListener(v -> {
+            startActivity(new Intent(HomeActivity.this, CartActivity.class));
         });
         return super.onCreateOptionsMenu(menu);
     }

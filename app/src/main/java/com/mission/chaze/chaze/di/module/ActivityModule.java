@@ -9,7 +9,17 @@ import android.support.v7.widget.LinearLayoutManager;
 import com.mission.chaze.chaze.di.ActivityContext;
 import com.mission.chaze.chaze.di.LinLayoutHori;
 import com.mission.chaze.chaze.di.LinLayoutVert;
-import com.mission.chaze.chaze.di.PerActivity;
+import com.mission.chaze.chaze.screens.Authentication.LoginContract;
+import com.mission.chaze.chaze.screens.Authentication.LoginPresenter;
+
+import com.mission.chaze.chaze.screens.Cart.CartBusinessAdapter;
+import com.mission.chaze.chaze.screens.Cart.CartContract;
+import com.mission.chaze.chaze.screens.Cart.CartItemsAdapter;
+import com.mission.chaze.chaze.screens.Cart.CartPresenter;
+
+import com.mission.chaze.chaze.screens.Authentication.SignUpContract;
+import com.mission.chaze.chaze.screens.Authentication.SignUpPresenter;
+
 import com.mission.chaze.chaze.screens.Homepage.Ecommerce.EcommerceCategoryAdapter;
 import com.mission.chaze.chaze.screens.Homepage.Ecommerce.EcommerceContract;
 import com.mission.chaze.chaze.screens.Homepage.Ecommerce.EcommerceFragment;
@@ -39,8 +49,7 @@ import com.mission.chaze.chaze.screens.search.SearchPresenter;
 import com.mission.chaze.chaze.screens.search.SearchSuggestionsAdapter;
 
 import java.util.ArrayList;
-
-import javax.inject.Inject;
+import java.util.LinkedList;
 
 import dagger.Module;
 import dagger.Provides;
@@ -187,5 +196,30 @@ public class ActivityModule {
     }
 
 
+    @Provides
+    LoginContract.Presenter<LoginContract.View> providesLoginPresenter(LoginPresenter<LoginContract.View> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    CartBusinessAdapter providesCartBusinessAdapter() {
+        return new CartBusinessAdapter(mActivity, new ArrayList<>());
+    }
+
+    @Provides
+    CartItemsAdapter providesCartItemsAdapter() {
+        return new CartItemsAdapter(new LinkedList<>());
+    }
+
+   @Provides
+    CartContract.Presentor<CartContract.View> providesCartPresenter(CartPresenter<CartContract.View> presenter) {
+        return presenter;
+    }
+    @Provides
+    SignUpContract.Presenter<SignUpContract.View> providesSignUpPresenter(SignUpPresenter<SignUpContract.View> presenter)
+    {
+
+        return presenter;
+    }
 
 }
