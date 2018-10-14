@@ -35,7 +35,7 @@ public class EcommerceCategoryAdapter extends RecyclerView.Adapter<EcommerceCate
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         EcomerceCategory item=categoryList.get(i);
-        viewHolder.categoryText.setText(item.getCategory());
+        viewHolder.categoryText.setText(item.getName());
         //viewHolder.imageView.setImageDrawable(item.getImage());
 
     }
@@ -48,7 +48,7 @@ public class EcommerceCategoryAdapter extends RecyclerView.Adapter<EcommerceCate
     public void addItems() {
 
         for (int i = 0; i < 40; i++)
-            categoryList.add(new EcomerceCategory("people", "bdbdbdb"));
+            categoryList.add(new EcomerceCategory("people", "bdbdbdb","https://drive.google.com/file/d/15b68H448F4jszurUpAAQV6lFPHdY1dv2/view?usp=sharing"));
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

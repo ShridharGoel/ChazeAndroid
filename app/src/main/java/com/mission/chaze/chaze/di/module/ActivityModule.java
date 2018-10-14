@@ -215,7 +215,7 @@ public class ActivityModule {
     CartContract.Presentor<CartContract.View> providesCartPresenter(CartPresenter<CartContract.View> presenter) {
         return presenter;
     }
-
+    @Provides
     SignUpContract.Presenter<SignUpContract.View> providesSignUpPresenter(SignUpPresenter<SignUpContract.View> presenter)
     {
 

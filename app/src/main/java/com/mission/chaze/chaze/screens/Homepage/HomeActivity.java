@@ -25,6 +25,7 @@ import com.mission.chaze.chaze.screens.Homepage.Home.HomeFragment;
 import com.mission.chaze.chaze.screens.Homepage.LocalSearch.LocalSearchFragment;
 import com.mission.chaze.chaze.screens.Homepage.More.MoreFragment;
 import com.mission.chaze.chaze.repository.CartManager;
+import com.mission.chaze.chaze.screens.Proflie.ProfileActivity;
 import com.mission.chaze.chaze.screens.base.BaseActivity;
 import com.mission.chaze.chaze.screens.search.SearchActivity;
 
@@ -194,6 +195,11 @@ public class HomeActivity extends BaseActivity
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+        int id=item.getItemId();
+        switch (id){
+            case R.id.nav_profile:Intent intent=new Intent(HomeActivity.this, ProfileActivity.class);
+            startActivity(intent);
+        }
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
