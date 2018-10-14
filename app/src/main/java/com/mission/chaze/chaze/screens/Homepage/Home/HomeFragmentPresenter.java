@@ -82,7 +82,7 @@ public class HomeFragmentPresenter<V extends HomeFragmentContract.View> extends 
                 .map(value -> {
                     List<EcomerceCategory> items = new ArrayList<>();
                     for (int i = 1; i <= 10; i++) {
-                        items.add(new EcomerceCategory("Item " + (page * 10 + i), "asdf"));
+                        items.add(new EcomerceCategory("Item " + (page * 10 + i), "asdf","https://drive.google.com/file/d/15b68H448F4jszurUpAAQV6lFPHdY1dv2/view?usp=sharing"));
                     }
                     return items;
                 });

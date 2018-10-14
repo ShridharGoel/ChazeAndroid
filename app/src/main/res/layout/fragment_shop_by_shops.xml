@@ -5,9 +5,9 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/shops_recycler_view"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:paddingTop="60dp" />
 
 

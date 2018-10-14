@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.mission.chaze.chaze.R;
 import com.mission.chaze.chaze.models.EcomerceCategory;
+import com.mission.chaze.chaze.models.EcomerceShop;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -35,7 +37,13 @@ public class ShopsAdapter extends RecyclerView.Adapter<ShopsAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         EcomerceCategory item=categoryList.get(i);
-        viewHolder.categoryText.setText(item.getCategory());
+        viewHolder.categoryText.setText(item.getName());
+        Picasso.get()
+                .load(item.getUrl())
+                .placeholder(R.drawable.ic_menu_camera)
+                .error(R.drawable.ic_menu_gallery)
+                .into(viewHolder.imageView);
+        //viewHolder.imageView.setImageResource(R.drawable.cart_badge);
         //viewHolder.imageView.setImageDrawable(item.getImage());
 
     }

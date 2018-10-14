@@ -14,6 +14,7 @@ import com.mission.chaze.chaze.R;
 import com.mission.chaze.chaze.di.LinLayoutVert;
 import com.mission.chaze.chaze.di.component.ActivityComponent;
 import com.mission.chaze.chaze.models.EcomerceCategory;
+import com.mission.chaze.chaze.models.EcomerceShop;
 import com.mission.chaze.chaze.models.HomeGrid;
 import com.mission.chaze.chaze.screens.Homepage.Ecommerce.EcommerceCategoryAdapter;
 import com.mission.chaze.chaze.screens.Homepage.Ecommerce.ShopByShops.ShopsAdapter;
@@ -127,6 +128,7 @@ public class HomeFragment extends BaseFragment implements HomeFragmentContract.V
         adapter.clear();
         super.onDestroyView();
     }
+
 
 
 }

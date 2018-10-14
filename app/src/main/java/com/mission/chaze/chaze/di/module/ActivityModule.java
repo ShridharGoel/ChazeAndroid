@@ -220,6 +220,7 @@ public class ActivityModule {
     @Provides
     SignUpContract.Presenter<SignUpContract.View> providesSignUpPresenter(SignUpPresenter<SignUpContract.View> presenter) {
 
+
         return presenter;
     }
 

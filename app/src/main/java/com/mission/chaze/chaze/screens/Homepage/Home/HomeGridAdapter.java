@@ -46,6 +46,7 @@ public class HomeGridAdapter extends ArrayAdapter {
     }
 
     public void addItems() {
+        imageList=new ArrayList<>();
         imageList.add(new HomeGrid("nolnsv", R.drawable.ic_dashboard_black_24dp));
         imageList.add(new HomeGrid("bgknf", R.drawable.ic_dashboard_black_24dp));
         imageList.add(new HomeGrid("sbnls", R.drawable.ic_dashboard_black_24dp));
@@ -55,6 +56,5 @@ public class HomeGridAdapter extends ArrayAdapter {
         imageList.add(new HomeGrid("dvkbk", R.drawable.ic_dashboard_black_24dp));
         imageList.add(new HomeGrid("nvls", R.drawable.ic_dashboard_black_24dp));
         notifyDataSetChanged();
-
     }
 }
