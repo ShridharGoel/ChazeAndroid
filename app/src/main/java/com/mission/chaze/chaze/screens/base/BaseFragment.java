@@ -27,6 +27,7 @@ public abstract class BaseFragment extends Fragment implements MvpContract.View 
         if (context instanceof BaseActivity) {
             BaseActivity activity = (BaseActivity) context;
             this.mActivity = activity;
+            progressDialog = new ProgressDialog(mActivity);
         }
     }
 
@@ -38,7 +39,7 @@ public abstract class BaseFragment extends Fragment implements MvpContract.View 
 
     @Override
     public void showLoading() {
-        progressDialog = new ProgressDialog(mActivity);
+
         progressDialog.setMessage("Loading....");
         progressDialog.show();
     }

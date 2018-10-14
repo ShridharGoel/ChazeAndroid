@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +12,6 @@ import android.view.ViewGroup;
 import com.mission.chaze.chaze.R;
 import com.mission.chaze.chaze.di.LinLayoutVert;
 import com.mission.chaze.chaze.models.EcomerceCategory;
-import com.mission.chaze.chaze.retrofit.APIService;
-import com.mission.chaze.chaze.retrofit.ApiUtils;
 import com.mission.chaze.chaze.screens.base.BaseFragment;
 
 import java.util.ArrayList;
@@ -24,9 +21,6 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import timber.log.Timber;
 
 public class ShopByShopsFragment extends BaseFragment implements ShopByShopsContract.View {
@@ -35,7 +29,7 @@ public class ShopByShopsFragment extends BaseFragment implements ShopByShopsCont
     private int totalItemCount, lastVisibleItem, pageNumber = 1;
     private final int VISIBLE_THRESHOLD = 1;
     boolean loading;
-    private List<EcomerceCategory> shopList=new ArrayList<>();
+    private List<EcomerceCategory> shopList = new ArrayList<>();
 
     @BindView(R.id.shops_recycler_view)
     RecyclerView recyclerView;
@@ -75,29 +69,9 @@ public class ShopByShopsFragment extends BaseFragment implements ShopByShopsCont
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(mLayoutManager);
         setUpLoadMoreListener();
+        mPresenter.onAttach(this);
         mPresenter.subscribeForData();
 
-        APIService apiService = ApiUtils.getAPIService();
-        Call<List<EcomerceCategory>> call=apiService.getShopsList();
-        call.enqueue(new Callback<List<EcomerceCategory>>() {
-            @Override
-            public void onResponse(Call<List<EcomerceCategory>> call, Response<List<EcomerceCategory>> response) {
-                if (response.isSuccessful()){
-                    Log.v("mockapi",response.body().get(0).getName());
-                    shopList.addAll(response.body());
-                    adapter=new ShopsAdapter(getActivity().getApplicationContext(),shopList);
-
-                    adapter.notifyDataSetChanged();
-                    recyclerView.setAdapter(adapter);
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<EcomerceCategory>> call, Throwable t) {
-
-            }
-        });
 
     }
 
@@ -118,7 +92,7 @@ public class ShopByShopsFragment extends BaseFragment implements ShopByShopsCont
                 if (!loading
                         && totalItemCount <= (lastVisibleItem + VISIBLE_THRESHOLD)) {
                     mPresenter.next();
-                    loading = true;
+                    showLoading();
                 }
             }
         });
@@ -140,5 +114,20 @@ public class ShopByShopsFragment extends BaseFragment implements ShopByShopsCont
     @Override
     public void addItems(List<EcomerceCategory> items) {
         adapter.addItems(items);
+    }
+
+    @Override
+    public void showShops(List<EcomerceCategory> lst) {
+
+        for(EcomerceCategory e:lst){
+            Timber.e(e.getName());
+        }
+        hideLoading();
+        adapter.addItems(lst);
+    }
+
+    @Override
+    public void showError() {
+
     }
 }
