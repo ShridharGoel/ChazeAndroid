@@ -211,13 +211,14 @@ public class ActivityModule {
         return new CartItemsAdapter(new LinkedList<>());
     }
 
-   @Provides
+    @Provides
     CartContract.Presentor<CartContract.View> providesCartPresenter(CartPresenter<CartContract.View> presenter) {
         return presenter;
     }
 
-    SignUpContract.Presenter<SignUpContract.View> providesSignUpPresenter(SignUpPresenter<SignUpContract.View> presenter)
-    {
+
+    @Provides
+    SignUpContract.Presenter<SignUpContract.View> providesSignUpPresenter(SignUpPresenter<SignUpContract.View> presenter) {
 
         return presenter;
     }
