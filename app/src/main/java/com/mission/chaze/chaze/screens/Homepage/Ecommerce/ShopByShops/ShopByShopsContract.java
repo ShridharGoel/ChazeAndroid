@@ -16,6 +16,9 @@ public class ShopByShopsContract {
     public interface View extends MvpContract.View {
         void addItems(List<EcomerceCategory> items);
 
+        void showShops(List<EcomerceCategory> lst);
+
+        void showError();
     }
 
 

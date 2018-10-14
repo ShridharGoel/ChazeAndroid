@@ -52,7 +52,7 @@ public class SignUpActivity extends BaseActivity implements SignUpContract.View 
         setContentView(R.layout.activity_sign_up);
 
         ButterKnife.bind(this);
-
+        getActivityComponent().inject(this);
         getSupportActionBar().hide();
 
         loginBtn.setOnClickListener(view -> {
