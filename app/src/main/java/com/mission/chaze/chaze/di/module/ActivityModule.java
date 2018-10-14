@@ -12,6 +12,8 @@ import com.mission.chaze.chaze.di.LinLayoutVert;
 import com.mission.chaze.chaze.di.PerActivity;
 import com.mission.chaze.chaze.screens.Authentication.LoginContract;
 import com.mission.chaze.chaze.screens.Authentication.LoginPresenter;
+import com.mission.chaze.chaze.screens.Authentication.SignUpContract;
+import com.mission.chaze.chaze.screens.Authentication.SignUpPresenter;
 import com.mission.chaze.chaze.screens.Homepage.Ecommerce.EcommerceCategoryAdapter;
 import com.mission.chaze.chaze.screens.Homepage.Ecommerce.EcommerceContract;
 import com.mission.chaze.chaze.screens.Homepage.Ecommerce.EcommerceFragment;
@@ -191,6 +193,12 @@ public class ActivityModule {
 
     @Provides
     LoginContract.Presenter<LoginContract.View> providesLoginPresenter(LoginPresenter<LoginContract.View> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    SignUpContract.Presenter<SignUpContract.View> providesSignUpPresenter(SignUpPresenter<SignUpContract.View> presenter)
+    {
         return presenter;
     }
 
