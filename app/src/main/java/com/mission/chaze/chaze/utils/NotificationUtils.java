@@ -1,4 +1,4 @@
-package com.foodHaunt.app.app.util;
+package com.mission.chaze.chaze.utils;
 
 import android.app.ActivityManager;
 import android.app.Notification;
@@ -18,6 +18,9 @@ import android.support.v4.app.NotificationCompat;
 import android.text.Html;
 import android.text.TextUtils;
 import android.util.Patterns;
+
+import com.mission.chaze.chaze.R;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -27,12 +30,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import com.foodHaunt.app.R;
-import com.foodHaunt.app.app.Config.Config;
-
-/**
- * Created by Shubham on 24/07/17.
- */
 public class NotificationUtils {
 
     private static String TAG = NotificationUtils.class.getSimpleName();
@@ -110,14 +107,14 @@ public class NotificationUtils {
                 .setDefaults(NotificationCompat.DEFAULT_SOUND)
                 .setStyle(bigTextStyle)
                 .setWhen(getTimeMilliSec(timeStamp))
-                .setSmallIcon(R.drawable.icon_without_background)
+                .setSmallIcon(R.drawable.ic_action_cart)
                 .setLargeIcon(BitmapFactory.decodeResource(mContext.getResources(), icon))
                 .setContentText(message)
                 .setPriority(NotificationCompat.PRIORITY_MAX)
                 .build();
 
         NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(Config.NOTIFICATION_ID, notification);
+        notificationManager.notify(Constants.NOTIFICATION_ID, notification);
     }
 
     private void showBigNotification(Bitmap bitmap, NotificationCompat.Builder mBuilder, int icon, String title, String message, String timeStamp, PendingIntent resultPendingIntent, Uri alarmSound) {
@@ -140,7 +137,7 @@ public class NotificationUtils {
                 .build();
 
         NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(Config.NOTIFICATION_ID_BIG_IMAGE, notification);
+        notificationManager.notify(Constants.NOTIFICATION_ID_BIG_IMAGE, notification);
     }
 
     /**

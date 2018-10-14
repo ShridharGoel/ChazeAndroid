@@ -12,7 +12,6 @@
         android:horizontalSpacing="10dp"
         android:verticalSpacing="10dp"
         android:gravity="center"
-        android:paddingTop="65dp"
         android:stretchMode="columnWidth" />
     
     <android.support.v7.widget.RecyclerView
