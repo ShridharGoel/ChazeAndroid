@@ -42,9 +42,7 @@ public class HomeActivity extends BaseActivity
     @BindView(R.id.navigation)
     BottomNavigationView bottomNavigationView;
     @BindView(R.id.viewpager)
-    ViewPager viewPager;/*
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;*/
+    ViewPager viewPager;
     @BindView(R.id.drawer_layout)
     DrawerLayout drawer;
     @BindView(R.id.nav_view)
@@ -62,13 +60,15 @@ public class HomeActivity extends BaseActivity
         getActivityComponent().inject(this);
 
         mPresenter.onAttach(this);
-       // setSupportActionBar(toolbar);
         setupBottomNavigation();
         setupViewPager(viewPager);
 
-        drawer.openDrawer(Gravity.LEFT);
+
     }
 
+    public void openDrawer() {
+        drawer.openDrawer(Gravity.LEFT);
+    }
 
     private void setupViewPager(ViewPager viewPager) {
 
@@ -128,11 +128,6 @@ public class HomeActivity extends BaseActivity
         };
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-       /* ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);*/
-        //toggle.syncState();
-
 
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -167,28 +162,15 @@ public class HomeActivity extends BaseActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) drawer.closeDrawer(GravityCompat.START);
         else super.onBackPressed();
     }
-/*
-    @Override
-    public boolean onCreateOptionsMenu(final Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_just_cart, menu);
-        final View cart = menu.findItem(R.id.cart_icon_badge_action).getActionView();
-        final View search = menu.findItem(R.id.serchview).getActionView();
-        txtViewCount = (TextView) cart.findViewById(R.id.cart_count_badge);
-        txtViewCount.setText(String.valueOf(0));
-        search.setOnClickListener(v -> goToSearch());
-        cart.setOnClickListener(v -> {
-            startActivity(new Intent(HomeActivity.this, CartActivity.class));
-        });
-        return super.onCreateOptionsMenu(menu);
-    }*/
 
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        int id=item.getItemId();
-        switch (id){
-            case R.id.nav_profile:Intent intent=new Intent(HomeActivity.this, ProfileActivity.class);
-            startActivity(intent);
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.nav_profile:
+                Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
+                startActivity(intent);
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
