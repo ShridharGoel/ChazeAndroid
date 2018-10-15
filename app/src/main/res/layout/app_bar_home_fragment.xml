@@ -32,11 +32,6 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true" />
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/ecomerceRecyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal" />
             </LinearLayout>
 
         </android.support.design.widget.CollapsingToolbarLayout>
@@ -52,36 +47,45 @@
                 android:id="@+id/searchbar"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                app:theme="@style/AppSearchView"
                 android:background="#AAA"
                 android:focusable="false"
                 android:gravity="center"
                 app:iconifiedByDefault="false"
-                app:queryHint="Search for shops, products, food..." />
+                app:queryHint="Search for shops, products, food..."
+                app:theme="@style/AppSearchView" />
         </android.support.design.widget.CollapsingToolbarLayout>
 
 
-
-
-        <android.support.design.widget.TabLayout
-            android:id="@+id/ecommerce_slider"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_gravity="bottom"
-            android:elevation="5dp"
-            app:tabBackground="@color/colorPrimary"
-            app:tabSelectedTextColor="@color/red"
-            app:tabTextColor="@color/yellow"/>
-
     </android.support.design.widget.AppBarLayout>
 
-
-
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/ecommerce_view_pager"
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nestedScroll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <GridView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/grid"
+                android:layout_width="match_parent"
+                android:layout_height="144dp"
+                android:numColumns="4"
+                android:stretchMode="columnWidth" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/home_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
 
 </android.support.design.widget.CoordinatorLayout>
