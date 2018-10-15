@@ -47,7 +47,7 @@ public class EcommerceCategoryAdapter extends RecyclerView.Adapter<EcommerceCate
 
     public void addItems() {
 
-        for (int i = 0; i < 40; i++)
+        for (int i = 0; i < 20; i++)
             categoryList.add(new EcomerceCategory("people", "bdbdbdb","https://drive.google.com/file/d/15b68H448F4jszurUpAAQV6lFPHdY1dv2/view?usp=sharing"));
     }
 

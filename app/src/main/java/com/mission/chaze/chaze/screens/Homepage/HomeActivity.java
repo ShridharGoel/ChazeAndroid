@@ -1,5 +1,6 @@
 package com.mission.chaze.chaze.screens.Homepage;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
@@ -33,6 +34,7 @@ public class HomeActivity extends BaseActivity
 
     TextView txtViewCount;
 
+    ProgressDialog progressDialog;
     @Inject
     CartManager cartManager;
 
@@ -58,7 +60,7 @@ public class HomeActivity extends BaseActivity
         setContentView(R.layout.activity_home);
         setUnBinder(ButterKnife.bind(this));
         getActivityComponent().inject(this);
-
+        progressDialog = new ProgressDialog(this);
         mPresenter.onAttach(this);
         setupBottomNavigation();
         setupViewPager(viewPager);
@@ -136,18 +138,26 @@ public class HomeActivity extends BaseActivity
                 item -> {
                     switch (item.getItemId()) {
                         case R.id.navigation_home:
+
                             viewPager.setCurrentItem(0);
                             break;
                         case R.id.navigation_dashboard:
-                            viewPager.setCurrentItem(1);
+                            //showLoading();
+                          viewPager.setCurrentItem(1);
+
                             break;
                         case R.id.navigation_3:
+                            //showLoading();
+                           // progressDialog.show();
                             viewPager.setCurrentItem(2);
                             break;
                         case R.id.navigation_4:
-                            viewPager.setCurrentItem(3);
+                           // showLoading();
+
+                           viewPager.setCurrentItem(3);
                             break;
                         case R.id.navigation_5:
+                        //    showLoading();
                             viewPager.setCurrentItem(4);
                             break;
                     }
