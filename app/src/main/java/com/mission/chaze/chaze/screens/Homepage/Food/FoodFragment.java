@@ -40,6 +40,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.Single;
 import timber.log.Timber;
 
 public class FoodFragment extends BaseFragment implements FoodContract.View {
@@ -85,7 +86,7 @@ public class FoodFragment extends BaseFragment implements FoodContract.View {
         setUnBinder(ButterKnife.bind(this, view));
         mPresenter.onAttach(this);
 
-        setupToolBar();
+        // setupToolBar();
 
 
         return view;
@@ -116,11 +117,7 @@ public class FoodFragment extends BaseFragment implements FoodContract.View {
 
     }
 
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        Timber.d("FoodFragment");
+    void setup() {
 
         categoryAdapter.addItems();
         paginationAdapter.addItems();
@@ -131,6 +128,15 @@ public class FoodFragment extends BaseFragment implements FoodContract.View {
 
         categoryRecyclerView.setAdapter(categoryAdapter);
         categoryRecyclerView.setLayoutManager(mLayoutManagerCategory);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Timber.d("FoodFragment");
+
+
+        setup();
 
     }
 
