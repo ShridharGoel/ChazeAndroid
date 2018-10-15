@@ -24,8 +24,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Name"
+        android:background="@null"
+        android:enabled="false"
         />
         <ImageView
+            android:id="@+id/editName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_edit_black_24dp"
@@ -42,6 +45,8 @@
         android:id="@+id/profile_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@null"
+        android:enabled="false"
         android:hint="Phone"
         />
         <ImageView
@@ -62,18 +67,20 @@
             app:layout_constraintLeft_toRightOf="@+id/profile_phone"/>
     </android.support.constraint.ConstraintLayout>
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/profile_gender_layout"
+        android:id="@+id/profile_email_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/profile_phone_layout">
     <EditText
-        android:id="@+id/profile_gender"
+        android:id="@+id/profile_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Gender"
+        android:hint="Email"
+        android:background="@null"
+        android:enabled="false"
         />
         <ImageView
-            android:id="@+id/editGender"
+            android:id="@+id/editEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_edit_black_24dp"
@@ -86,10 +93,33 @@
             android:layout_height="wrap_content"
             android:paddingRight="100dp"
             android:src="@drawable/ic_menu_send"
-            app:layout_constraintRight_toRightOf="@+id/editGender"
+            app:layout_constraintRight_toRightOf="@+id/editEmail"
+            app:layout_constraintLeft_toRightOf="@+id/profile_email"/>
+
+
+    </android.support.constraint.ConstraintLayout>
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/profile_gender_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/profile_email_layout">
+        <EditText
+            android:id="@+id/profile_gender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Gender"
+            android:background="@null"
+            android:enabled="false"
+            />
+        <ImageView
+            android:id="@+id/editGender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_edit_black_24dp"
+            app:layout_constraintRight_toRightOf="parent"
+            android:paddingRight="40dp"
             app:layout_constraintLeft_toRightOf="@+id/profile_gender"/>
-
-
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
@@ -102,8 +132,11 @@
             android:id="@+id/profile_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="My address" />
+            android:hint="My address"
+            android:background="@null"
+            android:enabled="false"/>
         <ImageView
+            android:id="@+id/editAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_edit_black_24dp"

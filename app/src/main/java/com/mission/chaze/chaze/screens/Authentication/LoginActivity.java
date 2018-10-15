@@ -1,6 +1,7 @@
 package com.mission.chaze.chaze.screens.Authentication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
@@ -15,6 +16,8 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.mission.chaze.chaze.repository.session.SessionManager.PREF_NAME;
 
 public class LoginActivity extends BaseActivity implements LoginContract.View {
 
@@ -69,6 +72,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
         loginSubmitBtn.setOnClickListener(v ->
         {
             if(!TextUtils.isEmpty(loginMobile.getText().toString()) && !TextUtils.isEmpty(loginPass.getText().toString()))
+
             mPresenter.doLogin(loginMobile.getText().toString(), loginPass.getText().toString());
 
             else if(TextUtils.isEmpty(loginMobile.getText().toString()))

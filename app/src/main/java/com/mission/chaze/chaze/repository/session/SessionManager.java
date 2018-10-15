@@ -27,7 +27,7 @@ public class SessionManager implements ISessionManager {
     int PRIVATE_MODE = 0;
 
     // Shared preferences file name
-    private static final String PREF_NAME = "chazeSession";
+    public static final String PREF_NAME = "chazeSession";
 
     // Application keys
     private static final String KEY_IS_LOGGEDIN = "isLoggedIn";
@@ -38,6 +38,15 @@ public class SessionManager implements ISessionManager {
 
     private static final String KEY_CART_ECOMMERCE = "currentCartStateEcommerce";
 
+    private static final String USER_MOBILE="phone_no";
+
+    private static final String USER_NAME="user_name";
+
+    private static final String USER_EMAIL="user_email";
+
+    private static final String USER_ADDRESS="user_address";
+
+    private static final String USER_GENDER="user_gender";
 
     private static final String KEY_CART_FOOD = "currentCartStateFood";
 
@@ -73,9 +82,53 @@ public class SessionManager implements ISessionManager {
     }
 
     @Override
+    public void setUserEmail(String email) {
+        editor.putString(USER_EMAIL,email);
+        editor.commit();
+    }
+
+    @Override
+    public String getUserEmail() {
+        return pref.getString(USER_EMAIL,null);
+    }
+
+    @Override
+    public void setUserAddress(String address) {
+        editor.putString(USER_ADDRESS,address);
+        editor.commit();
+    }
+
+    @Override
+    public String getUserAddress() {
+        return pref.getString(USER_ADDRESS,null);
+    }
+
+    @Override
+    public void setGender(String gender) {
+        editor.putString(USER_GENDER,gender);
+        editor.commit();
+    }
+
+    @Override
+    public String getGender() {
+        return pref.getString(USER_GENDER,null);
+    }
+
+    @Override
     public void setFirstTimeLaunch(boolean isFirstTime) {
         editor.putBoolean(IS_FIRST_TIME_LAUNCH, isFirstTime);
         editor.commit();
+    }
+
+    @Override
+    public void setPhoneNo(String userPhone) {
+        editor.putString(USER_MOBILE,userPhone);
+        editor.commit();
+    }
+
+    @Override
+    public String getPhoneNo() {
+        return pref.getString(USER_MOBILE,null);
     }
 
     @Override
@@ -268,5 +321,17 @@ public class SessionManager implements ISessionManager {
         Date date = new Date(pref.getLong(PREVIOUS_ORDER_TIME, 0));
 
         return date;
+    }
+
+    @Override
+    public void setUserName(String userName) {
+        editor.putString(USER_NAME,userName);
+        editor.commit();
+    }
+
+    @Override
+    public String getUserName() {
+        //this function returns null by default
+        return pref.getString(USER_NAME,null);
     }
 }
