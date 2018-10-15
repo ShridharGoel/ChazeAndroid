@@ -1,6 +1,7 @@
 package com.mission.chaze.chaze.screens.Homepage.Ecommerce.ShopByShops;
 
 import com.mission.chaze.chaze.models.EcomerceCategory;
+import com.mission.chaze.chaze.models.EcomerceShop;
 import com.mission.chaze.chaze.screens.base.MvpContract;
 
 import java.util.List;
@@ -15,6 +16,9 @@ public class ShopByShopsContract {
     public interface View extends MvpContract.View {
         void addItems(List<EcomerceCategory> items);
 
+        void showShops(List<EcomerceCategory> lst);
+
+        void showError();
     }
 
 

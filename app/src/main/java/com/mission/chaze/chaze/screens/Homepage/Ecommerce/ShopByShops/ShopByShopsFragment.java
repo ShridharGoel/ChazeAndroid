@@ -12,9 +12,9 @@ import android.view.ViewGroup;
 import com.mission.chaze.chaze.R;
 import com.mission.chaze.chaze.di.LinLayoutVert;
 import com.mission.chaze.chaze.models.EcomerceCategory;
-import com.mission.chaze.chaze.screens.Homepage.Ecommerce.ShopByProducts.ProductsPostAdapter;
 import com.mission.chaze.chaze.screens.base.BaseFragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -29,6 +29,7 @@ public class ShopByShopsFragment extends BaseFragment implements ShopByShopsCont
     private int totalItemCount, lastVisibleItem, pageNumber = 1;
     private final int VISIBLE_THRESHOLD = 1;
     boolean loading;
+    private List<EcomerceCategory> shopList = new ArrayList<>();
 
     @BindView(R.id.shops_recycler_view)
     RecyclerView recyclerView;
@@ -68,7 +69,9 @@ public class ShopByShopsFragment extends BaseFragment implements ShopByShopsCont
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(mLayoutManager);
         setUpLoadMoreListener();
+        mPresenter.onAttach(this);
         mPresenter.subscribeForData();
+
 
     }
 
@@ -89,7 +92,7 @@ public class ShopByShopsFragment extends BaseFragment implements ShopByShopsCont
                 if (!loading
                         && totalItemCount <= (lastVisibleItem + VISIBLE_THRESHOLD)) {
                     mPresenter.next();
-                    loading = true;
+                    showLoading();
                 }
             }
         });
@@ -107,8 +110,24 @@ public class ShopByShopsFragment extends BaseFragment implements ShopByShopsCont
         loading = true;
     }
 
+
     @Override
     public void addItems(List<EcomerceCategory> items) {
         adapter.addItems(items);
+    }
+
+    @Override
+    public void showShops(List<EcomerceCategory> lst) {
+
+        for(EcomerceCategory e:lst){
+            Timber.e(e.getName());
+        }
+        hideLoading();
+        adapter.addItems(lst);
+    }
+
+    @Override
+    public void showError() {
+
     }
 }

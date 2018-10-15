@@ -1,42 +1,9 @@
 package com.mission.chaze.chaze.models;
 
-import android.graphics.Bitmap;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class EcomerceCategory {
-    /*String category;
-    String image;
-
-    public EcomerceCategory(String category, String image) {
-        this.category = category;
-        this.image = image;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    @Override
-    public String toString() {
-        return "ecomerceCategory{" +
-                "category='" + category + '\'' +
-                ", image='" + image + '\'' +
-                '}';
-    }*/
+public class EcomerceShop {
     @SerializedName("name")
     @Expose
     private String name;
@@ -49,7 +16,7 @@ public class EcomerceCategory {
     @Expose
     private String url;
 
-    public EcomerceCategory(String name, String id, String url) {
+    public EcomerceShop(String name, String id, String url) {
         this.name = name;
         this.id = id;
         this.url = url;

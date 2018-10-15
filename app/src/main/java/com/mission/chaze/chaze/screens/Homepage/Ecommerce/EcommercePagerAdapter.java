@@ -23,11 +23,11 @@ public class EcommercePagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
 
-            if (position == 0) {
-                fragment = new ShopByProductsFragment();
-            } else {
-                fragment = new ShopByShopsFragment();
-            }
+        if (position == 0) {
+            fragment = new ShopByProductsFragment();
+        } else {
+            fragment = new ShopByShopsFragment();
+        }
 
         return fragment;
 
@@ -42,6 +42,10 @@ public class EcommercePagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         // Generate title based on item position
-        return "Tab: " + position;
+
+        if (position == 0) {
+            return "Shop By Products";
+        }
+        return "Shop by Shops";
     }
 }

@@ -1,6 +1,7 @@
 package com.mission.chaze.chaze.screens.Authentication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -9,6 +10,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.mission.chaze.chaze.R;
+import com.mission.chaze.chaze.repository.session.ISessionManager;
+import com.mission.chaze.chaze.repository.session.SessionManager;
 import com.mission.chaze.chaze.screens.Homepage.HomeActivity;
 import com.mission.chaze.chaze.screens.base.BaseActivity;
 
@@ -16,6 +19,8 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.mission.chaze.chaze.repository.session.SessionManager.PREF_NAME;
 
 public class SignUpActivity extends BaseActivity implements SignUpContract.View {
 
@@ -41,7 +46,7 @@ public class SignUpActivity extends BaseActivity implements SignUpContract.View 
     EditText signUpConfirmPass;
 
     @BindView(R.id.signup_submit_btn)
-    EditText signUpSubmitBtn;
+    Button signUpSubmitBtn;
 
     @Inject
     SignUpContract.Presenter<SignUpContract.View> mPresenter;
@@ -52,7 +57,7 @@ public class SignUpActivity extends BaseActivity implements SignUpContract.View 
         setContentView(R.layout.activity_sign_up);
 
         ButterKnife.bind(this);
-
+        getActivityComponent().inject(this);
         getSupportActionBar().hide();
 
         loginBtn.setOnClickListener(view -> {
@@ -76,9 +81,17 @@ public class SignUpActivity extends BaseActivity implements SignUpContract.View 
                     && !TextUtils.isEmpty(signUpConfirmPass.getText().toString())
                     && signUpPass.getText().toString().equals(signUpConfirmPass.getText().toString()))
             {
-                mPresenter.doSignUp(signUpName.getText().toString(),
+                /*mPresenter.doSignUp(signUpName.getText().toString(),
                                     signUpMobile.getText().toString(),
                                     signUpPass.getText().toString());
+            */
+                /*SharedPreferences.Editor editor=getSharedPreferences(PREF_NAME,MODE_PRIVATE).edit();
+                editor.putString("phone",signUpMobile.getText().toString());
+                editor.putString("name",signUpName.getText().toString());
+                editor.apply();*/
+                SessionManager sharedPreference=new SessionManager(getBaseContext());
+                sharedPreference.setPhoneNo(signUpMobile.getText().toString());
+                sharedPreference.setUserName(signUpName.getText().toString());
             }
 
             else if(TextUtils.isEmpty(signUpName.getText().toString()))

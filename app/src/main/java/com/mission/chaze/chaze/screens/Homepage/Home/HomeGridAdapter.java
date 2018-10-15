@@ -20,10 +20,12 @@ import java.util.List;
 
 public class HomeGridAdapter extends ArrayAdapter {
     ArrayList<HomeGrid> imageList;
+    Context context;
 
     public HomeGridAdapter(@NonNull Context context, ArrayList<HomeGrid> imageList) {
         super(context, R.layout.grid_single, imageList);
         this.imageList = imageList;
+        this.context = context;
     }
 
     @Override
@@ -35,8 +37,10 @@ public class HomeGridAdapter extends ArrayAdapter {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View v = convertView;
-        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        v = inflater.inflate(R.layout.grid_single, null);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        v = inflater.inflate(R.layout.grid_single, parent, false);
+
         TextView textView = (TextView) v.findViewById(R.id.grid_text);
         ImageView imageView = (ImageView) v.findViewById(R.id.grid_image);
         textView.setText(imageList.get(position).getText());
@@ -54,7 +58,10 @@ public class HomeGridAdapter extends ArrayAdapter {
         imageList.add(new HomeGrid("dsvnlls", R.drawable.ic_dashboard_black_24dp));
         imageList.add(new HomeGrid("dvkbk", R.drawable.ic_dashboard_black_24dp));
         imageList.add(new HomeGrid("nvls", R.drawable.ic_dashboard_black_24dp));
+        imageList.add(new HomeGrid("bk,bskl", R.drawable.ic_dashboard_black_24dp));
+        imageList.add(new HomeGrid("dsvnlls", R.drawable.ic_dashboard_black_24dp));
+        imageList.add(new HomeGrid("dvkbk", R.drawable.ic_dashboard_black_24dp));
+        imageList.add(new HomeGrid("nvls", R.drawable.ic_dashboard_black_24dp));
         notifyDataSetChanged();
-
     }
 }

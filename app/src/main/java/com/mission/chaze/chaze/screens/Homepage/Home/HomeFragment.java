@@ -1,23 +1,33 @@
 package com.mission.chaze.chaze.screens.Homepage.Home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.SearchView;
 
 import com.mission.chaze.chaze.R;
 import com.mission.chaze.chaze.di.LinLayoutVert;
 import com.mission.chaze.chaze.di.component.ActivityComponent;
 import com.mission.chaze.chaze.models.EcomerceCategory;
+import com.mission.chaze.chaze.models.EcomerceShop;
 import com.mission.chaze.chaze.models.HomeGrid;
+import com.mission.chaze.chaze.screens.Cart.CartActivity;
 import com.mission.chaze.chaze.screens.Homepage.Ecommerce.EcommerceCategoryAdapter;
 import com.mission.chaze.chaze.screens.Homepage.Ecommerce.ShopByShops.ShopsAdapter;
+import com.mission.chaze.chaze.screens.Homepage.HomeActivity;
 import com.mission.chaze.chaze.screens.base.BaseFragment;
+import com.mission.chaze.chaze.screens.search.SearchActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,8 +61,20 @@ public class HomeFragment extends BaseFragment implements HomeFragmentContract.V
 
     @Inject
     HomeGridAdapter adapter;
+
+
     @Inject
     HomeFragmentContract.Presentor<HomeFragmentContract.View> mPresenter;
+
+
+    @BindView(R.id.toolbar)
+    RelativeLayout toolbar;
+
+    @BindView(R.id.searchbar)
+    SearchView searchView;
+
+    @BindView(R.id.nestedScroll)
+    NestedScrollView nestedScrollView;
 
     @Nullable
     @Override
@@ -62,7 +84,7 @@ public class HomeFragment extends BaseFragment implements HomeFragmentContract.V
         getActivityComponent().inject(this);
         setUnBinder(ButterKnife.bind(this, view));
         mPresenter.onAttach(this);
-
+        setupToolBar();
         return view;
     }
 
@@ -71,15 +93,41 @@ public class HomeFragment extends BaseFragment implements HomeFragmentContract.V
         super.onViewCreated(view, savedInstanceState);
         Timber.d("HomeFragment");
         adapter.addItems();
-        grid.setAdapter(adapter);
 
+        grid.setAdapter(adapter);
 
         recyclerView.setAdapter(paginationAdapter);
         recyclerView.setLayoutManager(mLayoutManager);
+
         setUpLoadMoreListener();
+
         mPresenter.subscribeForData();
     }
 
+    private void goToSearch() {
+        Intent intent = new Intent(getActivity(), SearchActivity.class);
+        intent.putExtra("SearchType", 1);
+        ActivityOptionsCompat options = ActivityOptionsCompat.
+                makeSceneTransitionAnimation(getActivity(), (View) searchView, "search");
+        startActivity(intent, options.toBundle());
+    }
+
+    private void setupToolBar() {
+        searchView.setOnClickListener(v -> goToSearch());
+        ImageView imageView = toolbar.findViewById(R.id.toolbar_image);
+
+        RelativeLayout cartView = toolbar.findViewById(R.id.cart_container);
+
+        cartView.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), CartActivity.class));
+        });
+
+        imageView.setOnClickListener(v -> {
+            ((HomeActivity) getActivity()).openDrawer();
+        });
+
+
+    }
 
 
     /**
@@ -88,21 +136,21 @@ public class HomeFragment extends BaseFragment implements HomeFragmentContract.V
     private void setUpLoadMoreListener() {
 
 
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView,
-                                   int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
+        nestedScrollView.setOnScrollChangeListener((NestedScrollView.OnScrollChangeListener) (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
+            if (v.getChildAt(v.getChildCount() - 1) != null) {
+                if ((scrollY >= (v.getChildAt(v.getChildCount() - 1).getMeasuredHeight() - v.getMeasuredHeight())) &&
+                        scrollY > oldScrollY) {
 
-                totalItemCount = mLayoutManager.getItemCount();
-                lastVisibleItem = mLayoutManager.findLastVisibleItemPosition();
-                if (!loading
-                        && totalItemCount <= (lastVisibleItem + VISIBLE_THRESHOLD)) {
-                    mPresenter.next();
-                    loading = true;
+                    totalItemCount = mLayoutManager.getItemCount();
+                    lastVisibleItem = mLayoutManager.findLastVisibleItemPosition();
+                    if (!loading
+                            && totalItemCount <= (lastVisibleItem + VISIBLE_THRESHOLD)) {
+                        mPresenter.next();
+                    }
                 }
             }
         });
+
     }
 
     @Override

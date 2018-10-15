@@ -8,6 +8,18 @@ import java.util.Date;
 
 public interface ISessionManager {
 
+    void setUserEmail(String email);
+
+    String getUserEmail();
+
+    void setUserAddress(String address);
+
+    String getUserAddress();
+
+    void setGender(String gender);
+
+    String getGender();
+
     void setFirstTimeLaunch(boolean isFirstTime);
 
     boolean isFirstTimeLaunch();
@@ -65,5 +77,13 @@ public interface ISessionManager {
 
 
     Date getPreviousOrderTime();
+
+    void setUserName(String userName);
+
+    String getUserName();
+
+    void setPhoneNo(String userPhone);
+
+    String getPhoneNo();
 
 }

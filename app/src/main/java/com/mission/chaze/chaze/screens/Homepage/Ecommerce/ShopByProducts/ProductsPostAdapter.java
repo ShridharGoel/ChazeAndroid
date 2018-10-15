@@ -35,7 +35,7 @@ public class ProductsPostAdapter extends RecyclerView.Adapter<ProductsPostAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         EcomerceCategory item=categoryList.get(i);
-        viewHolder.categoryText.setText(item.getCategory());
+        viewHolder.categoryText.setText(item.getName());
         //viewHolder.imageView.setImageDrawable(item.getImage());
 
     }
