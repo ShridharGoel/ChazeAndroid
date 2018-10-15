@@ -216,9 +216,8 @@ public class ActivityModule {
         return presenter;
     }
 
-    SignUpContract.Presenter<SignUpContract.View> providesSignUpPresenter(SignUpPresenter<SignUpContract.View> presenter)
-    {
-
+    @Provides
+    SignUpContract.Presenter<SignUpContract.View> providesSignUpPresenter(SignUpPresenter<SignUpContract.View> presenter) {
         return presenter;
     }
 
