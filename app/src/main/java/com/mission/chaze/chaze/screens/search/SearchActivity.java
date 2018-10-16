@@ -94,7 +94,7 @@ public class SearchActivity extends BaseActivity implements SearchContract.View 
 
 
     public void recreateList(String txt) {
-        adapter.recreateList(txt);
+        adapter.recreateList(txt, searchView);
 
     }
 
