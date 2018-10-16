@@ -33,10 +33,18 @@ public class CartPresenter<V extends CartContract.View> extends BasePresenter<V>
         super.onAttach(mvpView);
 
         subject = PublishSubject.create();
+
         getMvpView().setSubjectToAdapter(subject);
 
 
         subject.subscribe((str)-> getMvpView().showFull(str));
+
+    }
+
+    @Override
+    public void show() {
+
+        getMvpView().showOnActivity();
 
     }
 }

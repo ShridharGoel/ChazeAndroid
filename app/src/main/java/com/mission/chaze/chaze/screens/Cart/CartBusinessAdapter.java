@@ -58,6 +58,8 @@ public class CartBusinessAdapter extends RecyclerView.Adapter<CartBusinessAdapte
 
         for (int i = 0; i < 4; i++)
             cartBusinesses.add(new CartBusiness());
+
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

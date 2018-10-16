@@ -16,10 +16,13 @@ public class CartContract {
         void setSubjectToAdapter(PublishSubject<String> subject);
 
         void showFull(String str);
+
+        void showOnActivity();
     }
 
 
     public interface Presentor<V extends View> extends MvpContract.Presenter<V> {
 
+        void show();
     }
 }

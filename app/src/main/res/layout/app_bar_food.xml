@@ -6,12 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".screens.Homepage.HomeActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorAccent"
-        app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -22,50 +16,80 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginTop="80dp"
-                android:background="@color/colorPrimary"
-                android:orientation="vertical"
-                android:padding="4dp"
-                app:cardElevation="0dp">
 
-
-            </android.support.v7.widget.CardView>
-
-            <RelativeLayout
-                android:id="@+id/toolbar_container"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:elevation="10dp">
+                android:orientation="vertical">
 
-
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/category_recycler_view"
+                <include
+                    android:id="@+id/toolbar"
+                    layout="@layout/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingTop="60dp" />
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true" />
 
 
-            </RelativeLayout>
+            </LinearLayout>
 
 
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorAccent"
+            android:fitsSystemWindows="true"
+            app:layout_scrollFlags="scroll">
+
+            <SearchView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/searchbar"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                app:theme="@style/AppSearchView"
+                android:background="#AAA"
+                android:focusable="false"
+                android:gravity="center"
+                app:iconifiedByDefault="false"
+                app:queryHint="Search for shops, products, food..." />
         </android.support.design.widget.CollapsingToolbarLayout>
 
 
     </android.support.design.widget.AppBarLayout>
 
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/food_recycler_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="15dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/category_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/food_recycler_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
 
 </android.support.design.widget.CoordinatorLayout>

@@ -1,6 +1,7 @@
 package com.mission.chaze.chaze.screens.Homepage.Ecommerce;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,10 +12,11 @@ import android.widget.TextView;
 
 import com.mission.chaze.chaze.R;
 import com.mission.chaze.chaze.models.EcomerceCategory;
+import com.mission.chaze.chaze.screens.Category.CategoryActivity;
 
 import java.util.List;
 
-public class EcommerceCategoryAdapter extends RecyclerView.Adapter<EcommerceCategoryAdapter.ViewHolder>{
+public class EcommerceCategoryAdapter extends RecyclerView.Adapter<EcommerceCategoryAdapter.ViewHolder> {
     Context context;
     List<EcomerceCategory> categoryList;
 
@@ -34,7 +36,7 @@ public class EcommerceCategoryAdapter extends RecyclerView.Adapter<EcommerceCate
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        EcomerceCategory item=categoryList.get(i);
+        EcomerceCategory item = categoryList.get(i);
         viewHolder.categoryText.setText(item.getName());
         //viewHolder.imageView.setImageDrawable(item.getImage());
 
@@ -47,17 +49,23 @@ public class EcommerceCategoryAdapter extends RecyclerView.Adapter<EcommerceCate
 
     public void addItems() {
 
-        for (int i = 0; i < 40; i++)
-            categoryList.add(new EcomerceCategory("people", "bdbdbdb","https://drive.google.com/file/d/15b68H448F4jszurUpAAQV6lFPHdY1dv2/view?usp=sharing"));
+        for (int i = 0; i < 20; i++)
+            categoryList.add(new EcomerceCategory("people", "bdbdbdb", "https://drive.google.com/file/d/15b68H448F4jszurUpAAQV6lFPHdY1dv2/view?usp=sharing"));
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
         TextView categoryText;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView=itemView.findViewById(R.id.categoryImage);
-            categoryText=itemView.findViewById(R.id.categoryName);
+            imageView = itemView.findViewById(R.id.categoryImage);
+            categoryText = itemView.findViewById(R.id.categoryName);
+
+            itemView.setOnClickListener(v -> {
+                context.startActivity(new Intent(context, CategoryActivity.class));
+            });
+
         }
     }
 }

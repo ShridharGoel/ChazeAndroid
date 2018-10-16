@@ -2,9 +2,11 @@
 
 package com.mission.chaze.chaze.screens.base;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ProgressBar;
 
 import com.mission.chaze.chaze.AppController;
 import com.mission.chaze.chaze.di.component.ActivityComponent;
@@ -24,7 +26,14 @@ public abstract class BaseActivity extends AppCompatActivity
 
     ActivityComponent mActivityComponent;
     private Unbinder mUnBinder;
+    ProgressDialog progressDialog;
 
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        progressDialog.hide();
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,6 +43,8 @@ public abstract class BaseActivity extends AppCompatActivity
                 .activityModule(new ActivityModule(this))
                 .applicationComponent(((AppController) getApplication()).getComponent())
                 .build();
+
+        progressDialog = new ProgressDialog(getApplicationContext());
 
     }
 
@@ -57,12 +68,13 @@ public abstract class BaseActivity extends AppCompatActivity
 
     @Override
     public void showLoading() {
-
+        progressDialog.setMessage("Loading....");
+        progressDialog.show();
     }
 
     @Override
     public void hideLoading() {
-
+        progressDialog.hide();
     }
 
     @Override

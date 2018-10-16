@@ -1,5 +1,6 @@
 package com.mission.chaze.chaze.screens.Category;
 
+import com.mission.chaze.chaze.models.CategorySearchResults;
 import com.mission.chaze.chaze.screens.base.MvpContract;
 
 
@@ -10,12 +11,12 @@ import com.mission.chaze.chaze.screens.base.MvpContract;
 public class CategoryContract {
 
     public interface View extends MvpContract.View {
-
+        void showData(CategorySearchResults results);
 
     }
 
 
-    public interface Presentor<V extends View> extends MvpContract.Presenter<V> {
+    public interface Presenter<V extends View> extends MvpContract.Presenter<V> {
 
     }
 }

@@ -48,7 +48,7 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
 
     public void addItems() {
 
-        for (int i = 0; i < 400; i++)
+        for (int i = 0; i < 20; i++)
             restaurantList.add(new Restaurant());
 
         notifyDataSetChanged();

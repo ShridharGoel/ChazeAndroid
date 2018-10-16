@@ -17,6 +17,7 @@ import dagger.Provides;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
@@ -52,8 +53,9 @@ public class NetworkModule {
     @ChazeAPIQual
     Retrofit getRetrofitChaze(OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
-                .baseUrl("https://google.com")
+                .baseUrl("https://chaze-api.herokuapp.com")
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(okHttpClient)
                 .build();
     }
@@ -64,8 +66,9 @@ public class NetworkModule {
     @EcommerceAPIQual
     Retrofit getRetrofitEcommerce(OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
-                .baseUrl("https://google.com")
+                .baseUrl("https://chaze-api.herokuapp.com/ecommerce/")
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(okHttpClient)
                 .build();
     }
@@ -78,6 +81,7 @@ public class NetworkModule {
         return new Retrofit.Builder()
                 .baseUrl("https://google.com")
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(okHttpClient)
                 .build();
     }
@@ -89,6 +93,7 @@ public class NetworkModule {
         return new Retrofit.Builder()
                 .baseUrl("https://google.com")
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(okHttpClient)
                 .build();
     }

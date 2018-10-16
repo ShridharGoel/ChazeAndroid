@@ -3,6 +3,7 @@
 
     android:layout_width="48dp"
     android:layout_height="40dp"
+    android:id="@+id/cart_container"
     android:layout_marginRight="15dp"
     android:background="@android:color/transparent"
     android:clickable="true"

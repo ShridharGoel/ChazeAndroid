@@ -57,7 +57,10 @@ public class CartActivity extends BaseActivity implements CartContract.View {
         setContentView(R.layout.activity_cart);
 
         setUnBinder(ButterKnife.bind(this));
+
         getActivityComponent().inject(this);
+
+
         mPresenter.onAttach(this);
 
         cartBusinessAdapter.addItems();
@@ -75,6 +78,8 @@ public class CartActivity extends BaseActivity implements CartContract.View {
         sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         sheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
 
+        mPresenter.show();
+
     }
 
     @Override
@@ -85,6 +90,11 @@ public class CartActivity extends BaseActivity implements CartContract.View {
     @Override
     public void showFull(String str) {
         sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+
+    }
+
+    @Override
+    public void showOnActivity() {
 
     }
 
