@@ -5,6 +5,7 @@ package com.mission.chaze.chaze.screens.Homepage.Ecommerce.ShopByShops;
 import android.annotation.SuppressLint;
 
 import com.mission.chaze.chaze.repository.network.ICommonAPIManager;
+import com.mission.chaze.chaze.repository.session.SessionManager;
 import com.mission.chaze.chaze.screens.base.BasePresenter;
 import com.mission.chaze.chaze.utils.rx.SchedulerProvider;
 
@@ -27,7 +28,7 @@ public class ShopByShopsPresenter<V extends ShopByShopsContract.View> extends Ba
     private int pageNumber;
 
     @Inject
-    public ShopByShopsPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable) {
+    public ShopByShopsPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {
         super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
 

@@ -5,6 +5,7 @@ package com.mission.chaze.chaze.screens.Authentication;
 import android.annotation.SuppressLint;
 
 import com.mission.chaze.chaze.repository.network.ICommonAPIManager;
+import com.mission.chaze.chaze.repository.session.SessionManager;
 import com.mission.chaze.chaze.screens.base.BasePresenter;
 import com.mission.chaze.chaze.utils.rx.SchedulerProvider;
 
@@ -23,7 +24,7 @@ public class LoginPresenter<V extends LoginContract.View> extends BasePresenter<
         implements LoginContract.Presenter<V> {
 
     @Inject
-    public LoginPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable) {
+    public LoginPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {
         super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
 

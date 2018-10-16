@@ -4,6 +4,7 @@ package com.mission.chaze.chaze.screens.Homepage.Food;
 
 import com.mission.chaze.chaze.models.Restaurant;
 import com.mission.chaze.chaze.repository.network.ICommonAPIManager;
+import com.mission.chaze.chaze.repository.session.SessionManager;
 import com.mission.chaze.chaze.screens.base.BasePresenter;
 import com.mission.chaze.chaze.utils.rx.SchedulerProvider;
 
@@ -31,7 +32,7 @@ public class FoodPresenter<V extends FoodContract.View> extends BasePresenter<V>
     private int pageNumber;
 
     @Inject
-    public FoodPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable) {
+    public FoodPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {
         super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
 

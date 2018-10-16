@@ -4,6 +4,7 @@ package com.mission.chaze.chaze.screens.Homepage.Ecommerce.ShopByProducts;
 
 import com.mission.chaze.chaze.models.EcomerceCategory;
 import com.mission.chaze.chaze.repository.network.ICommonAPIManager;
+import com.mission.chaze.chaze.repository.session.SessionManager;
 import com.mission.chaze.chaze.screens.base.BasePresenter;
 import com.mission.chaze.chaze.utils.rx.SchedulerProvider;
 
@@ -36,7 +37,7 @@ public class ShopByProductsPresenter<V extends ShopByProductsContract.View> exte
     private int pageNumber;
 
     @Inject
-    public ShopByProductsPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable) {
+    public ShopByProductsPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {
         super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
 

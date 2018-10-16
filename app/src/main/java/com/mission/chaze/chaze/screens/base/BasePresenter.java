@@ -28,6 +28,7 @@ public class BasePresenter<V extends MvpContract.View> implements MvpContract.Pr
     private final ICommonAPIManager mCommonAPIManager;
     private final SchedulerProvider mSchedulerProvider;
     private final CompositeDisposable mCompositeDisposable;
+    private final SessionManager sessionManager;
 
 
     @Inject
@@ -37,6 +38,7 @@ public class BasePresenter<V extends MvpContract.View> implements MvpContract.Pr
         this.mCommonAPIManager = dataManager;
         this.mSchedulerProvider = schedulerProvider;
         this.mCompositeDisposable = compositeDisposable;
+        this.sessionManager=sessionManager;
     }
 
     @Override
@@ -72,6 +74,9 @@ public class BasePresenter<V extends MvpContract.View> implements MvpContract.Pr
         return mCommonAPIManager;
     }
 
+    public SessionManager getSessionManager() {
+        return sessionManager;
+    }
 
     public boolean isViewAttached() {
         return mMvpView != null;

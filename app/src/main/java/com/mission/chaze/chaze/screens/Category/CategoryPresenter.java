@@ -4,6 +4,7 @@ package com.mission.chaze.chaze.screens.Category;
 
 import com.mission.chaze.chaze.models.CategorySearchResults;
 import com.mission.chaze.chaze.repository.network.ICommonAPIManager;
+import com.mission.chaze.chaze.repository.session.SessionManager;
 import com.mission.chaze.chaze.screens.base.BasePresenter;
 import com.mission.chaze.chaze.utils.rx.SchedulerProvider;
 
@@ -22,7 +23,7 @@ public class CategoryPresenter<V extends CategoryContract.View> extends BasePres
         implements CategoryContract.Presenter<V> {
 
     @Inject
-    public CategoryPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable) {
+    public CategoryPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {
         super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
 
