@@ -73,6 +73,8 @@ public class ProfileActivity extends BaseActivity {
                 name.setFocusable(false);
                 name.setCursorVisible(false);
                 sharedPreference.setUserName(name.getText().toString());
+                name.setText(name.getText().toString());
+                editName.setImageResource(drawable.ic_edit_black_24dp);
             });
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
@@ -83,6 +85,14 @@ public class ProfileActivity extends BaseActivity {
             phone.setFocusable(true);
             phone.setCursorVisible(true);
             editPhone.setImageResource(drawable.common_google_signin_btn_icon_dark);
+            editPhone.setOnClickListener(view12 -> {
+                phone.setEnabled(false);
+                phone.setFocusable(false);
+                phone.setCursorVisible(false);
+                sharedPreference.setUserName(phone.getText().toString());
+                phone.setText(phone.getText().toString());
+                editPhone.setImageResource(drawable.ic_edit_black_24dp);
+            });
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
         });
@@ -92,6 +102,11 @@ public class ProfileActivity extends BaseActivity {
             email.setFocusable(true);
             email.setCursorVisible(true);
             editEmail.setImageResource(drawable.common_google_signin_btn_icon_dark);
+            name.setFocusable(false);
+            name.setCursorVisible(false);
+            sharedPreference.setUserName(name.getText().toString());
+            name.setText(name.getText().toString());
+            editName.setImageResource(drawable.ic_edit_black_24dp);
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
         });
@@ -101,6 +116,11 @@ public class ProfileActivity extends BaseActivity {
             gender.setFocusable(true);
             gender.setCursorVisible(true);
             editGender.setImageResource(drawable.common_google_signin_btn_icon_dark);
+            gender.setFocusable(false);
+            gender.setCursorVisible(false);
+            sharedPreference.setUserName(gender.getText().toString());
+            gender.setText(gender.getText().toString());
+            editGender.setImageResource(drawable.ic_edit_black_24dp);
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
         });
@@ -110,6 +130,11 @@ public class ProfileActivity extends BaseActivity {
             address.setFocusable(true);
             address.setCursorVisible(true);
             editAddress.setImageResource(drawable.common_google_signin_btn_icon_dark);
+            address.setFocusable(false);
+            address.setCursorVisible(false);
+            sharedPreference.setUserName(address.getText().toString());
+            address.setText(address.getText().toString());
+            editAddress.setImageResource(drawable.ic_edit_black_24dp);
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
         });
@@ -122,9 +147,9 @@ public class ProfileActivity extends BaseActivity {
         //sharedPreference.setUserName("asdfsd");
 
         name.setText(sharedPreference.getUserName());
-       /* phone.setText(sharedPreference.getPhoneNo());
+        phone.setText(sharedPreference.getPhoneNo());
         email.setText(sharedPreference.getUserEmail());
         gender.setText(sharedPreference.getGender());
-        address.setText(sharedPreference.getAddress());*/
+        address.setText(sharedPreference.getAddress());
     }
 }
