@@ -20,6 +20,9 @@ import com.mission.chaze.chaze.screens.Cart.CartPresenter;
 import com.mission.chaze.chaze.screens.Authentication.SignUpContract;
 import com.mission.chaze.chaze.screens.Authentication.SignUpPresenter;
 
+import com.mission.chaze.chaze.screens.Category.CategoryContract;
+import com.mission.chaze.chaze.screens.Category.CategoryPresenter;
+import com.mission.chaze.chaze.screens.Category.ShopCategoryAdapter;
 import com.mission.chaze.chaze.screens.Homepage.Ecommerce.EcommerceCategoryAdapter;
 import com.mission.chaze.chaze.screens.Homepage.Ecommerce.EcommerceContract;
 import com.mission.chaze.chaze.screens.Homepage.Ecommerce.EcommerceFragment;
@@ -220,5 +223,17 @@ public class ActivityModule {
     SignUpContract.Presenter<SignUpContract.View> providesSignUpPresenter(SignUpPresenter<SignUpContract.View> presenter) {
         return presenter;
     }
+
+    @Provides
+    CategoryContract.Presenter<CategoryContract.View> providesCategoryPresenter(CategoryPresenter<CategoryContract.View> presenter) {
+
+        return presenter;
+    }
+
+    @Provides
+    ShopCategoryAdapter providesShopCategoryAdapter() {
+        return new ShopCategoryAdapter();
+    }
+
 
 }

@@ -32,8 +32,6 @@ public class HomeActivity extends BaseActivity
 
     MenuItem prevMenuItem;
 
-    TextView txtViewCount;
-
     ProgressDialog progressDialog;
     @Inject
     CartManager cartManager;
@@ -100,15 +98,6 @@ public class HomeActivity extends BaseActivity
         });
 
         viewPager.setAdapter(adapter);
-    }
-
-    private void goToSearch() {
-/*
-        Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
-        intent.putExtra("SearchType", viewPager.getCurrentItem());
-        ActivityOptionsCompat options = ActivityOptionsCompat.
-                makeSceneTransitionAnimation(this, (View) toolbar, "search");
-        startActivity(intent, options.toBundle());*/
     }
 
     private void setupBottomNavigation() {
