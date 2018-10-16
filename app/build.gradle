@@ -77,6 +77,9 @@ dependencies {
     //circularImageView
     implementation 'de.hdodenhof:circleimageview:2.2.0'
 
+    //Google auth
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
+
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.1'
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.1'
 

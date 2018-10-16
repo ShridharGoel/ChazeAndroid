@@ -219,7 +219,6 @@ public class ActivityModule {
         return presenter;
     }
 
-
     @Provides
     SignUpContract.Presenter<SignUpContract.View> providesSignUpPresenter(SignUpPresenter<SignUpContract.View> presenter) {
         return presenter;
@@ -227,6 +226,7 @@ public class ActivityModule {
 
     @Provides
     CategoryContract.Presenter<CategoryContract.View> providesCategoryPresenter(CategoryPresenter<CategoryContract.View> presenter) {
+
         return presenter;
     }
 
