@@ -17,6 +17,6 @@ public class PostOrderStatusPresenter<V extends PostOrderStatusContract.View> ex
         implements PostOrderStatusContract.Presentor<V> {
 
     public PostOrderStatusPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable) {
-        super(dataManager, schedulerProvider, compositeDisposable);
+        super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
 }

@@ -17,6 +17,6 @@ public class ProductInfoPresenter<V extends ProductInfoContract.View> extends Ba
         implements ProductInfoContract.Presentor<V> {
 
     public ProductInfoPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable) {
-        super(dataManager, schedulerProvider, compositeDisposable);
+        super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
 }

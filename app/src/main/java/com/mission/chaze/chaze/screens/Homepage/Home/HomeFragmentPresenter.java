@@ -37,7 +37,7 @@ public class HomeFragmentPresenter<V extends HomeFragmentContract.View> extends 
 
     @Inject
     public HomeFragmentPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable) {
-        super(dataManager, schedulerProvider, compositeDisposable);
+        super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
 
 

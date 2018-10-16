@@ -16,7 +16,7 @@ import io.reactivex.disposables.CompositeDisposable;
 public class SplashPresenter<V extends SplashContract.View> extends BasePresenter<V>
         implements SplashContract.Presentor<V> {
     public SplashPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable) {
-        super(dataManager, schedulerProvider, compositeDisposable);
+        super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
 
     @Override

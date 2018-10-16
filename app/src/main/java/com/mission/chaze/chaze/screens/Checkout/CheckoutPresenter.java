@@ -3,8 +3,11 @@
 package com.mission.chaze.chaze.screens.Checkout;
 
 import com.mission.chaze.chaze.repository.network.ICommonAPIManager;
+import com.mission.chaze.chaze.repository.session.SessionManager;
 import com.mission.chaze.chaze.screens.base.BasePresenter;
 import com.mission.chaze.chaze.utils.rx.SchedulerProvider;
+
+import javax.inject.Inject;
 
 import io.reactivex.disposables.CompositeDisposable;
 
@@ -16,7 +19,8 @@ import io.reactivex.disposables.CompositeDisposable;
 public class CheckoutPresenter<V extends CheckoutContract.View> extends BasePresenter<V>
         implements CheckoutContract.Presentor<V> {
 
-    public CheckoutPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable) {
-        super(dataManager, schedulerProvider, compositeDisposable);
+    @Inject
+    public CheckoutPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {
+        super(dataManager, schedulerProvider, compositeDisposable,sessionManager);
     }
 }

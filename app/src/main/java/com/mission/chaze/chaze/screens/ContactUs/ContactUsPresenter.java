@@ -17,6 +17,6 @@ public class ContactUsPresenter<V extends ContactUsContract.View> extends BasePr
         implements ContactUsContract.Presentor<V> {
 
     public ContactUsPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable) {
-        super(dataManager, schedulerProvider, compositeDisposable);
+        super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
 }

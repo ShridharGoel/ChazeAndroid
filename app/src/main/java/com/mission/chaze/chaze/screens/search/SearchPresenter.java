@@ -30,7 +30,7 @@ public class SearchPresenter<V extends SearchContract.View> extends BasePresente
 
     @Inject
     public SearchPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable) {
-        super(dataManager, schedulerProvider, compositeDisposable);
+        super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
 
 

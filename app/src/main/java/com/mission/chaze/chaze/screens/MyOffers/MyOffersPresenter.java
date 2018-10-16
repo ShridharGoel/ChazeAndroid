@@ -17,6 +17,6 @@ public class MyOffersPresenter<V extends MyOffersContract.View> extends BasePres
         implements MyOffersContract.Presentor<V> {
 
     public MyOffersPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable) {
-        super(dataManager, schedulerProvider, compositeDisposable);
+        super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
 }

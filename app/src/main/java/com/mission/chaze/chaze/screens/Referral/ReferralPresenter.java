@@ -17,6 +17,6 @@ public class ReferralPresenter<V extends ReferralContract.View> extends BasePres
         implements ReferralContract.Presentor<V> {
 
     public ReferralPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable) {
-        super(dataManager, schedulerProvider, compositeDisposable);
+        super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
 }

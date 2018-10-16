@@ -17,6 +17,6 @@ public class LocalSearchPresenter<V extends LocalSearchContract.View> extends Ba
         implements LocalSearchContract.Presentor<V> {
 
     public LocalSearchPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable) {
-        super(dataManager, schedulerProvider, compositeDisposable);
+        super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
 }

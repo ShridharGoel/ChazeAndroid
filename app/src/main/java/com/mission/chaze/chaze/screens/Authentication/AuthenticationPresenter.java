@@ -17,6 +17,6 @@ public class AuthenticationPresenter<V extends AuthenticationContract.View> exte
         implements AuthenticationContract.Presentor<V> {
 
     public AuthenticationPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable) {
-        super(dataManager, schedulerProvider, compositeDisposable);
+        super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
 }

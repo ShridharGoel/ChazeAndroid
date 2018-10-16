@@ -17,6 +17,6 @@ public class ShopPresenter<V extends ShopContract.View> extends BasePresenter<V>
         implements ShopContract.Presentor<V> {
 
     public ShopPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable) {
-        super(dataManager, schedulerProvider, compositeDisposable);
+        super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
 }

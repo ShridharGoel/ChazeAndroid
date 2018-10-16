@@ -3,33 +3,16 @@
 package com.mission.chaze.chaze.screens.Homepage.Ecommerce.ShopByShops;
 
 import android.annotation.SuppressLint;
-import android.util.Log;
 
-import com.mission.chaze.chaze.models.EcomerceCategory;
 import com.mission.chaze.chaze.repository.network.ICommonAPIManager;
 import com.mission.chaze.chaze.screens.base.BasePresenter;
 import com.mission.chaze.chaze.utils.rx.SchedulerProvider;
 
-import org.reactivestreams.Publisher;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 import javax.inject.Inject;
 
-import io.reactivex.Flowable;
-import io.reactivex.Scheduler;
-import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Function;
-import io.reactivex.processors.PublishProcessor;
 import io.reactivex.schedulers.Schedulers;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import timber.log.Timber;
 
 
@@ -45,7 +28,7 @@ public class ShopByShopsPresenter<V extends ShopByShopsContract.View> extends Ba
 
     @Inject
     public ShopByShopsPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable) {
-        super(dataManager, schedulerProvider, compositeDisposable);
+        super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
 
     @Override

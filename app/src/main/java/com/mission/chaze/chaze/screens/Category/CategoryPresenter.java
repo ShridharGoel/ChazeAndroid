@@ -23,7 +23,7 @@ public class CategoryPresenter<V extends CategoryContract.View> extends BasePres
 
     @Inject
     public CategoryPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable) {
-        super(dataManager, schedulerProvider, compositeDisposable);
+        super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
 
 

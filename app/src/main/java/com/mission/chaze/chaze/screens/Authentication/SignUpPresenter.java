@@ -21,7 +21,7 @@ public class SignUpPresenter<V extends SignUpContract.View> extends BasePresente
 
     @Inject
     public SignUpPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable) {
-        super(dataManager, schedulerProvider, compositeDisposable);
+        super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
 
     @SuppressLint("CheckResult")

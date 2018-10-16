@@ -20,6 +20,6 @@ public class HomePresenter<V extends HomeContract.View> extends BasePresenter<V>
 
     @Inject
     public HomePresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable) {
-        super(dataManager, schedulerProvider, compositeDisposable);
+        super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
 }

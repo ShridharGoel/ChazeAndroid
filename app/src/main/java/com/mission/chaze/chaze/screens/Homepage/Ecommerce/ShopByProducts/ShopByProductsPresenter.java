@@ -2,8 +2,6 @@
 
 package com.mission.chaze.chaze.screens.Homepage.Ecommerce.ShopByProducts;
 
-import android.support.v7.widget.RecyclerView;
-
 import com.mission.chaze.chaze.models.EcomerceCategory;
 import com.mission.chaze.chaze.repository.network.ICommonAPIManager;
 import com.mission.chaze.chaze.screens.base.BasePresenter;
@@ -39,7 +37,7 @@ public class ShopByProductsPresenter<V extends ShopByProductsContract.View> exte
 
     @Inject
     public ShopByProductsPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable) {
-        super(dataManager, schedulerProvider, compositeDisposable);
+        super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
 
 

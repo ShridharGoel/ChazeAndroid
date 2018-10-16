@@ -17,6 +17,6 @@ public class MorePresenter<V extends MoreContract.View> extends BasePresenter<V>
         implements MoreContract.Presentor<V> {
 
     public MorePresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable) {
-        super(dataManager, schedulerProvider, compositeDisposable);
+        super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
 }

@@ -17,6 +17,6 @@ public class ProfilePresenter<V extends ProfileContract.View> extends BasePresen
         implements ProfileContract.Presentor<V> {
 
     public ProfilePresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable) {
-        super(dataManager, schedulerProvider, compositeDisposable);
+        super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
 }

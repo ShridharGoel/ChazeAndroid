@@ -17,6 +17,6 @@ public class MyWishListPresenter<V extends MyWishListContract.View> extends Base
         implements MyWishListContract.Presentor<V> {
 
     public MyWishListPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable) {
-        super(dataManager, schedulerProvider, compositeDisposable);
+        super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
 }

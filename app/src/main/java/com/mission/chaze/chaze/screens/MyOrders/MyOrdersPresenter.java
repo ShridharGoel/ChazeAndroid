@@ -18,6 +18,6 @@ public class MyOrdersPresenter<V extends MyOrdersContract.View> extends BasePres
 
 
     public MyOrdersPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable) {
-        super(dataManager, schedulerProvider, compositeDisposable);
+        super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
 }

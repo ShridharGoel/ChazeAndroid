@@ -5,8 +5,8 @@ package com.mission.chaze.chaze.screens.base;
  */
 
 
-import com.mission.chaze.chaze.repository.network.CommonAPIManager;
 import com.mission.chaze.chaze.repository.network.ICommonAPIManager;
+import com.mission.chaze.chaze.repository.session.SessionManager;
 import com.mission.chaze.chaze.utils.rx.SchedulerProvider;
 
 import javax.inject.Inject;
@@ -33,7 +33,7 @@ public class BasePresenter<V extends MvpContract.View> implements MvpContract.Pr
     @Inject
     public BasePresenter(ICommonAPIManager dataManager,
                          SchedulerProvider schedulerProvider,
-                         CompositeDisposable compositeDisposable) {
+                         CompositeDisposable compositeDisposable, SessionManager sessionManager) {
         this.mCommonAPIManager = dataManager;
         this.mSchedulerProvider = schedulerProvider;
         this.mCompositeDisposable = compositeDisposable;

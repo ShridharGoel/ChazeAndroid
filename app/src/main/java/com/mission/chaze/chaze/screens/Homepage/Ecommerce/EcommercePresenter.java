@@ -20,6 +20,6 @@ public class EcommercePresenter<V extends EcommerceContract.View> extends BasePr
 
     @Inject
     public EcommercePresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable) {
-        super(dataManager, schedulerProvider, compositeDisposable);
+        super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
 }
