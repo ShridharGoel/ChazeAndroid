@@ -20,4 +20,5 @@ public interface ECommerceAPIService {
     @GET("shops/")
     Single<List<EcomerceCategory>> getShopsList();
 
+
 }
