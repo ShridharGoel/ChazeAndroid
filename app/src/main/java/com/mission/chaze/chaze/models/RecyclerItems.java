@@ -3,21 +3,21 @@ package com.mission.chaze.chaze.models;
 import java.util.ArrayList;
 
 public class RecyclerItems {
-    String typeOfPost;
+    int typeOfPost;
     String categoryOfPost;
     ArrayList <PostItems> recyclerList;
 
-    public RecyclerItems(String typeOfPost, String categoryOfPost, ArrayList<PostItems> recyclerList) {
+    public RecyclerItems(int typeOfPost, String categoryOfPost, ArrayList<PostItems> recyclerList) {
         this.typeOfPost = typeOfPost;
         this.categoryOfPost = categoryOfPost;
         this.recyclerList = recyclerList;
     }
 
-    public String getTypeOfPost() {
+    public int getTypeOfPost() {
         return typeOfPost;
     }
 
-    public void setTypeOfPost(String typeOfPost) {
+    public void setTypeOfPost(int typeOfPost) {
         this.typeOfPost = typeOfPost;
     }
 

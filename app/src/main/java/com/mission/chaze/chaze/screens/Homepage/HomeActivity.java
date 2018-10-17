@@ -14,12 +14,14 @@ import android.widget.TextView;
 
 import com.mission.chaze.chaze.R;
 import com.mission.chaze.chaze.models.EcomerceCategory;
+import com.mission.chaze.chaze.models.RecyclerItems;
 import com.mission.chaze.chaze.repository.CartManager;
 import com.mission.chaze.chaze.screens.Checkout.CheckoutActivity;
 import com.mission.chaze.chaze.screens.Checkout.CheckoutContract;
 import com.mission.chaze.chaze.screens.Proflie.ProfileActivity;
 import com.mission.chaze.chaze.screens.base.BaseActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -184,5 +186,10 @@ public class HomeActivity extends BaseActivity
     @Override
     public void addItems(List<EcomerceCategory> items) {
 
+    }
+
+    @Override
+    public ArrayList<RecyclerItems> loadCards() {
+        return null;
     }
 }
