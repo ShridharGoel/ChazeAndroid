@@ -16,6 +16,24 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
 
+<<<<<<< HEAD:app/src/main/java/com/mission/chaze/chaze/screens/Homepage/Home/HomeFragment.java
+import com.mission.chaze.chaze.R;
+import com.mission.chaze.chaze.di.LinLayoutVert;
+import com.mission.chaze.chaze.di.component.ActivityComponent;
+import com.mission.chaze.chaze.models.EcomerceCategory;
+import com.mission.chaze.chaze.models.EcomerceShop;
+import com.mission.chaze.chaze.models.HomeGrid;
+import com.mission.chaze.chaze.models.PostItems;
+import com.mission.chaze.chaze.models.RecyclerItems;
+import com.mission.chaze.chaze.screens.Cart.CartActivity;
+import com.mission.chaze.chaze.screens.Homepage.Ecommerce.EcommerceCategoryAdapter;
+import com.mission.chaze.chaze.screens.Homepage.Ecommerce.ShopByShops.ShopsAdapter;
+import com.mission.chaze.chaze.screens.Homepage.HomeActivity;
+import com.mission.chaze.chaze.screens.base.BaseFragment;
+import com.mission.chaze.chaze.screens.search.SearchActivity;
+
+import java.util.ArrayList;
+=======
 import com.chaze.india.screens.Homepage.HomeActivity;
 import com.chaze.india.screens.base.BaseFragment;
 import com.chaze.india.screens.search.SearchActivity;
@@ -32,6 +50,7 @@ import com.chaze.india.screens.Homepage.HomeActivity;
 import com.chaze.india.screens.base.BaseFragment;
 import com.chaze.india.screens.search.SearchActivity;
 
+>>>>>>> b37de7518fd978e79ba696064a9e43d13a376659:app/src/main/java/com/chaze/india/screens/Homepage/Home/HomeFragment.java
 import java.util.List;
 
 import javax.inject.Inject;
@@ -53,6 +72,8 @@ public class HomeFragment extends BaseFragment implements HomeFragmentContract.V
 
     @BindView(R.id.home_recycler_view)
     RecyclerView recyclerView;
+    /*@BindView(R.id.homeImageRecycler)
+    RecyclerView cardsRecycler;*/
 
     @Inject
     @LinLayoutVert
@@ -64,10 +85,13 @@ public class HomeFragment extends BaseFragment implements HomeFragmentContract.V
     @Inject
     HomeGridAdapter adapter;
 
+    HomeCardAdapter cardAdapter;
+    LinearLayoutManager linearLayoutManager;
 
     @Inject
     HomeFragmentContract.Presentor<HomeFragmentContract.View> mPresenter;
 
+    ArrayList<RecyclerItems> cardItems;
 
     @BindView(R.id.toolbar)
     RelativeLayout toolbar;
@@ -95,13 +119,17 @@ public class HomeFragment extends BaseFragment implements HomeFragmentContract.V
         super.onViewCreated(view, savedInstanceState);
         Timber.d("HomeFragment");
         adapter.addItems();
-
+        //loadCards();
         grid.setAdapter(adapter);
+        cardItems=new ArrayList<>();
+        cardAdapter=new HomeCardAdapter(loadCards(),getContext());
+        //cardsRecycler.setAdapter(cardAdapter);
+        linearLayoutManager=new LinearLayoutManager(getActivity().getApplication(),LinearLayoutManager.VERTICAL,false);
+        //cardsRecycler.setLayoutManager(linearLayoutManager);
 
-        recyclerView.setAdapter(paginationAdapter);
+        recyclerView.setAdapter(cardAdapter);
         recyclerView.setLayoutManager(mLayoutManager);
-
-        setUpLoadMoreListener();
+        //setUpLoadMoreListener();
 
         mPresenter.subscribeForData();
     }
@@ -170,6 +198,28 @@ public class HomeFragment extends BaseFragment implements HomeFragmentContract.V
     @Override
     public void addItems(List<EcomerceCategory> items) {
         paginationAdapter.addItems(items);
+    }
+
+    @Override
+    public ArrayList<RecyclerItems> loadCards() {
+        ArrayList<PostItems> postItems= new ArrayList<>();
+        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","1",0));
+        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","2",1));
+        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","3",2));
+        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","4",3));
+        cardItems.add(new RecyclerItems(2,"cat",postItems));
+        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","1",0));
+        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","2",1));
+        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","3",2));
+        cardItems.add(new RecyclerItems(1,"cat",postItems));
+        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","1",0));
+        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","2",1));
+        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","3",2));
+        cardItems.add(new RecyclerItems(3,"cat",postItems));
+        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","1",0));
+        cardItems.add(new RecyclerItems(4,"cat",postItems));
+        return cardItems;
+
     }
 
     @Override
