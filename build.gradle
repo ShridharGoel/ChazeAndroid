@@ -10,16 +10,24 @@ buildscript {
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+<<<<<<< HEAD
 
-    }
-
-    allprojects {
-        repositories {
-            google()
-            jcenter()
-        }
+=======
+>>>>>>> b37de7518fd978e79ba696064a9e43d13a376659
     }
 }
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> b37de7518fd978e79ba696064a9e43d13a376659

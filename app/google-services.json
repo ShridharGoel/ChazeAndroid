@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:478672145708:android:00d27345b4751b84",
         "android_client_info": {
-          "package_name": "com.mission.chaze.chaze"
+          "package_name": "com.chaze.india"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "478672145708-1vlp6q12667stfsfmj73n3b9tclc5u2v.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.mission.chaze.chaze",
+            "package_name": "com.chaze.india",
             "certificate_hash": "4d88ab63f77f80ef3a510aaf89fb14fc7af30334"
           }
         },

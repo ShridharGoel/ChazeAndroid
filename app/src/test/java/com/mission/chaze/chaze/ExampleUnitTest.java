@@ -1,4 +1,4 @@
-package com.mission.chaze.chaze;
+package com.chaze.india;
 
 import org.junit.Test;
 
