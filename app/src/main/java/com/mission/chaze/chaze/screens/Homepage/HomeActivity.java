@@ -15,6 +15,8 @@ import android.widget.TextView;
 import com.mission.chaze.chaze.R;
 import com.mission.chaze.chaze.models.EcomerceCategory;
 import com.mission.chaze.chaze.repository.CartManager;
+import com.mission.chaze.chaze.screens.Checkout.CheckoutActivity;
+import com.mission.chaze.chaze.screens.Checkout.CheckoutContract;
 import com.mission.chaze.chaze.screens.Proflie.ProfileActivity;
 import com.mission.chaze.chaze.screens.base.BaseActivity;
 
@@ -168,8 +170,12 @@ public class HomeActivity extends BaseActivity
         int id = item.getItemId();
         switch (id) {
             case R.id.nav_profile:
-                Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
-                startActivity(intent);
+                Intent intent1 = new Intent(HomeActivity.this, ProfileActivity.class);
+                startActivity(intent1);
+                break;
+            case R.id.nav_checkout:
+                Intent intent2=new Intent(HomeActivity.this, CheckoutActivity.class);
+                startActivity(intent2);
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;

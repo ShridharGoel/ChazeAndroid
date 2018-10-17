@@ -89,7 +89,7 @@ public class ProfileActivity extends BaseActivity {
                 phone.setEnabled(false);
                 phone.setFocusable(false);
                 phone.setCursorVisible(false);
-                sharedPreference.setUserName(phone.getText().toString());
+                sharedPreference.setPhoneNo(phone.getText().toString());
                 phone.setText(phone.getText().toString());
                 editPhone.setImageResource(drawable.ic_edit_black_24dp);
             });
@@ -102,11 +102,15 @@ public class ProfileActivity extends BaseActivity {
             email.setFocusable(true);
             email.setCursorVisible(true);
             editEmail.setImageResource(drawable.common_google_signin_btn_icon_dark);
-            name.setFocusable(false);
-            name.setCursorVisible(false);
-            sharedPreference.setUserName(name.getText().toString());
-            name.setText(name.getText().toString());
-            editName.setImageResource(drawable.ic_edit_black_24dp);
+            editEmail.setOnClickListener(view12 -> {
+                email.setEnabled(false);
+                email.setFocusable(false);
+                email.setCursorVisible(false);
+                sharedPreference.setUserEmail(email.getText().toString());
+                email.setText(email.getText().toString());
+                editEmail.setImageResource(drawable.ic_edit_black_24dp);
+            });
+
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
         });
@@ -116,11 +120,14 @@ public class ProfileActivity extends BaseActivity {
             gender.setFocusable(true);
             gender.setCursorVisible(true);
             editGender.setImageResource(drawable.common_google_signin_btn_icon_dark);
-            gender.setFocusable(false);
-            gender.setCursorVisible(false);
-            sharedPreference.setUserName(gender.getText().toString());
-            gender.setText(gender.getText().toString());
-            editGender.setImageResource(drawable.ic_edit_black_24dp);
+            editGender.setOnClickListener(view12 -> {
+                gender.setEnabled(false);
+                gender.setFocusable(false);
+                gender.setCursorVisible(false);
+                sharedPreference.setGender(gender.getText().toString());
+                gender.setText(gender.getText().toString());
+                editGender.setImageResource(drawable.ic_edit_black_24dp);
+            });
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
         });
@@ -130,11 +137,14 @@ public class ProfileActivity extends BaseActivity {
             address.setFocusable(true);
             address.setCursorVisible(true);
             editAddress.setImageResource(drawable.common_google_signin_btn_icon_dark);
-            address.setFocusable(false);
-            address.setCursorVisible(false);
-            sharedPreference.setUserName(address.getText().toString());
-            address.setText(address.getText().toString());
-            editAddress.setImageResource(drawable.ic_edit_black_24dp);
+            editAddress.setOnClickListener(view12 -> {
+                address.setEnabled(false);
+                address.setFocusable(false);
+                address.setCursorVisible(false);
+                sharedPreference.setAddress(address.getText().toString());
+                address.setText(address.getText().toString());
+                editAddress.setImageResource(drawable.ic_edit_black_24dp);
+            });
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
         });

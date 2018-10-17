@@ -5,6 +5,7 @@ package com.mission.chaze.chaze.screens.search;
 import android.annotation.SuppressLint;
 
 import com.mission.chaze.chaze.repository.network.ICommonAPIManager;
+import com.mission.chaze.chaze.repository.session.SessionManager;
 import com.mission.chaze.chaze.screens.base.BasePresenter;
 import com.mission.chaze.chaze.utils.rx.SchedulerProvider;
 
@@ -29,8 +30,8 @@ public class SearchPresenter<V extends SearchContract.View> extends BasePresente
         implements SearchContract.Presentor<V> {
 
     @Inject
-    public SearchPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable) {
-        super(dataManager, schedulerProvider, compositeDisposable);
+    public SearchPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {
+        super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
 
 

@@ -4,6 +4,300 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".screens.Checkout.CheckoutActivity">
+    <FrameLayout
+        android:id="@+id/mailFrame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/checkoutEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:ems="10"
+            android:paddingBottom="8dp"
+            android:paddingStart="50dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="8dp"
+            android:enabled="false"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingStart="8dp"
+            android:text="Email"/>
+        <ImageView
+            android:id="@+id/editCheckoutEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:src="@drawable/ic_edit_black_24dp"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/nameFrame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/mailFrame">
+        <EditText
+            android:id="@+id/checkoutName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:ems="10"
+            android:paddingBottom="8dp"
+            android:paddingStart="50dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="8dp"
+            android:enabled="false"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingStart="8dp"
+            android:text="Name"/>
+        <ImageView
+            android:id="@+id/editCheckoutName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:src="@drawable/ic_edit_black_24dp"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/phoneFrame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/nameFrame"
+        >
+        <EditText
+            android:id="@+id/checkoutPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:ems="10"
+            android:paddingBottom="8dp"
+            android:paddingStart="100dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="8dp"
+            android:enabled="false"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingStart="8dp"
+            android:text="Phone + 91"/>
+        <ImageView
+            android:id="@+id/editCheckoutPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:src="@drawable/ic_edit_black_24dp"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/phoneAltFrame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/phoneFrame"
+        >
+        <EditText
+            android:id="@+id/checkoutAltPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:ems="10"
+            android:paddingBottom="8dp"
+            android:paddingStart="150dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="8dp"><requestFocus />
+        </EditText>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingStart="8dp"
+            android:text="Alternate Phone + 91"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/addressFrame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/phoneAltFrame"
+        >
+        <EditText
+            android:id="@+id/checkoutAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:ems="10"
+            android:paddingBottom="8dp"
+            android:paddingStart="150dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="8dp"
+            android:enabled="false"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingStart="8dp"
+            android:text="Address"/>
+        <ImageView
+            android:id="@+id/editCheckoutAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:src="@drawable/ic_edit_black_24dp"/>
+
+    </FrameLayout>
+<!--    <FrameLayout
+        android:id="@+id/colonyFrame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/houseNoFrame"
+        >
+        <EditText
+            android:id="@+id/checkoutColony"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:ems="10"
+            android:paddingBottom="8dp"
+            android:paddingStart="150dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="8dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingStart="8dp"
+            android:text="Colony/Street/Locality"/>
+
+    </FrameLayout>
+    <FrameLayout
+        android:id="@+id/landmarkFrame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/colonyFrame"
+        >
+        <EditText
+            android:id="@+id/checkoutLandmark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:ems="10"
+            android:paddingBottom="8dp"
+            android:paddingStart="150dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="8dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingStart="8dp"
+            android:text="Landmark: Near/Behind"/>
+
+    </FrameLayout>-->
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/addressFrame">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/pay_via_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:text="Pay Via"
+        android:textColor="@color/textColorPrimary"
+        android:textSize="18sp" />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cod_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pay_via_text"
+        android:layout_margin="5dp"
+
+        >
+
+        <RelativeLayout
+            android:id="@+id/payment_option_cod"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:id="@+id/payment_option_cod_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="100">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="15"
+                    android:src="@drawable/ic_menu_send" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="70"
+                    android:text="COD"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/cod_check"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="15"
+                    android:src="@drawable/ic_dashboard_black_24dp" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/cod_pay_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/payment_option_cod_details"
+                android:layout_marginTop="12dp"
+                android:background="@color/colorPurpleLight"
+                android:text="Proceed to pay"
+                android:textColor="@color/colorPrimary" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+    </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
 
 </android.support.constraint.ConstraintLayout>

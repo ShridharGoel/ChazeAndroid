@@ -3,6 +3,7 @@
 package com.mission.chaze.chaze.screens.ContactUs;
 
 import com.mission.chaze.chaze.repository.network.ICommonAPIManager;
+import com.mission.chaze.chaze.repository.session.SessionManager;
 import com.mission.chaze.chaze.screens.base.BasePresenter;
 import com.mission.chaze.chaze.utils.rx.SchedulerProvider;
 
@@ -16,7 +17,7 @@ import io.reactivex.disposables.CompositeDisposable;
 public class ContactUsPresenter<V extends ContactUsContract.View> extends BasePresenter<V>
         implements ContactUsContract.Presentor<V> {
 
-    public ContactUsPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable) {
-        super(dataManager, schedulerProvider, compositeDisposable);
+    public ContactUsPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {
+        super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
 }

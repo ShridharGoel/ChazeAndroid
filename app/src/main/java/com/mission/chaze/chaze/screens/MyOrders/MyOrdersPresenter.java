@@ -3,6 +3,7 @@
 package com.mission.chaze.chaze.screens.MyOrders;
 
 import com.mission.chaze.chaze.repository.network.ICommonAPIManager;
+import com.mission.chaze.chaze.repository.session.SessionManager;
 import com.mission.chaze.chaze.screens.base.BasePresenter;
 import com.mission.chaze.chaze.utils.rx.SchedulerProvider;
 
@@ -17,7 +18,7 @@ public class MyOrdersPresenter<V extends MyOrdersContract.View> extends BasePres
         implements MyOrdersContract.Presentor<V> {
 
 
-    public MyOrdersPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable) {
-        super(dataManager, schedulerProvider, compositeDisposable);
+    public MyOrdersPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {
+        super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
 }
