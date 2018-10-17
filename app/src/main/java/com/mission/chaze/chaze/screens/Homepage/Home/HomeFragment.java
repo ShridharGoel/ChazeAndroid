@@ -184,7 +184,7 @@ public class HomeFragment extends BaseFragment implements HomeFragmentContract.V
     @Override
     public ArrayList<RecyclerItems> loadCards() {
         ArrayList<PostItems> postItems= new ArrayList<>();
-        /*postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","1",0));
+        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","1",0));
         postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","2",1));
         postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","3",2));
         postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","4",3));
@@ -192,13 +192,13 @@ public class HomeFragment extends BaseFragment implements HomeFragmentContract.V
         postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","1",0));
         postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","2",1));
         postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","3",2));
-        cardItems.add(new RecyclerItems(1,"cat",postItems));*/
+        cardItems.add(new RecyclerItems(1,"cat",postItems));
         postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","1",0));
         postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","2",1));
         postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","3",2));
         cardItems.add(new RecyclerItems(3,"cat",postItems));
-        /*postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","1",0));
-        cardItems.add(new RecyclerItems(4,"cat",postItems));*/
+        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","1",0));
+        cardItems.add(new RecyclerItems(4,"cat",postItems));
         return cardItems;
 
     }

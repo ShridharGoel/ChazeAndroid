@@ -9,8 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+
 import com.mission.chaze.chaze.R;
 import com.mission.chaze.chaze.models.RecyclerItems;
+import com.smarteist.autoimageslider.SliderLayout;
+import com.smarteist.autoimageslider.SliderView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -84,16 +87,35 @@ public class HomeCardAdapter extends RecyclerView.Adapter{
                     .error(R.drawable.ic_menu_manage)
                     .into(((Card2ViewHolder)viewHolder).image4);
             break;
-        case 3:Picasso.get().load(object.getRecyclerList().get(0).getImageUrl())
+        case 3:/*Picasso.get().load(object.getRecyclerList().get(0).getImageUrl())
                 .error(R.drawable.ic_menu_manage)
                 .into(((Card3ViewHolder)viewHolder).image1);
             Picasso.get().load(object.getRecyclerList().get(1).getImageUrl())
-                    .error(R.drawable.ic_menu_manage)
+                    .error(R.drawable.ic_menu_gallery)
                     .into(((Card3ViewHolder)viewHolder).image2);
             Picasso.get().load(object.getRecyclerList().get(2).getImageUrl())
-                    .error(R.drawable.ic_menu_manage)
-                    .into(((Card3ViewHolder)viewHolder).image3);
-            break;
+                    .error(R.drawable.ic_menu_send)
+                    .into(((Card3ViewHolder)viewHolder).image3);*/
+            for (int j = 0; j < 3; j++) {
+
+                SliderView sliderView = new SliderView(context);
+
+                switch (i) {
+                    case 0:
+                        sliderView.setImageUrl(object.getRecyclerList().get(0).getImageUrl());
+                        break;
+                    case 1:
+                        sliderView.setImageUrl(object.getRecyclerList().get(1).getImageUrl());
+                        break;
+                    case 2:
+                        sliderView.setImageUrl(object.getRecyclerList().get(2).getImageUrl());
+                        break;
+                }
+                ((Card3ViewHolder)viewHolder).sliderLayout.addSliderView(sliderView);
+            }
+
+
+                break;
         case 4: Picasso.get().load(object.getRecyclerList().get(0).getImageUrl())
                 .error(R.drawable.ic_menu_manage)
                 .into(((Card4ViewHolder)viewHolder).image1);
@@ -131,9 +153,13 @@ public class HomeCardAdapter extends RecyclerView.Adapter{
 
     public class Card3ViewHolder extends RecyclerView.ViewHolder{
         ImageView image1,image2,image3;
+        SliderLayout sliderLayout;
 
         public Card3ViewHolder(@NonNull View itemView) {
             super(itemView);
+            sliderLayout=itemView.findViewById(R.id.imageSlider);
+            sliderLayout.setIndicatorAnimation(SliderLayout.Animations.FILL); //set indicator animation by using SliderLayout.Animations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
+            sliderLayout.setScrollTimeInSec(1);
             image1=itemView.findViewById(R.id.card3_image1);
             image2=itemView.findViewById(R.id.card3_image2);
             image3=itemView.findViewById(R.id.card3_image3);
