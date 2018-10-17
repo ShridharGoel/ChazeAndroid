@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".screens.Checkout.CheckoutActivity">
+    tools:context="com.chaze.india.screens.Checkout.CheckoutActivity">
     <FrameLayout
         android:id="@+id/mailFrame"
         android:layout_width="match_parent"
