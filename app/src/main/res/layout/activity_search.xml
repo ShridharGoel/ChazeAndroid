@@ -7,7 +7,7 @@
     android:layout_margin="4dp"
     android:background="#fff"
     android:orientation="vertical"
-    tools:context=".screens.search.SearchActivity">
+    tools:context="com.chaze.india.screens.search.SearchActivity">
 
     <RelativeLayout
         android:id="@+id/search_container"

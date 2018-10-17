@@ -1,4 +1,4 @@
-package com.mission.chaze.chaze;
+package com.chaze.india;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.mission.chaze.chaze", appContext.getPackageName());
+        assertEquals("com.chaze.india", appContext.getPackageName());
     }
 }

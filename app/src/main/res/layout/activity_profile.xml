@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".screens.Proflie.ProfileActivity">
+    tools:context="com.chaze.india.screens.Proflie.ProfileActivity">
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_image"
         android:layout_width="85dp"
