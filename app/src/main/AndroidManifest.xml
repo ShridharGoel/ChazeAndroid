@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mission.chaze.chaze">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
@@ -16,8 +16,7 @@
         <activity
             android:name=".screens.Homepage.HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".screens.search.SearchActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -29,7 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".screens.Authentication.SignUpActivity"></activity>
+        <activity android:name=".screens.Authentication.SignUpActivity" />
         <activity android:name=".screens.Proflie.ProfileActivity" />
         <activity android:name=".screens.MyOrders.MyOrdersActivity" />
         <activity android:name=".screens.MyWishList.MyWishListActivity" />
@@ -41,7 +40,9 @@
         <activity android:name=".screens.ProductInfo.ProductInfoActivity" />
         <activity android:name=".screens.Shop.ShopActivity" />
         <activity android:name=".screens.Category.CategoryActivity" />
-        <activity android:name=".screens.Referral.ReferralActivity"></activity>
+        <activity android:name=".screens.Referral.ReferralActivity" />
+        <activity android:name=".screens.SubCategory.SubCategoryActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

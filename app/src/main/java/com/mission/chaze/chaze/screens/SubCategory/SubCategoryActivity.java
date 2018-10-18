@@ -1,43 +1,36 @@
-package com.mission.chaze.chaze.screens.Homepage.Home;
+package com.mission.chaze.chaze.screens.SubCategory;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.SearchView;
 
 import com.mission.chaze.chaze.R;
 import com.mission.chaze.chaze.di.LinLayoutVert;
-import com.mission.chaze.chaze.di.component.ActivityComponent;
+import com.mission.chaze.chaze.models.CategorySearchResults;
 import com.mission.chaze.chaze.models.EcomerceCategory;
-import com.mission.chaze.chaze.models.EcomerceShop;
-import com.mission.chaze.chaze.screens.Cart.CartActivity;
-import com.mission.chaze.chaze.screens.Homepage.Ecommerce.EcommerceCategoryAdapter;
 import com.mission.chaze.chaze.screens.Homepage.Ecommerce.ShopByShops.ShopsAdapter;
-import com.mission.chaze.chaze.screens.Homepage.HomeActivity;
-import com.mission.chaze.chaze.screens.base.BaseFragment;
+import com.mission.chaze.chaze.screens.Homepage.Home.HomeGridAdapter;
+import com.mission.chaze.chaze.screens.base.BaseActivity;
 import com.mission.chaze.chaze.screens.search.SearchActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import timber.log.Timber;
 
-public class HomeFragment extends BaseFragment implements HomeFragmentContract.View {
+public class SubCategoryActivity extends BaseActivity implements SubCategoryContract.View {
 
 
     private int totalItemCount, lastVisibleItem, pageNumber = 1;
@@ -63,11 +56,11 @@ public class HomeFragment extends BaseFragment implements HomeFragmentContract.V
 
 
     @Inject
-    HomeFragmentContract.Presentor<HomeFragmentContract.View> mPresenter;
+    SubCategoryContract.Presenter<SubCategoryContract.View> mPresenter;
 
 
     @BindView(R.id.toolbar)
-    RelativeLayout toolbar;
+    Toolbar toolbar;
 
     @BindView(R.id.searchbar)
     SearchView searchView;
@@ -75,22 +68,24 @@ public class HomeFragment extends BaseFragment implements HomeFragmentContract.V
     @BindView(R.id.nestedScroll)
     NestedScrollView nestedScrollView;
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
-        onAttach(getContext());
-        getActivityComponent().inject(this);
-        setUnBinder(ButterKnife.bind(this, view));
-        mPresenter.onAttach(this);
-        setupToolBar();
-        return view;
-    }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        Timber.d("HomeFragment");
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_sub_category);
+        setUnBinder(ButterKnife.bind(this));
+        getActivityComponent().inject(this);
+
+        int color = ResourcesCompat.getColor(getResources(), R.color.colorCyan, null); //without theme
+        Drawable drawable = new ColorDrawable(color);
+
+        onAttach(this);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("SubCategoryName: ");
+        getSupportActionBar().setBackgroundDrawable(drawable);
+
+        mPresenter.onAttach(this);
+
         adapter.addItems();
 
         grid.setAdapter(adapter);
@@ -101,31 +96,16 @@ public class HomeFragment extends BaseFragment implements HomeFragmentContract.V
         setUpLoadMoreListener();
 
         mPresenter.subscribeForData();
+
     }
+
 
     private void goToSearch() {
-        Intent intent = new Intent(getActivity(), SearchActivity.class);
+        Intent intent = new Intent(this, SearchActivity.class);
         intent.putExtra("SearchType", 1);
         ActivityOptionsCompat options = ActivityOptionsCompat.
-                makeSceneTransitionAnimation(getActivity(), (View) searchView, "search");
+                makeSceneTransitionAnimation(this, (View) searchView, "search");
         startActivity(intent, options.toBundle());
-    }
-
-    private void setupToolBar() {
-        searchView.setOnClickListener(v -> goToSearch());
-        ImageView imageView = toolbar.findViewById(R.id.toolbar_image);
-
-        RelativeLayout cartView = toolbar.findViewById(R.id.cart_container);
-
-        cartView.setOnClickListener(v -> {
-            startActivity(new Intent(getActivity(), CartActivity.class));
-        });
-
-        imageView.setOnClickListener(v -> {
-            ((HomeActivity) getActivity()).openDrawer();
-        });
-
-
     }
 
 
@@ -165,14 +145,13 @@ public class HomeFragment extends BaseFragment implements HomeFragmentContract.V
     }
 
     @Override
-    public void addItems(List<EcomerceCategory> items) {
-        paginationAdapter.addItems(items);
+    public void showData(CategorySearchResults results) {
+
     }
 
     @Override
-    public void onDestroyView() {
-        adapter.clear();
-        super.onDestroyView();
+    public void addItems(List<EcomerceCategory> items) {
+        paginationAdapter.addItems(items);
     }
 
 

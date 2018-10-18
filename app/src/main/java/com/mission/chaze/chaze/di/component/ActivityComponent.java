@@ -19,6 +19,7 @@ import com.mission.chaze.chaze.screens.Homepage.Home.HomeFragment;
 import com.mission.chaze.chaze.screens.Homepage.HomeActivity;
 import com.mission.chaze.chaze.screens.Proflie.ProfileActivity;
 import com.mission.chaze.chaze.screens.Splash.SplashActivity;
+import com.mission.chaze.chaze.screens.SubCategory.SubCategoryActivity;
 import com.mission.chaze.chaze.screens.base.BaseActivity;
 import com.mission.chaze.chaze.screens.search.SearchActivity;
 
@@ -61,4 +62,6 @@ public interface ActivityComponent {
     void inject(SignUpActivity signUpActivity);
 
     void inject(CategoryActivity categoryActivity);
+
+    void inject(SubCategoryActivity subCategoryActivity);
 }

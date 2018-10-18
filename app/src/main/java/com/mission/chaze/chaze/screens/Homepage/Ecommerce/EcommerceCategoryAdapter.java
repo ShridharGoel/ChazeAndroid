@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.mission.chaze.chaze.R;
 import com.mission.chaze.chaze.models.EcomerceCategory;
 import com.mission.chaze.chaze.screens.Category.CategoryActivity;
+import com.mission.chaze.chaze.screens.SubCategory.SubCategoryActivity;
 
 import java.util.List;
 
@@ -63,7 +64,9 @@ public class EcommerceCategoryAdapter extends RecyclerView.Adapter<EcommerceCate
             categoryText = itemView.findViewById(R.id.categoryName);
 
             itemView.setOnClickListener(v -> {
+                if(getPosition()%2==0)
                 context.startActivity(new Intent(context, CategoryActivity.class));
+                else context.startActivity(new Intent(context, SubCategoryActivity.class));
             });
 
         }

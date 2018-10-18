@@ -47,6 +47,8 @@ import com.mission.chaze.chaze.screens.Homepage.HomeBottomNavPagerAdapter;
 import com.mission.chaze.chaze.screens.Homepage.HomeContract;
 import com.mission.chaze.chaze.screens.Homepage.LocalSearch.LocalSearchFragment;
 import com.mission.chaze.chaze.screens.Homepage.More.MoreFragment;
+import com.mission.chaze.chaze.screens.SubCategory.SubCategoryContract;
+import com.mission.chaze.chaze.screens.SubCategory.SubCategoryPresenter;
 import com.mission.chaze.chaze.screens.search.SearchContract;
 import com.mission.chaze.chaze.screens.search.SearchPresenter;
 import com.mission.chaze.chaze.screens.search.SearchSuggestionsAdapter;
@@ -235,5 +237,11 @@ public class ActivityModule {
         return new ShopCategoryAdapter();
     }
 
+
+    @Provides
+    SubCategoryContract.Presenter<SubCategoryContract.View> providesSubCategoryContract(SubCategoryPresenter<SubCategoryContract.View> presenter) {
+
+        return presenter;
+    }
 
 }

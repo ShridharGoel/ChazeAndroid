@@ -1,4 +1,4 @@
-package com.mission.chaze.chaze.screens.Homepage.Home;
+package com.mission.chaze.chaze.screens.SubCategory;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -10,16 +10,16 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.mission.chaze.chaze.models.Category;
 import com.mission.chaze.chaze.R;
+import com.mission.chaze.chaze.models.Category;
 
 import java.util.ArrayList;
 
-public class HomeGridAdapter extends ArrayAdapter {
+public class CategoryGridAdapter extends ArrayAdapter {
     ArrayList<Category> imageList;
     Context context;
 
-    public HomeGridAdapter(@NonNull Context context, ArrayList<Category> imageList) {
+    public CategoryGridAdapter(@NonNull Context context, ArrayList<Category> imageList) {
         super(context, R.layout.grid_single, imageList);
         this.imageList = imageList;
         this.context = context;
