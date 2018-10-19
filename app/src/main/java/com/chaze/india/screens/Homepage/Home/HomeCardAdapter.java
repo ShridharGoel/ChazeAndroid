@@ -1,7 +1,6 @@
-package com.mission.chaze.chaze.screens.Homepage.Home;
+package com.chaze.india.screens.Homepage.Home;
 
 import android.content.Context;
-import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,15 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-
-import com.mission.chaze.chaze.R;
-import com.mission.chaze.chaze.models.RecyclerItems;
+import com.chaze.india.R;
+import com.chaze.india.models.RecyclerItems;
 import com.smarteist.autoimageslider.SliderLayout;
 import com.smarteist.autoimageslider.SliderView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class HomeCardAdapter extends RecyclerView.Adapter{
     ArrayList<RecyclerItems> cardList;
@@ -32,6 +29,7 @@ public class HomeCardAdapter extends RecyclerView.Adapter{
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view;
+
         switch (i) {
             case 1:
                 view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.ecomerce_card_1, viewGroup, false);

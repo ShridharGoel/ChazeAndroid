@@ -1,4 +1,4 @@
-package com.mission.chaze.chaze.models;
+package com.chaze.india.models;
 
 import java.util.ArrayList;
 

@@ -3,6 +3,7 @@
 package com.chaze.india.screens.base;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -10,10 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.chaze.india.AppController;
 import com.chaze.india.di.component.ActivityComponent;
 import com.chaze.india.di.module.ActivityModule;
-import com.chaze.india.AppController;
-import com.chaze.india.di.component.ActivityComponent;
 import com.chaze.india.di.component.DaggerActivityComponent;
-import com.chaze.india.di.module.ActivityModule;
 
 import butterknife.Unbinder;
 
@@ -46,8 +44,12 @@ public abstract class BaseActivity extends AppCompatActivity
                 .applicationComponent(((AppController) getApplication()).getComponent())
                 .build();
 
-        progressDialog = new ProgressDialog(getApplicationContext());
+         progressDialog = new ProgressDialog(getApplicationContext());
 
+    }
+
+    public void onAttach(Context c) {
+        progressDialog = new ProgressDialog(c);
     }
 
     public ActivityComponent getActivityComponent() {

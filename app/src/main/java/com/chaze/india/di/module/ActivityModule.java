@@ -38,6 +38,15 @@ import com.chaze.india.screens.Homepage.HomeBottomNavPagerAdapter;
 import com.chaze.india.screens.Homepage.HomeContract;
 import com.chaze.india.screens.Homepage.HomePresenter;
 import com.chaze.india.screens.Homepage.More.MoreFragment;
+import com.chaze.india.screens.PostOrderStatus.ActiveOrders.ActiveOrdersAdapter;
+import com.chaze.india.screens.PostOrderStatus.ActiveOrders.ActiveOrdersContract;
+import com.chaze.india.screens.PostOrderStatus.ActiveOrders.ActiveOrdersPresenter;
+import com.chaze.india.screens.PostOrderStatus.ActiveOrders.TimeLineAdapter;
+import com.chaze.india.screens.PostOrderStatus.PostOrderPagerAdapter;
+import com.chaze.india.screens.PostOrderStatus.PostOrderStatusContract;
+import com.chaze.india.screens.PostOrderStatus.PostOrderStatusPresenter;
+import com.chaze.india.screens.SubCategory.SubCategoryContract;
+import com.chaze.india.screens.SubCategory.SubCategoryPresenter;
 import com.chaze.india.screens.search.SearchContract;
 import com.chaze.india.screens.search.SearchPresenter;
 import com.chaze.india.screens.search.SearchSuggestionsAdapter;
@@ -144,7 +153,14 @@ public class ActivityModule {
     SearchSuggestionsAdapter getSearchSuggestionsAdapter() {
         return new SearchSuggestionsAdapter(mActivity, new ArrayList<>());
     }
-
+    /*@Provides
+    ActiveOrdersAdapter getActiveOrdersAdapter(){
+        return new ActiveOrdersAdapter(mActivity,new ArrayList<>());
+    }*/
+    @Provides
+    TimeLineAdapter getTimeLineAdapter(){
+        return new TimeLineAdapter(new ArrayList<>(),mActivity);
+    }
     @Provides
     HomeBottomNavPagerAdapter getBottomNavAdapter() {
         EcommerceFragment ecomerce = new EcommerceFragment();
@@ -175,6 +191,10 @@ public class ActivityModule {
             HomeFragmentPresenter<HomeFragmentContract.View> presenter) {
         return presenter;
     }
+    @Provides
+    ActiveOrdersContract.Presentor<ActiveOrdersContract.View> providesActiveOrdersFragmentPresentor(ActiveOrdersPresenter<ActiveOrdersContract.View> presenter){
+        return presenter;
+    }
 
     @Provides
     @LinLayoutHori
@@ -192,6 +212,15 @@ public class ActivityModule {
     EcommercePagerAdapter providesEcommercePagerAdapter() {
         return new EcommercePagerAdapter(mActivity.getSupportFragmentManager());
     }
+    @Provides
+    PostOrderPagerAdapter providesPostOrderPagerAdaptee(){
+        return new PostOrderPagerAdapter(mActivity.getSupportFragmentManager());}
+
+    @Provides
+    ActiveOrdersAdapter providesActiveOrdersAdapter(){
+        return new ActiveOrdersAdapter(mActivity,new ArrayList<>());
+    }
+
 
     @Provides
     EcommerceContract.Presentor<EcommerceContract.View> providesEcommercePresenter(
@@ -268,6 +297,17 @@ public class ActivityModule {
     @Provides
     ShopCategoryAdapter providesShopCategoryAdapter() {
         return new ShopCategoryAdapter();
+    }
+
+
+    @Provides
+    SubCategoryContract.Presenter<SubCategoryContract.View> providesSubCategoryContract(SubCategoryPresenter<SubCategoryContract.View> presenter) {
+
+        return presenter;
+    }
+    @Provides
+    PostOrderStatusContract.Presentor<PostOrderStatusContract.View> providesPostOrderPresenter(PostOrderStatusPresenter<PostOrderStatusContract.View> presenter){
+        return presenter;
     }
 
 

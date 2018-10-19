@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.chaze.india">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
@@ -17,8 +17,7 @@
         <activity
             android:name="com.chaze.india.screens.Homepage.HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name="com.chaze.india.screens.search.SearchActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -30,19 +29,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.chaze.india.screens.Authentication.SignUpActivity"></activity>
-        <activity android:name="com.chaze.india.screens.Proflie.ProfileActivity" />
-        <activity android:name="com.chaze.india.screens.MyOrders.MyOrdersActivity" />
-        <activity android:name="com.chaze.india.screens.MyWishList.MyWishListActivity" />
-        <activity android:name="com.chaze.india.screens.PostOrderStatus.PostOrderStatusActivity" />
-        <activity android:name="com.chaze.india.screens.Authentication.AuthenticationActivity" />
-        <activity android:name="com.chaze.india.screens.Checkout.CheckoutActivity" />
-        <activity android:name="com.chaze.india.screens.MyOffers.MyOffersActivity" />
-        <activity android:name="com.chaze.india.screens.ContactUs.ContactUsActivity" />
-        <activity android:name="com.chaze.india.screens.ProductInfo.ProductInfoActivity" />
-        <activity android:name="com.chaze.india.screens.Shop.ShopActivity" />
-        <activity android:name="com.chaze.india.screens.Category.CategoryActivity" />
-        <activity android:name="com.chaze.india.screens.Referral.ReferralActivity"></activity>
+        <activity android:name=".screens.Authentication.SignUpActivity" />
+        <activity android:name=".screens.Proflie.ProfileActivity" />
+        <activity android:name=".screens.MyOrders.MyOrdersActivity" />
+        <activity android:name=".screens.MyWishList.MyWishListActivity" />
+        <activity android:name=".screens.PostOrderStatus.PostOrderStatusActivity" />
+        <activity android:name=".screens.Authentication.AuthenticationActivity" />
+        <activity android:name=".screens.Checkout.CheckoutActivity" />
+        <activity android:name=".screens.MyOffers.MyOffersActivity" />
+        <activity android:name=".screens.ContactUs.ContactUsActivity" />
+        <activity android:name=".screens.ProductInfo.ProductInfoActivity" />
+        <activity android:name=".screens.Shop.ShopActivity" />
+        <activity android:name=".screens.Category.CategoryActivity" />
+        <activity android:name=".screens.Referral.ReferralActivity" />
+        <activity android:name=".screens.SubCategory.SubCategoryActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+
     </application>
 
 </manifest>

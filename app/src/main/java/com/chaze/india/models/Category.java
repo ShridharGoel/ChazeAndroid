@@ -1,10 +1,10 @@
 package com.chaze.india.models;
 
-public class HomeGrid {
+public class Category {
     String text;
     int image;
 
-    public HomeGrid(String text, int image) {
+    public Category(String text, int image) {
         this.text = text;
         this.image = image;
     }

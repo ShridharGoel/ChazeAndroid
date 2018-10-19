@@ -10,20 +10,10 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
-<<<<<<< HEAD:app/src/main/java/com/mission/chaze/chaze/screens/Homepage/HomeActivity.java
-import android.widget.TextView;
 
-import com.mission.chaze.chaze.R;
-import com.mission.chaze.chaze.models.EcomerceCategory;
-import com.mission.chaze.chaze.models.RecyclerItems;
-import com.mission.chaze.chaze.repository.CartManager;
-import com.mission.chaze.chaze.screens.Checkout.CheckoutActivity;
-import com.mission.chaze.chaze.screens.Checkout.CheckoutContract;
-import com.mission.chaze.chaze.screens.Proflie.ProfileActivity;
-import com.mission.chaze.chaze.screens.base.BaseActivity;
-=======
-
+import com.chaze.india.models.RecyclerItems;
 import com.chaze.india.screens.Checkout.CheckoutActivity;
+import com.chaze.india.screens.PostOrderStatus.PostOrderStatusActivity;
 import com.chaze.india.screens.Proflie.ProfileActivity;
 import com.chaze.india.R;
 import com.chaze.india.models.EcomerceCategory;
@@ -32,7 +22,6 @@ import com.chaze.india.screens.Checkout.CheckoutActivity;
 import com.chaze.india.screens.Checkout.CheckoutContract;
 import com.chaze.india.screens.Proflie.ProfileActivity;
 import com.chaze.india.screens.base.BaseActivity;
->>>>>>> b37de7518fd978e79ba696064a9e43d13a376659:app/src/main/java/com/chaze/india/screens/Homepage/HomeActivity.java
 
 import java.util.ArrayList;
 import java.util.List;
@@ -191,6 +180,11 @@ public class HomeActivity extends BaseActivity
             case R.id.nav_checkout:
                 Intent intent2=new Intent(HomeActivity.this, CheckoutActivity.class);
                 startActivity(intent2);
+                break;
+            case R.id.nav_myorders:
+                Intent intent3=new Intent(HomeActivity.this, PostOrderStatusActivity.class);
+                startActivity(intent3);
+                break;
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;

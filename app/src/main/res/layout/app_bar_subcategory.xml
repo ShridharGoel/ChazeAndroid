@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.chaze.india.screens.Homepage.HomeActivity">
+    tools:context=".screens.Homepage.HomeActivity">
 
 
     <android.support.design.widget.AppBarLayout
@@ -19,21 +19,16 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
 
-            <LinearLayout
+
+
+            <RelativeLayout
+                android:id="@+id/toolbar_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:background="@color/colorGreen">
 
-                <include
-                    android:id="@+id/toolbar"
-                    layout="@layout/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true" />
-
-            </LinearLayout>
-
+                <include layout="@layout/toolbar_searched_category" />
+            </RelativeLayout>
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
@@ -62,8 +57,8 @@
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/nestedScroll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -82,9 +77,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:nestedScrollingEnabled="false"
-                android:orientation="vertical"
-                android:paddingBottom="10dp"
-                android:layout_marginBottom="10dp"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 

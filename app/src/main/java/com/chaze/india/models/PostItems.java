@@ -1,4 +1,4 @@
-package com.mission.chaze.chaze.models;
+package com.chaze.india.models;
 
 public class PostItems {
     String imageUrl;

@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.chaze.india.screens.Homepage.HomeActivity;
+import com.chaze.india.screens.PostOrderStatus.PostOrderStatusActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -81,7 +82,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
         });
 
         skipBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+            Intent intent = new Intent(LoginActivity.this, PostOrderStatusActivity.class);
             startActivity(intent);
             finish();
         });
