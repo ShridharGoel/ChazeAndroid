@@ -4,6 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PostOrderStatus">
+    tools:context=".screens.PostOrderStatus.PostOrderStatusActivity">
+    <android.support.design.widget.TabLayout
+        android:id="@+id/postorder_slider"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="bottom"
+        android:elevation="5dp"
+        app:tabBackground="@color/colorPrimary"
+        app:tabSelectedTextColor="@color/red"
+        app:tabTextColor="@color/yellow"/>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/postorder_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
 
 </android.support.constraint.ConstraintLayout>

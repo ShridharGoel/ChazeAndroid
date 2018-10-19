@@ -13,6 +13,7 @@ import android.view.MenuItem;
 
 import com.chaze.india.models.RecyclerItems;
 import com.chaze.india.screens.Checkout.CheckoutActivity;
+import com.chaze.india.screens.PostOrderStatus.PostOrderStatusActivity;
 import com.chaze.india.screens.Proflie.ProfileActivity;
 import com.chaze.india.R;
 import com.chaze.india.models.EcomerceCategory;
@@ -179,6 +180,11 @@ public class HomeActivity extends BaseActivity
             case R.id.nav_checkout:
                 Intent intent2=new Intent(HomeActivity.this, CheckoutActivity.class);
                 startActivity(intent2);
+                break;
+            case R.id.nav_myorders:
+                Intent intent3=new Intent(HomeActivity.this, PostOrderStatusActivity.class);
+                startActivity(intent3);
+                break;
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;

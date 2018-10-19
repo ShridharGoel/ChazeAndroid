@@ -11,6 +11,8 @@ import com.chaze.india.screens.Homepage.Ecommerce.ShopByShops.ShopByShopsFragmen
 import com.chaze.india.screens.Homepage.Food.FoodFragment;
 import com.chaze.india.screens.Homepage.Home.HomeFragment;
 import com.chaze.india.screens.Homepage.HomeActivity;
+import com.chaze.india.screens.PostOrderStatus.ActiveOrders.ActiveOrdersFragment;
+import com.chaze.india.screens.PostOrderStatus.PostOrderStatusActivity;
 import com.chaze.india.screens.Proflie.ProfileActivity;
 import com.chaze.india.screens.Splash.SplashActivity;
 import com.chaze.india.screens.SubCategory.SubCategoryActivity;
@@ -76,4 +78,8 @@ public interface ActivityComponent {
     void inject(CategoryActivity categoryActivity);
 
     void inject(SubCategoryActivity subCategoryActivity);
+
+    void inject(PostOrderStatusActivity postOrderStatusActivity);
+
+    void inject(ActiveOrdersFragment activeOrdersFragment);
 }
