@@ -3,19 +3,37 @@ package com.chaze.india.service;
 import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
 
+import com.chaze.india.AppController;
+import com.chaze.india.di.component.DaggerServiceComponent;
+import com.chaze.india.di.component.ServiceComponent;
+import com.chaze.india.repository.network.ICommonAPIManager;
 import com.chaze.india.repository.session.SessionManager;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 import com.chaze.india.utils.Constants;
 
-
+import javax.inject.Inject;
 
 
 public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
 
-SessionManager sharedPreference;
+    @Inject
+    SessionManager sharedPreference;
+
+    @Inject
+    ICommonAPIManager iCommonAPIManager;
 
     private static final String TAG = MyFirebaseInstanceIDService.class.getSimpleName();
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        ServiceComponent component = DaggerServiceComponent.builder()
+                .applicationComponent(((AppController) getApplication()).getComponent())
+                .build();
+        component.inject(this);
+
+    }
 
     @Override
     public void onTokenRefresh() {
@@ -34,7 +52,7 @@ SessionManager sharedPreference;
     }
 
     private void storeTokenInDjango(String refreshedToken) {
-
+            iCommonAPIManager.getDeliveryAPIService();
     }
 
 
@@ -42,7 +60,8 @@ SessionManager sharedPreference;
         sharedPreference = new SessionManager(getApplicationContext());
         sharedPreference.setFcmToken(token);
     }
-    private String getRegIdFromPref(){
+
+    private String getRegIdFromPref() {
         return sharedPreference.getFcmToken();
     }
 }
