@@ -17,6 +17,9 @@ public class CommonAPIManager implements ICommonAPIManager {
     private
     ECommerceAPIService mECommerceAPIService;
 
+    private
+    DeliveryAPIService mDeliveryAPIService;
+
 
     @Inject
     public CommonAPIManager(ChazeAPIService mChazeAPIService,
@@ -48,6 +51,11 @@ public class CommonAPIManager implements ICommonAPIManager {
     @Override
     public ECommerceAPIService getECommerceAPIService() {
         return mECommerceAPIService;
+    }
+
+    @Override
+    public DeliveryAPIService getDeliveryAPIService(){
+        return mDeliveryAPIService;
     }
 
 }

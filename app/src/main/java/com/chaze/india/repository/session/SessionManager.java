@@ -75,6 +75,8 @@ public class SessionManager implements ISessionManager {
 
     private static final String ADDRESS = "address";
 
+    private static final String FCM_TOKEN="fcm_token";
+
 
     @Inject
     public SessionManager(Context c) {
@@ -131,6 +133,17 @@ public class SessionManager implements ISessionManager {
     @Override
     public String getPhoneNo() {
         return pref.getString(USER_MOBILE,null);
+    }
+
+    @Override
+    public void setFcmToken(String fcmToken) {
+        editor.putString(FCM_TOKEN,fcmToken);
+        editor.commit();
+    }
+
+    @Override
+    public String getFcmToken() {
+        return pref.getString(FCM_TOKEN,null);
     }
 
     @Override

@@ -10,4 +10,6 @@ public interface ICommonAPIManager {
 
     ECommerceAPIService getECommerceAPIService();
 
+    DeliveryAPIService getDeliveryAPIService();
+
 }

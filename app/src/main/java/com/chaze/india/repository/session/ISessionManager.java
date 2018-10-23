@@ -88,4 +88,8 @@ public interface ISessionManager {
 
     String getPhoneNo();
 
+    void setFcmToken(String fcmToken);
+
+    String getFcmToken();
+
 }

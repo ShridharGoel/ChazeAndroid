@@ -2,9 +2,11 @@ package com.chaze.india.di.module;
 
 import com.chaze.india.di.ApplicationScope;
 import com.chaze.india.di.ChazeAPIQual;
+import com.chaze.india.di.DeliveryAPIQual;
 import com.chaze.india.di.EcommerceAPIQual;
 import com.chaze.india.di.FoodOrderingAPIQual;
 import com.chaze.india.di.SearchEngineAPIQual;
+import com.chaze.india.repository.network.DeliveryAPIService;
 import com.chaze.india.repository.network.ICommonAPIManager;
 import com.chaze.india.di.ApplicationScope;
 import com.chaze.india.di.ChazeAPIQual;
@@ -79,6 +81,18 @@ public class NetworkModule {
                 .build();
     }
 
+    @Provides
+    @ApplicationScope
+    @DeliveryAPIQual
+    Retrofit getRetrofitDelivery(OkHttpClient okHttpClient) {
+        return new Retrofit.Builder()
+                .baseUrl("http://192.168.43.145:8000/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .client(okHttpClient)
+                .build();
+    }
+
 
     @Provides
     @ApplicationScope
@@ -127,5 +141,9 @@ public class NetworkModule {
         return commonAPIManager;
     }
 
-
+    @Provides
+    @ApplicationScope
+    DeliveryAPIService getDeliveryAPIService(@DeliveryAPIQual Retrofit retrofit){
+        return retrofit.create(DeliveryAPIService.class);
+    }
 }
