@@ -13,7 +13,7 @@
  * limitations under the License
  */
 
-package com.chaze.india.di;
+package com.chaze.india.di.Qualifiers;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

@@ -6,13 +6,9 @@ import android.app.Application;
 import android.content.Context;
 
 
-import com.chaze.india.di.ApplicationContext;
-import com.chaze.india.di.ApplicationScope;
+import com.chaze.india.di.Qualifiers.ApplicationContext;
+import com.chaze.india.di.Qualifiers.ApplicationScope;
 import com.chaze.india.repository.CartManager;
-import com.chaze.india.di.ApplicationContext;
-import com.chaze.india.di.ApplicationScope;
-import com.chaze.india.repository.CartManager;
-import com.chaze.india.repository.network.ChazeAPIService;
 import com.chaze.india.repository.session.SessionManager;
 import com.chaze.india.utils.rx.AppSchedulerProvider;
 import com.chaze.india.utils.rx.SchedulerProvider;

@@ -8,8 +8,7 @@ import android.view.WindowManager;
 import android.widget.SearchView;
 
 import com.chaze.india.R;
-import com.chaze.india.di.LinLayoutVert;
-import com.chaze.india.models.SearchResult;
+import com.chaze.india.di.Qualifiers.LinLayoutVert;
 import com.chaze.india.screens.base.BaseActivity;
 
 import javax.inject.Inject;

@@ -2,8 +2,11 @@
 
 package com.chaze.india.di.component;
 
-import com.chaze.india.screens.Authentication.LoginActivity;
-import com.chaze.india.screens.Authentication.SignUpActivity;
+import com.chaze.india.di.module.AdapterModule;
+import com.chaze.india.screens.Authentication.ChangePassword.ChangePasswordActivity;
+import com.chaze.india.screens.Authentication.Login.LoginActivity;
+import com.chaze.india.screens.Authentication.OTPConfirmation.OTPConfirmation;
+import com.chaze.india.screens.Authentication.Signup.SignUpActivity;
 import com.chaze.india.screens.Category.CategoryActivity;
 import com.chaze.india.screens.Homepage.Ecommerce.EcommerceFragment;
 import com.chaze.india.screens.Homepage.Ecommerce.ShopByProducts.ShopByProductsFragment;
@@ -17,25 +20,11 @@ import com.chaze.india.screens.Proflie.ProfileActivity;
 import com.chaze.india.screens.Splash.SplashActivity;
 import com.chaze.india.screens.SubCategory.SubCategoryActivity;
 import com.chaze.india.screens.search.SearchActivity;
-import com.chaze.india.di.PerActivity;
+import com.chaze.india.di.Qualifiers.PerActivity;
 import com.chaze.india.di.module.ActivityModule;
-import com.chaze.india.screens.Authentication.LoginActivity;
 
 import com.chaze.india.screens.Cart.CartActivity;
 
-import com.chaze.india.screens.Authentication.SignUpActivity;
-
-import com.chaze.india.screens.Category.CategoryActivity;
-import com.chaze.india.screens.Homepage.Ecommerce.EcommerceFragment;
-import com.chaze.india.screens.Homepage.Ecommerce.ShopByProducts.ShopByProductsFragment;
-import com.chaze.india.screens.Homepage.Ecommerce.ShopByShops.ShopByShopsFragment;
-import com.chaze.india.screens.Homepage.Food.FoodFragment;
-import com.chaze.india.screens.Homepage.Home.HomeFragment;
-import com.chaze.india.screens.Homepage.HomeActivity;
-import com.chaze.india.screens.Proflie.ProfileActivity;
-import com.chaze.india.screens.Splash.SplashActivity;
-import com.chaze.india.screens.base.BaseActivity;
-import com.chaze.india.screens.search.SearchActivity;
 
 import dagger.Component;
 
@@ -45,7 +34,7 @@ import dagger.Component;
  */
 
 @PerActivity
-@Component(dependencies = ApplicationComponent.class, modules = ActivityModule.class)
+@Component(dependencies = ApplicationComponent.class, modules = {ActivityModule.class, AdapterModule.class})
 public interface ActivityComponent {
 
     void inject(HomeActivity activity);
@@ -68,12 +57,9 @@ public interface ActivityComponent {
 
     void inject(FoodFragment foodFragment);
 
-    void inject(LoginActivity loginActivity);
-
 
     void inject(CartActivity cartActivity);
 
-    void inject(SignUpActivity signUpActivity);
 
     void inject(CategoryActivity categoryActivity);
 
@@ -82,4 +68,12 @@ public interface ActivityComponent {
     void inject(PostOrderStatusActivity postOrderStatusActivity);
 
     void inject(ActiveOrdersFragment activeOrdersFragment);
+
+    void inject(ChangePasswordActivity changePasswordActivity);
+
+    void inject(LoginActivity loginActivity);
+
+    void inject(OTPConfirmation otpConfirmation);
+
+    void inject(SignUpActivity signUpActivity);
 }

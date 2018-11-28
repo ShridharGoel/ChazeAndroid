@@ -1,4 +1,4 @@
-package com.chaze.india.di;
+package com.chaze.india.di.Qualifiers;
 
 import javax.inject.Qualifier;
 
@@ -7,5 +7,5 @@ import javax.inject.Qualifier;
  */
 
 @Qualifier
-public @interface ChazeAPIQual {
+public @interface LinLayoutVert {
 }

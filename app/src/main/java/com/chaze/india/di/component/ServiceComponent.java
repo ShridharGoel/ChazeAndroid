@@ -15,10 +15,9 @@
 
 package com.chaze.india.di.component;
 
-import com.chaze.india.di.PerService;
+import com.chaze.india.di.Qualifiers.PerService;
 import com.chaze.india.di.module.ServiceModule;
 import com.chaze.india.service.MyFirebaseInstanceIDService;
-import com.google.firebase.iid.FirebaseInstanceId;
 
 import dagger.Component;
 

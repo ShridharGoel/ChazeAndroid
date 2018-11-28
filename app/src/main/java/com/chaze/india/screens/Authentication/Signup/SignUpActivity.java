@@ -1,4 +1,4 @@
-package com.chaze.india.screens.Authentication;
+package com.chaze.india.screens.Authentication.Signup;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,19 +8,18 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.chaze.india.R;
+import com.chaze.india.repository.session.SessionManager;
+import com.chaze.india.screens.Authentication.Login.LoginActivity;
 import com.chaze.india.screens.Homepage.HomeActivity;
 import com.chaze.india.screens.PostOrderStatus.PostOrderStatusActivity;
+import com.chaze.india.screens.base.BaseActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
-import com.chaze.india.R;
-import com.chaze.india.repository.session.ISessionManager;
-import com.chaze.india.repository.session.SessionManager;
-import com.chaze.india.screens.Homepage.HomeActivity;
-import com.chaze.india.screens.base.BaseActivity;
 
 import javax.inject.Inject;
 
@@ -28,7 +27,20 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import timber.log.Timber;
 
-import static com.chaze.india.repository.session.SessionManager.PREF_NAME;
+
+/**
+ post request on /login
+ param: req: password(min 8 length), gender(M/F) , name(String greater than 5), email or phone
+
+
+ return: {
+ success:true/false
+ error:msg to show if success is false
+ token:secret key
+ user:
+ }
+
+ **/
 
 public class SignUpActivity extends BaseActivity implements SignUpContract.View {
 

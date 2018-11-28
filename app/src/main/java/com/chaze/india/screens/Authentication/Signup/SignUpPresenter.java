@@ -1,4 +1,4 @@
-package com.chaze.india.screens.Authentication;
+package com.chaze.india.screens.Authentication.Signup;
 
 import android.annotation.SuppressLint;
 

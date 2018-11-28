@@ -1,4 +1,4 @@
-package com.chaze.india.di;
+package com.chaze.india.di.Qualifiers;
 
 import javax.inject.Qualifier;
 

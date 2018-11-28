@@ -11,9 +11,8 @@ import android.view.ViewGroup;
 
 import com.chaze.india.screens.base.BaseFragment;
 import com.chaze.india.R;
-import com.chaze.india.di.LinLayoutVert;
+import com.chaze.india.di.Qualifiers.LinLayoutVert;
 import com.chaze.india.models.EcomerceCategory;
-import com.chaze.india.screens.base.BaseFragment;
 
 import java.util.ArrayList;
 import java.util.List;

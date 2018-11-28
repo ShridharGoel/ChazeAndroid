@@ -22,19 +22,17 @@
             android:name="com.chaze.india.screens.search.SearchActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name="com.chaze.india.screens.Cart.CartActivity" />
-        <activity android:name="com.chaze.india.screens.Authentication.LoginActivity">
+        <activity android:name="com.chaze.india.screens.Authentication.Login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".screens.Authentication.SignUpActivity" />
         <activity android:name=".screens.Proflie.ProfileActivity" />
         <activity android:name=".screens.MyOrders.MyOrdersActivity" />
         <activity android:name=".screens.MyWishList.MyWishListActivity" />
         <activity android:name=".screens.PostOrderStatus.PostOrderStatusActivity" />
-        <activity android:name=".screens.Authentication.AuthenticationActivity" />
         <activity android:name=".screens.Checkout.CheckoutActivity" />
         <activity android:name=".screens.MyOffers.MyOffersActivity" />
         <activity android:name=".screens.ContactUs.ContactUsActivity" />
@@ -44,8 +42,12 @@
         <activity android:name=".screens.Referral.ReferralActivity" />
         <activity android:name=".screens.SubCategory.SubCategoryActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".screens.Authentication.Signup.SignUpActivity" />
+        <activity android:name=".screens.Authentication.OTPConfirmation.OTPConfirmation" />
+        <activity android:name=".screens.Authentication.ChangePassword.ChangePasswordActivity" />
 
 
+        <service android:name=".service.MyFirebaseInstanceIDService" />
     </application>
 
 </manifest>

@@ -12,6 +12,7 @@ import com.chaze.india.AppController;
 import com.chaze.india.di.component.ActivityComponent;
 import com.chaze.india.di.module.ActivityModule;
 import com.chaze.india.di.component.DaggerActivityComponent;
+import com.chaze.india.di.module.AdapterModule;
 
 import butterknife.Unbinder;
 
@@ -40,11 +41,11 @@ public abstract class BaseActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
         mActivityComponent = DaggerActivityComponent.builder()
-                .activityModule(new ActivityModule(this))
+                .activityModule(new ActivityModule(this)).adapterModule(new AdapterModule(this))
                 .applicationComponent(((AppController) getApplication()).getComponent())
                 .build();
 
-         progressDialog = new ProgressDialog(getApplicationContext());
+        progressDialog = new ProgressDialog(getApplicationContext());
 
     }
 

@@ -5,7 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.chaze.india.R;
-import com.chaze.india.di.LinLayoutVert;
+import com.chaze.india.di.Qualifiers.LinLayoutVert;
 import com.chaze.india.models.CategorySearchResults;
 import com.chaze.india.screens.Cart.CartActivity;
 import com.chaze.india.screens.base.BaseActivity;

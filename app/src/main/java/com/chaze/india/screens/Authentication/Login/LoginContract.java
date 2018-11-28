@@ -1,6 +1,5 @@
-package com.chaze.india.screens.Authentication;
+package com.chaze.india.screens.Authentication.Login;
 
-import com.chaze.india.screens.base.MvpContract;
 import com.chaze.india.screens.base.MvpContract;
 
 

@@ -21,12 +21,8 @@ import com.chaze.india.screens.Homepage.HomeActivity;
 import com.chaze.india.screens.base.BaseFragment;
 import com.chaze.india.screens.search.SearchActivity;
 import com.chaze.india.R;
-import com.chaze.india.di.LinLayoutHori;
-import com.chaze.india.models.EcomerceCategory;
+import com.chaze.india.di.Qualifiers.LinLayoutHori;
 import com.chaze.india.screens.Cart.CartActivity;
-import com.chaze.india.screens.Homepage.HomeActivity;
-import com.chaze.india.screens.base.BaseFragment;
-import com.chaze.india.screens.search.SearchActivity;
 
 import javax.inject.Inject;
 

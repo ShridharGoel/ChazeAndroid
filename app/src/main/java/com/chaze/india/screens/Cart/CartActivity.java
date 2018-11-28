@@ -7,9 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-import com.chaze.india.di.LinLayoutVert;
+import com.chaze.india.di.Qualifiers.LinLayoutVert;
 import com.chaze.india.R;
-import com.chaze.india.di.LinLayoutVert;
 import com.chaze.india.screens.base.BaseActivity;
 
 import javax.inject.Inject;

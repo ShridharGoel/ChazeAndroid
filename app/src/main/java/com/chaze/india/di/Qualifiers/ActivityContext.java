@@ -1,4 +1,6 @@
-package com.chaze.india.di;
+
+
+package com.chaze.india.di.Qualifiers;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -11,5 +13,5 @@ import javax.inject.Qualifier;
 
 @Qualifier
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ApplicationContext {
+public @interface ActivityContext {
 }

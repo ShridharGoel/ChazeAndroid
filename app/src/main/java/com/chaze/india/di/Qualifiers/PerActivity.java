@@ -1,17 +1,16 @@
-
-
-package com.chaze.india.di;
+package com.chaze.india.di.Qualifiers;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-import javax.inject.Qualifier;
+import javax.inject.Scope;
 
 /**
  * Created by Shubham Vishwakarma on 4/10/18.
  */
 
-@Qualifier
+@Scope
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ActivityContext {
+public @interface PerActivity {
 }
+

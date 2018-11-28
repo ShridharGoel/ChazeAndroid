@@ -3,7 +3,6 @@ package com.chaze.india.screens.PostOrderStatus.ActiveOrders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,8 +12,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.chaze.india.R;
-import com.chaze.india.di.LinLayoutVert;
-import com.chaze.india.screens.PostOrderStatus.PostOrderStatusContract;
+import com.chaze.india.di.Qualifiers.LinLayoutVert;
 import com.chaze.india.screens.base.BaseFragment;
 
 import javax.inject.Inject;
@@ -26,6 +24,8 @@ import io.reactivex.subjects.PublishSubject;
 import timber.log.Timber;
 
 public class ActiveOrdersFragment extends BaseFragment implements ActiveOrdersContract.View {
+
+    private static final String TAG = ActiveOrdersFragment.class.getSimpleName();
     @Inject
     ActiveOrdersContract.Presentor<ActiveOrdersContract.View> mPresenter;
     @BindView(R.id.activeOrderRecycler)
@@ -38,15 +38,16 @@ public class ActiveOrdersFragment extends BaseFragment implements ActiveOrdersCo
     RecyclerView timelineRecyclerView;
     @Inject
     @LinLayoutVert
-    LinearLayoutManager mLayoutManager,linearLayoutManager;
+    LinearLayoutManager mLayoutManager, linearLayoutManager;
     BottomSheetBehavior sheetBehavior;
-    @Nullable
+
     @BindView(R.id.activeOrdersBottomSheet)
     LinearLayout layoutBottomSheet;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Timber.d("ShopByProductsFragment");
+        Timber.d(TAG);
 
         View view = inflater.inflate(R.layout.fragment_active_orders, container, false);
 

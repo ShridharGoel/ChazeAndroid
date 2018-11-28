@@ -44,23 +44,8 @@ public class PostOrderStatusActivity extends BaseActivity implements PostOrderSt
         mPresenter.onAttach(this);
         viewPager.setAdapter(postOrderPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
-        //setupViewPager(viewPager);
     }
 
-
-
-    private void addDataToFirebase() {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference dRef = database.getReference("orders");
-
-        dRef.child("transactionId").child("orderid").setValue("transactionId");
-        dRef.child("transactionId").child("name").setValue("dummy_name");
-        dRef.child("transactionId").child("email").setValue("dummy_email");
-        dRef.child("transactionId").child("mobile").setValue("dummy_phoneno.");
-        dRef.child("transactionId").child("address").setValue("dummy_address");
-        dRef.child("transactionId").child("restaurant").setValue("dummy_restaurant");
-        dRef.child("transactionId").child("summary").setValue("dummmy_summary");
-    }
 
     @Override
     public void showLoading() {

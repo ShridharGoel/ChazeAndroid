@@ -1,24 +1,19 @@
 package com.chaze.india.di.module;
 
-import com.chaze.india.di.ApplicationScope;
-import com.chaze.india.di.ChazeAPIQual;
-import com.chaze.india.di.DeliveryAPIQual;
-import com.chaze.india.di.EcommerceAPIQual;
-import com.chaze.india.di.FoodOrderingAPIQual;
-import com.chaze.india.di.SearchEngineAPIQual;
+import com.chaze.india.di.Qualifiers.ApplicationScope;
+import com.chaze.india.di.Qualifiers.ChazeAPIQual;
+import com.chaze.india.di.Qualifiers.DeliveryAPIQual;
+import com.chaze.india.di.Qualifiers.EcommerceAPIQual;
+import com.chaze.india.di.Qualifiers.FoodOrderingAPIQual;
+import com.chaze.india.di.Qualifiers.SearchEngineAPIQual;
 import com.chaze.india.repository.network.DeliveryAPIService;
 import com.chaze.india.repository.network.ICommonAPIManager;
-import com.chaze.india.di.ApplicationScope;
-import com.chaze.india.di.ChazeAPIQual;
-import com.chaze.india.di.EcommerceAPIQual;
-import com.chaze.india.di.FoodOrderingAPIQual;
-import com.chaze.india.di.SearchEngineAPIQual;
 import com.chaze.india.repository.network.ChazeAPIService;
 import com.chaze.india.repository.network.CommonAPIManager;
 import com.chaze.india.repository.network.ECommerceAPIService;
 import com.chaze.india.repository.network.FoodOrderingAPIService;
-import com.chaze.india.repository.network.ICommonAPIManager;
 import com.chaze.india.repository.network.SearchEngineAPIService;
+import com.chaze.india.utils.Constants;
 
 import dagger.Module;
 import dagger.Provides;
@@ -30,6 +25,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 public class NetworkModule {
+
+    @Provides
+    @ApplicationScope
+    ICommonAPIManager getCommonAPIManager(CommonAPIManager commonAPIManager) {
+        return commonAPIManager;
+    }
+
 
     @Provides
     @ApplicationScope
@@ -58,10 +60,16 @@ public class NetworkModule {
 
     @Provides
     @ApplicationScope
+    DeliveryAPIService getDeliveryAPIService(@DeliveryAPIQual Retrofit retrofit) {
+        return retrofit.create(DeliveryAPIService.class);
+    }
+
+    @Provides
+    @ApplicationScope
     @ChazeAPIQual
     Retrofit getRetrofitChaze(OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
-                .baseUrl("https://com.chaze.india-api.herokuapp.com")
+                .baseUrl(Constants.Chaze)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(okHttpClient)
@@ -74,7 +82,7 @@ public class NetworkModule {
     @EcommerceAPIQual
     Retrofit getRetrofitEcommerce(OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
-                .baseUrl("https://com.chaze.india-api.herokuapp.com/ecommerce/")
+                .baseUrl(Constants.Ecommerce)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(okHttpClient)
@@ -99,7 +107,7 @@ public class NetworkModule {
     @FoodOrderingAPIQual
     Retrofit getRetrofitFood(OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
-                .baseUrl("https://google.com")
+                .baseUrl(Constants.Food)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(okHttpClient)
@@ -135,15 +143,5 @@ public class NetworkModule {
         return httpLoggingInterceptor;
     }
 
-    @Provides
-    @ApplicationScope
-    ICommonAPIManager getCommonAPIManager(CommonAPIManager commonAPIManager) {
-        return commonAPIManager;
-    }
 
-    @Provides
-    @ApplicationScope
-    DeliveryAPIService getDeliveryAPIService(@DeliveryAPIQual Retrofit retrofit){
-        return retrofit.create(DeliveryAPIService.class);
-    }
 }

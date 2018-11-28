@@ -15,7 +15,7 @@ import android.widget.GridView;
 import android.widget.SearchView;
 
 import com.chaze.india.R;
-import com.chaze.india.di.LinLayoutVert;
+import com.chaze.india.di.Qualifiers.LinLayoutVert;
 import com.chaze.india.models.CategorySearchResults;
 import com.chaze.india.models.EcomerceCategory;
 import com.chaze.india.screens.Homepage.Ecommerce.ShopByShops.ShopsAdapter;
