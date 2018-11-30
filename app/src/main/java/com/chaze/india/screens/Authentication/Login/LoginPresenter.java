@@ -15,9 +15,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
-
 /**
- * Created by Shubham Vishwakarma on 12/10/18.
+ * Created by Shridhar Goel on 14/10/18.
  */
 
 public class LoginPresenter<V extends LoginContract.View> extends BasePresenter<V>

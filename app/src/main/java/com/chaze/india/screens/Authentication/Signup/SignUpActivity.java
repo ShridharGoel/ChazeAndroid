@@ -42,6 +42,10 @@ import timber.log.Timber;
 
  **/
 
+/**
+ * Created by Shridhar Goel on 14/10/18.
+ */
+
 public class SignUpActivity extends BaseActivity implements SignUpContract.View {
 
     private static final int RC_SIGN_IN = 10;

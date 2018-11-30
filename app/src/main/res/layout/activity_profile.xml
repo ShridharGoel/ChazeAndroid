@@ -10,7 +10,7 @@
         android:id="@+id/profile_image"
         android:layout_width="85dp"
         android:layout_height="85dp"
-        android:src="@color/colorPrimary"
+        android:src="@color/colorCyanLight"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
     <android.support.constraint.ConstraintLayout
@@ -19,14 +19,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/profile_image">
-    <EditText
-        android:id="@+id/profile_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Name"
-        android:background="@null"
-        android:enabled="false"
-        />
+        <EditText
+            android:id="@+id/profile_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Name"
+            android:background="@null"
+            android:enabled="false"
+            />
         <ImageView
             android:id="@+id/editName"
             android:layout_width="wrap_content"
@@ -41,14 +41,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/profile_name_layout">
-    <EditText
-        android:id="@+id/profile_phone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:enabled="false"
-        android:hint="Phone"
-        />
+        <EditText
+            android:id="@+id/profile_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:enabled="false"
+            android:hint="Phone"
+            />
         <ImageView
             android:id="@+id/editPhone"
             android:layout_width="wrap_content"
@@ -71,14 +71,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/profile_phone_layout">
-    <EditText
-        android:id="@+id/profile_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Email"
-        android:background="@null"
-        android:enabled="false"
-        />
+        <EditText
+            android:id="@+id/profile_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:background="@null"
+            android:enabled="false"
+            />
         <ImageView
             android:id="@+id/editEmail"
             android:layout_width="wrap_content"

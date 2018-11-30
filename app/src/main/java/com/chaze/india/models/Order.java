@@ -7,7 +7,7 @@ public class Order {
     private String userMobile;
     private String userAddress;
     private String orderId;
-
+    private String total;
 
 
     //size of cartBusinesses will be equal to size of states, i'th element of states will contain the state of i'th element of cartBusiness
@@ -20,13 +20,17 @@ public class Order {
     private ArrayList<Integer> states;
 
 
-    public Order(String userName, String userMobile, String userAddress, String orderId, ArrayList<CartBusiness> cartBusinesses, ArrayList<Integer> states) {
+    public Order(String userName, String userMobile, String userAddress, String orderId, String totall, ArrayList<CartBusiness> cartBusinesses, ArrayList<Integer> states) {
         this.userName = userName;
         this.userMobile = userMobile;
         this.userAddress = userAddress;
         this.orderId = orderId;
         this.cartBusinesses = cartBusinesses;
         this.states = states;
+        this.total = totall;
     }
 
+    public ArrayList<CartBusiness> getCartBusinesses() {
+        return cartBusinesses;
+    }
 }

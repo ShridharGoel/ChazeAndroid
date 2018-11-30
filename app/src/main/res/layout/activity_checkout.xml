@@ -235,7 +235,7 @@
         android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"
         android:text="Pay Via"
-        android:textColor="@color/textColorPrimary"
+        android:textColor="@color/textDarkPrimary"
         android:textSize="18sp" />
 
     <android.support.v7.widget.CardView
@@ -291,7 +291,8 @@
                 android:layout_marginTop="12dp"
                 android:background="@color/colorPurpleLight"
                 android:text="Proceed to pay"
-                android:textColor="@color/colorPrimary" />
+                android:textSize="18sp"
+                android:textColor="@color/white" />
 
         </RelativeLayout>
 

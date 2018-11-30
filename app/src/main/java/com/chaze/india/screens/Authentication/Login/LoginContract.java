@@ -4,9 +4,8 @@ import com.chaze.india.screens.base.MvpContract;
 
 
 /**
- * Created by Shubham Vishwakarma on 12/10/18.
+ * Created by Shridhar Goel on 14/10/18.
  */
-
 public class LoginContract {
 
     public interface View extends MvpContract.View {

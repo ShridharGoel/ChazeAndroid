@@ -4,7 +4,7 @@
     android:id="@+id/activeOrdersBottomSheet"
     android:layout_width="wrap_content"
     android:layout_height="500dp"
-    android:background="#999"
+    android:background="@color/white"
     android:orientation="vertical"
     app:behavior_hideable="true"
     app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
@@ -58,7 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/white"
         android:paddingBottom="10dp"
         android:paddingStart="10dp"
         android:paddingTop="20dp">
@@ -78,7 +78,7 @@
             android:layout_marginStart="10dp"
             android:layout_toEndOf="@+id/shop_image_view"
             android:text="Shop_Name"
-            android:textColor="@color/textColorPrimary"
+            android:textColor="@color/textDarkPrimary"
             android:textSize="16sp" />
 
         <TextView

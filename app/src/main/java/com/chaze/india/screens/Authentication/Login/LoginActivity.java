@@ -40,6 +40,10 @@ import timber.log.Timber;
 
 **/
 
+/**
+ * Created by Shridhar Goel on 14/10/18.
+ */
+
 public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     private static final int RC_SIGN_IN = 10;
@@ -86,7 +90,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
         getSupportActionBar().hide();
 
         signupBtn.setOnClickListener(view -> {
-            Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+            Intent intent = new Intent(LoginActivity.this, PostOrderStatusActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
             finish();
@@ -94,7 +98,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
         });
 
         skipBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginActivity.this, PostOrderStatusActivity.class);
+            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
             startActivity(intent);
             finish();
         });
