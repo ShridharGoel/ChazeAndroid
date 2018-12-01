@@ -66,7 +66,7 @@ public class HomeFragment extends BaseFragment implements HomeFragmentContract.V
     LinearLayoutManager linearLayoutManager;
 
     @Inject
-    HomeFragmentContract.Presentor<HomeFragmentContract.View> mPresenter;
+    HomeFragmentContract.Presenter<HomeFragmentContract.View> mPresenter;
 
     ArrayList<RecyclerItems> cardItems;
 

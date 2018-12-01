@@ -40,6 +40,7 @@
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/colorPurple"
             android:fitsSystemWindows="true"
             app:layout_scrollFlags="scroll">
 
@@ -47,7 +48,8 @@
                 android:id="@+id/searchbar"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#AAA"
+                android:layout_margin="8dp"
+                android:background="@color/textLightSecondary"
                 android:focusable="false"
                 android:gravity="center"
                 app:iconifiedByDefault="false"
@@ -71,8 +73,10 @@
 
             <GridView xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/grid"
-                android:layout_width="match_parent"
-                android:layout_height="144dp"
+                android:layout_marginTop="16dp"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="220dp"
                 android:numColumns="4"
                 android:stretchMode="columnWidth" />
 

@@ -42,7 +42,7 @@ public class ShopByShopsFragment extends BaseFragment implements ShopByShopsCont
     ShopsAdapter adapter;
 
     @Inject
-    ShopByShopsContract.Presentor<ShopByShopsContract.View> mPresenter;
+    ShopByShopsContract.Presenter<ShopByShopsContract.View> mPresenter;
 
     @Nullable
     @Override

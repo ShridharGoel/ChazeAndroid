@@ -58,17 +58,17 @@ public class AdapterModule {
 
     @Provides
     HomeBottomNavPagerAdapter getBottomNavAdapter() {
-        EcommerceFragment ecomerce = new EcommerceFragment();
+        EcommerceFragment ecommerce = new EcommerceFragment();
         FoodFragment foodFragment = new FoodFragment();
         HomeFragment homeFragment = new HomeFragment();
-        LocalSearchFragment localsearch = new LocalSearchFragment();
+        LocalSearchFragment localSearch = new LocalSearchFragment();
         MoreFragment moreFragment_object = new MoreFragment();
 
         HomeBottomNavPagerAdapter adapter = new HomeBottomNavPagerAdapter(mActivity.getSupportFragmentManager());
         adapter.addFragment(homeFragment);
-        adapter.addFragment(ecomerce);
+        adapter.addFragment(ecommerce);
         adapter.addFragment(foodFragment);
-        adapter.addFragment(localsearch);
+        adapter.addFragment(localSearch);
         adapter.addFragment(moreFragment_object);
         return adapter;
 
@@ -129,13 +129,13 @@ public class AdapterModule {
 
 
     @Provides
-    HomeFragmentContract.Presentor<HomeFragmentContract.View> providesHomeFragmentPresenter(
+    HomeFragmentContract.Presenter<HomeFragmentContract.View> providesHomeFragmentPresenter(
             HomeFragmentPresenter<HomeFragmentContract.View> presenter) {
         return presenter;
     }
 
     @Provides
-    ActiveOrdersContract.Presentor<ActiveOrdersContract.View> providesActiveOrdersFragmentPresenter(ActiveOrdersPresenter<ActiveOrdersContract.View> presenter) {
+    ActiveOrdersContract.Presenter<ActiveOrdersContract.View> providesActiveOrdersFragmentPresenter(ActiveOrdersPresenter<ActiveOrdersContract.View> presenter) {
         return presenter;
     }
 

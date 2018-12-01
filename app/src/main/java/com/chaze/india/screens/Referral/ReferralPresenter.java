@@ -15,7 +15,7 @@ import io.reactivex.disposables.CompositeDisposable;
  */
 
 public class ReferralPresenter<V extends ReferralContract.View> extends BasePresenter<V>
-        implements ReferralContract.Presentor<V> {
+        implements ReferralContract.Presenter<V> {
 
     public ReferralPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {
         super(dataManager, schedulerProvider, compositeDisposable, sessionManager);

@@ -13,7 +13,7 @@ public class ActiveOrdersContract {
         void showOnActivity();
         void showFull(String str);
     }
-    public interface Presentor<V extends View> extends MvpContract.Presenter<V>{
+    public interface Presenter<V extends View> extends MvpContract.Presenter<V>{
         void show();
     }
 }

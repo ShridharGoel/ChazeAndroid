@@ -7,7 +7,7 @@ import com.chaze.india.utils.rx.SchedulerProvider;
 
 import io.reactivex.disposables.CompositeDisposable;
 
-public class PreviousOrdersPresenter<V extends PreviousOrdersContract.View> extends BasePresenter<V> implements PreviousOrdersContract.Presentor<V>{
+public class PreviousOrdersPresenter<V extends PreviousOrdersContract.View> extends BasePresenter<V> implements PreviousOrdersContract.Presenter<V>{
     public PreviousOrdersPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {
         super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }

@@ -17,7 +17,7 @@ import io.reactivex.disposables.CompositeDisposable;
  */
 
 public class PostOrderStatusPresenter<V extends PostOrderStatusContract.View> extends BasePresenter<V>
-        implements PostOrderStatusContract.Presentor<V> {
+        implements PostOrderStatusContract.Presenter<V> {
     @Inject
     public PostOrderStatusPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {
         super(dataManager, schedulerProvider, compositeDisposable, sessionManager);

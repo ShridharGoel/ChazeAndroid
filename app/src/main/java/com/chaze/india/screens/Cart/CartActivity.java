@@ -41,7 +41,7 @@ public class CartActivity extends BaseActivity implements CartContract.View {
     RecyclerView recyclerViewCartItems;
 
     @Inject
-    CartContract.Presentor<CartContract.View> mPresenter;
+    CartContract.Presenter<CartContract.View> mPresenter;
 
     @BindView(R.id.close_button_container)
     RelativeLayout relativeLayout;

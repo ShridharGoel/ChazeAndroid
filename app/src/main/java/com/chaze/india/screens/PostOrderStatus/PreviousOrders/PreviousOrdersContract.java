@@ -6,7 +6,7 @@ public class PreviousOrdersContract {
     public interface View extends MvpContract.View{
 
     }
-    public interface Presentor<V extends View> extends MvpContract.Presenter<V>{
+    public interface Presenter<V extends View> extends MvpContract.Presenter<V>{
 
     }
 }

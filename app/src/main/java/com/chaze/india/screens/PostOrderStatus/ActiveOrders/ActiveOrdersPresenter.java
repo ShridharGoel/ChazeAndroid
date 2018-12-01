@@ -11,7 +11,7 @@ import javax.inject.Inject;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.subjects.PublishSubject;
 
-public class ActiveOrdersPresenter<V extends ActiveOrdersContract.View> extends BasePresenter<V> implements ActiveOrdersContract.Presentor<V> {
+public class ActiveOrdersPresenter<V extends ActiveOrdersContract.View> extends BasePresenter<V> implements ActiveOrdersContract.Presenter<V> {
     PublishSubject<String> subject;
     @Inject
     public ActiveOrdersPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {

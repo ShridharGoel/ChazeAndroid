@@ -22,7 +22,7 @@ import timber.log.Timber;
  */
 
 public class ShopByShopsPresenter<V extends ShopByShopsContract.View> extends BasePresenter<V>
-        implements ShopByShopsContract.Presentor<V> {
+        implements ShopByShopsContract.Presenter<V> {
 
 
     private int pageNumber;

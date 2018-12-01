@@ -17,7 +17,7 @@ import io.reactivex.disposables.CompositeDisposable;
  */
 
 public class ShopPresenter<V extends ShopContract.View> extends BasePresenter<V>
-        implements ShopContract.Presentor<V> {
+        implements ShopContract.Presenter<V> {
 
     public ShopPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {
         super(dataManager, schedulerProvider, compositeDisposable, sessionManager);

@@ -17,7 +17,7 @@ import io.reactivex.disposables.CompositeDisposable;
  */
 
 public class LocalSearchPresenter<V extends LocalSearchContract.View> extends BasePresenter<V>
-        implements LocalSearchContract.Presentor<V> {
+        implements LocalSearchContract.Presenter<V> {
 
     public LocalSearchPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {
         super(dataManager, schedulerProvider, compositeDisposable, sessionManager);

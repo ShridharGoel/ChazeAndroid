@@ -15,7 +15,7 @@ import io.reactivex.disposables.CompositeDisposable;
  */
 
 public class ProfilePresenter<V extends ProfileContract.View> extends BasePresenter<V>
-        implements ProfileContract.Presentor<V> {
+        implements ProfileContract.Presenter<V> {
 
     public ProfilePresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {
         super(dataManager, schedulerProvider, compositeDisposable, sessionManager);

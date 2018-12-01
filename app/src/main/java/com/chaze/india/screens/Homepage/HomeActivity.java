@@ -14,13 +14,12 @@ import android.view.MenuItem;
 import com.chaze.india.models.RecyclerItems;
 import com.chaze.india.screens.Checkout.CheckoutActivity;
 import com.chaze.india.screens.PostOrderStatus.PostOrderStatusActivity;
-import com.chaze.india.screens.Proflie.ProfileActivity;
 import com.chaze.india.R;
 import com.chaze.india.models.EcomerceCategory;
 import com.chaze.india.repository.CartManager;
 import com.chaze.india.screens.Checkout.CheckoutActivity;
 import com.chaze.india.screens.Checkout.CheckoutContract;
-import com.chaze.india.screens.Proflie.ProfileActivity;
+import com.chaze.india.screens.Profile.ProfileActivity;
 import com.chaze.india.screens.base.BaseActivity;
 
 import java.util.ArrayList;

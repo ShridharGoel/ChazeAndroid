@@ -94,7 +94,7 @@ public class ActivityModule {
     }
 
     @Provides
-    SearchContract.Presentor<SearchContract.View> providesSearchPresenter(
+    SearchContract.Presenter<SearchContract.View> providesSearchPresenter(
             SearchPresenter<SearchContract.View> presenter) {
         return presenter;
     }
@@ -120,14 +120,14 @@ public class ActivityModule {
 
 
     @Provides
-    EcommerceContract.Presentor<EcommerceContract.View> providesEcommercePresenter(
+    EcommerceContract.Presenter<EcommerceContract.View> providesEcommercePresenter(
             EcommercePresenter<EcommerceContract.View> presenter) {
         return presenter;
     }
 
 
     @Provides
-    ShopByProductsContract.Presentor<ShopByProductsContract.View> providesShopByProductsPresenter(
+    ShopByProductsContract.Presenter<ShopByProductsContract.View> providesShopByProductsPresenter(
             ShopByProductsPresenter<ShopByProductsContract.View> presenter) {
         return presenter;
     }
@@ -138,7 +138,7 @@ public class ActivityModule {
     }
 
     @Provides
-    ShopByShopsContract.Presentor<ShopByShopsContract.View> providesShopByShopsPresenter(
+    ShopByShopsContract.Presenter<ShopByShopsContract.View> providesShopByShopsPresenter(
             ShopByShopsPresenter<ShopByShopsContract.View> presenter) {
         return presenter;
     }
@@ -157,7 +157,7 @@ public class ActivityModule {
     }
 
     @Provides
-    CartContract.Presentor<CartContract.View> providesCartPresenter(CartPresenter<CartContract.View> presenter) {
+    CartContract.Presenter<CartContract.View> providesCartPresenter(CartPresenter<CartContract.View> presenter) {
         return presenter;
     }
 
@@ -178,7 +178,7 @@ public class ActivityModule {
         return presenter;
     }
     @Provides
-    PostOrderStatusContract.Presentor<PostOrderStatusContract.View> providesPostOrderPresenter(PostOrderStatusPresenter<PostOrderStatusContract.View> presenter){
+    PostOrderStatusContract.Presenter<PostOrderStatusContract.View> providesPostOrderPresenter(PostOrderStatusPresenter<PostOrderStatusContract.View> presenter){
         return presenter;
     }
 

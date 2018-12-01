@@ -19,7 +19,7 @@ import io.reactivex.disposables.CompositeDisposable;
  */
 
 public class MyOffersPresenter<V extends MyOffersContract.View> extends BasePresenter<V>
-        implements MyOffersContract.Presentor<V> {
+        implements MyOffersContract.Presenter<V> {
 
     public MyOffersPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {
         super(dataManager, schedulerProvider, compositeDisposable, sessionManager);

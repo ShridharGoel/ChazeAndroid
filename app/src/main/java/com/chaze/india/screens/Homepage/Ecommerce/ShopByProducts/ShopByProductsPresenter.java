@@ -30,7 +30,7 @@ import timber.log.Timber;
  */
 
 public class ShopByProductsPresenter<V extends ShopByProductsContract.View> extends BasePresenter<V>
-        implements ShopByProductsContract.Presentor<V> {
+        implements ShopByProductsContract.Presenter<V> {
 
 
     private PublishProcessor<Integer> paginator = PublishProcessor.create();

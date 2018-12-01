@@ -16,7 +16,7 @@ public class MyOrdersContract {
     }
 
 
-    public interface Presentor<V extends View> extends MvpContract.Presenter<V> {
+    public interface Presenter<V extends View> extends MvpContract.Presenter<V> {
 
     }
 }

@@ -57,7 +57,7 @@ public class EcommerceFragment extends BaseFragment implements EcommerceContract
     SearchView searchView;
 
     @Inject
-    EcommerceContract.Presentor<EcommerceContract.View> mPresenter;
+    EcommerceContract.Presenter<EcommerceContract.View> mPresenter;
 
     @Nullable
     @Override

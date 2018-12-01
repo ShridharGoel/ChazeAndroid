@@ -20,7 +20,7 @@ import io.reactivex.subjects.PublishSubject;
  */
 
 public class CartPresenter<V extends CartContract.View> extends BasePresenter<V>
-        implements CartContract.Presentor<V> {
+        implements CartContract.Presenter<V> {
 
     PublishSubject<String> subject;
 

@@ -27,7 +27,7 @@ public class ActiveOrdersFragment extends BaseFragment implements ActiveOrdersCo
 
     private static final String TAG = ActiveOrdersFragment.class.getSimpleName();
     @Inject
-    ActiveOrdersContract.Presentor<ActiveOrdersContract.View> mPresenter;
+    ActiveOrdersContract.Presenter<ActiveOrdersContract.View> mPresenter;
     @BindView(R.id.activeOrderRecycler)
     RecyclerView recyclerView;
     @Inject

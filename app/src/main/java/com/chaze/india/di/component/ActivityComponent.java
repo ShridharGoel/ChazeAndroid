@@ -16,7 +16,7 @@ import com.chaze.india.screens.Homepage.Home.HomeFragment;
 import com.chaze.india.screens.Homepage.HomeActivity;
 import com.chaze.india.screens.PostOrderStatus.ActiveOrders.ActiveOrdersFragment;
 import com.chaze.india.screens.PostOrderStatus.PostOrderStatusActivity;
-import com.chaze.india.screens.Proflie.ProfileActivity;
+import com.chaze.india.screens.Profile.ProfileActivity;
 import com.chaze.india.screens.Splash.SplashActivity;
 import com.chaze.india.screens.SubCategory.SubCategoryActivity;
 import com.chaze.india.screens.search.SearchActivity;

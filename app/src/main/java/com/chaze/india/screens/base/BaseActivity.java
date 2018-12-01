@@ -10,8 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.chaze.india.AppController;
 import com.chaze.india.di.component.ActivityComponent;
-import com.chaze.india.di.module.ActivityModule;
 import com.chaze.india.di.component.DaggerActivityComponent;
+import com.chaze.india.di.module.ActivityModule;
 import com.chaze.india.di.module.AdapterModule;
 
 import butterknife.Unbinder;

@@ -27,7 +27,7 @@ import timber.log.Timber;
  */
 
 public class SearchPresenter<V extends SearchContract.View> extends BasePresenter<V>
-        implements SearchContract.Presentor<V> {
+        implements SearchContract.Presenter<V> {
 
     @Inject
     public SearchPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {

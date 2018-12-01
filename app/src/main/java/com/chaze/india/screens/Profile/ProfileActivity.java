@@ -1,4 +1,4 @@
-package com.chaze.india.screens.Proflie;
+package com.chaze.india.screens.Profile;
 
 import android.content.Context;
 import android.os.Bundle;

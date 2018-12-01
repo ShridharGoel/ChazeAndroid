@@ -15,7 +15,7 @@ import io.reactivex.disposables.CompositeDisposable;
  */
 
 public class MyWishListPresenter<V extends MyWishListContract.View> extends BasePresenter<V>
-        implements MyWishListContract.Presentor<V> {
+        implements MyWishListContract.Presenter<V> {
 
     public MyWishListPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {
         super(dataManager, schedulerProvider, compositeDisposable, sessionManager);

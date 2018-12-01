@@ -17,7 +17,7 @@ import io.reactivex.disposables.CompositeDisposable;
  */
 
 public class EcommercePresenter<V extends EcommerceContract.View> extends BasePresenter<V>
-        implements EcommerceContract.Presentor<V> {
+        implements EcommerceContract.Presenter<V> {
 
     @Inject
     public EcommercePresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {

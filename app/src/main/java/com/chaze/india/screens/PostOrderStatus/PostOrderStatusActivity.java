@@ -24,7 +24,7 @@ public class PostOrderStatusActivity extends BaseActivity implements PostOrderSt
     MenuItem prevMenuItem;
 
     @Inject
-    PostOrderStatusContract.Presentor<PostOrderStatusContract.View> mPresenter;
+    PostOrderStatusContract.Presenter<PostOrderStatusContract.View> mPresenter;
     ProgressDialog progressDialog;
     @BindView(R.id.postorder_slider)
     TabLayout tabLayout;

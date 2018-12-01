@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
@@ -70,9 +71,12 @@ public class FoodFragment extends BaseFragment implements FoodContract.View {
         onAttach(getContext());
         getActivityComponent().inject(this);
         setUnBinder(ButterKnife.bind(this, view));
-        mPresenter.onAttach(this);
 
-        // setupToolBar();
+        Window window = getActivity().getWindow();
+        window.setStatusBarColor(getResources().getColor(R.color.colorPumpkinDark));
+
+        mPresenter.onAttach(this);
+        setupToolBar();
 
 
         return view;

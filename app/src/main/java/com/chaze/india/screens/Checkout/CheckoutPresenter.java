@@ -17,7 +17,7 @@ import io.reactivex.disposables.CompositeDisposable;
  */
 
 public class CheckoutPresenter<V extends CheckoutContract.View> extends BasePresenter<V>
-        implements CheckoutContract.Presentor<V> {
+        implements CheckoutContract.Presenter<V> {
 
     @Inject
     public CheckoutPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {

@@ -42,7 +42,7 @@ public class ShopByProductsFragment extends BaseFragment implements ShopByProduc
     ProductsPostAdapter adapter;
 
     @Inject
-    ShopByProductsContract.Presentor<ShopByProductsContract.View> mPresentor;
+    ShopByProductsContract.Presenter<ShopByProductsContract.View> mPresenter;
 
     @Nullable
     @Override
@@ -54,7 +54,7 @@ public class ShopByProductsFragment extends BaseFragment implements ShopByProduc
         onAttach(getContext());
         getActivityComponent().inject(this);
         setUnBinder(ButterKnife.bind(this, view));
-        mPresentor.onAttach(this);
+        mPresenter.onAttach(this);
         return view;
     }
 
@@ -66,7 +66,7 @@ public class ShopByProductsFragment extends BaseFragment implements ShopByProduc
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(mLayoutManager);
         setUpLoadMoreListener();
-        mPresentor.subscribeForData();
+        mPresenter.subscribeForData();
 
     }
 
@@ -86,7 +86,7 @@ public class ShopByProductsFragment extends BaseFragment implements ShopByProduc
                 lastVisibleItem = mLayoutManager.findLastVisibleItemPosition();
                 if (!loading
                         && totalItemCount <= (lastVisibleItem + VISIBLE_THRESHOLD)) {
-                    mPresentor.next();
+                    mPresenter.next();
                     loading = true;
                 }
             }

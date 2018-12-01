@@ -22,7 +22,7 @@ public class SearchActivity extends BaseActivity implements SearchContract.View 
     int searchType;
 
     @Inject
-    SearchContract.Presentor<SearchContract.View> mPresenter;
+    SearchContract.Presenter<SearchContract.View> mPresenter;
 
     @Inject
     @LinLayoutVert

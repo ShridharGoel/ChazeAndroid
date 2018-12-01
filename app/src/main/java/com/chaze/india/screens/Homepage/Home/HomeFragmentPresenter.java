@@ -30,7 +30,7 @@ import timber.log.Timber;
  */
 
 public class HomeFragmentPresenter<V extends HomeFragmentContract.View> extends BasePresenter<V>
-        implements HomeFragmentContract.Presentor<V> {
+        implements HomeFragmentContract.Presenter<V> {
 
 
     private PublishProcessor<Integer> paginator = PublishProcessor.create();

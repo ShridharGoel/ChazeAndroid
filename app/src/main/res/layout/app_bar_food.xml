@@ -26,12 +26,11 @@
 
                 <include
                     android:id="@+id/toolbar"
-                    layout="@layout/toolbar"
+                    layout="@layout/toolbar_food"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true" />
-
 
             </LinearLayout>
 
@@ -41,6 +40,7 @@
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/colorPumpkin"
             android:fitsSystemWindows="true"
             app:layout_scrollFlags="scroll">
 
@@ -48,15 +48,13 @@
                 android:id="@+id/searchbar"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_marginBottom="12dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                app:theme="@style/AppSearchView"
-                android:background="#AAA"
+                android:layout_margin="8dp"
+                android:background="@color/textLightSecondary"
                 android:focusable="false"
                 android:gravity="center"
                 app:iconifiedByDefault="false"
-                app:queryHint="Search for shops, products, food..." />
+                app:queryHint="Search for shops, products, food..."
+                app:theme="@style/AppSearchView" />
         </android.support.design.widget.CollapsingToolbarLayout>
 
 
