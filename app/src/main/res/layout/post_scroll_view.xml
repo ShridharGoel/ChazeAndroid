@@ -18,7 +18,7 @@
         android:layout_width="65dp"
         android:layout_height="65dp"
             android:id="@+id/categoryImage"
-            android:src="@color/red"
+            android:src="@color/colorCyan"
             tools:ignore="VectorDrawableCompat"/>
 
     <TextView

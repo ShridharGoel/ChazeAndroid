@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<!--
-    <color name="colorPrimary">#525188</color>
-    <color name="colorPrimaryDark">#d5d5df</color>
-    <color name="colorAccent">#fc8019</color>
+    <color name="colorPrimary">#6c6b99</color>
+    <color name="colorPrimaryDark">#525188</color>
+    <color name="colorAccent">#f8cd01</color>
     <color name="textColorPrimary">#353030</color>
-    <color name="colorOfferBanner">#be1021</color>-->
 
     <!--Global color set-->
     <color name="colorPurple">#525188</color>
@@ -42,6 +40,12 @@
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
 
+
+    <color name="colorGreen">#31a133</color>
+    <color name="colorGreenLight">#c8e6c9</color>
+    <color name="colorGreenOffer">#8ac43e</color>
+    <color name="colorGreenLight2">#7BC242</color>
+
     <!-- dots inactive colors -->
     <color name="dot_dark_screen1">#d1395c</color>
     <color name="dot_dark_screen2">#14a895</color>
@@ -70,7 +74,7 @@
     </array>
 
 
-    <color name="red">#f55</color>
+ <!--   <color name="red">#f55</color>
     <color name="yelloww">#bbb444</color>
     <color name="colorSplashBackground">#fdfffc</color>
 
@@ -84,16 +88,10 @@
     <color name="colorGrayLightText">#adaeb0</color>
     <color name="colorGray">#8d8f92</color>
 
-    <color name="colorYellow">#f8cd01</color>
-    <color name="colorYellowLight">#fffc62</color>
-    <color name="colorGreen">#31a133</color>
-    <color name="colorGreenLight">#c8e6c9</color>
-    <color name="colorGreenOffer">#8ac43e</color>
-    <color name="colorGreenLight2">#7BC242</color>
 
 
     <color name="background_card">#fff</color>
-    <color name="text_black_87">#de000000</color>
+    <color name="text_black_87">#de000000</color>-->
 
 
 </resources>

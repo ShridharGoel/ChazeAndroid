@@ -164,7 +164,7 @@
                                     android:layout_height="2dp"
                                     android:layout_marginBottom="10dp"
                                     android:layout_marginTop="4dp"
-                                    android:background="@color/colorGrayLight" />
+                                    android:background="@color/textDarkDisabled" />
 
                                 <RelativeLayout
                                     android:layout_width="match_parent"
@@ -209,7 +209,7 @@
                                         android:layout_height="2dp"
                                         android:layout_marginBottom="10dp"
                                         android:layout_marginTop="4dp"
-                                        android:background="@color/colorGrayLight" />
+                                        android:background="@color/textDarkDisabled" />
 
                                     <RelativeLayout
                                         android:layout_width="match_parent"
@@ -241,7 +241,7 @@
                                     android:layout_height="2dp"
                                     android:layout_marginBottom="10dp"
                                     android:layout_marginTop="4dp"
-                                    android:background="@color/colorGrayLight" />
+                                    android:background="@color/textDarkPrimary" />
 
                                 <RelativeLayout
                                     android:layout_width="wrap_content"
@@ -255,7 +255,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_alignParentEnd="true"
                                         android:text="0000"
-                                        android:textColor="@color/text_black_87"
+                                        android:textColor="@color/textDarkPrimary"
                                         android:textSize="16dp"
                                         android:textStyle="bold" />
 
@@ -265,7 +265,7 @@
                                         android:layout_marginEnd="10dp"
                                         android:layout_toStartOf="@+id/amount_total"
                                         android:text="Total Price :"
-                                        android:textColor="@color/text_black_87"
+                                        android:textColor="@color/textDarkPrimary"
                                         android:textSize="16dp"
                                         android:textStyle="bold" />
 
@@ -277,7 +277,7 @@
                                     android:layout_height="2dp"
                                     android:layout_marginBottom="10dp"
                                     android:layout_marginTop="4dp"
-                                    android:background="@color/colorGrayLight" />
+                                    android:background="@color/textDarkDisabled" />
 
                                 <RelativeLayout
                                     android:layout_width="match_parent"
@@ -316,7 +316,7 @@
                                     android:layout_height="2dp"
                                     android:layout_marginBottom="10dp"
                                     android:layout_marginTop="4dp"
-                                    android:background="@color/colorGrayLight" />
+                                    android:background="@color/textDarkDisabled" />
 
 
                                 <RelativeLayout
@@ -332,7 +332,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_alignParentEnd="true"
                                         android:text="0000"
-                                        android:textColor="@color/text_black_87"
+                                        android:textColor="@color/textDarkPrimary"
                                         android:textSize="16sp"
                                         android:textStyle="bold" />
 
@@ -342,7 +342,7 @@
                                         android:layout_marginEnd="10dp"
                                         android:layout_toStartOf="@+id/amount_to_pay"
                                         android:text="To Pay"
-                                        android:textColor="@color/text_black_87"
+                                        android:textColor="@color/textDarkPrimary"
                                         android:textSize="16dp"
                                         android:textStyle="bold" />
 

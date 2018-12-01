@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:orientation="horizontal"
     android:layout_height="?attr/actionBarSize"
-    android:background="@color/colorAccent"
+    android:background="@color/colorPurple"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 
@@ -21,6 +21,7 @@
         android:layout_width="wrap_content"
         android:id="@+id/toolbar_text"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:text="Title"
         android:layout_gravity="center"/>
 

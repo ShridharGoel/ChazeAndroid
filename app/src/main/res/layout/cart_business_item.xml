@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="5dp"
-    android:background="@color/colorPrimary"
+    android:background="@color/white"
     android:paddingBottom="10dp"
     android:paddingStart="10dp"
     android:paddingTop="20dp">
@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Business_Name"
-            android:textColor="@color/textColorPrimary"
+            android:textColor="@color/textDarkPrimary"
             android:textSize="16sp" />
 
 
@@ -32,7 +32,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentStart="true"
-            android:src="@color/colorPrimaryDark" />
+            android:src="@color/colorPurple" />
 
 
         <LinearLayout
@@ -133,7 +133,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:text="0000"
-                    android:textColor="@color/text_black_87"
+                    android:textColor="@color/textDarkPrimary"
                     android:textSize="@dimen/text_small"
                     android:textStyle="bold" />
 
@@ -143,7 +143,7 @@
                     android:layout_toStartOf="@+id/amount_total"
                     android:text="Total Price :"
                     android:layout_alignParentLeft="true"
-                    android:textColor="@color/text_black_87"
+                    android:textColor="@color/textDarkPrimary"
                     android:textSize="@dimen/text_small"
                     android:textStyle="bold" />
 
@@ -196,7 +196,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:text="0000"
-                    android:textColor="@color/text_black_87"
+                    android:textColor="@color/textDarkPrimary"
                     android:textSize="@dimen/text_small"
                     android:textStyle="bold" />
 
@@ -207,7 +207,7 @@
                     android:layout_toStartOf="@+id/amount_to_pay"
                     android:text="To Pay"
                     android:layout_alignParentLeft="true"
-                    android:textColor="@color/text_black_87"
+                    android:textColor="@color/textDarkPrimary"
                     android:textSize="@dimen/text_small"
                     android:textStyle="bold" />
 

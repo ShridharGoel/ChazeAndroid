@@ -11,7 +11,7 @@
     app:markerSize="18dp"
     app:lineSize="3dp"
     app:marker="@drawable/marker"
-    app:line="@color/dot_dark_screen4"/>
+    app:line="@color/colorPurpleVeryLight"/>
 
 
 
@@ -28,7 +28,7 @@
             android:layout_marginTop="15dp"
             android:textSize="20dp"
             android:id="@+id/text_timeline_title"
-            android:textColor="#8601AF"
+            android:textColor="@color/colorPurple"
             tools:text="Order Pick up"/>
 
 

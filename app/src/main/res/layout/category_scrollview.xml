@@ -14,7 +14,7 @@
         android:layout_height="40dp"
 
         android:clickable="true"
-        android:src="@color/colorAccent"
+        android:src="@color/yellow"
         tools:ignore="VectorDrawableCompat" />
 
     <TextView
