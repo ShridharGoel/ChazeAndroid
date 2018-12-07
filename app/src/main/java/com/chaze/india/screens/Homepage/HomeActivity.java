@@ -115,10 +115,10 @@ public class HomeActivity extends BaseActivity
                     return true;
                 case R.id.navigation_3:
                     return true;
-                case R.id.navigation_4:
+                /*case R.id.navigation_4:
                     return true;
                 case R.id.navigation_5:
-                    return true;
+                    return true;*/
             }
             return false;
         };
@@ -145,7 +145,7 @@ public class HomeActivity extends BaseActivity
                            // progressDialog.show();
                             viewPager.setCurrentItem(2);
                             break;
-                        case R.id.navigation_4:
+                       /* case R.id.navigation_4:
                            // showLoading();
 
                            viewPager.setCurrentItem(3);
@@ -153,7 +153,7 @@ public class HomeActivity extends BaseActivity
                         case R.id.navigation_5:
                         //    showLoading();
                             viewPager.setCurrentItem(4);
-                            break;
+                            break;*/
                     }
                     return false;
                 });

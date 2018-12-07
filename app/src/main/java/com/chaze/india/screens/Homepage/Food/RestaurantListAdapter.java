@@ -28,7 +28,7 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.post_scroll_view, viewGroup, false);
+                .inflate(R.layout.restaurant_view, viewGroup, false);
 
         return new ViewHolder(itemView);
     }
@@ -36,7 +36,7 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         Restaurant item = restaurantList.get(i);
-        viewHolder.categoryText.setText(item.getSpeciality());
+        viewHolder.categoryText.setText("Restaurant_Name");
 
 
     }
@@ -60,8 +60,8 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.categoryImage);
-            categoryText = itemView.findViewById(R.id.categoryName);
+            imageView = itemView.findViewById(R.id.restaurant_image_view);
+            categoryText = itemView.findViewById(R.id.restaurant_name_view);
         }
     }
 }

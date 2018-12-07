@@ -142,10 +142,10 @@ public class HomeCardAdapter extends RecyclerView.Adapter{
 
         public Card2ViewHolder(@NonNull View itemView) {
             super(itemView);
-            image1=itemView.findViewById(R.id.card2_image1);
-            image2=itemView.findViewById(R.id.card2_image2);
-            image3=itemView.findViewById(R.id.card2_image3);
-            image4=itemView.findViewById(R.id.card2_image4);
+            image1=itemView.findViewById(R.id.card4_image4);
+            image2=itemView.findViewById(R.id.card4_image4);
+            image3=itemView.findViewById(R.id.card4_image4);
+            image4=itemView.findViewById(R.id.card4_image4);
         }
     }
 

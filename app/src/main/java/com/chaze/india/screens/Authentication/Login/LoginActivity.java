@@ -12,6 +12,7 @@ import com.chaze.india.R;
 import com.chaze.india.screens.Authentication.Signup.SignUpActivity;
 import com.chaze.india.screens.Homepage.HomeActivity;
 import com.chaze.india.screens.PostOrderStatus.PostOrderStatusActivity;
+import com.chaze.india.screens.ProductInfo.ProductInfoActivity;
 import com.chaze.india.screens.base.BaseActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -87,10 +88,9 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
 
         getActivityComponent().inject(this);
 
-        getSupportActionBar().hide();
 
         signupBtn.setOnClickListener(view -> {
-            Intent intent = new Intent(LoginActivity.this, PostOrderStatusActivity.class);
+            Intent intent = new Intent(LoginActivity.this, ProductInfoActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
             finish();

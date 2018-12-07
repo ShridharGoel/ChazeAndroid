@@ -97,6 +97,9 @@ dependencies {
 
     //timelineview
     implementation 'com.github.vipulasri:timelineview:1.0.6'
+
+
+    implementation 'com.iarcuschin:simpleratingbar:0.1.5'
 }
 
 apply plugin: 'com.google.gms.google-services'

@@ -68,8 +68,8 @@ public class AdapterModule {
         adapter.addFragment(homeFragment);
         adapter.addFragment(ecommerce);
         adapter.addFragment(foodFragment);
-        adapter.addFragment(localSearch);
-        adapter.addFragment(moreFragment_object);
+        /*adapter.addFragment(localSearch);
+        adapter.addFragment(moreFragment_object);*/
         return adapter;
 
     }

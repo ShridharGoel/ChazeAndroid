@@ -15,8 +15,14 @@
     <style name="AppTheme.TransNav" parent="AppTheme" />
 
     <style name="AppTheme.NoActionBar">
+        <item name="coordinatorLayoutStyle">@style/Widget.Support.CoordinatorLayout</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="cardViewStyle">@style/CardView</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
