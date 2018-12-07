@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chaze.india.R;
@@ -21,6 +22,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
+import javax.annotation.Nullable;
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -51,10 +53,10 @@ public class SignUpActivity extends BaseActivity implements SignUpContract.View 
     private static final int RC_SIGN_IN = 10;
 
     @BindView(R.id.login_btn)
-    Button loginBtn;
+    TextView loginBtn;
 
     @BindView(R.id.signup_btn)
-    Button signupBtn;
+    TextView signupBtn;
 
     @BindView(R.id.skip_btn)
     Button skipBtn;
@@ -68,11 +70,11 @@ public class SignUpActivity extends BaseActivity implements SignUpContract.View 
     @BindView(R.id.signup_enter_pass)
     EditText signUpPass;
 
-    @BindView(R.id.signup_confirm_pass)
+    @BindView(R.id.signup_enter_confirm_pass)
     EditText signUpConfirmPass;
 
     @BindView(R.id.signup_submit_btn)
-    Button signUpSubmitBtn;
+    TextView signUpSubmitBtn;
 
     @BindView(R.id.google_login)
     ImageView googleLogin;
