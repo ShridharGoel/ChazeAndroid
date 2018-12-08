@@ -11,50 +11,48 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.chaze.india.R;
+import com.chaze.india.models.Cuisines;
 import com.chaze.india.models.EcomerceCategory;
-import com.chaze.india.models.Restaurant;
+import com.chaze.india.screens.Category.CategoryActivity;
 import com.chaze.india.screens.SubCategory.SubCategoryActivity;
 
 import java.util.List;
 
-public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAdapter.ViewHolder> {
+public class CuisinesAdapter extends RecyclerView.Adapter<CuisinesAdapter.ViewHolder> {
     Context context;
-    List<Restaurant> restaurantList;
+    List<Cuisines> categoryList;
 
-    public RestaurantListAdapter(Context context, List<Restaurant> restaurantList) {
+    public CuisinesAdapter(Context context, List<Cuisines> categoryList) {
         this.context = context;
-        this.restaurantList = restaurantList;
+        this.categoryList = categoryList;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.restaurant_view, viewGroup, false);
+                .inflate(R.layout.category_scrollview, viewGroup, false);
 
         return new ViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        Restaurant item = restaurantList.get(i);
-        viewHolder.categoryText.setText("Restaurant_Name");
-
-
+        Cuisines item = categoryList.get(i);
+        viewHolder.categoryText.setText(item.getName());
+        //viewHolder.imageView.setImageDrawable(item.getImage());
 
     }
 
     @Override
     public int getItemCount() {
-        return restaurantList.size();
+        return categoryList.size();
     }
 
     public void addItems() {
 
         for (int i = 0; i < 20; i++)
-            restaurantList.add(new Restaurant());
-
-        notifyDataSetChanged();
+            categoryList.add(new Cuisines("people", "bdbdbdb", "https://drive.google.com/file/d/15b68H448F4jszurUpAAQV6lFPHdY1dv2/view?usp=sharing"));
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -63,10 +61,15 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.restaurant_image_view);
-            categoryText = itemView.findViewById(R.id.restaurant_name_view);
+            imageView = itemView.findViewById(R.id.categoryImage);
+            categoryText = itemView.findViewById(R.id.categoryName);
 
-            itemView.setOnClickListener((view)->{context.startActivity(new Intent(context, SubCategoryActivity.class));});
+            itemView.setOnClickListener(v -> {
+                if(getPosition()%2==0)
+                context.startActivity(new Intent(context, CategoryActivity.class));
+                else context.startActivity(new Intent(context, SubCategoryActivity.class));
+            });
+
         }
     }
 }

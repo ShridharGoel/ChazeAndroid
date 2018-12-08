@@ -2,13 +2,14 @@ package com.chaze.india.di.module;
 
 import android.support.v7.app.AppCompatActivity;
 
+import com.chaze.india.models.RecyclerItems;
 import com.chaze.india.screens.Cart.CartBusinessAdapter;
 import com.chaze.india.screens.Cart.CartItemsAdapter;
 import com.chaze.india.screens.Category.ShopCategoryAdapter;
 import com.chaze.india.screens.Homepage.Ecommerce.EcommerceCategoryAdapter;
 import com.chaze.india.screens.Homepage.Ecommerce.EcommerceFragment;
 import com.chaze.india.screens.Homepage.Ecommerce.EcommercePagerAdapter;
-import com.chaze.india.screens.Homepage.Ecommerce.ShopByProducts.ProductsPostAdapter;
+import com.chaze.india.screens.Homepage.Food.CuisinesAdapter;
 import com.chaze.india.screens.Homepage.Food.FoodFragment;
 import com.chaze.india.screens.Homepage.Food.RestaurantListAdapter;
 import com.chaze.india.screens.Homepage.Home.HomeFragment;
@@ -23,6 +24,7 @@ import com.chaze.india.screens.PostOrderStatus.ActiveOrders.ActiveOrdersContract
 import com.chaze.india.screens.PostOrderStatus.ActiveOrders.ActiveOrdersPresenter;
 import com.chaze.india.screens.PostOrderStatus.ActiveOrders.TimeLineAdapter;
 import com.chaze.india.screens.PostOrderStatus.PostOrderPagerAdapter;
+import com.chaze.india.screens.ProductsPostAdapter;
 import com.chaze.india.screens.search.SearchSuggestionsAdapter;
 
 import java.util.ArrayList;
@@ -91,6 +93,11 @@ public class AdapterModule {
     }
 
     @Provides
+    CuisinesAdapter providesCuisinesAdapter() {
+        return new CuisinesAdapter(mActivity, new ArrayList<>());
+    }
+
+    @Provides
     PostOrderPagerAdapter providesPostOrderPagerAdapter() {
         return new PostOrderPagerAdapter(mActivity.getSupportFragmentManager());
     }
@@ -103,7 +110,7 @@ public class AdapterModule {
 
     @Provides
     ProductsPostAdapter providesProductsPostAdapter() {
-        return new ProductsPostAdapter(mActivity, new ArrayList<>());
+        return new ProductsPostAdapter(new ArrayList<RecyclerItems>(), mActivity);
     }
 
     @Provides

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.chaze.india.screens.ProductsPostAdapter;
 import com.chaze.india.screens.base.BaseFragment;
 import com.chaze.india.R;
 import com.chaze.india.di.Qualifiers.LinLayoutVert;
@@ -38,6 +39,7 @@ public class ShopByProductsFragment extends BaseFragment implements ShopByProduc
     @Inject
     @LinLayoutVert
     LinearLayoutManager mLayoutManager;
+
     @Inject
     ProductsPostAdapter adapter;
 
@@ -65,6 +67,7 @@ public class ShopByProductsFragment extends BaseFragment implements ShopByProduc
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(mLayoutManager);
+        addItems(null);
         setUpLoadMoreListener();
         mPresenter.subscribeForData();
 
@@ -109,6 +112,5 @@ public class ShopByProductsFragment extends BaseFragment implements ShopByProduc
     public void addItems(List<EcomerceCategory> items) {
         adapter.addItems(items);
     }
-
 
 }

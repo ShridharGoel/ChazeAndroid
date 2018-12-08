@@ -36,6 +36,7 @@ public class EcommerceFragment extends BaseFragment implements EcommerceContract
     @Inject
     @LinLayoutHori
     LinearLayoutManager mLayoutManager;
+
     @Inject
     EcommerceCategoryAdapter adapter;
 

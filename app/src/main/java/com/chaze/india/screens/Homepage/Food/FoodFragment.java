@@ -57,7 +57,7 @@ public class FoodFragment extends BaseFragment implements FoodContract.View {
     RestaurantListAdapter paginationAdapter;
 
     @Inject
-    EcommerceCategoryAdapter categoryAdapter;
+    CuisinesAdapter categoryAdapter;
 
     @Inject
     FoodContract.Presenter<FoodContract.View> mPresenter;

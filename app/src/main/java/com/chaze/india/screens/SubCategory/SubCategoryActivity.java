@@ -20,6 +20,7 @@ import com.chaze.india.models.CategorySearchResults;
 import com.chaze.india.models.EcomerceCategory;
 import com.chaze.india.screens.Homepage.Ecommerce.ShopByShops.ShopsAdapter;
 import com.chaze.india.screens.Homepage.Home.HomeGridAdapter;
+import com.chaze.india.screens.ProductsPostAdapter;
 import com.chaze.india.screens.base.BaseActivity;
 import com.chaze.india.screens.search.SearchActivity;
 import java.util.List;
@@ -48,7 +49,7 @@ public class SubCategoryActivity extends BaseActivity implements SubCategoryCont
     LinearLayoutManager mLayoutManager;
 
     @Inject
-    ShopsAdapter paginationAdapter;
+    ProductsPostAdapter postAdapter;
 
     @Inject
     HomeGridAdapter adapter;
@@ -89,9 +90,9 @@ public class SubCategoryActivity extends BaseActivity implements SubCategoryCont
 
         grid.setAdapter(adapter);
 
-        recyclerView.setAdapter(paginationAdapter);
+        recyclerView.setAdapter(postAdapter);
         recyclerView.setLayoutManager(mLayoutManager);
-
+        postAdapter.addItems(null);
         setUpLoadMoreListener();
 
         mPresenter.subscribeForData();
@@ -150,7 +151,7 @@ public class SubCategoryActivity extends BaseActivity implements SubCategoryCont
 
     @Override
     public void addItems(List<EcomerceCategory> items) {
-        paginationAdapter.addItems(items);
+        postAdapter.addItems(null);
     }
 
 
