@@ -1,4 +1,4 @@
-package com.chaze.india.screens.PostOrderStatus.ActiveOrders;
+package com.chaze.india.screens.Purchases.ActiveOrders;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.chaze.india.R;
-import com.chaze.india.models.ActiveOrder;
 import com.chaze.india.models.TimeLine;
 import com.github.vipulasri.timelineview.TimelineView;
 

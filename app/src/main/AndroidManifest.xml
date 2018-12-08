@@ -34,18 +34,10 @@
         <activity
             android:name=".screens.Profile.ProfileActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".screens.MyOrders.MyOrdersActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".screens.MyWishList.MyWishListActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".screens.PostOrderStatus.PostOrderStatusActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".screens.Checkout.CheckoutActivity"
-            android:screenOrientation="portrait" />
+        android:name=".screens.MyWishList.MyWishListActivity"
+        android:screenOrientation="portrait" />
+        android:name=".screens.Checkout.CheckoutActivity"
+        android:screenOrientation="portrait" />
         <activity
             android:name=".screens.MyOffers.MyOffersActivity"
             android:screenOrientation="portrait" />
@@ -76,6 +68,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".screens.Authentication.ChangePassword.ChangePasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screens.Purchases.PurchasesActivity"
             android:screenOrientation="portrait" />
 
 

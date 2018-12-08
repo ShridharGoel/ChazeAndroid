@@ -15,12 +15,12 @@ import com.chaze.india.screens.Homepage.Food.RestaurantListAdapter;
 import com.chaze.india.screens.Homepage.HomeBottomNavPagerAdapter;
 import com.chaze.india.screens.Homepage.HomeGridAdapter;
 import com.chaze.india.screens.Homepage.More.MoreFragment;
-import com.chaze.india.screens.PostOrderStatus.ActiveOrders.ActiveOrdersAdapter;
-import com.chaze.india.screens.PostOrderStatus.ActiveOrders.ActiveOrdersContract;
-import com.chaze.india.screens.PostOrderStatus.ActiveOrders.ActiveOrdersPresenter;
-import com.chaze.india.screens.PostOrderStatus.ActiveOrders.TimeLineAdapter;
-import com.chaze.india.screens.PostOrderStatus.PostOrderPagerAdapter;
 import com.chaze.india.screens.ProductsPostAdapter;
+import com.chaze.india.screens.Purchases.ActiveOrders.ActiveOrdersAdapter;
+import com.chaze.india.screens.Purchases.ActiveOrders.ActiveOrdersContract;
+import com.chaze.india.screens.Purchases.ActiveOrders.ActiveOrdersPresenter;
+import com.chaze.india.screens.Purchases.ActiveOrders.TimeLineAdapter;
+import com.chaze.india.screens.Purchases.PurchasesPagerAdapter;
 import com.chaze.india.screens.search.SearchSuggestionsAdapter;
 
 import java.util.ArrayList;
@@ -92,8 +92,8 @@ public class AdapterModule {
     }
 
     @Provides
-    PostOrderPagerAdapter providesPostOrderPagerAdapter() {
-        return new PostOrderPagerAdapter(mActivity.getSupportFragmentManager());
+    PurchasesPagerAdapter providesPostOrderPagerAdapter() {
+        return new PurchasesPagerAdapter(mActivity.getSupportFragmentManager());
     }
 
     @Provides

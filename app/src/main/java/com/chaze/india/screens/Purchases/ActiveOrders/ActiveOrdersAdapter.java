@@ -1,4 +1,4 @@
-package com.chaze.india.screens.PostOrderStatus.ActiveOrders;
+package com.chaze.india.screens.Purchases.ActiveOrders;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -13,16 +13,11 @@ import android.widget.TextView;
 
 import com.chaze.india.R;
 import com.chaze.india.models.ActiveOrder;
-import com.chaze.india.models.EcomerceCategory;
-import com.chaze.india.screens.Homepage.Ecommerce.EcommerceCategoryAdapter;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import javax.inject.Inject;
-
 import io.reactivex.subjects.PublishSubject;
-import timber.log.Timber;
 
 public class ActiveOrdersAdapter extends RecyclerView.Adapter<ActiveOrdersAdapter.ViewHolder> {
     Context context;

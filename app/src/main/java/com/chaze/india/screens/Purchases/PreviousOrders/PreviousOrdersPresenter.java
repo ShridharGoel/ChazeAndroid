@@ -1,4 +1,4 @@
-package com.chaze.india.screens.PostOrderStatus.PreviousOrders;
+package com.chaze.india.screens.Purchases.PreviousOrders;
 
 import com.chaze.india.repository.network.ICommonAPIManager;
 import com.chaze.india.repository.session.SessionManager;

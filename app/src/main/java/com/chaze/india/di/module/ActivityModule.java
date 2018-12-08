@@ -25,8 +25,8 @@ import com.chaze.india.screens.Homepage.Food.FoodContract;
 import com.chaze.india.screens.Homepage.Food.FoodPresenter;
 import com.chaze.india.screens.Homepage.HomeContract;
 import com.chaze.india.screens.Homepage.HomePresenter;
-import com.chaze.india.screens.PostOrderStatus.PostOrderStatusContract;
-import com.chaze.india.screens.PostOrderStatus.PostOrderStatusPresenter;
+import com.chaze.india.screens.Purchases.PurchasesContract;
+import com.chaze.india.screens.Purchases.PurchasesPresenter;
 import com.chaze.india.screens.SubCategory.SubCategoryContract;
 import com.chaze.india.screens.SubCategory.SubCategoryPresenter;
 import com.chaze.india.screens.search.SearchContract;
@@ -156,7 +156,7 @@ public class ActivityModule {
         return presenter;
     }
     @Provides
-    PostOrderStatusContract.Presenter<PostOrderStatusContract.View> providesPostOrderPresenter(PostOrderStatusPresenter<PostOrderStatusContract.View> presenter){
+    PurchasesContract.Presenter<PurchasesContract.View> providesPostOrderPresenter(PurchasesPresenter<PurchasesContract.View> presenter){
         return presenter;
     }
 

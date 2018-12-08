@@ -1,4 +1,4 @@
-package com.chaze.india.screens.PostOrderStatus.PreviousOrders;
+package com.chaze.india.screens.Purchases.PreviousOrders;
 
 import com.chaze.india.screens.base.MvpContract;
 

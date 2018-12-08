@@ -1,4 +1,4 @@
-package com.chaze.india.screens.PostOrderStatus.ActiveOrders;
+package com.chaze.india.screens.Purchases.ActiveOrders;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

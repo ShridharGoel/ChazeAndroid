@@ -13,7 +13,6 @@ import com.chaze.india.R;
 import com.chaze.india.repository.session.SessionManager;
 import com.chaze.india.screens.Authentication.Login.LoginActivity;
 import com.chaze.india.screens.Homepage.HomeActivity;
-import com.chaze.india.screens.PostOrderStatus.PostOrderStatusActivity;
 import com.chaze.india.screens.base.BaseActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -105,7 +104,7 @@ public class SignUpActivity extends BaseActivity implements SignUpContract.View 
         });
 
         skipBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(SignUpActivity.this, PostOrderStatusActivity.class);
+            Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
             startActivity(intent);
             finish();
         });

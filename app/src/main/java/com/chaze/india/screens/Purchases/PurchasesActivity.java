@@ -1,38 +1,33 @@
-package com.chaze.india.screens.PostOrderStatus;
+package com.chaze.india.screens.Purchases;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.view.View;
 
-import com.chaze.india.screens.base.BaseActivity;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.chaze.india.R;
+import com.chaze.india.screens.base.BaseActivity;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import timber.log.Timber;
 
-public class PostOrderStatusActivity extends BaseActivity implements PostOrderStatusContract.View {
+public class PurchasesActivity extends BaseActivity implements PurchasesContract.View {
 
     MenuItem prevMenuItem;
 
     @Inject
-    PostOrderStatusContract.Presenter<PostOrderStatusContract.View> mPresenter;
+    PurchasesContract.Presenter<PurchasesContract.View> mPresenter;
     ProgressDialog progressDialog;
     @BindView(R.id.postorder_slider)
     TabLayout tabLayout;
     @BindView(R.id.postorder_view_pager)
     ViewPager viewPager;
     @Inject
-    PostOrderPagerAdapter postOrderPagerAdapter;
+    PurchasesPagerAdapter postOrderPagerAdapter;
 
 
     @BindView(R.id.ecommerce)

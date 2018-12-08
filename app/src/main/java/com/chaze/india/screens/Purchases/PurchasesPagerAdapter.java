@@ -1,19 +1,19 @@
-package com.chaze.india.screens.PostOrderStatus;
+package com.chaze.india.screens.Purchases;
 
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.chaze.india.screens.PostOrderStatus.ActiveOrders.ActiveOrdersFragment;
-import com.chaze.india.screens.PostOrderStatus.PreviousOrders.PreviousOrdersFragment;
+import com.chaze.india.screens.Purchases.ActiveOrders.ActiveOrdersFragment;
+import com.chaze.india.screens.Purchases.PreviousOrders.PreviousOrdersFragment;
 
-public class PostOrderPagerAdapter  extends FragmentStatePagerAdapter {
+public class PurchasesPagerAdapter extends FragmentStatePagerAdapter {
     private Fragment fragment;
 
 
 
-    public PostOrderPagerAdapter(FragmentManager fm) {
+    public PurchasesPagerAdapter(FragmentManager fm) {
         super(fm);
 
     }

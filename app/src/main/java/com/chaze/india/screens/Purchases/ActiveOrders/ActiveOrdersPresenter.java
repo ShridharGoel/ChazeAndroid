@@ -1,8 +1,7 @@
-package com.chaze.india.screens.PostOrderStatus.ActiveOrders;
+package com.chaze.india.screens.Purchases.ActiveOrders;
 
 import com.chaze.india.repository.network.ICommonAPIManager;
 import com.chaze.india.repository.session.SessionManager;
-import com.chaze.india.screens.PostOrderStatus.ActiveOrders.ActiveOrdersContract.View;
 import com.chaze.india.screens.base.BasePresenter;
 import com.chaze.india.utils.rx.SchedulerProvider;
 

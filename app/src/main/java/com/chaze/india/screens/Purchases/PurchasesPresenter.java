@@ -1,6 +1,6 @@
 
 
-package com.chaze.india.screens.PostOrderStatus;
+package com.chaze.india.screens.Purchases;
 
 import com.chaze.india.repository.network.ICommonAPIManager;
 import com.chaze.india.repository.session.SessionManager;
@@ -16,10 +16,10 @@ import io.reactivex.disposables.CompositeDisposable;
  * Created by Shubham Vishwakarma on 12/10/18.
  */
 
-public class PostOrderStatusPresenter<V extends PostOrderStatusContract.View> extends BasePresenter<V>
-        implements PostOrderStatusContract.Presenter<V> {
+public class PurchasesPresenter<V extends PurchasesContract.View> extends BasePresenter<V>
+        implements PurchasesContract.Presenter<V> {
     @Inject
-    public PostOrderStatusPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {
+    public PurchasesPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {
         super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
 }

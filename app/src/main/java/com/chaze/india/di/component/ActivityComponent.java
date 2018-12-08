@@ -13,9 +13,9 @@ import com.chaze.india.screens.Homepage.Ecommerce.ShopByProducts.ShopByProductsF
 import com.chaze.india.screens.Homepage.Ecommerce.ShopByShops.ShopByShopsFragment;
 import com.chaze.india.screens.Homepage.Food.FoodFragment;
 import com.chaze.india.screens.Homepage.HomeActivity;
-import com.chaze.india.screens.PostOrderStatus.ActiveOrders.ActiveOrdersFragment;
-import com.chaze.india.screens.PostOrderStatus.PostOrderStatusActivity;
 import com.chaze.india.screens.Profile.ProfileActivity;
+import com.chaze.india.screens.Purchases.ActiveOrders.ActiveOrdersFragment;
+import com.chaze.india.screens.Purchases.PurchasesActivity;
 import com.chaze.india.screens.Splash.SplashActivity;
 import com.chaze.india.screens.SubCategory.SubCategoryActivity;
 import com.chaze.india.screens.search.SearchActivity;
@@ -61,9 +61,8 @@ public interface ActivityComponent {
 
     void inject(SubCategoryActivity subCategoryActivity);
 
-    void inject(PostOrderStatusActivity postOrderStatusActivity);
+    void inject(PurchasesActivity purchasesActivity);
 
-    void inject(ActiveOrdersFragment activeOrdersFragment);
 
     void inject(ChangePasswordActivity changePasswordActivity);
 
@@ -72,4 +71,6 @@ public interface ActivityComponent {
     void inject(OTPConfirmation otpConfirmation);
 
     void inject(SignUpActivity signUpActivity);
+
+    void inject(ActiveOrdersFragment activeOrdersFragment);
 }
