@@ -37,7 +37,7 @@
     <color name="textLightDisabledDEPRECATED">#4CFFFFFF</color> <!--4C for %30 opacity-->
 
     <!-- Others -->
-    <color name="white">#ffffff</color>
+    <color name="white">#fff</color>
     <color name="black">#000000</color>
 
 

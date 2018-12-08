@@ -1,4 +1,4 @@
-package com.chaze.india.screens.Homepage.Home;
+package com.chaze.india.screens.Homepage;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.chaze.india.R;
-import com.chaze.india.screens.Homepage.Home.HomeCardAdapter;
 import com.squareup.picasso.Picasso;
 
 public class ProductImageSliderAdapter extends PagerAdapter {

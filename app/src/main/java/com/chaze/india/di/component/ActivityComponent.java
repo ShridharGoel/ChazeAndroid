@@ -12,7 +12,6 @@ import com.chaze.india.screens.Homepage.Ecommerce.EcommerceFragment;
 import com.chaze.india.screens.Homepage.Ecommerce.ShopByProducts.ShopByProductsFragment;
 import com.chaze.india.screens.Homepage.Ecommerce.ShopByShops.ShopByShopsFragment;
 import com.chaze.india.screens.Homepage.Food.FoodFragment;
-import com.chaze.india.screens.Homepage.Home.HomeFragment;
 import com.chaze.india.screens.Homepage.HomeActivity;
 import com.chaze.india.screens.PostOrderStatus.ActiveOrders.ActiveOrdersFragment;
 import com.chaze.india.screens.PostOrderStatus.PostOrderStatusActivity;
@@ -46,9 +45,6 @@ public interface ActivityComponent {
 
 
     void inject(SearchActivity searchActivity);
-
-    void inject(HomeFragment homeFragment);
-
     void inject(EcommerceFragment ecommerceFragment);
 
     void inject(ShopByProductsFragment shopByProductsFragment);

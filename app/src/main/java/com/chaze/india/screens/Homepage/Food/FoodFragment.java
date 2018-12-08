@@ -72,8 +72,7 @@ public class FoodFragment extends BaseFragment implements FoodContract.View {
         getActivityComponent().inject(this);
         setUnBinder(ButterKnife.bind(this, view));
 
-        Window window = getActivity().getWindow();
-        window.setStatusBarColor(getResources().getColor(R.color.colorPumpkinDark));
+
 
         mPresenter.onAttach(this);
         setupToolBar();
@@ -92,7 +91,6 @@ public class FoodFragment extends BaseFragment implements FoodContract.View {
 
     private void setupToolBar() {
         searchView.setOnClickListener(v -> goToSearch());
-        ImageView imageView = toolbar.findViewById(R.id.toolbar_image);
 
         RelativeLayout cartView = toolbar.findViewById(R.id.cart_container);
 
@@ -100,9 +98,6 @@ public class FoodFragment extends BaseFragment implements FoodContract.View {
             startActivity(new Intent(getActivity(), CartActivity.class));
         });
 
-        imageView.setOnClickListener(v -> {
-            ((HomeActivity) getActivity()).openDrawer();
-        });
 
 
     }

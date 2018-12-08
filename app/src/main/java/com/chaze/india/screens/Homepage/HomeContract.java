@@ -1,8 +1,6 @@
 package com.chaze.india.screens.Homepage;
 
 import com.chaze.india.screens.base.MvpContract;
-import com.chaze.india.screens.Homepage.Home.HomeFragmentContract;
-import com.chaze.india.screens.base.MvpContract;
 
 
 /**
@@ -11,7 +9,7 @@ import com.chaze.india.screens.base.MvpContract;
 
 public class HomeContract {
 
-    public interface View extends MvpContract.View, HomeFragmentContract.View {
+    public interface View extends MvpContract.View {
 
 
     }

@@ -4,31 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     android:background="@color/colorPurple"
-
-    android:paddingTop="4dp"
     android:gravity="center_vertical"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:paddingTop="4dp">
 
-
-    <ImageView
-        android:id="@+id/toolbar_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_gravity="left"
-        android:src="@mipmap/ic_launcher" />
 
     <TextView
         android:id="@+id/toolbar_text"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_toEndOf="@+id/toolbar_image"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:gravity="center_vertical"
-        android:textSize="24sp"
         android:paddingTop="4dp"
-        android:textStyle="bold"
         android:text="Chaze"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_toolbar"
+        android:textStyle="bold" />
 
     <include
         layout="@layout/cart"

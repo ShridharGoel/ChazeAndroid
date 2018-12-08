@@ -13,4 +13,7 @@
     <dimen name="text_large">14sp</dimen>
     <dimen name="text_very_large">16sp</dimen>
     <dimen name="text_very_very_large">20sp</dimen>
+    <dimen name="text_toolbar">24sp</dimen>
+
+
 </resources>

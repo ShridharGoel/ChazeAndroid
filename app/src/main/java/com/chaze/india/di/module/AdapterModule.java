@@ -12,11 +12,8 @@ import com.chaze.india.screens.Homepage.Ecommerce.EcommercePagerAdapter;
 import com.chaze.india.screens.Homepage.Food.CuisinesAdapter;
 import com.chaze.india.screens.Homepage.Food.FoodFragment;
 import com.chaze.india.screens.Homepage.Food.RestaurantListAdapter;
-import com.chaze.india.screens.Homepage.Home.HomeFragment;
-import com.chaze.india.screens.Homepage.Home.HomeFragmentContract;
-import com.chaze.india.screens.Homepage.Home.HomeFragmentPresenter;
-import com.chaze.india.screens.Homepage.Home.HomeGridAdapter;
 import com.chaze.india.screens.Homepage.HomeBottomNavPagerAdapter;
+import com.chaze.india.screens.Homepage.HomeGridAdapter;
 import com.chaze.india.screens.Homepage.LocalSearch.LocalSearchFragment;
 import com.chaze.india.screens.Homepage.More.MoreFragment;
 import com.chaze.india.screens.PostOrderStatus.ActiveOrders.ActiveOrdersAdapter;
@@ -62,16 +59,14 @@ public class AdapterModule {
     HomeBottomNavPagerAdapter getBottomNavAdapter() {
         EcommerceFragment ecommerce = new EcommerceFragment();
         FoodFragment foodFragment = new FoodFragment();
-        HomeFragment homeFragment = new HomeFragment();
-        LocalSearchFragment localSearch = new LocalSearchFragment();
         MoreFragment moreFragment_object = new MoreFragment();
 
+
+
         HomeBottomNavPagerAdapter adapter = new HomeBottomNavPagerAdapter(mActivity.getSupportFragmentManager());
-        adapter.addFragment(homeFragment);
         adapter.addFragment(ecommerce);
         adapter.addFragment(foodFragment);
-        /*adapter.addFragment(localSearch);
-        adapter.addFragment(moreFragment_object);*/
+        adapter.addFragment(moreFragment_object);
         return adapter;
 
     }
@@ -134,12 +129,6 @@ public class AdapterModule {
         return new ShopCategoryAdapter();
     }
 
-
-    @Provides
-    HomeFragmentContract.Presenter<HomeFragmentContract.View> providesHomeFragmentPresenter(
-            HomeFragmentPresenter<HomeFragmentContract.View> presenter) {
-        return presenter;
-    }
 
     @Provides
     ActiveOrdersContract.Presenter<ActiveOrdersContract.View> providesActiveOrdersFragmentPresenter(ActiveOrdersPresenter<ActiveOrdersContract.View> presenter) {

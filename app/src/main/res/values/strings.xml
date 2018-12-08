@@ -11,4 +11,9 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="title_ecommerce">Ecommerce</string>
+    <string name="title_food">Food</string>
+    <string name="title_wishlist">Wish list</string>
+    <string name="title_purchases">Purchases</string>
+    <string name="title_more">More</string>
 </resources>

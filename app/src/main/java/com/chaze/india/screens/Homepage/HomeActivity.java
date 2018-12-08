@@ -3,16 +3,26 @@ package com.chaze.india.screens.Homepage;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.view.Gravity;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
+import android.view.Window;
+import android.widget.FrameLayout;
 
 import com.chaze.india.models.RecyclerItems;
 import com.chaze.india.screens.Checkout.CheckoutActivity;
+import com.chaze.india.screens.Homepage.Ecommerce.EcommerceFragment;
+import com.chaze.india.screens.Homepage.Food.FoodFragment;
+import com.chaze.india.screens.Homepage.More.MoreFragment;
 import com.chaze.india.screens.PostOrderStatus.PostOrderStatusActivity;
 import com.chaze.india.R;
 import com.chaze.india.models.EcomerceCategory;
@@ -32,10 +42,8 @@ import butterknife.ButterKnife;
 import timber.log.Timber;
 
 public class HomeActivity extends BaseActivity
-        implements NavigationView.OnNavigationItemSelectedListener, HomeContract.View {
+        implements HomeContract.View {
 
-
-    MenuItem prevMenuItem;
 
     ProgressDialog progressDialog;
     @Inject
@@ -44,18 +52,34 @@ public class HomeActivity extends BaseActivity
     @Inject
     HomeContract.Presenter<HomeContract.View> mPresenter;
 
-    @BindView(R.id.navigation)
-    BottomNavigationView bottomNavigationView;
-    @BindView(R.id.viewpager)
-    ViewPager viewPager;
-    @BindView(R.id.drawer_layout)
-    DrawerLayout drawer;
-    @BindView(R.id.nav_view)
-    NavigationView navigationView;
 
-    @Inject
-    HomeBottomNavPagerAdapter adapter;
+    @BindView(R.id.fragment)
+    FrameLayout fragmentContainer;
 
+
+    @BindView(R.id.ecommerce)
+    ConstraintLayout ecommerce;
+
+
+    @BindView(R.id.eat)
+    ConstraintLayout eat;
+
+
+    @BindView(R.id.wishlist)
+    ConstraintLayout wishlist;
+
+
+    @BindView(R.id.purchases)
+    ConstraintLayout purchases;
+
+
+    @BindView(R.id.more)
+    ConstraintLayout more;
+
+    @BindView(R.id.bottom_bar)
+    ConstraintLayout bottomBar;
+
+    int cid = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,137 +89,96 @@ public class HomeActivity extends BaseActivity
         getActivityComponent().inject(this);
         progressDialog = new ProgressDialog(this);
         mPresenter.onAttach(this);
-        setupBottomNavigation();
-        setupViewPager(viewPager);
+        addFragment(0);
 
-
-    }
-
-    public void openDrawer() {
-        drawer.openDrawer(Gravity.LEFT);
-    }
-
-    private void setupViewPager(ViewPager viewPager) {
-
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                if (prevMenuItem != null) {
-                    prevMenuItem.setChecked(false);
-                } else {
-                    bottomNavigationView.getMenu().getItem(0).setChecked(false);
-                }
-                Timber.d("page" + "onPageSelected: " + position);
-                bottomNavigationView.getMenu().getItem(position).setChecked(true);
-                prevMenuItem = bottomNavigationView.getMenu().getItem(position);
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-
-        viewPager.setAdapter(adapter);
-    }
-
-    private void setupBottomNavigation() {
-        BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-                = (item) -> {
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    return true;
-                case R.id.navigation_dashboard:
-                    return true;
-                case R.id.navigation_3:
-                    return true;
-                /*case R.id.navigation_4:
-                    return true;
-                case R.id.navigation_5:
-                    return true;*/
-            }
-            return false;
-        };
-        bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-
-        navigationView.setNavigationItemSelectedListener(this);
-
-
-        bottomNavigationView.setOnNavigationItemSelectedListener(
-                item -> {
-                    switch (item.getItemId()) {
-                        case R.id.navigation_home:
-
-                            viewPager.setCurrentItem(0);
-                            break;
-                        case R.id.navigation_dashboard:
-                            //showLoading();
-                          viewPager.setCurrentItem(1);
-
-                            break;
-                        case R.id.navigation_3:
-                            //showLoading();
-                           // progressDialog.show();
-                            viewPager.setCurrentItem(2);
-                            break;
-                       /* case R.id.navigation_4:
-                           // showLoading();
-
-                           viewPager.setCurrentItem(3);
-                            break;
-                        case R.id.navigation_5:
-                        //    showLoading();
-                            viewPager.setCurrentItem(4);
-                            break;*/
-                    }
-                    return false;
-                });
+        setListeners();
 
     }
 
+    private void setListeners() {
 
-    @Override
-    public void onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.START)) drawer.closeDrawer(GravityCompat.START);
-        else super.onBackPressed();
+        ecommerce.setOnClickListener(v -> addFragment(0));
+        eat.setOnClickListener((v -> addFragment(1)));
+        wishlist.setOnClickListener(v -> addFragment(2));
+        purchases.setOnClickListener(v -> addFragment(3));
+        more.setOnClickListener(v -> addFragment(4));
     }
 
+    private void addFragment(int id) {
 
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        switch (id) {
-            case R.id.nav_profile:
-                Intent intent1 = new Intent(HomeActivity.this, ProfileActivity.class);
-                startActivity(intent1);
-                break;
-            case R.id.nav_checkout:
-                Intent intent2=new Intent(HomeActivity.this, CheckoutActivity.class);
-                startActivity(intent2);
-                break;
-            case R.id.nav_myorders:
-                Intent intent3=new Intent(HomeActivity.this, PostOrderStatusActivity.class);
-                startActivity(intent3);
-                break;
+
+        if (cid == id) return;
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+        Fragment ecommerceFragment = new EcommerceFragment(), foodFragment = new FoodFragment(), moreFragment = new MoreFragment();
+
+
+        Fragment fragment = fragmentManager.findFragmentById(R.id.fragment);
+        FragmentTransaction fragmentTransaction;
+        if (fragment != null) {
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.remove(fragment);
+            fragmentTransaction.commit();
         }
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
+
+        fragmentTransaction = fragmentManager.beginTransaction();
+
+        switch (id) {
+            case 0: {
+                fragmentTransaction.add(R.id.fragment, ecommerceFragment).commit();
+                Window window = getWindow();
+                window.setStatusBarColor(getResources().getColor(R.color.colorPurple));
+                bottomBar.setBackgroundColor(getResources().getColor(R.color.colorPurpleLight));
+                break;
+            }
+            case 1: {
+                fragmentTransaction.add(R.id.fragment, foodFragment).commit();
+                Window window = getWindow();
+                window.setStatusBarColor(getResources().getColor(R.color.colorPumpkinDark));
+                bottomBar.setBackgroundColor(getResources().getColor(R.color.colorPumpkin));
+                break;
+            }
+            case 2: {
+
+            }
+            case 3: {
+                this.startActivityForResult(new Intent(this, PostOrderStatusActivity.class), cid);
+                this.overridePendingTransition(0, 0);
+            }
+            case 4: {
+                fragmentTransaction.add(R.id.fragment, moreFragment).commit();
+                break;
+            }
+        }
+
+        cid = id;
+
+
     }
 
-    @Override
+
     public void addItems(List<EcomerceCategory> items) {
 
     }
 
-    @Override
     public ArrayList<RecyclerItems> loadCards() {
         return null;
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Timber.e("" + requestCode +" "+ resultCode);
+
+        if (resultCode!=-1) {
+            addFragment(resultCode);
+        } else {
+            addFragment(requestCode);
+        }
+
+
+    }
+
 }

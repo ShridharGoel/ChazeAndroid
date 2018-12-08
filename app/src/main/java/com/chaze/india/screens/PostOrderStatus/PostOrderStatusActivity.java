@@ -2,6 +2,7 @@ package com.chaze.india.screens.PostOrderStatus;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -19,7 +20,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import timber.log.Timber;
 
-public class PostOrderStatusActivity extends BaseActivity implements PostOrderStatusContract.View{
+public class PostOrderStatusActivity extends BaseActivity implements PostOrderStatusContract.View {
 
     MenuItem prevMenuItem;
 
@@ -33,6 +34,26 @@ public class PostOrderStatusActivity extends BaseActivity implements PostOrderSt
     @Inject
     PostOrderPagerAdapter postOrderPagerAdapter;
 
+
+    @BindView(R.id.ecommerce)
+    ConstraintLayout ecommerce;
+
+
+    @BindView(R.id.eat)
+    ConstraintLayout eat;
+
+
+    @BindView(R.id.wishlist)
+    ConstraintLayout wishlist;
+
+
+    @BindView(R.id.purchases)
+    ConstraintLayout purchases;
+
+
+    @BindView(R.id.more)
+    ConstraintLayout more;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -44,8 +65,40 @@ public class PostOrderStatusActivity extends BaseActivity implements PostOrderSt
         mPresenter.onAttach(this);
         viewPager.setAdapter(postOrderPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
+        setListeners();
+
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        setResult(-1);
+        finish();
+    }
+
+    private void setListeners() {
+
+        ecommerce.setOnClickListener((v) -> {
+            setResult(0);
+            finish();
+        });
+        eat.setOnClickListener((v) -> {
+            setResult(1);
+            finish();
+        });
+        wishlist.setOnClickListener((v) -> {
+            setResult(2);
+            finish();
+        });
+        purchases.setOnClickListener((v) -> {
+            setResult(3);
+            finish();
+        });
+        more.setOnClickListener((v) -> {
+            setResult(4);
+            finish();
+        });
+    }
 
     @Override
     public void showLoading() {

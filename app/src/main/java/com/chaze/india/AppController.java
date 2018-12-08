@@ -56,6 +56,8 @@ public class AppController extends Application {
             return;
         }
         LeakCanary.install(this);
+
+
     }
 
 

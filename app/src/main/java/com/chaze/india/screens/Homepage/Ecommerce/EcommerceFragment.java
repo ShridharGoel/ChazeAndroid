@@ -88,16 +88,11 @@ public class EcommerceFragment extends BaseFragment implements EcommerceContract
 
     private void setupToolBar() {
         searchView.setOnClickListener(v -> goToSearch());
-        ImageView imageView = toolbar.findViewById(R.id.toolbar_image);
 
         RelativeLayout cartView = toolbar.findViewById(R.id.cart_container);
 
         cartView.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), CartActivity.class));
-        });
-
-        imageView.setOnClickListener(v -> {
-            ((HomeActivity) getActivity()).openDrawer();
         });
 
 
