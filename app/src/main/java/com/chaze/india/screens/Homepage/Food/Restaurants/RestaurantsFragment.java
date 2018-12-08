@@ -1,21 +1,28 @@
-package com.chaze.india.screens.Homepage.Ecommerce.ShopByShops;
+package com.chaze.india.screens.Homepage.Food.Restaurants;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+import android.widget.SearchView;
 
-import com.chaze.india.models.Shop;
-import com.chaze.india.screens.base.BaseFragment;
 import com.chaze.india.R;
+import com.chaze.india.di.Qualifiers.LinLayoutHori;
 import com.chaze.india.di.Qualifiers.LinLayoutVert;
 import com.chaze.india.models.EcomerceCategory;
+import com.chaze.india.screens.Cart.CartActivity;
+import com.chaze.india.screens.Homepage.Food.CuisinesAdapter;
+import com.chaze.india.screens.Homepage.Food.FoodContract;
+import com.chaze.india.screens.base.BaseFragment;
+import com.chaze.india.screens.search.SearchActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -24,15 +31,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import timber.log.Timber;
 
-public class ShopByShopsFragment extends BaseFragment implements ShopByShopsContract.View {
+public class RestaurantsFragment extends BaseFragment implements RestaurantsContract.View {
 
 
     private int totalItemCount, lastVisibleItem, pageNumber = 1;
     private final int VISIBLE_THRESHOLD = 1;
     boolean loading;
-    private List<EcomerceCategory> shopList = new ArrayList<>();
 
-    @BindView(R.id.shops_recycler_view)
+
+    @BindView(R.id.restaurants_recycler_view)
     RecyclerView recyclerView;
 
     @Inject
@@ -40,25 +47,22 @@ public class ShopByShopsFragment extends BaseFragment implements ShopByShopsCont
     LinearLayoutManager mLayoutManager;
 
     @Inject
-    ShopsAdapter adapter;
+    RestaurantListAdapter adapter;
+
 
     @Inject
-    ShopByShopsContract.Presenter<ShopByShopsContract.View> mPresenter;
+    RestaurantsContract.Presenter<RestaurantsContract.View> mPresenter;
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-
-        Timber.d("ShopByProductsFragment");
-
-        View view = inflater.inflate(R.layout.fragment_shop_by_shops, container, false);
+        View view = inflater.inflate(R.layout.fragment_restaurants, container, false);
 
         onAttach(getContext());
         getActivityComponent().inject(this);
         setUnBinder(ButterKnife.bind(this, view));
         mPresenter.onAttach(this);
-
         return view;
     }
 
@@ -66,16 +70,14 @@ public class ShopByShopsFragment extends BaseFragment implements ShopByShopsCont
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(mLayoutManager);
+        adapter.addItems();
         setUpLoadMoreListener();
-        adapter.addItems(null);
-        mPresenter.onAttach(this);
         mPresenter.subscribeForData();
 
-
     }
+
 
     /**
      * setting listener to get callback for load more
@@ -94,11 +96,17 @@ public class ShopByShopsFragment extends BaseFragment implements ShopByShopsCont
                 if (!loading
                         && totalItemCount <= (lastVisibleItem + VISIBLE_THRESHOLD)) {
                     mPresenter.next();
-                    showLoading();
+                    loading = true;
                 }
             }
         });
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+    }
+
 
     @Override
     public void hideLoading() {
@@ -112,24 +120,9 @@ public class ShopByShopsFragment extends BaseFragment implements ShopByShopsCont
         loading = true;
     }
 
-
     @Override
-    public void addItems(List<Shop> items) {
-        adapter.addItems(items);
+    public void addItems(List<EcomerceCategory> items) {
+
     }
 
-    @Override
-    public void showShops(List<Shop> lst) {
-
-        for(Shop e:lst){
-            Timber.e(e.getName());
-        }
-        hideLoading();
-        adapter.addItems(lst);
-    }
-
-    @Override
-    public void showError() {
-
-    }
 }

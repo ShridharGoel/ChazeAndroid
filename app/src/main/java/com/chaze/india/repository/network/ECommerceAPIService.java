@@ -2,6 +2,7 @@ package com.chaze.india.repository.network;
 
 
 import com.chaze.india.models.EcomerceCategory;
+import com.chaze.india.models.Shop;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ import retrofit2.http.GET;
 public interface ECommerceAPIService {
 
     @GET("shops/")
-    Single<List<EcomerceCategory>> getShopsList();
+    Single<List<Shop>> getShopsList();
 
 
 }

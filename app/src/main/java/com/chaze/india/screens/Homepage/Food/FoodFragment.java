@@ -4,25 +4,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
 
-import com.chaze.india.screens.Homepage.HomeActivity;
 import com.chaze.india.screens.base.BaseFragment;
 import com.chaze.india.screens.search.SearchActivity;
 import com.chaze.india.R;
 import com.chaze.india.di.Qualifiers.LinLayoutHori;
-import com.chaze.india.di.Qualifiers.LinLayoutVert;
 import com.chaze.india.screens.Cart.CartActivity;
-import com.chaze.india.screens.Homepage.Ecommerce.EcommerceCategoryAdapter;
 
 import javax.inject.Inject;
 
@@ -33,19 +30,23 @@ import timber.log.Timber;
 public class FoodFragment extends BaseFragment implements FoodContract.View {
 
 
-    @BindView(R.id.category_recycler_view)
-    RecyclerView categoryRecyclerView;
-
-    @BindView(R.id.food_recycler_view)
-    RecyclerView recyclerView;
-
     @Inject
-    @LinLayoutVert
+    @LinLayoutHori
     LinearLayoutManager mLayoutManager;
 
     @Inject
-    @LinLayoutHori
-    LinearLayoutManager mLayoutManagerCategory;
+    CuisinesAdapter adapter;
+
+    @Inject
+    FoodPagerAdapter foodPagerAdapter;
+
+    @BindView(R.id.food_view_pager)
+    ViewPager viewPager;
+    @BindView(R.id.food_slider)
+    TabLayout tabLayout;
+    @BindView(R.id.cuisines_recycler_view)
+    RecyclerView recyclerView;
+
 
     @BindView(R.id.toolbar)
     RelativeLayout toolbar;
@@ -54,30 +55,20 @@ public class FoodFragment extends BaseFragment implements FoodContract.View {
     SearchView searchView;
 
     @Inject
-    RestaurantListAdapter paginationAdapter;
-
-    @Inject
-    CuisinesAdapter categoryAdapter;
-
-    @Inject
     FoodContract.Presenter<FoodContract.View> mPresenter;
-
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Timber.d("Food");
+        Timber.d("Ecommerce Fragment");
+
         View view = inflater.inflate(R.layout.fragment_food, container, false);
+
         onAttach(getContext());
         getActivityComponent().inject(this);
         setUnBinder(ButterKnife.bind(this, view));
-
-
-
         mPresenter.onAttach(this);
         setupToolBar();
-
-
         return view;
     }
 
@@ -99,29 +90,19 @@ public class FoodFragment extends BaseFragment implements FoodContract.View {
         });
 
 
-
     }
 
-    void setup() {
-
-        categoryAdapter.addItems();
-        paginationAdapter.addItems();
-
-
-        recyclerView.setAdapter(paginationAdapter);
-        recyclerView.setLayoutManager(mLayoutManager);
-
-        categoryRecyclerView.setAdapter(categoryAdapter);
-        categoryRecyclerView.setLayoutManager(mLayoutManagerCategory);
-    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Timber.d("FoodFragment");
 
-
-        setup();
+        adapter.addItems();
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(mLayoutManager);
+        viewPager.setAdapter(foodPagerAdapter);
+        tabLayout.setupWithViewPager(viewPager);
 
     }
 

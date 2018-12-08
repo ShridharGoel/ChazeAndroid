@@ -9,8 +9,7 @@
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="wrap_content">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
@@ -32,8 +31,13 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true" />
 
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/cuisines_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPumpkin"
+                    android:orientation="horizontal" />
             </LinearLayout>
-
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
@@ -48,45 +52,36 @@
                 android:id="@+id/searchbar"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_margin="8dp"
-                android:background="@color/textLightSecondary"
+                app:theme="@style/AppSearchView"
+                android:background="@color/textLightPrimary"
                 android:focusable="false"
                 android:gravity="center"
                 app:iconifiedByDefault="false"
-                app:queryHint="Search for shops, products, food..."
-                app:theme="@style/AppSearchView" />
+                app:queryHint="Search for shops, products, food..." />
         </android.support.design.widget.CollapsingToolbarLayout>
+
+
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/food_slider"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="bottom"
+            android:elevation="5dp"
+            app:tabBackground="@color/colorPumpkin"
+            app:tabSelectedTextColor="@color/colorCyanDark"
+            app:tabTextColor="@color/white"/>
 
 
     </android.support.design.widget.AppBarLayout>
 
 
-    <android.support.v4.widget.NestedScrollView
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/food_view_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:elevation="15dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/category_recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/food_recycler_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-        </LinearLayout>
-
-    </android.support.v4.widget.NestedScrollView>
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </android.support.design.widget.CoordinatorLayout>

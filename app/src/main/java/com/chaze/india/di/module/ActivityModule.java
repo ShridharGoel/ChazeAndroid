@@ -23,6 +23,8 @@ import com.chaze.india.screens.Homepage.Ecommerce.ShopByShops.ShopByShopsPresent
 import com.chaze.india.screens.Homepage.Ecommerce.ShopByShops.ShopsAdapter;
 import com.chaze.india.screens.Homepage.Food.FoodContract;
 import com.chaze.india.screens.Homepage.Food.FoodPresenter;
+import com.chaze.india.screens.Homepage.Food.Restaurants.RestaurantsContract;
+import com.chaze.india.screens.Homepage.Food.Restaurants.RestaurantsPresenter;
 import com.chaze.india.screens.Homepage.HomeContract;
 import com.chaze.india.screens.Homepage.HomePresenter;
 import com.chaze.india.screens.Purchases.PurchasesContract;
@@ -96,7 +98,6 @@ public class ActivityModule {
     }
 
 
-
     @Provides
     EcommerceContract.Presenter<EcommerceContract.View> providesEcommercePresenter(
             EcommercePresenter<EcommerceContract.View> presenter) {
@@ -128,7 +129,6 @@ public class ActivityModule {
     }
 
 
-
     @Provides
     LoginContract.Presenter<LoginContract.View> providesLoginPresenter(LoginPresenter<LoginContract.View> presenter) {
         return presenter;
@@ -155,8 +155,14 @@ public class ActivityModule {
 
         return presenter;
     }
+
     @Provides
-    PurchasesContract.Presenter<PurchasesContract.View> providesPostOrderPresenter(PurchasesPresenter<PurchasesContract.View> presenter){
+    PurchasesContract.Presenter<PurchasesContract.View> providesPostOrderPresenter(PurchasesPresenter<PurchasesContract.View> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    RestaurantsContract.Presenter<RestaurantsContract.View> providesRestaurantsPresenter(RestaurantsPresenter<RestaurantsContract.View> presenter) {
         return presenter;
     }
 

@@ -1,4 +1,4 @@
-package com.chaze.india.screens.Homepage.Food;
+package com.chaze.india.screens.Homepage.Food.Restaurants;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.chaze.india.R;
-import com.chaze.india.models.EcomerceCategory;
 import com.chaze.india.models.Restaurant;
 import com.chaze.india.screens.SubCategory.SubCategoryActivity;
 

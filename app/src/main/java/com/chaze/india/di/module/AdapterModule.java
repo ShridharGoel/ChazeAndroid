@@ -11,7 +11,8 @@ import com.chaze.india.screens.Homepage.Ecommerce.EcommerceFragment;
 import com.chaze.india.screens.Homepage.Ecommerce.EcommercePagerAdapter;
 import com.chaze.india.screens.Homepage.Food.CuisinesAdapter;
 import com.chaze.india.screens.Homepage.Food.FoodFragment;
-import com.chaze.india.screens.Homepage.Food.RestaurantListAdapter;
+import com.chaze.india.screens.Homepage.Food.FoodPagerAdapter;
+import com.chaze.india.screens.Homepage.Food.Restaurants.RestaurantListAdapter;
 import com.chaze.india.screens.Homepage.HomeBottomNavPagerAdapter;
 import com.chaze.india.screens.Homepage.HomeGridAdapter;
 import com.chaze.india.screens.Homepage.More.MoreFragment;
@@ -101,6 +102,10 @@ public class AdapterModule {
         return new ActiveOrdersAdapter(mActivity, new ArrayList<>());
     }
 
+    @Provides
+    FoodPagerAdapter providesFoodPagerAdapter() {
+        return new FoodPagerAdapter(mActivity.getSupportFragmentManager());
+    }
 
     @Provides
     ProductsPostAdapter providesProductsPostAdapter() {

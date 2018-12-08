@@ -14,6 +14,10 @@ public class Shop extends Business implements Serializable {
         this.category = category;
     }
 
+    public Shop() {
+
+    }
+
     public String getCategory() {
         return category;
     }
