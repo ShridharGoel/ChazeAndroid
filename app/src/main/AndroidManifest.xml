@@ -17,13 +17,13 @@
         <activity
             android:name="com.chaze.india.screens.Homepage.HomeActivity"
             android:label="@string/title_activity_home"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name="com.chaze.india.screens.search.SearchActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name="com.chaze.india.screens.Cart.CartActivity" />
-        <activity android:name="com.chaze.india.screens.Authentication.Login.LoginActivity">
-        </activity>
+        <activity android:name="com.chaze.india.screens.Authentication.Login.LoginActivity"></activity>
         <activity android:name="com.chaze.india.screens.WelcomeSlides.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,22 +31,52 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".screens.Profile.ProfileActivity" />
-        <activity android:name=".screens.MyOrders.MyOrdersActivity" />
-        <activity android:name=".screens.MyWishList.MyWishListActivity" />
-        <activity android:name=".screens.PostOrderStatus.PostOrderStatusActivity" />
-        <activity android:name=".screens.Checkout.CheckoutActivity" />
-        <activity android:name=".screens.MyOffers.MyOffersActivity" />
-        <activity android:name=".screens.ContactUs.ContactUsActivity" />
-        <activity android:name=".screens.ProductInfo.ProductInfoActivity" />
-        <activity android:name=".screens.Shop.ShopActivity" />
-        <activity android:name=".screens.Category.CategoryActivity" />
-        <activity android:name=".screens.Referral.ReferralActivity" />
-        <activity android:name=".screens.SubCategory.SubCategoryActivity"
+        <activity
+            android:name=".screens.Profile.ProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screens.MyOrders.MyOrdersActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screens.MyWishList.MyWishListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screens.PostOrderStatus.PostOrderStatusActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screens.Checkout.CheckoutActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screens.MyOffers.MyOffersActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screens.ContactUs.ContactUsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screens.ProductInfo.ProductInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screens.Shop.ShopActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screens.Category.CategoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screens.Referral.ReferralActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screens.SubCategory.SubCategoryActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".screens.Authentication.Signup.SignUpActivity" />
-        <activity android:name=".screens.Authentication.OTPConfirmation.OTPConfirmation" />
-        <activity android:name=".screens.Authentication.ChangePassword.ChangePasswordActivity" />
+        <activity
+            android:name=".screens.Authentication.Signup.SignUpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screens.Authentication.OTPConfirmation.OTPConfirmation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screens.Authentication.ChangePassword.ChangePasswordActivity"
+            android:screenOrientation="portrait" />
 
 
         <service android:name=".service.MyFirebaseInstanceIDService" />
