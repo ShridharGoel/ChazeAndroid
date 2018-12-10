@@ -15,6 +15,7 @@ import javax.inject.Inject;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
+import timber.log.Timber;
 
 /**
  * Created by Shridhar Goel on 14/10/18.
@@ -36,10 +37,13 @@ public class SignUpPresenter<V extends SignUpContract.View> extends BasePresente
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(signUpResponse -> {
   //                  getMvpView().showSignUpResult();
+                    Timber.e("Success");
+
                     //On success
                 }, Throwable -> {
 //                    getMvpView().showSignUpResult();
                     //On error
+                    Timber.e("Failure: " + Throwable.getMessage());
                 });
         }
     }
