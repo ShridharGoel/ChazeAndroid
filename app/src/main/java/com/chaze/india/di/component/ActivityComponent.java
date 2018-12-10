@@ -7,6 +7,8 @@ import com.chaze.india.screens.Authentication.ChangePassword.ChangePasswordActiv
 import com.chaze.india.screens.Authentication.Login.LoginActivity;
 import com.chaze.india.screens.Authentication.OTPConfirmation.OTPConfirmation;
 import com.chaze.india.screens.Authentication.Signup.SignUpActivity;
+import com.chaze.india.screens.Cart.EcommerceCart.CartActivity;
+import com.chaze.india.screens.Cart.RestaurantCart.RestaurantCartActivity;
 import com.chaze.india.screens.Category.CategoryActivity;
 import com.chaze.india.screens.Homepage.Ecommerce.EcommerceFragment;
 import com.chaze.india.screens.Homepage.Ecommerce.ShopByProducts.ShopByProductsFragment;
@@ -18,13 +20,12 @@ import com.chaze.india.screens.Homepage.Purchases.ActiveOrders.ActiveOrdersFragm
 import com.chaze.india.screens.Homepage.Purchases.PurchasesActivity;
 import com.chaze.india.screens.ProductInfo.ProductInfoActivity;
 import com.chaze.india.screens.Profile.ProfileActivity;
+import com.chaze.india.screens.Shop.ShopActivity;
 import com.chaze.india.screens.Splash.SplashActivity;
 import com.chaze.india.screens.SubCategory.SubCategoryActivity;
 import com.chaze.india.screens.search.SearchActivity;
 import com.chaze.india.di.Qualifiers.PerActivity;
 import com.chaze.india.di.module.ActivityModule;
-
-import com.chaze.india.screens.Cart.CartActivity;
 
 
 import dagger.Component;
@@ -81,4 +82,7 @@ public interface ActivityComponent {
 
     void inject(PurchasesActivity purchasesActivity);
 
+    void inject(ShopActivity shopActivity);
+
+    void inject(RestaurantCartActivity restaurantCartActivity);
 }

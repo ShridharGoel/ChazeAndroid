@@ -1,27 +1,18 @@
 package com.chaze.india.screens.Homepage.Food.Restaurants;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
-import android.widget.SearchView;
 
 import com.chaze.india.R;
-import com.chaze.india.di.Qualifiers.LinLayoutHori;
 import com.chaze.india.di.Qualifiers.LinLayoutVert;
 import com.chaze.india.models.EcomerceCategory;
-import com.chaze.india.screens.Cart.CartActivity;
-import com.chaze.india.screens.Homepage.Food.CuisinesAdapter;
-import com.chaze.india.screens.Homepage.Food.FoodContract;
 import com.chaze.india.screens.base.BaseFragment;
-import com.chaze.india.screens.search.SearchActivity;
 
 import java.util.List;
 
@@ -29,7 +20,6 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import timber.log.Timber;
 
 public class RestaurantsFragment extends BaseFragment implements RestaurantsContract.View {
 

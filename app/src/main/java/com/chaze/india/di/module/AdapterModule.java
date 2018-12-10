@@ -3,8 +3,8 @@ package com.chaze.india.di.module;
 import android.support.v7.app.AppCompatActivity;
 
 import com.chaze.india.models.RecyclerItems;
-import com.chaze.india.screens.Cart.CartBusinessAdapter;
-import com.chaze.india.screens.Cart.CartItemsAdapter;
+import com.chaze.india.screens.Cart.EcommerceCart.CartBusinessAdapter;
+import com.chaze.india.screens.Cart.EcommerceCart.CartItemsAdapter;
 import com.chaze.india.screens.Category.ShopCategoryAdapter;
 import com.chaze.india.screens.Homepage.Ecommerce.EcommerceCategoryAdapter;
 import com.chaze.india.screens.Homepage.Ecommerce.EcommerceFragment;

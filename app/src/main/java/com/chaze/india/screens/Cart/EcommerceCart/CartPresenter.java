@@ -1,9 +1,7 @@
 
 
-package com.chaze.india.screens.Cart;
+package com.chaze.india.screens.Cart.EcommerceCart;
 
-import com.chaze.india.repository.network.ICommonAPIManager;
-import com.chaze.india.utils.rx.SchedulerProvider;
 import com.chaze.india.repository.network.ICommonAPIManager;
 import com.chaze.india.repository.session.SessionManager;
 import com.chaze.india.screens.base.BasePresenter;

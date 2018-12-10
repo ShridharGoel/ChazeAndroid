@@ -1,4 +1,4 @@
-package com.chaze.india.screens.Cart;
+package com.chaze.india.screens.Cart.EcommerceCart;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -7,12 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.chaze.india.models.Business;
-import com.chaze.india.models.CartItem;
-import com.chaze.india.models.Item;
 import com.chaze.india.R;
 import com.chaze.india.models.Business;
-import com.chaze.india.models.CartBusiness;
 import com.chaze.india.models.CartItem;
 import com.chaze.india.models.Item;
 

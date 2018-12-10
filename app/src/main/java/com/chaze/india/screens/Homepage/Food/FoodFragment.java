@@ -16,11 +16,11 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
 
+import com.chaze.india.screens.Cart.RestaurantCart.RestaurantCartActivity;
 import com.chaze.india.screens.base.BaseFragment;
 import com.chaze.india.screens.search.SearchActivity;
 import com.chaze.india.R;
 import com.chaze.india.di.Qualifiers.LinLayoutHori;
-import com.chaze.india.screens.Cart.CartActivity;
 
 import javax.inject.Inject;
 
@@ -87,7 +87,7 @@ public class FoodFragment extends BaseFragment implements FoodContract.View {
         ConstraintLayout cartView = toolbar.findViewById(R.id.cart_container);
 
         cartView.setOnClickListener(v -> {
-            startActivity(new Intent(getActivity(), CartActivity.class));
+            startActivity(new Intent(getActivity(), RestaurantCartActivity.class));
         });
 
 

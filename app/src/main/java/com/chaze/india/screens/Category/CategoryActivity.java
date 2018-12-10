@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import com.chaze.india.R;
 import com.chaze.india.di.Qualifiers.LinLayoutVert;
 import com.chaze.india.models.CategorySearchResults;
-import com.chaze.india.screens.Cart.CartActivity;
+import com.chaze.india.screens.Cart.EcommerceCart.CartActivity;
 import com.chaze.india.screens.base.BaseActivity;
 
 import javax.inject.Inject;
@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
 public class CategoryActivity extends BaseActivity implements CategoryContract.View {
 
 
-    private String TAG = CartActivity.class.getSimpleName();
+    private String TAG = CategoryActivity.class.getSimpleName();
 
     @Inject
     ShopCategoryAdapter shopCategoryAdapter;

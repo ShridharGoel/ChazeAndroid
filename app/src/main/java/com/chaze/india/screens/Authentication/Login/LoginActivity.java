@@ -99,7 +99,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
         });
 
         skipBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginActivity.this, ProductInfoActivity.class);
+            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
             startActivity(intent);
             finish();
         });

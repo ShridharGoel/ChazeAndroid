@@ -1,4 +1,4 @@
-package com.chaze.india.screens.Cart;
+package com.chaze.india.screens.Cart.EcommerceCart;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,8 +9,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-import com.chaze.india.di.Qualifiers.LinLayoutVert;
 import com.chaze.india.R;
+import com.chaze.india.di.Qualifiers.LinLayoutVert;
 import com.chaze.india.screens.Checkout.CheckoutActivity;
 import com.chaze.india.screens.base.BaseActivity;
 

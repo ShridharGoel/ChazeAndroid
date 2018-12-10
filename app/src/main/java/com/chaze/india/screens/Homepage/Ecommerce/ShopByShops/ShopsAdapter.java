@@ -1,6 +1,7 @@
 package com.chaze.india.screens.Homepage.Ecommerce.ShopByShops;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import com.chaze.india.R;
 import com.chaze.india.models.EcomerceCategory;
 import com.chaze.india.models.EcomerceShop;
 import com.chaze.india.models.Shop;
+import com.chaze.india.screens.Shop.ShopActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -38,7 +40,7 @@ public class ShopsAdapter extends RecyclerView.Adapter<ShopsAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         Shop item = shops.get(i);
-       // viewHolder.categoryText.setText(item.getName());
+        // viewHolder.categoryText.setText(item.getName());
         /*Picasso.get()
                 .load(item.getImageResourceId())
                 .placeholder(R.drawable.ic_menu_camera)
@@ -72,6 +74,8 @@ public class ShopsAdapter extends RecyclerView.Adapter<ShopsAdapter.ViewHolder> 
             super(itemView);
             imageView = itemView.findViewById(R.id.categoryImage);
             categoryText = itemView.findViewById(R.id.categoryName);
+
+            itemView.setOnClickListener(v -> context.startActivity(new Intent(context, ShopActivity.class)));
         }
     }
 }

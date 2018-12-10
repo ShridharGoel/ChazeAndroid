@@ -1,6 +1,5 @@
-package com.chaze.india.screens.Cart;
+package com.chaze.india.screens.Cart.EcommerceCart;
 
-import com.chaze.india.screens.base.MvpContract;
 import com.chaze.india.screens.base.MvpContract;
 
 import io.reactivex.subjects.PublishSubject;

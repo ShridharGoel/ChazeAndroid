@@ -22,7 +22,6 @@
         <activity
             android:name="com.chaze.india.screens.search.SearchActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.chaze.india.screens.Cart.CartActivity" />
         <activity android:name="com.chaze.india.screens.Authentication.Login.LoginActivity"></activity>
         <activity android:name="com.chaze.india.screens.WelcomeSlides.StartActivity">
             <intent-filter>
@@ -33,9 +32,6 @@
         </activity>
         <activity
             android:name=".screens.Profile.ProfileActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".screens.MyOffers.MyOffersActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".screens.ContactUs.ContactUsActivity"
@@ -70,6 +66,8 @@
             android:screenOrientation="portrait" />
         <activity android:name=".screens.Checkout.CheckoutActivity" />
         <activity android:name=".screens.Homepage.MyWishList.MyWishListActivity" />
+        <activity android:name=".screens.Cart.RestaurantCart.RestaurantCartActivity" />
+        <activity android:name=".screens.Cart.EcommerceCart.CartActivity" />
 
 
         <service android:name=".service.MyFirebaseInstanceIDService" />

@@ -1,4 +1,4 @@
-package com.chaze.india.screens.Cart;
+package com.chaze.india.screens.Cart.EcommerceCart;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,10 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.chaze.india.models.CartBusiness;
 import com.chaze.india.R;
 import com.chaze.india.models.CartBusiness;
-import com.chaze.india.models.EcomerceCategory;
 
 import java.util.List;
 

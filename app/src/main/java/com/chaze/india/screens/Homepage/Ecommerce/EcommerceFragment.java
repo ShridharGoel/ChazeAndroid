@@ -13,17 +13,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
 
 
-import com.chaze.india.screens.Homepage.HomeActivity;
+import com.chaze.india.screens.Cart.EcommerceCart.CartActivity;
 import com.chaze.india.screens.base.BaseFragment;
 import com.chaze.india.screens.search.SearchActivity;
 import com.chaze.india.R;
 import com.chaze.india.di.Qualifiers.LinLayoutHori;
-import com.chaze.india.screens.Cart.CartActivity;
 
 import javax.inject.Inject;
 

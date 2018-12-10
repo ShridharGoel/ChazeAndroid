@@ -13,6 +13,10 @@ import com.chaze.india.screens.Authentication.Login.LoginContract;
 import com.chaze.india.screens.Authentication.Login.LoginPresenter;
 import com.chaze.india.screens.Authentication.Signup.SignUpContract;
 import com.chaze.india.screens.Authentication.Signup.SignUpPresenter;
+import com.chaze.india.screens.Cart.EcommerceCart.CartContract;
+import com.chaze.india.screens.Cart.EcommerceCart.CartPresenter;
+import com.chaze.india.screens.Cart.RestaurantCart.RestaurantCartContract;
+import com.chaze.india.screens.Cart.RestaurantCart.RestaurantCartPresenter;
 import com.chaze.india.screens.Category.CategoryContract;
 import com.chaze.india.screens.Category.CategoryPresenter;
 import com.chaze.india.screens.Homepage.Ecommerce.EcommerceContract;
@@ -31,12 +35,12 @@ import com.chaze.india.screens.Homepage.Purchases.PurchasesContract;
 import com.chaze.india.screens.Homepage.Purchases.PurchasesPresenter;
 import com.chaze.india.screens.ProductInfo.ProductInfoContract;
 import com.chaze.india.screens.ProductInfo.ProductInfoPresenter;
+import com.chaze.india.screens.Shop.ShopContract;
+import com.chaze.india.screens.Shop.ShopPresenter;
 import com.chaze.india.screens.SubCategory.SubCategoryContract;
 import com.chaze.india.screens.SubCategory.SubCategoryPresenter;
 import com.chaze.india.screens.search.SearchContract;
 import com.chaze.india.screens.search.SearchPresenter;
-import com.chaze.india.screens.Cart.CartContract;
-import com.chaze.india.screens.Cart.CartPresenter;
 
 import com.chaze.india.screens.Homepage.Ecommerce.ShopByProducts.ShopByProductsContract;
 
@@ -142,6 +146,11 @@ public class ActivityModule {
     }
 
     @Provides
+    RestaurantCartContract.Presenter<RestaurantCartContract.View> providesRestaurantCartPresenter(RestaurantCartPresenter<RestaurantCartContract.View> presenter) {
+        return presenter;
+    }
+
+    @Provides
     SignUpContract.Presenter<SignUpContract.View> providesSignUpPresenter(SignUpPresenter<SignUpContract.View> presenter) {
         return presenter;
     }
@@ -170,6 +179,11 @@ public class ActivityModule {
 
     @Provides
     ProductInfoContract.Presenter<ProductInfoContract.View> providesProductInfoPresenter(ProductInfoPresenter<ProductInfoContract.View> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    ShopContract.Presenter<ShopContract.View> providesShopPresenter(ShopPresenter<ShopContract.View> presenter) {
         return presenter;
     }
 
