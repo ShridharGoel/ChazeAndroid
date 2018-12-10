@@ -1,7 +1,7 @@
-package com.chaze.india.screens.MyWishList;
+package com.chaze.india.screens.Homepage.MyWishList;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.chaze.india.R;
 

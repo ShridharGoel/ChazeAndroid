@@ -1,6 +1,6 @@
 
 
-package com.chaze.india.screens.MyWishList;
+package com.chaze.india.screens.Homepage.MyWishList;
 
 import com.chaze.india.repository.network.ICommonAPIManager;
 import com.chaze.india.repository.session.SessionManager;

@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.chaze.india.R;
 import com.chaze.india.screens.Authentication.Signup.SignUpActivity;
 import com.chaze.india.screens.Homepage.HomeActivity;
+import com.chaze.india.screens.ProductInfo.ProductInfoActivity;
 import com.chaze.india.screens.base.BaseActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -30,12 +31,14 @@ import timber.log.Timber;
  post request on /login
  param: email or mobile
  password:
+
  return: {
     success:false/true
     error:
     token:secret key
     user:
  }
+
 **/
 
 /**
@@ -85,10 +88,10 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
 
         getActivityComponent().inject(this);
 
-        getSupportActionBar().hide();
-
+        mPresenter.onAttach(this);
         signupBtn.setOnClickListener(view -> {
             Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
             finish();
@@ -96,7 +99,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
         });
 
         skipBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+            Intent intent = new Intent(LoginActivity.this, ProductInfoActivity.class);
             startActivity(intent);
             finish();
         });

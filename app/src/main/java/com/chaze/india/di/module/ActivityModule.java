@@ -27,8 +27,10 @@ import com.chaze.india.screens.Homepage.Food.Restaurants.RestaurantsContract;
 import com.chaze.india.screens.Homepage.Food.Restaurants.RestaurantsPresenter;
 import com.chaze.india.screens.Homepage.HomeContract;
 import com.chaze.india.screens.Homepage.HomePresenter;
-import com.chaze.india.screens.Purchases.PurchasesContract;
-import com.chaze.india.screens.Purchases.PurchasesPresenter;
+import com.chaze.india.screens.Homepage.Purchases.PurchasesContract;
+import com.chaze.india.screens.Homepage.Purchases.PurchasesPresenter;
+import com.chaze.india.screens.ProductInfo.ProductInfoContract;
+import com.chaze.india.screens.ProductInfo.ProductInfoPresenter;
 import com.chaze.india.screens.SubCategory.SubCategoryContract;
 import com.chaze.india.screens.SubCategory.SubCategoryPresenter;
 import com.chaze.india.screens.search.SearchContract;
@@ -163,6 +165,11 @@ public class ActivityModule {
 
     @Provides
     RestaurantsContract.Presenter<RestaurantsContract.View> providesRestaurantsPresenter(RestaurantsPresenter<RestaurantsContract.View> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    ProductInfoContract.Presenter<ProductInfoContract.View> providesProductInfoPresenter(ProductInfoPresenter<ProductInfoContract.View> presenter) {
         return presenter;
     }
 

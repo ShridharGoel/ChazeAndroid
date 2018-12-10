@@ -1,4 +1,4 @@
-package com.chaze.india.screens.Purchases;
+package com.chaze.india.screens.Homepage.Purchases;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;

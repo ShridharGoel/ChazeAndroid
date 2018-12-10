@@ -97,7 +97,8 @@ public class SignUpActivity extends BaseActivity implements SignUpContract.View 
 
         getActivityComponent().inject(this);
 
-        getSupportActionBar().hide();
+        mPresenter.onAttach(this);
+
         loginBtn.setOnClickListener(view -> {
             Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);

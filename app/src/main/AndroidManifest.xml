@@ -34,10 +34,6 @@
         <activity
             android:name=".screens.Profile.ProfileActivity"
             android:screenOrientation="portrait" />
-        android:name=".screens.MyWishList.MyWishListActivity"
-        android:screenOrientation="portrait" />
-        android:name=".screens.Checkout.CheckoutActivity"
-        android:screenOrientation="portrait" />
         <activity
             android:name=".screens.MyOffers.MyOffersActivity"
             android:screenOrientation="portrait" />
@@ -70,9 +66,10 @@
             android:name=".screens.Authentication.ChangePassword.ChangePasswordActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".screens.Purchases.PurchasesActivity"
+            android:name=".screens.Homepage.Purchases.PurchasesActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".screens.Checkout.CheckoutActivity" />
+        <activity android:name=".screens.Homepage.MyWishList.MyWishListActivity" />
 
 
         <service android:name=".service.MyFirebaseInstanceIDService" />

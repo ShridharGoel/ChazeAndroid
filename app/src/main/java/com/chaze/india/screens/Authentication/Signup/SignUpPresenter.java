@@ -35,10 +35,10 @@ public class SignUpPresenter<V extends SignUpContract.View> extends BasePresente
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(signUpResponse -> {
-                    getMvpView().showSignUpResult();
+  //                  getMvpView().showSignUpResult();
                     //On success
                 }, Throwable -> {
-                    getMvpView().showSignUpResult();
+//                    getMvpView().showSignUpResult();
                     //On error
                 });
         }

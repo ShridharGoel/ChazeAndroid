@@ -28,8 +28,8 @@ import com.chaze.india.models.EcomerceCategory;
 import com.chaze.india.repository.CartManager;
 import com.chaze.india.screens.Checkout.CheckoutActivity;
 import com.chaze.india.screens.Checkout.CheckoutContract;
+import com.chaze.india.screens.Homepage.Purchases.PurchasesActivity;
 import com.chaze.india.screens.Profile.ProfileActivity;
-import com.chaze.india.screens.Purchases.PurchasesActivity;
 import com.chaze.india.screens.base.BaseActivity;
 
 import java.util.ArrayList;

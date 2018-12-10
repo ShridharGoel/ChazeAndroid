@@ -14,6 +14,7 @@ import javax.inject.Inject;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
+import timber.log.Timber;
 
 /**
  * Created by Shridhar Goel on 14/10/18.
@@ -27,17 +28,18 @@ public class LoginPresenter<V extends LoginContract.View> extends BasePresenter<
         super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
 
-    @SuppressLint("CheckResult")
     @Override
     public void doLogin(String mobile, String pass) {
         getCommonAPIManager().getChazeAPIService().loginUser(mobile, pass)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(loginResponse -> {
-                    getMvpView().showloginResult();
+                   getMvpView().showloginResult();
+                    Timber.e("Success");
                     //On success
                 }, Throwable -> {
                     getMvpView().showloginResult();
+                    Timber.e(Throwable.getMessage());
                     //On error
                 });
     }

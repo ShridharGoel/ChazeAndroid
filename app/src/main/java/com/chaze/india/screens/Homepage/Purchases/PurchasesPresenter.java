@@ -1,6 +1,6 @@
 
 
-package com.chaze.india.screens.Purchases;
+package com.chaze.india.screens.Homepage.Purchases;
 
 import com.chaze.india.repository.network.ICommonAPIManager;
 import com.chaze.india.repository.session.SessionManager;

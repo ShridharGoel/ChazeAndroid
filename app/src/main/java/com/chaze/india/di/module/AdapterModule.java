@@ -16,12 +16,12 @@ import com.chaze.india.screens.Homepage.Food.Restaurants.RestaurantListAdapter;
 import com.chaze.india.screens.Homepage.HomeBottomNavPagerAdapter;
 import com.chaze.india.screens.Homepage.HomeGridAdapter;
 import com.chaze.india.screens.Homepage.More.MoreFragment;
+import com.chaze.india.screens.Homepage.Purchases.ActiveOrders.ActiveOrdersAdapter;
+import com.chaze.india.screens.Homepage.Purchases.ActiveOrders.ActiveOrdersContract;
+import com.chaze.india.screens.Homepage.Purchases.ActiveOrders.ActiveOrdersPresenter;
+import com.chaze.india.screens.Homepage.Purchases.ActiveOrders.TimeLineAdapter;
+import com.chaze.india.screens.Homepage.Purchases.PurchasesPagerAdapter;
 import com.chaze.india.screens.ProductsPostAdapter;
-import com.chaze.india.screens.Purchases.ActiveOrders.ActiveOrdersAdapter;
-import com.chaze.india.screens.Purchases.ActiveOrders.ActiveOrdersContract;
-import com.chaze.india.screens.Purchases.ActiveOrders.ActiveOrdersPresenter;
-import com.chaze.india.screens.Purchases.ActiveOrders.TimeLineAdapter;
-import com.chaze.india.screens.Purchases.PurchasesPagerAdapter;
 import com.chaze.india.screens.search.SearchSuggestionsAdapter;
 
 import java.util.ArrayList;
@@ -50,6 +50,8 @@ public class AdapterModule {
         return new SearchSuggestionsAdapter(mActivity, new ArrayList<>());
     }
 
+
+
     @Provides
     TimeLineAdapter getTimeLineAdapter() {
         return new TimeLineAdapter(new ArrayList<>(), mActivity);
@@ -60,7 +62,6 @@ public class AdapterModule {
         EcommerceFragment ecommerce = new EcommerceFragment();
         FoodFragment foodFragment = new FoodFragment();
         MoreFragment moreFragment_object = new MoreFragment();
-
 
 
         HomeBottomNavPagerAdapter adapter = new HomeBottomNavPagerAdapter(mActivity.getSupportFragmentManager());
