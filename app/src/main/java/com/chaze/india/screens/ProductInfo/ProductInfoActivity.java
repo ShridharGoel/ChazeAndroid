@@ -24,6 +24,8 @@ public class ProductInfoActivity extends BaseActivity {
 
     private TextView[] dots;
 
+    //Todo: Aproduct Popup has to be implemented too
+
     @BindView(R.id.view_pager)
     ViewPager viewPager;
     @BindView(R.id.layoutDots)

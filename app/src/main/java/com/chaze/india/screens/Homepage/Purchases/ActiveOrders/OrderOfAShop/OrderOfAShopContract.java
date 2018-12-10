@@ -1,8 +1,12 @@
-package com.chaze.india.screens.Homepage.Purchases.PreviousOrders;
+package com.chaze.india.screens.Homepage.Purchases.ActiveOrders.OrderOfAShop;
+
+import android.os.Bundle;
 
 import com.chaze.india.screens.base.MvpContract;
 
-public class PreviousOrdersContract {
+import io.reactivex.subjects.PublishSubject;
+
+public class OrderOfAShopContract {
     public interface View extends MvpContract.View{
 
     }

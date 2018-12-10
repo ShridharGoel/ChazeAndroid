@@ -1,6 +1,7 @@
 package com.chaze.india.screens.Homepage.Purchases.ActiveOrders;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,11 +11,12 @@ import android.view.ViewGroup;
 import com.chaze.india.R;
 import com.chaze.india.models.CartBusiness;
 import com.chaze.india.models.Item;
+import com.chaze.india.screens.Homepage.Purchases.ActiveOrders.OrderOfAShop.OrderOfAShopActivity;
 
 import java.util.ArrayList;
 
 
-public class ShopsInAOrderAdapter extends RecyclerView.Adapter<ShopsInAOrderAdapter.SearchItemsFoundInARestaurantViewHolder> {
+public class ShopsInAOrderAdapter extends RecyclerView.Adapter<ShopsInAOrderAdapter.ShopsInAOrderViewHolder> {
 
     private static String TAG = ShopsInAOrderAdapter.class.getSimpleName();
 
@@ -27,17 +29,17 @@ public class ShopsInAOrderAdapter extends RecyclerView.Adapter<ShopsInAOrderAdap
     }
 
     @Override
-    public SearchItemsFoundInARestaurantViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ShopsInAOrderViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         context = parent.getContext();
 
         View view = LayoutInflater.from(context).inflate(R.layout.business_orders, parent, false);
 
-        return new SearchItemsFoundInARestaurantViewHolder(view);
+        return new ShopsInAOrderViewHolder(view);
 
     }
 
     @Override
-    public void onBindViewHolder(SearchItemsFoundInARestaurantViewHolder holder, int position) {
+    public void onBindViewHolder(ShopsInAOrderViewHolder holder, int position) {
         Log.d(TAG, "#" + position);
         holder.bind(position);
     }
@@ -47,11 +49,15 @@ public class ShopsInAOrderAdapter extends RecyclerView.Adapter<ShopsInAOrderAdap
         return shops.size();
     }
 
-    public class SearchItemsFoundInARestaurantViewHolder extends RecyclerView.ViewHolder {
+    public class ShopsInAOrderViewHolder extends RecyclerView.ViewHolder {
 
 
-        public SearchItemsFoundInARestaurantViewHolder(View searchItemsFoundInARestaurantView) {
-            super(searchItemsFoundInARestaurantView);
+        public ShopsInAOrderViewHolder(View v) {
+            super(v);
+
+            v.setOnClickListener(view -> context.startActivity(new Intent(context, OrderOfAShopActivity.class)));
+
+
         }
 
         void bind(int listIndex) {

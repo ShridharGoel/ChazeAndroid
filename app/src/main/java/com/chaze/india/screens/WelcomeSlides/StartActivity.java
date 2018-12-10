@@ -54,7 +54,7 @@ public class StartActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        //Todo:change images of welcome slides
         // Checking for first time launch - before calling setContentView()
         prefManager = new SessionManager(this);
        /* if (!prefManager.isFirstTimeLaunch()) {

@@ -25,6 +25,7 @@ import timber.log.Timber;
 
 public class ActiveOrdersFragment extends BaseFragment implements ActiveOrdersContract.View {
 
+
     private static final String TAG = ActiveOrdersFragment.class.getSimpleName();
     @Inject
     ActiveOrdersContract.Presenter<ActiveOrdersContract.View> mPresenter;
@@ -44,10 +45,17 @@ public class ActiveOrdersFragment extends BaseFragment implements ActiveOrdersCo
     @BindView(R.id.activeOrdersBottomSheet)
     LinearLayout layoutBottomSheet;
 
+    int isPrevious = 0;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Timber.d(TAG);
+
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            isPrevious = bundle.getInt("key", 0);
+        }
 
         View view = inflater.inflate(R.layout.fragment_active_orders, container, false);
 
@@ -77,7 +85,7 @@ public class ActiveOrdersFragment extends BaseFragment implements ActiveOrdersCo
 
     @Override
     public void setSubjectToAdapter(PublishSubject<String> subject) {
-        //adapter.setSubject(subject);
+        adapter.setSubject(subject);
     }
 
     @Override

@@ -32,6 +32,7 @@ public class ActiveOrdersAdapter extends RecyclerView.Adapter<ActiveOrdersAdapte
     ArrayList<Order> list;
 
     RecyclerView shopItemsView;
+    PublishSubject<String> subject;
 
     public ActiveOrdersAdapter(Context context, ArrayList<Order> list) {
         this.context = context;
@@ -75,6 +76,10 @@ public class ActiveOrdersAdapter extends RecyclerView.Adapter<ActiveOrdersAdapte
         notifyDataSetChanged();
     }
 
+    public void setSubject(PublishSubject<String> subject) {
+        this.subject=subject;
+    }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -95,3 +100,4 @@ public class ActiveOrdersAdapter extends RecyclerView.Adapter<ActiveOrdersAdapte
         }
     }
 }
+

@@ -1,6 +1,0 @@
-package com.chaze.india.screens.Homepage.Purchases.PreviousOrders;
-
-import android.support.v4.app.Fragment;
-
-public class PreviousOrdersFragment extends Fragment {
-}

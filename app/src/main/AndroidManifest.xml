@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:name="com.chaze.india.AppController"
+        android:name=".AppController"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -15,15 +15,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity
-            android:name="com.chaze.india.screens.Homepage.HomeActivity"
+            android:name=".screens.Homepage.HomeActivity"
             android:label="@string/title_activity_home"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
-            android:name="com.chaze.india.screens.search.SearchActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.chaze.india.screens.Authentication.Login.LoginActivity"></activity>
-        <activity android:name="com.chaze.india.screens.WelcomeSlides.StartActivity">
+        <activity
+            android:name=".screens.search.SearchActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".screens.Authentication.Login.LoginActivity" />
+        <activity android:name=".screens.WelcomeSlides.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -51,7 +51,7 @@
         <activity
             android:name=".screens.SubCategory.SubCategoryActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".screens.Authentication.Signup.SignUpActivity"
             android:screenOrientation="portrait" />
@@ -69,8 +69,12 @@
         <activity android:name=".screens.Cart.RestaurantCart.RestaurantCartActivity" />
         <activity android:name=".screens.Cart.EcommerceCart.CartActivity" />
 
-
         <service android:name=".service.MyFirebaseInstanceIDService" />
+
+        <activity
+            android:name=".screens.Homepage.Purchases.ActiveOrders.OrderOfAShop.OrderOfAShopActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/PopupAnimation"></activity>
     </application>
 
 </manifest>

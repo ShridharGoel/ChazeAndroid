@@ -1,16 +1,15 @@
 package com.chaze.india.screens.Homepage.Purchases;
 
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.chaze.india.screens.Homepage.Purchases.ActiveOrders.ActiveOrdersFragment;
-import com.chaze.india.screens.Homepage.Purchases.PreviousOrders.PreviousOrdersFragment;
 
 public class PurchasesPagerAdapter extends FragmentStatePagerAdapter {
     private Fragment fragment;
-
 
 
     public PurchasesPagerAdapter(FragmentManager fm) {
@@ -20,11 +19,16 @@ public class PurchasesPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int i) {
-        if (i==0){
-            fragment=new ActiveOrdersFragment();
-        }
-        else {
-            fragment=new PreviousOrdersFragment();
+        if (i == 0) {
+            fragment = new ActiveOrdersFragment();
+            Bundle bundle = new Bundle();
+            bundle.putInt("key", 0);
+            fragment.setArguments(bundle);
+        } else {
+            fragment = new ActiveOrdersFragment();
+            Bundle bundle = new Bundle();
+            bundle.putInt("key", 1);
+            fragment.setArguments(bundle);
         }
         return fragment;
     }
@@ -37,9 +41,8 @@ public class PurchasesPagerAdapter extends FragmentStatePagerAdapter {
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        if (position==0){
+        if (position == 0) {
             return "Active Orders";
-        }
-        else return "Previous Orders";
+        } else return "Previous Orders";
     }
 }

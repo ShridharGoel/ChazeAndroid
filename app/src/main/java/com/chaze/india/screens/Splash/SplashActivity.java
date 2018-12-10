@@ -24,6 +24,7 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        //Todo: splash has no logic till now
         getActivityComponent().inject(this);
     }
 

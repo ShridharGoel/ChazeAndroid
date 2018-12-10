@@ -18,6 +18,9 @@ import static com.chaze.india.R.*;
 
 public class ProfileActivity extends BaseActivity {
 
+
+    //Todo: UI and update info settings
+
     @BindView(R.id.profile_name)
     EditText name;
     @BindView(R.id.profile_phone)
