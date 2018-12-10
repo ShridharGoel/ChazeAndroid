@@ -3,6 +3,7 @@ package com.chaze.india.screens.Homepage.Purchases.ActiveOrders;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,13 @@ import android.widget.TextView;
 
 import com.chaze.india.R;
 import com.chaze.india.models.ActiveOrder;
+import com.chaze.india.models.Business;
+import com.chaze.india.models.CartBusiness;
+import com.chaze.india.models.CategorySearchResults;
+import com.chaze.india.models.Item;
+import com.chaze.india.models.Order;
+import com.chaze.india.models.ShopResults;
+import com.chaze.india.screens.Category.CategoryItemsInAShopAdapter;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -21,11 +29,11 @@ import io.reactivex.subjects.PublishSubject;
 
 public class ActiveOrdersAdapter extends RecyclerView.Adapter<ActiveOrdersAdapter.ViewHolder> {
     Context context;
-    ArrayList<ActiveOrder> list;
-    PublishSubject<String> subject;
+    ArrayList<Order> list;
 
+    RecyclerView shopItemsView;
 
-    public ActiveOrdersAdapter(Context context, ArrayList<ActiveOrder> list) {
+    public ActiveOrdersAdapter(Context context, ArrayList<Order> list) {
         this.context = context;
         this.list = list;
     }
@@ -41,41 +49,49 @@ public class ActiveOrdersAdapter extends RecyclerView.Adapter<ActiveOrdersAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        ActiveOrder item=list.get(i);
-        viewHolder.shopName.setText(item.getRestaurantName());
-        Picasso.get().load(item.getImage())
-                .error(R.drawable.buttonshape)
-                .into(viewHolder.shopImage);
-        viewHolder.button.setOnClickListener(view ->
-                        subject.onNext(""+i  ));
+        Order item = list.get(i);
+        viewHolder.bind(i);
     }
 
     @Override
     public int getItemCount() {
         return list.size();
     }
+
     public void addItems() {
 
-        for (int i = 0; i < 20; i++)
-            list.add(new ActiveOrder("https://drive.google.com/file/d/15b68H448F4jszurUpAAQV6lFPHdY1dv2/view?usp=sharing","people"  ));
+        list = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+
+            Order order = new Order();
+            ArrayList<Item> items = new ArrayList<>();
+
+            for (int j = 0; j < 7; j++) {
+                order.addCartBusiness(new CartBusiness());
+            }
+
+            list.add(order);
+        }
+        notifyDataSetChanged();
     }
 
-    public void setSubject(PublishSubject<String> subject) {
-        this.subject=subject;
-    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView shopName;
-        ImageView shopImage;
-        Button button;
-        CardView card;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            shopName=itemView.findViewById(R.id.activeOrderShopName);
-            shopImage=itemView.findViewById(R.id.activeOrderImage);
-            button=itemView.findViewById(R.id.checkStatusButton);
-            card=itemView.findViewById(R.id.activeCard);
-            itemView.setOnClickListener(v->subject.onNext(""+getPosition()  ));
+            shopItemsView = itemView.findViewById(R.id.recycler_view);
+        }
+
+        public void bind(int i) {
+            ArrayList<CartBusiness> cartBusinesses = list.get(i).getCartBusinesses();
+
+            ShopsInAOrderAdapter shopsInAOrderAdapter = new ShopsInAOrderAdapter(cartBusinesses);
+            final LinearLayoutManager foundItemsInARestaurantLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+            shopItemsView.setAdapter(shopsInAOrderAdapter);
+            shopItemsView.setLayoutManager(foundItemsInARestaurantLayoutManager);
+            shopItemsView.setHasFixedSize(true);
+
         }
     }
 }

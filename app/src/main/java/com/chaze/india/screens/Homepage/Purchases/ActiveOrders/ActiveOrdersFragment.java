@@ -77,7 +77,7 @@ public class ActiveOrdersFragment extends BaseFragment implements ActiveOrdersCo
 
     @Override
     public void setSubjectToAdapter(PublishSubject<String> subject) {
-        adapter.setSubject(subject);
+        //adapter.setSubject(subject);
     }
 
     @Override

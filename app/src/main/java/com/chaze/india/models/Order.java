@@ -30,7 +30,18 @@ public class Order {
         this.total = totall;
     }
 
+    public Order() {
+        cartBusinesses = new ArrayList<>();
+        states = new ArrayList<>();
+    }
+
     public ArrayList<CartBusiness> getCartBusinesses() {
         return cartBusinesses;
     }
+
+    public void addCartBusiness(CartBusiness cartBusiness) {
+        cartBusinesses.add(cartBusiness);
+        states.add(0);
+    }
+
 }
