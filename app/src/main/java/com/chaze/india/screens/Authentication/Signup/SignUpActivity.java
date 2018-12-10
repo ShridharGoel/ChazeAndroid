@@ -66,6 +66,9 @@ public class SignUpActivity extends BaseActivity implements SignUpContract.View 
     @BindView(R.id.signup_enter_mobile)
     EditText signUpMobile;
 
+    @BindView(R.id.signup_enter_gender)
+    EditText signUpGender;
+
     @BindView(R.id.signup_enter_pass)
     EditText signUpPass;
 
@@ -112,14 +115,16 @@ public class SignUpActivity extends BaseActivity implements SignUpContract.View 
         signUpSubmitBtn.setOnClickListener(v -> {
             if (!TextUtils.isEmpty(signUpName.getText().toString())
                     && !TextUtils.isEmpty(signUpMobile.getText().toString())
+                    && !TextUtils.isEmpty(signUpGender.getText().toString())
                     && !TextUtils.isEmpty(signUpPass.getText().toString())
                     && !TextUtils.isEmpty(signUpConfirmPass.getText().toString())
                     && signUpPass.getText().toString().equals(signUpConfirmPass.getText().toString()))
             {
-                /*mPresenter.doSignUp(signUpName.getText().toString(),
+                mPresenter.doSignUp(signUpName.getText().toString(),
                                     signUpMobile.getText().toString(),
+                                    Integer.parseInt(signUpGender.getText().toString()),
                                     signUpPass.getText().toString());
-            */
+
                 /*SharedPreferences.Editor editor=getSharedPreferences(PREF_NAME,MODE_PRIVATE).edit();
                 editor.putString("phone",signUpMobile.getText().toString());
                 editor.putString("name",signUpName.getText().toString());
@@ -133,6 +138,8 @@ public class SignUpActivity extends BaseActivity implements SignUpContract.View 
                 Toast.makeText(this, "Name cannot be blank", Toast.LENGTH_SHORT).show();
             } else if (TextUtils.isEmpty(signUpMobile.getText().toString())) {
                 Toast.makeText(this, "Mobile number cannot be blank", Toast.LENGTH_SHORT).show();
+            } else if(TextUtils.isEmpty(signUpGender.getText().toString())) {
+                Toast.makeText(this, "Gender cannot be blank", Toast.LENGTH_SHORT).show();
             } else if (TextUtils.isEmpty(signUpPass.getText().toString())) {
                 Toast.makeText(this, "Password cannot be blank", Toast.LENGTH_SHORT).show();
             } else if (TextUtils.isEmpty(signUpConfirmPass.getText().toString())) {

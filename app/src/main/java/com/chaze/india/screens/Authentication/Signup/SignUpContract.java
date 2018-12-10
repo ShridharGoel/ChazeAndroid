@@ -15,6 +15,6 @@ public class SignUpContract {
 
 
     public interface Presenter<V extends View> extends MvpContract.Presenter<V> {
-        void doSignUp(String name, String mobile, String pass);
+        void doSignUp(String name, String mobile, int gender, String pass);
     }
 }
