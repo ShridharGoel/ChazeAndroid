@@ -7,6 +7,9 @@ import com.chaze.india.repository.session.SessionManager;
 import com.chaze.india.screens.base.BasePresenter;
 import com.chaze.india.utils.rx.SchedulerProvider;
 
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
+
 import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -27,17 +30,18 @@ public class SignUpPresenter<V extends SignUpContract.View> extends BasePresente
 
     @SuppressLint("CheckResult")
     @Override
-    public void doSignUp(String name, String mobile, String pass) {
-        getCommonAPIManager().getChazeAPIService().createUser(name, mobile, pass)
+    public void doSignUp(String name, String mobile, int gender, String pass) {
+        getCommonAPIManager().getChazeAPIService().createUser(name, mobile, gender, pass)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(loginResponse -> {
+                .subscribe(signUpResponse -> {
                     getMvpView().showSignUpResult();
                     //On success
                 }, Throwable -> {
                     getMvpView().showSignUpResult();
                     //On error
                 });
+        }
     }
-}
+
 
