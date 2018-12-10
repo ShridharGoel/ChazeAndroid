@@ -19,14 +19,15 @@ import retrofit2.http.POST;
 public interface ChazeAPIService {
 
     @FormUrlEncoded
-    @POST("/accounts")     //createuser
+    @POST("/signup")     //createuser
     Single<SignUpResponse> createUser(
             @Field("name") String name,
             @Field("mobile") String mobile,
+            @Field("gender") int gender,
             @Field("password") String pass);
 
     @FormUrlEncoded
-    @POST("/accounts")     //userlogin
+    @POST("/login")     //userlogin
     Single<LoginResponse> loginUser(
             @Field("mobile") String mobile,
             @Field("password") String pass);

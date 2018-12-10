@@ -6,12 +6,12 @@ import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chaze.india.R;
 import com.chaze.india.screens.Authentication.Signup.SignUpActivity;
 import com.chaze.india.screens.Homepage.HomeActivity;
-import com.chaze.india.screens.PostOrderStatus.PostOrderStatusActivity;
 import com.chaze.india.screens.base.BaseActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -49,22 +49,22 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     private static final int RC_SIGN_IN = 10;
 
     @BindView(R.id.login_btn)
-    Button loginBtn;
+    TextView loginBtn;
 
     @BindView(R.id.signup_btn)
-    Button signupBtn;
+    TextView signupBtn;
 
     @BindView(R.id.skip_btn)
     Button skipBtn;
 
-    @BindView(R.id.login_enter_mobile)
+    @BindView(R.id.signup_enter_mobile)
     EditText loginMobile;
 
-    @BindView(R.id.login_enter_pass)
+    @BindView(R.id.signup_enter_pass)
     EditText loginPass;
 
     @BindView(R.id.login_submit_btn)
-    Button loginSubmitBtn;
+    TextView loginSubmitBtn;
 
     @BindView(R.id.google_login)
     ImageView googleLogin;
@@ -90,7 +90,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
         getSupportActionBar().hide();
 
         signupBtn.setOnClickListener(view -> {
-            Intent intent = new Intent(LoginActivity.this, PostOrderStatusActivity.class);
+            Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
             finish();
