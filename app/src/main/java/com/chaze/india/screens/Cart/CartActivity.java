@@ -1,14 +1,17 @@
 package com.chaze.india.screens.Cart;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.chaze.india.di.Qualifiers.LinLayoutVert;
 import com.chaze.india.R;
+import com.chaze.india.screens.Checkout.CheckoutActivity;
 import com.chaze.india.screens.base.BaseActivity;
 
 import javax.inject.Inject;
@@ -48,6 +51,9 @@ public class CartActivity extends BaseActivity implements CartContract.View {
 
     BottomSheetBehavior sheetBehavior;
 
+    @BindView(R.id.checkout_button)
+    Button button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +82,8 @@ public class CartActivity extends BaseActivity implements CartContract.View {
         sheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
 
         mPresenter.show();
+
+        button.setOnClickListener(v->this.startActivity(new Intent(this, CheckoutActivity.class)));
 
     }
 

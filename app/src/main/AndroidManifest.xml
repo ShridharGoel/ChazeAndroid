@@ -72,6 +72,7 @@
         <activity
             android:name=".screens.Purchases.PurchasesActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".screens.Checkout.CheckoutActivity" />
 
 
         <service android:name=".service.MyFirebaseInstanceIDService" />

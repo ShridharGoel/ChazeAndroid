@@ -32,7 +32,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentStart="true"
-            android:src="@color/colorPurple" />
+            android:src="@color/colorPurpleVeryLight" />
 
 
         <LinearLayout

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.ViewPager;
@@ -83,7 +84,7 @@ public class FoodFragment extends BaseFragment implements FoodContract.View {
     private void setupToolBar() {
         searchView.setOnClickListener(v -> goToSearch());
 
-        RelativeLayout cartView = toolbar.findViewById(R.id.cart_container);
+        ConstraintLayout cartView = toolbar.findViewById(R.id.cart_container);
 
         cartView.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), CartActivity.class));

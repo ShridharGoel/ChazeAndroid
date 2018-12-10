@@ -44,9 +44,9 @@
             android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:background="@color/colorPurple"
             android:gravity="center_horizontal"
             android:text="-"
+            android:textColor="@color/textLightPrimary"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -59,7 +59,7 @@
             android:layout_marginStart="5dp"
             android:gravity="center"
             android:minWidth="15dp"
-            android:textColor="@color/colorPurpleLight"
+            android:textColor="@color/textLightPrimary"
             android:textStyle="bold"
             tools:text="5" />
 
@@ -68,10 +68,9 @@
             android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:background="@color/colorPurple"
             android:gravity="center_horizontal"
             android:text="+"
-            android:textColor="@color/colorPurpleLight"
+            android:textColor="@color/textLightPrimary"
             android:textSize="18sp"
             android:textStyle="bold" />
     </RelativeLayout>

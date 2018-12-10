@@ -281,49 +281,16 @@
 
             </android.support.constraint.ConstraintLayout>
 
-            <android.support.constraint.ConstraintLayout
+
+            <include
                 android:id="@+id/constraintLayout6"
-                android:layout_width="335dp"
+                layout="@layout/shop_view"
+                android:layout_width="0dp"
                 android:layout_height="104dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline2"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="66dp"
-                    android:layout_height="70dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/googleg_standard_color_18" />
-
-                <TextView
-                    android:id="@+id/textView15"
-                    android:layout_width="160dp"
-                    android:layout_height="26dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="Shop Name"
-                    app:layout_constraintStart_toEndOf="@+id/imageView2"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/textView16"
-                    android:layout_width="61dp"
-                    android:layout_height="23dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="Open"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </android.support.constraint.ConstraintLayout>
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout5" />
 
 
             <android.support.constraint.ConstraintLayout
