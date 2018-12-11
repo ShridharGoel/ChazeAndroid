@@ -11,6 +11,8 @@ import com.chaze.india.di.Qualifiers.LinLayoutHori;
 import com.chaze.india.di.Qualifiers.LinLayoutVert;
 import com.chaze.india.screens.Authentication.Login.LoginContract;
 import com.chaze.india.screens.Authentication.Login.LoginPresenter;
+import com.chaze.india.screens.Authentication.OTPConfirmation.OTPConfirmationContract;
+import com.chaze.india.screens.Authentication.OTPConfirmation.OTPConfirmationPresenter;
 import com.chaze.india.screens.Authentication.Signup.SignUpContract;
 import com.chaze.india.screens.Authentication.Signup.SignUpPresenter;
 import com.chaze.india.screens.Cart.EcommerceCart.CartContract;
@@ -184,6 +186,11 @@ public class ActivityModule {
 
     @Provides
     ShopContract.Presenter<ShopContract.View> providesShopPresenter(ShopPresenter<ShopContract.View> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    OTPConfirmationContract.Presenter<OTPConfirmationContract.View> providesOTPPresenter(OTPConfirmationPresenter<OTPConfirmationContract.View> presenter) {
         return presenter;
     }
 
