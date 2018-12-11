@@ -7,7 +7,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/active_orders_bottom_sheet">
 
-    <android.support.v7.widget.RecyclerView
+    <com.cooltechworks.views.shimmer.ShimmerRecyclerView
         android:id="@+id/timelineRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

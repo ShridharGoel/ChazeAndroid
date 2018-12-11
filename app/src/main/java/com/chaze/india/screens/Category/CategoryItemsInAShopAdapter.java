@@ -1,13 +1,18 @@
 package com.chaze.india.screens.Category;
 
 import android.content.Context;
+import android.content.Intent;
+import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
+
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.chaze.india.R;
 import com.chaze.india.models.Item;
+import com.chaze.india.screens.ProductInfo.ProductInfoPopupActivity.ProductInfoPopupActivity;
 
 import java.util.ArrayList;
 
@@ -48,8 +53,10 @@ public class CategoryItemsInAShopAdapter extends RecyclerView.Adapter<CategoryIt
     public class SearchItemsFoundInARestaurantViewHolder extends RecyclerView.ViewHolder {
 
 
-        public SearchItemsFoundInARestaurantViewHolder(View searchItemsFoundInARestaurantView) {
-            super(searchItemsFoundInARestaurantView);
+        public SearchItemsFoundInARestaurantViewHolder(View v) {
+            super(v);
+
+            v.setOnClickListener(view -> context.startActivity(new Intent(context, ProductInfoPopupActivity.class)));
         }
 
         void bind(int listIndex) {

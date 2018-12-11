@@ -9,7 +9,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +22,7 @@ import com.chaze.india.screens.base.BaseFragment;
 import com.chaze.india.screens.search.SearchActivity;
 import com.chaze.india.R;
 import com.chaze.india.di.Qualifiers.LinLayoutHori;
+import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 
 import javax.inject.Inject;
 
@@ -47,7 +48,7 @@ public class EcommerceFragment extends BaseFragment implements EcommerceContract
     @BindView(R.id.ecommerce_slider)
     TabLayout tabLayout;
     @BindView(R.id.ecomerceRecyclerView)
-    RecyclerView recyclerView;
+    ShimmerRecyclerView recyclerView;
 
 
     @BindView(R.id.toolbar)
@@ -71,6 +72,9 @@ public class EcommerceFragment extends BaseFragment implements EcommerceContract
         getActivityComponent().inject(this);
         setUnBinder(ButterKnife.bind(this, view));
         mPresenter.onAttach(this);
+
+        recyclerView.showShimmerAdapter();
+
         setupToolBar();
         return view;
 
@@ -102,8 +106,8 @@ public class EcommerceFragment extends BaseFragment implements EcommerceContract
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Timber.e("Ecommerce View created");
-        adapter.addItems();
-        recyclerView.setAdapter(adapter);
+      //  adapter.addItems();
+      //  recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(mLayoutManager);
         viewPager.setAdapter(ecommercePagerAdapter);
         tabLayout.setupWithViewPager(viewPager);

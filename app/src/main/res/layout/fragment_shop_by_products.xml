@@ -4,10 +4,17 @@
     android:background="@color/textLightDisabled"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.RecyclerView
+
+    <com.cooltechworks.views.shimmer.ShimmerRecyclerView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/ecomerceRecyclerView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" />
+        android:orientation="horizontal"
+        app:shimmer_demo_child_count="10"
+        app:shimmer_demo_layout="@layout/layout_sample_view"
+        app:shimmer_demo_layout_manager_type="linear_vertical"
+        app:shimmer_demo_angle="20"
+        app:shimmer_demo_shimmer_color="@color/white"/>
 
 </LinearLayout>

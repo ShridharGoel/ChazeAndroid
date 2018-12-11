@@ -46,9 +46,6 @@
             android:name=".screens.Category.CategoryActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".screens.Referral.ReferralActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".screens.SubCategory.SubCategoryActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -75,6 +72,10 @@
             android:name=".screens.Homepage.Purchases.ActiveOrders.OrderOfAShop.OrderOfAShopActivity"
             android:screenOrientation="portrait"
             android:theme="@style/PopupAnimation"></activity>
+        <activity
+            android:name=".screens.ProductInfo.ProductInfoPopupActivity.ProductInfoPopupActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/PopupAnimation" />
     </application>
 
 </manifest>

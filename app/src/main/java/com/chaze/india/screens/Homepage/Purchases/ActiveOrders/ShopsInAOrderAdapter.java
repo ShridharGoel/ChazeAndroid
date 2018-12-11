@@ -2,6 +2,8 @@ package com.chaze.india.screens.Homepage.Purchases.ActiveOrders;
 
 import android.content.Context;
 import android.content.Intent;
+import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
+
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;

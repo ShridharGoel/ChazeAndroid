@@ -3,6 +3,8 @@ package com.chaze.india.screens.search;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
+
 import android.support.v7.widget.RecyclerView;
 import android.view.WindowManager;
 import android.widget.SearchView;

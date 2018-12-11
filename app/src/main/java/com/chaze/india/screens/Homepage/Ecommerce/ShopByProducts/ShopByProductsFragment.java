@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
+import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
+
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,7 @@ import com.chaze.india.screens.base.BaseFragment;
 import com.chaze.india.R;
 import com.chaze.india.di.Qualifiers.LinLayoutVert;
 import com.chaze.india.models.EcomerceCategory;
+import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 
 import java.util.List;
 
@@ -35,7 +38,7 @@ public class ShopByProductsFragment extends BaseFragment implements ShopByProduc
     boolean loading;
 
     @BindView(R.id.ecomerceRecyclerView)
-    RecyclerView recyclerView;
+    ShimmerRecyclerView recyclerView;
     @Inject
     @LinLayoutVert
     LinearLayoutManager mLayoutManager;
@@ -56,6 +59,8 @@ public class ShopByProductsFragment extends BaseFragment implements ShopByProduc
         onAttach(getContext());
         getActivityComponent().inject(this);
         setUnBinder(ButterKnife.bind(this, view));
+
+        recyclerView.showShimmerAdapter();
         mPresenter.onAttach(this);
         return view;
     }
@@ -65,11 +70,11 @@ public class ShopByProductsFragment extends BaseFragment implements ShopByProduc
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        recyclerView.setAdapter(adapter);
+      //  recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(mLayoutManager);
-        addItems(null);
+       // addItems(null);
         setUpLoadMoreListener();
-        mPresenter.subscribeForData();
+       // mPresenter.subscribeForData();
 
     }
 

@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottom_sheet"
     android:layout_width="wrap_content"
-    android:scaleX="0.95"
     android:elevation="5dp"
     android:layout_height="match_parent"
+    android:scaleX="0.95"
     android:scaleY="0.95"
     android:background="@drawable/blank"
     android:orientation="vertical">
@@ -27,7 +27,7 @@
 
 
 
-    <android.support.v7.widget.RecyclerView
+    <com.cooltechworks.views.shimmer.ShimmerRecyclerView
         android:id="@+id/timelineRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -68,12 +68,12 @@
                             android:padding="10dp">
 
 
-                            <android.support.v7.widget.RecyclerView
+                            <com.cooltechworks.views.shimmer.ShimmerRecyclerView
                                 android:id="@+id/cart_items_recycler"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
 
-                            </android.support.v7.widget.RecyclerView>
+                            </com.cooltechworks.views.shimmer.ShimmerRecyclerView>
                         </RelativeLayout>
 
                     </android.support.v7.widget.CardView>

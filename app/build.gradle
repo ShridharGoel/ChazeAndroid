@@ -100,6 +100,8 @@ dependencies {
 
 
     implementation 'com.iarcuschin:simpleratingbar:0.1.5'
+
+    implementation 'com.github.sharish:ShimmerRecyclerView:v1.3'
 }
 
 apply plugin: 'com.google.gms.google-services'

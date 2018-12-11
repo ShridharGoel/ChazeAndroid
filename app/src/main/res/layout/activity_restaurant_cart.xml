@@ -75,12 +75,12 @@
                     android:padding="10dp">
 
 
-                    <android.support.v7.widget.RecyclerView
+                    <com.cooltechworks.views.shimmer.ShimmerRecyclerView
                         android:id="@+id/cart_items_recycler"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
-                    </android.support.v7.widget.RecyclerView>
+                    </com.cooltechworks.views.shimmer.ShimmerRecyclerView>
                 </RelativeLayout>
 
             </android.support.v7.widget.CardView>

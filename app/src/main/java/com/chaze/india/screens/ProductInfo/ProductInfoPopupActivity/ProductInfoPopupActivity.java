@@ -1,18 +1,15 @@
-package com.chaze.india.screens.ProductInfo;
+package com.chaze.india.screens.ProductInfo.ProductInfoPopupActivity;
 
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
+import android.support.v4.view.ViewPager;
 import android.text.Html;
-import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.chaze.india.R;
-import com.chaze.india.di.Qualifiers.LinLayoutVert;
+import com.chaze.india.screens.ProductInfo.ProductImageSliderAdapter;
+import com.chaze.india.screens.ProductInfo.ProductInfoContract;
 import com.chaze.india.screens.base.BaseActivity;
 
 import javax.inject.Inject;
@@ -20,7 +17,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ProductInfoActivity extends BaseActivity {
+public class ProductInfoPopupActivity extends BaseActivity {
 
     private TextView[] dots;
 
@@ -52,7 +49,7 @@ public class ProductInfoActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product_info);
+        setContentView(R.layout.activity_product_popup_info);
 
         ButterKnife.bind(this);
         getActivityComponent().inject(this);

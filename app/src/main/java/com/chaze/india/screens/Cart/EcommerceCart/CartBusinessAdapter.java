@@ -2,6 +2,8 @@ package com.chaze.india.screens.Cart.EcommerceCart;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
+
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;

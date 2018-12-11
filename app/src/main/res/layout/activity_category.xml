@@ -8,7 +8,7 @@
     tools:context="com.chaze.india.screens.Category.CategoryActivity">
 
 
-    <android.support.v7.widget.RecyclerView
+    <com.cooltechworks.views.shimmer.ShimmerRecyclerView
 
         android:id="@+id/recycler_view_for_shops_item_list"
         android:layout_width="match_parent"

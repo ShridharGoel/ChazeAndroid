@@ -15,7 +15,7 @@
     <style name="AppTheme.TransNav" parent="AppTheme" />
 
     <style name="AppTheme.NoActionBar">
-        <item name="coordinatorLayoutStyle">@style/Widget.Support.CoordinatorLayout</item>
+        <item name="tabStyle">@style/Widget.Support.CoordinatorLayout</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="cardViewStyle">@style/CardView</item>
@@ -48,5 +48,6 @@
         <item name="android:backgroundDimEnabled">true</item>
 
     </style>
+
 
 </resources>
