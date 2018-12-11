@@ -58,9 +58,6 @@
         <activity
             android:name=".screens.Authentication.ChangePassword.ChangePasswordActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".screens.Homepage.Purchases.PurchasesActivity"
-            android:screenOrientation="portrait" />
         <activity android:name=".screens.Checkout.CheckoutActivity" />
         <activity android:name=".screens.Homepage.MyWishList.MyWishListActivity" />
         <activity android:name=".screens.Cart.RestaurantCart.RestaurantCartActivity" />

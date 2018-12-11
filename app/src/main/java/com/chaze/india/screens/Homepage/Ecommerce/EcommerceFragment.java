@@ -106,8 +106,8 @@ public class EcommerceFragment extends BaseFragment implements EcommerceContract
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Timber.e("Ecommerce View created");
-      //  adapter.addItems();
-      //  recyclerView.setAdapter(adapter);
+        adapter.addItems();
+        recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(mLayoutManager);
         viewPager.setAdapter(ecommercePagerAdapter);
         tabLayout.setupWithViewPager(viewPager);

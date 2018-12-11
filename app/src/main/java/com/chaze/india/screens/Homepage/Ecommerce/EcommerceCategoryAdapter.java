@@ -19,6 +19,8 @@ import com.chaze.india.screens.SubCategory.SubCategoryActivity;
 
 import java.util.List;
 
+import timber.log.Timber;
+
 public class EcommerceCategoryAdapter extends RecyclerView.Adapter<EcommerceCategoryAdapter.ViewHolder> {
     Context context;
     List<EcomerceCategory> categoryList;
@@ -53,7 +55,7 @@ public class EcommerceCategoryAdapter extends RecyclerView.Adapter<EcommerceCate
     public void addItems() {
 
         for (int i = 0; i < 20; i++)
-            categoryList.add(new EcomerceCategory("people", "bdbdbdb", "https://drive.google.com/file/d/15b68H448F4jszurUpAAQV6lFPHdY1dv2/view?usp=sharing"));
+            categoryList.add(new EcomerceCategory("peofgdfgple", "bdbdbdb", "https://drive.google.com/file/d/15b68H448F4jszurUpAAQV6lFPHdY1dv2/view?usp=sharing"));
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -65,10 +67,12 @@ public class EcommerceCategoryAdapter extends RecyclerView.Adapter<EcommerceCate
             imageView = itemView.findViewById(R.id.categoryImage);
             categoryText = itemView.findViewById(R.id.categoryName);
 
-            itemView.setOnClickListener(v -> {
-                if(getPosition()%2==0)
+            imageView.setOnClickListener(v -> {
+
+                Timber.e("Whats HAppening");
+
                 context.startActivity(new Intent(context, CategoryActivity.class));
-                else context.startActivity(new Intent(context, SubCategoryActivity.class));
+
             });
 
         }

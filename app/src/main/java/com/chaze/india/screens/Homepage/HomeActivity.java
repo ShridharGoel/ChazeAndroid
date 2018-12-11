@@ -5,31 +5,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
-import android.view.Gravity;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.view.MenuItem;
 import android.view.Window;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.chaze.india.models.RecyclerItems;
-import com.chaze.india.screens.Checkout.CheckoutActivity;
 import com.chaze.india.screens.Homepage.Ecommerce.EcommerceFragment;
 import com.chaze.india.screens.Homepage.Food.FoodFragment;
 import com.chaze.india.screens.Homepage.More.MoreFragment;
 import com.chaze.india.R;
 import com.chaze.india.models.EcomerceCategory;
 import com.chaze.india.repository.CartManager;
-import com.chaze.india.screens.Checkout.CheckoutActivity;
-import com.chaze.india.screens.Checkout.CheckoutContract;
-import com.chaze.india.screens.Homepage.Purchases.PurchasesActivity;
-import com.chaze.india.screens.Profile.ProfileActivity;
+import com.chaze.india.screens.Homepage.Purchases.PurchasesFragment;
 import com.chaze.india.screens.base.BaseActivity;
 
 import java.util.ArrayList;
@@ -65,7 +56,7 @@ public class HomeActivity extends BaseActivity
     ConstraintLayout eat;
 
 
-    @BindView(R.id.wishlist)
+    @BindView(R.id.asdf)
     ConstraintLayout wishlist;
 
 
@@ -78,6 +69,43 @@ public class HomeActivity extends BaseActivity
 
     @BindView(R.id.bottom_bar)
     ConstraintLayout bottomBar;
+
+
+    @BindView(R.id.morei)
+    ImageView moreI;
+
+
+    @BindView(R.id.malli)
+    ImageView mallI;
+
+    @BindView(R.id.foodi)
+    ImageView foodI;
+
+    @BindView(R.id.purchasesi)
+    ImageView purchasesI;
+
+    @BindView(R.id.wishlishti)
+    ImageView wishlistI;
+
+
+
+    @BindView(R.id.moret)
+    TextView moreT;
+
+
+    @BindView(R.id.mallt)
+    TextView mallT;
+
+    @BindView(R.id.foodt)
+    TextView foodT;
+
+    @BindView(R.id.purchasest)
+    TextView purchasesT;
+
+    @BindView(R.id.wishlistt)
+    TextView wishlistT;
+
+
 
     int cid = -1;
 
@@ -124,12 +152,26 @@ public class HomeActivity extends BaseActivity
 
         fragmentTransaction = fragmentManager.beginTransaction();
 
+        mallI.setImageDrawable(getDrawable(R.drawable.ic_mallw));
+        foodI.setImageDrawable(getDrawable(R.drawable.ic_foodw));
+        purchasesI.setImageDrawable(getDrawable(R.drawable.ic_purchasesw));
+        moreI.setImageDrawable(getDrawable(R.drawable.ic_morew));
+        wishlistI.setImageDrawable(getDrawable(R.drawable.ic_favw));
+
+        mallT.setTextColor(getResources().getColor(R.color.white));
+        foodT.setTextColor(getResources().getColor(R.color.white));
+        purchasesT.setTextColor(getResources().getColor(R.color.white));
+        moreT.setTextColor(getResources().getColor(R.color.white));
+        wishlistT.setTextColor(getResources().getColor(R.color.white));
+
         switch (id) {
             case 0: {
                 fragmentTransaction.add(R.id.fragment, ecommerceFragment).commit();
                 Window window = getWindow();
                 window.setStatusBarColor(getResources().getColor(R.color.colorPurple));
                 bottomBar.setBackgroundColor(getResources().getColor(R.color.colorPurpleLight));
+                mallI.setImageDrawable(getDrawable(R.drawable.ic_mally));
+                mallT.setTextColor(getResources().getColor(R.color.yellow));
                 break;
             }
             case 1: {
@@ -137,17 +179,26 @@ public class HomeActivity extends BaseActivity
                 Window window = getWindow();
                 window.setStatusBarColor(getResources().getColor(R.color.colorPumpkinDark));
                 bottomBar.setBackgroundColor(getResources().getColor(R.color.colorPumpkin));
+                foodI.setImageDrawable(getDrawable(R.drawable.ic_foodc));
+                foodT.setTextColor(getResources().getColor(R.color.colorCyan));
                 break;
             }
             case 2: {
-
+                break;
             }
             case 3: {
-                this.startActivityForResult(new Intent(this, PurchasesActivity.class), cid);
-                this.overridePendingTransition(0, 0);
+                fragmentTransaction.add(R.id.fragment, new PurchasesFragment()).commit();
+                Window window = getWindow();
+                window.setStatusBarColor(getResources().getColor(R.color.colorPurple));
+                bottomBar.setBackgroundColor(getResources().getColor(R.color.colorPurpleLight));
+                purchasesI.setImageDrawable(getDrawable(R.drawable.ic_purchasesy));
+                purchasesT.setTextColor(getResources().getColor(R.color.yellow));
+                break;
             }
             case 4: {
                 fragmentTransaction.add(R.id.fragment, moreFragment).commit();
+                moreI.setImageDrawable(getDrawable(R.drawable.ic_morey));
+                moreT.setTextColor(getResources().getColor(R.color.yellow));
                 break;
             }
         }
@@ -166,19 +217,5 @@ public class HomeActivity extends BaseActivity
         return null;
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        Timber.e("" + requestCode +" "+ resultCode);
-
-        if (resultCode!=-1) {
-            addFragment(resultCode);
-        } else {
-            addFragment(requestCode);
-        }
-
-
-    }
 
 }
