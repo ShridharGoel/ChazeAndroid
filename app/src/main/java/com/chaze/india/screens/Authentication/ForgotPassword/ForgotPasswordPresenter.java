@@ -1,4 +1,4 @@
-package com.chaze.india.screens.Authentication.ChangePassword;
+package com.chaze.india.screens.Authentication.ForgotPassword;
 
 
 import com.chaze.india.repository.network.ICommonAPIManager;
@@ -11,11 +11,11 @@ import javax.inject.Inject;
 import io.reactivex.disposables.CompositeDisposable;
 
 
-public class ChangePasswordPresenter<V extends ChangePasswordContract.View> extends BasePresenter<V>
-        implements ChangePasswordContract.Presenter<V> {
+public class ForgotPasswordPresenter<V extends ForgotPasswordContract.View> extends BasePresenter<V>
+        implements ForgotPasswordContract.Presenter<V> {
 
     @Inject
-    public ChangePasswordPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {
+    public ForgotPasswordPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {
         super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
 

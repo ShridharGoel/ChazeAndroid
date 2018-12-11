@@ -3,7 +3,7 @@
 package com.chaze.india.di.component;
 
 import com.chaze.india.di.module.AdapterModule;
-import com.chaze.india.screens.Authentication.ChangePassword.ChangePasswordActivity;
+import com.chaze.india.screens.Authentication.ForgotPassword.ForgotPasswordActivity;
 import com.chaze.india.screens.Authentication.Login.LoginActivity;
 import com.chaze.india.screens.Authentication.OTPConfirmation.OTPConfirmation;
 import com.chaze.india.screens.Authentication.Signup.SignUpActivity;
@@ -67,7 +67,7 @@ public interface ActivityComponent {
 
 
 
-    void inject(ChangePasswordActivity changePasswordActivity);
+    void inject(ForgotPasswordActivity forgotPasswordActivity);
 
     void inject(LoginActivity loginActivity);
 

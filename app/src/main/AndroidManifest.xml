@@ -56,7 +56,7 @@
             android:name=".screens.Authentication.OTPConfirmation.OTPConfirmation"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".screens.Authentication.ChangePassword.ChangePasswordActivity"
+            android:name=".screens.Authentication.ForgotPassword.ForgotPasswordActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".screens.Checkout.CheckoutActivity" />
         <activity android:name=".screens.Homepage.MyWishList.MyWishListActivity" />
