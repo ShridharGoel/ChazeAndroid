@@ -8,12 +8,14 @@ public class SignUpResponse {
 
     Boolean isSignUpError;
     String userName, mobile, pass;
+    int gender;
 
-    public SignUpResponse(Boolean isSignUpError, String userName, String mobile, String pass) {
+    public SignUpResponse(Boolean isSignUpError, String userName, String mobile, String pass, int gender) {
         this.isSignUpError = isSignUpError;
         this.userName = userName;
         this.mobile = mobile;
         this.pass = pass;
+        this.gender = gender;
     }
 
     public Boolean getSignUpError() {
@@ -31,5 +33,7 @@ public class SignUpResponse {
     public String getPass() {
         return pass;
     }
+
+    public int getGender() { return gender; }
 
 }

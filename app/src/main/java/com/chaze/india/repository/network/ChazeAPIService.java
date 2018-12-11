@@ -1,9 +1,10 @@
 package com.chaze.india.repository.network;
 
 
+import com.chaze.india.models.ConfirmOTPResponse;
+import com.chaze.india.models.ResendOTPResponse;
 import com.chaze.india.models.SignUpResponse;
 import com.chaze.india.models.LoginResponse;
-import com.chaze.india.models.SignUpResponse;
 
 import io.reactivex.Single;
 import retrofit2.http.Field;
@@ -31,5 +32,16 @@ public interface ChazeAPIService {
     Single<LoginResponse> loginUser(
             @Field("phone") String mobile,
             @Field("password") String pass);
+
+    @FormUrlEncoded
+    @POST("/otp")   //confirmOtp
+    Single<ConfirmOTPResponse> confirmOtp(
+            @Field("phone") String mobile,
+            @Field("otp") int otp);
+
+    @FormUrlEncoded
+    @POST("/resendotp")   //resendOTP
+    Single<ResendOTPResponse> resendOTP(
+            @Field("phone") String mobile);
 
 }

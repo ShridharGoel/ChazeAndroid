@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.chaze.india.R;
 import com.chaze.india.repository.session.SessionManager;
 import com.chaze.india.screens.Authentication.Login.LoginActivity;
+import com.chaze.india.screens.Authentication.OTPConfirmation.OTPConfirmation;
 import com.chaze.india.screens.Homepage.HomeActivity;
 import com.chaze.india.screens.base.BaseActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -133,6 +134,10 @@ public class SignUpActivity extends BaseActivity implements SignUpContract.View 
                 SessionManager sharedPreference=new SessionManager(getBaseContext());
                 sharedPreference.setPhoneNo(signUpMobile.getText().toString());
                 sharedPreference.setUserName(signUpName.getText().toString());
+
+                Intent otpIntent = new Intent(SignUpActivity.this, OTPConfirmation.class);
+                otpIntent.putExtra("Mobile", signUpMobile.getText().toString());
+                startActivity(otpIntent);
             }
 
             else if(TextUtils.isEmpty(signUpName.getText().toString())) {
