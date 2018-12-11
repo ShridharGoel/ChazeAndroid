@@ -1,8 +1,8 @@
-package com.chaze.india.screens.Authentication.ChangePassword;
+package com.chaze.india.screens.Authentication.ForgotPassword;
 
 import com.chaze.india.screens.base.MvpContract;
 
-public class ChangePasswordContract {
+public class ForgotPasswordContract {
 
     public interface View extends MvpContract.View {
 

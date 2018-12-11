@@ -134,10 +134,6 @@ public class SignUpActivity extends BaseActivity implements SignUpContract.View 
                 SessionManager sharedPreference=new SessionManager(getBaseContext());
                 sharedPreference.setPhoneNo(signUpMobile.getText().toString());
                 sharedPreference.setUserName(signUpName.getText().toString());
-
-                Intent otpIntent = new Intent(SignUpActivity.this, OTPConfirmation.class);
-                otpIntent.putExtra("Mobile", signUpMobile.getText().toString());
-                startActivity(otpIntent);
             }
 
             else if(TextUtils.isEmpty(signUpName.getText().toString())) {
@@ -202,5 +198,11 @@ public class SignUpActivity extends BaseActivity implements SignUpContract.View 
     public void showSignUpResult() {
     }
 
+    @Override
+    public void startOTPActivity() {
+        Intent otpIntent = new Intent(SignUpActivity.this, OTPConfirmation.class);
+        otpIntent.putExtra("Mobile", signUpMobile.getText().toString());
+        startActivity(otpIntent);
+    }
 }
 

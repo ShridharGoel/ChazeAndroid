@@ -39,6 +39,7 @@ public class SignUpPresenter<V extends SignUpContract.View> extends BasePresente
   //                  getMvpView().showSignUpResult();
                     Timber.e("Success");
 
+                    getMvpView().startOTPActivity();
                     //On success
                 }, Throwable -> {
 //                    getMvpView().showSignUpResult();
