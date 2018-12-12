@@ -48,16 +48,9 @@
             android:fitsSystemWindows="true"
             app:layout_scrollFlags="scroll">
 
-            <SearchView xmlns:android="http://schemas.android.com/apk/res/android"
+            <include
                 android:id="@+id/searchbar"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                app:theme="@style/AppSearchView"
-                android:background="@color/textLightPrimary"
-                android:focusable="false"
-                android:gravity="center"
-                app:iconifiedByDefault="false"
-                app:queryHint="Search for shops, products, food..." />
+                layout="@layout/searchview" />
         </android.support.design.widget.CollapsingToolbarLayout>
 
 
@@ -69,7 +62,7 @@
             android:layout_gravity="bottom"
             android:elevation="5dp"
             app:tabBackground="@color/colorPumpkin"
-            app:tabSelectedTextColor="@color/colorCyanDark"
+            app:tabSelectedTextColor="@color/colorCyan"
             app:tabTextColor="@color/white"/>
 
 

@@ -1,6 +1,7 @@
 package com.chaze.india.screens.Homepage.Ecommerce;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,11 +11,14 @@ import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
+
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 
 import com.chaze.india.screens.Cart.EcommerceCart.CartActivity;
@@ -55,7 +59,7 @@ public class EcommerceFragment extends BaseFragment implements EcommerceContract
     RelativeLayout toolbar;
 
     @BindView(R.id.searchbar)
-    SearchView searchView;
+    ConstraintLayout searchView;
 
     @Inject
     EcommerceContract.Presenter<EcommerceContract.View> mPresenter;
@@ -91,8 +95,7 @@ public class EcommerceFragment extends BaseFragment implements EcommerceContract
 
     private void setupToolBar() {
         searchView.setOnClickListener(v -> goToSearch());
-
-        ConstraintLayout cartView = toolbar.findViewById(R.id.cart_container);
+         ConstraintLayout cartView = toolbar.findViewById(R.id.cart_container);
 
         cartView.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), CartActivity.class));

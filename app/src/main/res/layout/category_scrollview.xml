@@ -5,8 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:layout_margin="2dp"
-    card_view:cardCornerRadius="3dp"
+
     card_view:cardElevation="5dp">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -14,27 +13,30 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
         android:clickable="true"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/categoryImage"
             android:background="@color/yellowDark"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
+            android:layout_width="72dp"
+            android:layout_height="80dp"
             android:scaleType="fitCenter" />
 
         <TextView
             android:id="@+id/categoryName"
             android:layout_width="match_parent"
 
-            android:layout_height="14dp"
-            android:layout_marginTop="2dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
             android:layout_gravity="center_vertical|start"
             android:gravity="center"
-            android:textColor="@color/colorPrimaryDark"
-            android:textStyle="bold"
+            android:textColor="@color/textDarkPrimary"
             android:textAlignment="center"
             android:textSize="12sp"
             tools:text="non veg starter" />

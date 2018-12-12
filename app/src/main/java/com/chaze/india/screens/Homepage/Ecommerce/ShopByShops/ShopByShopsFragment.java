@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
+
+import com.chaze.india.screens.Homepage.HomeActivity;
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 
 import android.support.v7.widget.RecyclerView;
@@ -91,6 +93,13 @@ public class ShopByShopsFragment extends BaseFragment implements ShopByShopsCont
                                    int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
 
+
+                if (dy > 0 ) {
+                    ((HomeActivity)getActivity()).hideBottomBar();
+                } else if (dy < 0 ) {
+                    ((HomeActivity)getActivity()).showBottomBar();
+
+                }
                 totalItemCount = mLayoutManager.getItemCount();
                 lastVisibleItem = mLayoutManager.findLastVisibleItemPosition();
                 if (!loading

@@ -33,18 +33,17 @@
                     android:layout_alignParentRight="true" />
 
 
-                <com.cooltechworks.views.shimmer.ShimmerRecyclerView
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                <com.cooltechworks.views.shimmer.ShimmerRecyclerView xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/ecomerceRecyclerView"
                     android:layout_width="match_parent"
-                    android:background="@color/white"
                     android:layout_height="wrap_content"
+                    android:background="@color/white"
                     android:orientation="horizontal"
+                    app:shimmer_demo_angle="20"
                     app:shimmer_demo_child_count="10"
                     app:shimmer_demo_layout="@layout/shimmer_sample_view"
                     app:shimmer_demo_layout_manager_type="linear_horizontal"
-                    app:shimmer_demo_angle="20"
-                    app:shimmer_demo_shimmer_color="@color/white"/>
+                    app:shimmer_demo_shimmer_color="@color/white" />
             </LinearLayout>
 
         </android.support.design.widget.CollapsingToolbarLayout>
@@ -55,19 +54,10 @@
             android:fitsSystemWindows="true"
             app:layout_scrollFlags="scroll">
 
-            <SearchView xmlns:android="http://schemas.android.com/apk/res/android"
+            <include
                 android:id="@+id/searchbar"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                app:theme="@style/AppSearchView"
-                android:background="#AAA"
-                android:focusable="false"
-                android:gravity="center"
-                app:iconifiedByDefault="false"
-                app:queryHint="Search for shops, products, food..." />
+                layout="@layout/searchview" />
         </android.support.design.widget.CollapsingToolbarLayout>
-
-
 
 
         <android.support.design.widget.TabLayout
@@ -78,11 +68,9 @@
             android:elevation="5dp"
             app:tabBackground="@color/colorPurpleLight"
             app:tabSelectedTextColor="@color/yellowLight"
-            app:tabTextColor="@color/white"/>
+            app:tabTextColor="@color/white" />
 
     </android.support.design.widget.AppBarLayout>
-
-
 
 
     <android.support.v4.view.ViewPager
