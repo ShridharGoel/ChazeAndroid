@@ -1,4 +1,4 @@
-package com.chaze.india.models;
+package com.chaze.india.models.Ecommerce;
 
 public class PostItems {
     String imageUrl;

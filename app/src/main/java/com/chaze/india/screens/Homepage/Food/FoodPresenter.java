@@ -2,7 +2,7 @@
 
 package com.chaze.india.screens.Homepage.Food;
 
-import com.chaze.india.models.Restaurant;
+import com.chaze.india.models.Food.Restaurant;
 import com.chaze.india.repository.network.ICommonAPIManager;
 import com.chaze.india.repository.session.SessionManager;
 import com.chaze.india.screens.base.BasePresenter;

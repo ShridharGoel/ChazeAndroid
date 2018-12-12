@@ -5,10 +5,8 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.chaze.india.models.CartBusiness;
-import com.chaze.india.models.CartEcommerce;
+import com.chaze.india.models.Ecommerce.CartEcommerce;
 import com.google.gson.Gson;
-import com.chaze.india.models.CartBusiness;
-import com.chaze.india.models.CartEcommerce;
 
 import java.util.Date;
 

@@ -2,7 +2,6 @@ package com.chaze.india.screens;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,8 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.chaze.india.R;
-import com.chaze.india.models.EcomerceCategory;
-import com.chaze.india.models.PostItems;
+import com.chaze.india.models.Ecommerce.EcomerceCategory;
+import com.chaze.india.models.Ecommerce.PostItems;
 import com.chaze.india.models.RecyclerItems;
 import com.smarteist.autoimageslider.SliderLayout;
 import com.smarteist.autoimageslider.SliderView;

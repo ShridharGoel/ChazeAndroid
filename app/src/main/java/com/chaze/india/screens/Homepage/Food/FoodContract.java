@@ -1,9 +1,6 @@
 package com.chaze.india.screens.Homepage.Food;
 
 import com.chaze.india.screens.base.MvpContract;
-import com.chaze.india.models.EcomerceCategory;
-import com.chaze.india.models.Restaurant;
-import com.chaze.india.screens.base.MvpContract;
 
 
 /**

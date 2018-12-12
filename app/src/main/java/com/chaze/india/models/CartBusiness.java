@@ -2,6 +2,8 @@ package com.chaze.india.models;
 
 import android.util.Log;
 
+import com.chaze.india.models.Ecommerce.Shop;
+
 import java.io.Serializable;
 import java.util.LinkedList;
 
@@ -10,7 +12,7 @@ public class CartBusiness implements Serializable {
 
     private static String TAG = CartBusiness.class.getSimpleName();
 
-    private Business business;
+    private Shop business;
     private LinkedList<CartItem> cartItems;
     private int discount;
 
@@ -20,18 +22,18 @@ public class CartBusiness implements Serializable {
         business = null;
     }
 
-    public CartBusiness(Business business, LinkedList<CartItem> cartItems) {
+    public CartBusiness(Shop business, LinkedList<CartItem> cartItems) {
         this.business = business;
         this.cartItems = cartItems;
 
         Log.d(TAG, String.valueOf(discount));
     }
 
-    public Business getBusiness() {
+    public Shop getBusiness() {
         return business;
     }
 
-    public void setRestaurantInCart(Business business) {
+    public void setRestaurantInCart(Shop business) {
         this.business = business;
     }
 
@@ -51,7 +53,7 @@ public class CartBusiness implements Serializable {
         }
         if (!found) {
             cartItems.add(cartItem);
-            business = cartItem.getItem().getBusiness();
+            business = cartItem.getItem().getShop();
         }
 
     }

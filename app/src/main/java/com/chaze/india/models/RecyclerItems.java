@@ -1,5 +1,7 @@
 package com.chaze.india.models;
 
+import com.chaze.india.models.Ecommerce.PostItems;
+
 import java.util.ArrayList;
 
 public class RecyclerItems {

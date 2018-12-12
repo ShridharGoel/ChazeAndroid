@@ -1,13 +1,16 @@
 package com.chaze.india.repository.network;
 
 
-import com.chaze.india.models.EcomerceCategory;
-import com.chaze.india.models.Shop;
+import com.chaze.india.models.Ecommerce.Shop;
+import com.chaze.india.models.Ecommerce.ShopListResponse;
 
 import java.util.List;
 
 import io.reactivex.Single;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 /**
  * Define E-commerce API endpoints.
@@ -18,7 +21,7 @@ import retrofit2.http.GET;
 public interface ECommerceAPIService {
 
     @GET("shops/")
-    Single<List<Shop>> getShopsList();
+    Single<ShopListResponse> getShopsList(@Query("offset") int offset);
 
 
 }

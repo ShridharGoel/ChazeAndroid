@@ -5,19 +5,19 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 
+import com.chaze.india.models.Ecommerce.ShopListResponse;
 import com.chaze.india.screens.Homepage.HomeActivity;
-import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.chaze.india.models.Shop;
+import com.chaze.india.models.Ecommerce.Shop;
 import com.chaze.india.screens.base.BaseFragment;
 import com.chaze.india.R;
 import com.chaze.india.di.Qualifiers.LinLayoutVert;
-import com.chaze.india.models.EcomerceCategory;
+import com.chaze.india.models.Ecommerce.EcomerceCategory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -94,10 +94,10 @@ public class ShopByShopsFragment extends BaseFragment implements ShopByShopsCont
                 super.onScrolled(recyclerView, dx, dy);
 
 
-                if (dy > 0 ) {
-                    ((HomeActivity)getActivity()).hideBottomBar();
-                } else if (dy < 0 ) {
-                    ((HomeActivity)getActivity()).showBottomBar();
+                if (dy > 0) {
+                    ((HomeActivity) getActivity()).hideBottomBar();
+                } else if (dy < 0) {
+                    ((HomeActivity) getActivity()).showBottomBar();
 
                 }
                 totalItemCount = mLayoutManager.getItemCount();
@@ -130,17 +130,17 @@ public class ShopByShopsFragment extends BaseFragment implements ShopByShopsCont
     }
 
     @Override
-    public void showShops(List<Shop> lst) {
+    public void showShops(ShopListResponse lst) {
 
-        for(Shop e:lst){
+        for (Shop e : lst.getShops()) {
             Timber.e(e.getName());
         }
         hideLoading();
-        adapter.addItems(lst);
+        adapter.addItems(lst.getShops());
     }
 
     @Override
     public void showError() {
-
+        loading = false;
     }
 }

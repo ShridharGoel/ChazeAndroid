@@ -1,8 +1,6 @@
 package com.chaze.india.screens.Homepage;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -19,7 +17,7 @@ import com.chaze.india.screens.Homepage.Ecommerce.EcommerceFragment;
 import com.chaze.india.screens.Homepage.Food.FoodFragment;
 import com.chaze.india.screens.Homepage.More.MoreFragment;
 import com.chaze.india.R;
-import com.chaze.india.models.EcomerceCategory;
+import com.chaze.india.models.Ecommerce.EcomerceCategory;
 import com.chaze.india.repository.CartManager;
 import com.chaze.india.screens.Homepage.Purchases.PurchasesFragment;
 import com.chaze.india.screens.base.BaseActivity;
@@ -31,7 +29,6 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import timber.log.Timber;
 
 public class HomeActivity extends BaseActivity
         implements HomeContract.View {

@@ -1,4 +1,6 @@
-package com.chaze.india.models;
+package com.chaze.india.models.Food;
+
+import com.chaze.india.models.Item;
 
 import java.io.Serializable;
 
@@ -46,8 +48,4 @@ public class RestaurantItem extends Item implements Serializable {
         this.itemRestaurant = itemRestaurant;
     }
 
-    @Override
-    public Business getBusiness() {
-        return itemRestaurant;
-    }
 }

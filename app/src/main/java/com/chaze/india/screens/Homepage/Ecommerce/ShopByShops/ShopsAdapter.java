@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 
-import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
-
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,12 +14,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.chaze.india.R;
-import com.chaze.india.models.EcomerceCategory;
-import com.chaze.india.models.EcomerceShop;
-import com.chaze.india.models.Shop;
+import com.chaze.india.models.Ecommerce.Shop;
 import com.chaze.india.screens.Shop.ShopActivity;
 import com.iarcuschin.simpleratingbar.SimpleRatingBar;
-import com.squareup.picasso.Picasso;
 
 import android.support.v4.util.Pair;
 

@@ -17,8 +17,7 @@ import com.chaze.india.screens.ProductsPostAdapter;
 import com.chaze.india.screens.base.BaseFragment;
 import com.chaze.india.R;
 import com.chaze.india.di.Qualifiers.LinLayoutVert;
-import com.chaze.india.models.EcomerceCategory;
-import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
+import com.chaze.india.models.Ecommerce.EcomerceCategory;
 
 import java.util.List;
 

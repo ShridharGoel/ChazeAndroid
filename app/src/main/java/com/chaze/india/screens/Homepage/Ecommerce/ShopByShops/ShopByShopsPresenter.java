@@ -25,7 +25,7 @@ public class ShopByShopsPresenter<V extends ShopByShopsContract.View> extends Ba
         implements ShopByShopsContract.Presenter<V> {
 
 
-    private int pageNumber;
+    private int pageNumber = -1;
 
     @Inject
     public ShopByShopsPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {
@@ -43,22 +43,20 @@ public class ShopByShopsPresenter<V extends ShopByShopsContract.View> extends Ba
         next();
     }
 
-    public void next(){
+    public void next() {
         pageNumber++;
         dataFromNetwork(pageNumber);
     }
 
-
-
-    /**
-     * Simulation of network data
-     */
     @SuppressLint("CheckResult")
     private void dataFromNetwork(final int page) {
-        Timber.e("" + page);
-        getCommonAPIManager().getECommerceAPIService().getShopsList()
+        Timber.e("" + page * 10);
+        getCommonAPIManager().getECommerceAPIService().getShopsList(page * 10)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(getMvpView()::showShops, throwable -> getMvpView().showError());
+                .subscribe(getMvpView()::showShops, throwable -> {
+                    getMvpView().showError();
+                    pageNumber--;
+                });
     }
 }

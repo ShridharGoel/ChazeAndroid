@@ -1,8 +1,7 @@
 package com.chaze.india.screens.Homepage.Ecommerce.ShopByProducts;
 
 import com.chaze.india.screens.base.MvpContract;
-import com.chaze.india.models.EcomerceCategory;
-import com.chaze.india.screens.base.MvpContract;
+import com.chaze.india.models.Ecommerce.EcomerceCategory;
 
 import java.util.List;
 

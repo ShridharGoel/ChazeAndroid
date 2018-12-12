@@ -3,7 +3,6 @@ package com.chaze.india.screens.Homepage.Purchases.ActiveOrders;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
-import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.chaze.india.R;
-import com.chaze.india.models.TimeLine;
+import com.chaze.india.models.Ecommerce.TimeLine;
 import com.github.vipulasri.timelineview.TimelineView;
 
 import java.util.ArrayList;

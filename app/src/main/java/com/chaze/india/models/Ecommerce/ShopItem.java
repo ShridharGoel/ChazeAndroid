@@ -1,4 +1,6 @@
-package com.chaze.india.models;
+package com.chaze.india.models.Ecommerce;
+
+import com.chaze.india.models.Item;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -44,8 +46,4 @@ public class ShopItem extends Item implements Serializable {
         this.itemShop = itemShop;
     }
 
-    @Override
-    public Business getBusiness() {
-        return itemShop;
-    }
 }

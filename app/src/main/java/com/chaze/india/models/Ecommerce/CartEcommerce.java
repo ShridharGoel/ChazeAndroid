@@ -1,4 +1,8 @@
-package com.chaze.india.models;
+package com.chaze.india.models.Ecommerce;
+
+import com.chaze.india.models.CartBusiness;
+import com.chaze.india.models.CartItem;
+import com.chaze.india.models.Item;
 
 import java.io.Serializable;
 import java.util.LinkedList;
@@ -29,7 +33,7 @@ public class CartEcommerce implements Serializable {
         Boolean isBusinessFound = false;
 
 
-        Business business = cartItem.getItem().getBusiness();
+        Shop business = cartItem.getItem().getShop();
 
         for (int i = 0; i < carts.size(); i++) {
 
@@ -56,7 +60,7 @@ public class CartEcommerce implements Serializable {
             if (!isBusinessFound && threshold > carts.size() + 1) {
                 LinkedList<CartItem> cartItemsNew = new LinkedList<>();
                 cartItemsNew.add(cartItem);
-                carts.add(new CartBusiness(cartItem.getItem().getBusiness(), cartItemsNew));
+                carts.add(new CartBusiness(cartItem.getItem().getShop(), cartItemsNew));
             }
 
 
@@ -71,7 +75,7 @@ public class CartEcommerce implements Serializable {
 
             CartBusiness cartBusiness = carts.get(i);
 
-            if (cartBusiness.getBusiness().getCode().equals(cartItem.getItem().getBusiness())) {
+            if (cartBusiness.getBusiness().getCode().equals(cartItem.getItem().getShop())) {
 
                 for (int j = 0; j < cartBusiness.getCartItems().size(); j++) {
                     Item item = cartBusiness.getCartItems().get(j).getItem();

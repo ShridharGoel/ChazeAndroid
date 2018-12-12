@@ -1,5 +1,7 @@
 package com.chaze.india.models;
 
+import com.chaze.india.models.Food.RestaurantItem;
+
 import java.io.Serializable;
 
 public class CartItem implements Serializable {
