@@ -58,9 +58,6 @@ public class ShopActivity extends BaseActivity implements ShopContract.View {
     ShopContract.Presenter<ShopContract.View> mPresenter;
 
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-
     @BindView(R.id.searchbar)
     ConstraintLayout searchView;
 
@@ -75,13 +72,8 @@ public class ShopActivity extends BaseActivity implements ShopContract.View {
         setUnBinder(ButterKnife.bind(this));
         getActivityComponent().inject(this);
 
-        int color = ResourcesCompat.getColor(getResources(), R.color.colorCyan, null); //without theme
-        Drawable drawable = new ColorDrawable(color);
 
         onAttach(this);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("SubCategoryName: ");
-        getSupportActionBar().setBackgroundDrawable(drawable);
 
         mPresenter.onAttach(this);
 

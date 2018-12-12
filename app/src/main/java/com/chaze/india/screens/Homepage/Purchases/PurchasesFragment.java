@@ -1,6 +1,5 @@
 package com.chaze.india.screens.Homepage.Purchases;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -37,7 +36,6 @@ public class PurchasesFragment extends BaseFragment implements PurchasesContract
 
     @Inject
     PurchasesContract.Presenter<PurchasesContract.View> mPresenter;
-    ProgressDialog progressDialog;
     @BindView(R.id.postorder_slider)
     TabLayout tabLayout;
     @BindView(R.id.postorder_view_pager)
@@ -57,7 +55,6 @@ public class PurchasesFragment extends BaseFragment implements PurchasesContract
         onAttach(getContext());
         getActivityComponent().inject(this);
         setUnBinder(ButterKnife.bind(this, view));
-        progressDialog = new ProgressDialog(getContext());
         mPresenter.onAttach(this);
 
         return view;

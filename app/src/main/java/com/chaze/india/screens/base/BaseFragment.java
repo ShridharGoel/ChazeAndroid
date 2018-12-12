@@ -1,6 +1,5 @@
 package com.chaze.india.screens.base;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,7 +17,6 @@ public abstract class BaseFragment extends Fragment implements MvpContract.View 
 
 
     private BaseActivity mActivity;
-    private ProgressDialog progressDialog;
     private Unbinder mUnBinder;
 
     @Override
@@ -27,7 +25,6 @@ public abstract class BaseFragment extends Fragment implements MvpContract.View 
         if (context instanceof BaseActivity) {
             BaseActivity activity = (BaseActivity) context;
             this.mActivity = activity;
-            progressDialog = new ProgressDialog(mActivity);
         }
     }
 
@@ -40,13 +37,11 @@ public abstract class BaseFragment extends Fragment implements MvpContract.View 
     @Override
     public void showLoading() {
 
-        progressDialog.setMessage("Loading....");
-        progressDialog.show();
     }
 
     @Override
     public void hideLoading() {
-        progressDialog.hide();
+
     }
 
     @Override
