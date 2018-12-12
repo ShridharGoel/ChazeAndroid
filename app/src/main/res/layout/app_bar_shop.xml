@@ -36,8 +36,9 @@
             android:fitsSystemWindows="true"
             app:layout_scrollFlags="scroll">
 
-            <include layout="@layout/searchview"
-                android:id="@+id/searchbar"/>
+            <include
+                android:id="@+id/searchbar"
+                layout="@layout/searchview" />
         </android.support.design.widget.CollapsingToolbarLayout>
 
 

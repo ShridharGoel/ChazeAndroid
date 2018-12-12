@@ -17,11 +17,8 @@
         <activity
             android:name=".screens.Homepage.HomeActivity"
             android:label="@string/title_activity_home"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".screens.search.SearchActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:screenOrientation="portrait" />
+        <activity android:name=".screens.search.SearchActivity" />
         <activity android:name=".screens.Authentication.Login.LoginActivity" />
         <activity android:name=".screens.WelcomeSlides.StartActivity">
             <intent-filter>

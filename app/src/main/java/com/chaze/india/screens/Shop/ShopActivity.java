@@ -2,6 +2,7 @@ package com.chaze.india.screens.Shop;
 
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
@@ -61,7 +62,7 @@ public class ShopActivity extends BaseActivity implements ShopContract.View {
     Toolbar toolbar;
 
     @BindView(R.id.searchbar)
-    SearchView searchView;
+    ConstraintLayout searchView;
 
     @BindView(R.id.nestedScroll)
     NestedScrollView nestedScrollView;
