@@ -1,4 +1,4 @@
-package com.chaze.india.screens.Authentication.ChangePassword;
+package com.chaze.india.screens.Authentication.ForgotPassword;
 
 import android.os.Bundle;
 
@@ -20,7 +20,7 @@ import com.chaze.india.screens.base.BaseActivity;
 
  **/
 
-public class ChangePasswordActivity extends BaseActivity  {
+public class ForgotPasswordActivity extends BaseActivity  {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

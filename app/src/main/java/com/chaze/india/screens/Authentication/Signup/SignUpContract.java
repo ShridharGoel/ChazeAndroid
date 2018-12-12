@@ -10,6 +10,7 @@ public class SignUpContract {
     public interface View extends MvpContract.View {
 
         void showSignUpResult();
+        void startOTPActivity();
 
     }
 
