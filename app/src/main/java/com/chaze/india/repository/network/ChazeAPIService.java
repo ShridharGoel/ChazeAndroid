@@ -2,9 +2,11 @@ package com.chaze.india.repository.network;
 
 
 import com.chaze.india.models.Authentication.ConfirmOTPResponse;
-import com.chaze.india.models.Ecommerce.ResendOTPResponse;
-import com.chaze.india.models.Authentication.SignUpResponse;
 import com.chaze.india.models.Authentication.LoginResponse;
+import com.chaze.india.models.Authentication.SignUpResponse;
+import com.chaze.india.models.ChangePassResponse;
+import com.chaze.india.models.Ecommerce.ResendOTPResponse;
+import com.chaze.india.models.ForgotPassResponse;
 
 import io.reactivex.Single;
 import retrofit2.http.Field;
@@ -34,14 +36,24 @@ public interface ChazeAPIService {
             @Field("password") String pass);
 
     @FormUrlEncoded
-    @POST("/otp")   //confirmOtp
+    @POST("/verifyPhone")   //confirmOtp
     Single<ConfirmOTPResponse> confirmOtp(
             @Field("phone") String mobile,
             @Field("otp") int otp);
 
     @FormUrlEncoded
-    @POST("/resendotp")   //resendOTP
+    @POST("/resendPhone")   //resendOTP
     Single<ResendOTPResponse> resendOTP(
             @Field("phone") String mobile);
 
+    @FormUrlEncoded
+    @POST("/requestForgotPassword")    //forgotPass
+    Single<ForgotPassResponse> forgotPass(
+            @Field("phone") String mobile);
+
+    @FormUrlEncoded
+    @POST("/changepass")    //changePass
+    Single<ChangePassResponse> changePass(
+            @Field("phone") String mobile,
+            @Field("password") String newPass);
 }
