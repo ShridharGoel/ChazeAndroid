@@ -1,14 +1,13 @@
 package com.chaze.india.screens.Homepage;
 
-import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.View;
 import android.view.Window;
+import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,7 +17,7 @@ import com.chaze.india.screens.Homepage.Ecommerce.EcommerceFragment;
 import com.chaze.india.screens.Homepage.Food.FoodFragment;
 import com.chaze.india.screens.Homepage.More.MoreFragment;
 import com.chaze.india.R;
-import com.chaze.india.models.EcomerceCategory;
+import com.chaze.india.models.Ecommerce.EcomerceCategory;
 import com.chaze.india.repository.CartManager;
 import com.chaze.india.screens.Homepage.Purchases.PurchasesFragment;
 import com.chaze.india.screens.base.BaseActivity;
@@ -30,13 +29,11 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import timber.log.Timber;
 
 public class HomeActivity extends BaseActivity
         implements HomeContract.View {
 
 
-    ProgressDialog progressDialog;
     @Inject
     CartManager cartManager;
 
@@ -88,7 +85,6 @@ public class HomeActivity extends BaseActivity
     ImageView wishlistI;
 
 
-
     @BindView(R.id.moret)
     TextView moreT;
 
@@ -105,7 +101,7 @@ public class HomeActivity extends BaseActivity
     @BindView(R.id.wishlistt)
     TextView wishlistT;
 
-
+    boolean bottombarShown = true;
 
     int cid = -1;
 
@@ -115,7 +111,7 @@ public class HomeActivity extends BaseActivity
         setContentView(R.layout.activity_home);
         setUnBinder(ButterKnife.bind(this));
         getActivityComponent().inject(this);
-        progressDialog = new ProgressDialog(this);
+
         mPresenter.onAttach(this);
         addFragment(0);
 
@@ -157,6 +153,7 @@ public class HomeActivity extends BaseActivity
         purchasesI.setImageDrawable(getDrawable(R.drawable.ic_purchasesw));
         moreI.setImageDrawable(getDrawable(R.drawable.ic_morew));
         wishlistI.setImageDrawable(getDrawable(R.drawable.ic_favw));
+        wishlistI.setImageDrawable(getDrawable(R.drawable.ic_favwp));
 
         mallT.setTextColor(getResources().getColor(R.color.white));
         foodT.setTextColor(getResources().getColor(R.color.white));
@@ -172,6 +169,7 @@ public class HomeActivity extends BaseActivity
                 bottomBar.setBackgroundColor(getResources().getColor(R.color.colorPurpleLight));
                 mallI.setImageDrawable(getDrawable(R.drawable.ic_mally));
                 mallT.setTextColor(getResources().getColor(R.color.yellow));
+                wishlistI.setImageDrawable(getDrawable(R.drawable.ic_favwp));
                 break;
             }
             case 1: {
@@ -181,6 +179,7 @@ public class HomeActivity extends BaseActivity
                 bottomBar.setBackgroundColor(getResources().getColor(R.color.colorPumpkin));
                 foodI.setImageDrawable(getDrawable(R.drawable.ic_foodc));
                 foodT.setTextColor(getResources().getColor(R.color.colorCyan));
+                wishlistI.setImageDrawable(getDrawable(R.drawable.ic_favwpumpkin));
                 break;
             }
             case 2: {
@@ -208,6 +207,39 @@ public class HomeActivity extends BaseActivity
 
     }
 
+
+    public void hideBottomBar() {
+
+        if (!bottombarShown) return;
+
+        bottombarShown = false;
+
+        bottomBar.setVisibility(View.INVISIBLE);
+        TranslateAnimation animate = new TranslateAnimation(
+                0,                 // fromXDelta
+                0,                 // toXDelta
+                0,                 // fromYDelta
+                bottomBar.getHeight()); // toYDelta
+        animate.setDuration(200);
+        animate.setFillAfter(true);
+        bottomBar.startAnimation(animate);
+    }
+
+    public void showBottomBar() {
+
+        if (bottombarShown) return;
+
+        bottombarShown = true;
+        bottomBar.setVisibility(View.VISIBLE);
+        TranslateAnimation animate = new TranslateAnimation(
+                0,                 // fromXDelta
+                0,                 // toXDelta
+                bottomBar.getHeight(),  // fromYDelta
+                0);                // toYDelta
+        animate.setDuration(400);
+        animate.setFillAfter(true);
+        bottomBar.startAnimation(animate);
+    }
 
     public void addItems(List<EcomerceCategory> items) {
 

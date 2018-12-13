@@ -2,10 +2,9 @@
 
 package com.chaze.india.screens.Homepage.Food.Restaurants;
 
-import com.chaze.india.models.EcomerceCategory;
+import com.chaze.india.models.Ecommerce.EcomerceCategory;
 import com.chaze.india.repository.network.ICommonAPIManager;
 import com.chaze.india.repository.session.SessionManager;
-import com.chaze.india.screens.Homepage.Ecommerce.ShopByProducts.ShopByProductsContract;
 import com.chaze.india.screens.base.BasePresenter;
 import com.chaze.india.utils.rx.SchedulerProvider;
 

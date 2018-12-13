@@ -1,9 +1,7 @@
 package com.chaze.india.repository.session;
 
 import com.chaze.india.models.CartBusiness;
-import com.chaze.india.models.CartEcommerce;
-import com.chaze.india.models.CartBusiness;
-import com.chaze.india.models.CartEcommerce;
+import com.chaze.india.models.Ecommerce.CartEcommerce;
 
 import java.util.Date;
 

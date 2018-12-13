@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/colorGreen">
 
-                <include layout="@layout/toolbar_searched_category" />
+                <include layout="@layout/busiess_view" />
             </RelativeLayout>
 
         </android.support.design.widget.CollapsingToolbarLayout>
@@ -36,8 +36,9 @@
             android:fitsSystemWindows="true"
             app:layout_scrollFlags="scroll">
 
-            <include layout="@layout/searchview"
-                android:id="@+id/searchbar"/>
+            <include
+                android:id="@+id/searchbar"
+                layout="@layout/searchview" />
         </android.support.design.widget.CollapsingToolbarLayout>
 
 
@@ -58,9 +59,9 @@
             <GridView xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/grid"
                 android:layout_width="wrap_content"
-                android:layout_height="220dp"
+                android:layout_height="200dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="4dp"
                 android:numColumns="4"
                 android:stretchMode="columnWidth" />
 

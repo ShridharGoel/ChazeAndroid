@@ -1,4 +1,4 @@
-package com.chaze.india.models;
+package com.chaze.india.models.Ecommerce;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

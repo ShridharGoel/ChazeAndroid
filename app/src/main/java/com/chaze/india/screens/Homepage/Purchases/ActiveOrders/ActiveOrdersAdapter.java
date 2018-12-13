@@ -2,28 +2,17 @@ package com.chaze.india.screens.Homepage.Purchases.ActiveOrders;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
-import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.chaze.india.R;
-import com.chaze.india.models.ActiveOrder;
-import com.chaze.india.models.Business;
 import com.chaze.india.models.CartBusiness;
-import com.chaze.india.models.CategorySearchResults;
 import com.chaze.india.models.Item;
 import com.chaze.india.models.Order;
-import com.chaze.india.models.ShopResults;
-import com.chaze.india.screens.Category.CategoryItemsInAShopAdapter;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 

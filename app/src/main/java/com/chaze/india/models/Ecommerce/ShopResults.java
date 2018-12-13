@@ -1,4 +1,6 @@
-package com.chaze.india.models;
+package com.chaze.india.models.Ecommerce;
+
+import com.chaze.india.models.Item;
 
 import java.util.ArrayList;
 

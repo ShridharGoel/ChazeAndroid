@@ -1,5 +1,7 @@
 package com.chaze.india.models;
 
+import com.chaze.india.models.Ecommerce.Shop;
+
 import java.io.Serializable;
 
 public abstract class  Item implements Serializable {
@@ -14,6 +16,7 @@ public abstract class  Item implements Serializable {
     private String currentRatingByUser;
     private float rating;
     private int ratingCount;
+    private Shop shop;
     private  boolean hasOffer;
 
 
@@ -101,5 +104,7 @@ public abstract class  Item implements Serializable {
         this.currentRatingByUser = currentRatingByUser;
     }
 
-    public abstract Business getBusiness();
+    public Shop getShop() {
+        return shop;
+    }
 }

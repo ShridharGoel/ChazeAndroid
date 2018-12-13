@@ -5,7 +5,6 @@
 
 
         <item name="coordinatorLayoutStyle">@style/Widget.Support.CoordinatorLayout</item>
-        <item name="cardViewStyle">@style/CardView</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="android:windowContentTransitions">true</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -15,10 +14,9 @@
     <style name="AppTheme.TransNav" parent="AppTheme" />
 
     <style name="AppTheme.NoActionBar">
-        <item name="tabStyle">@style/Widget.Support.CoordinatorLayout</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="cardViewStyle">@style/CardView</item>
+        <item name="coordinatorLayoutStyle">@style/Widget.Support.CoordinatorLayout</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="android:windowContentTransitions">true</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -32,6 +30,8 @@
     <style name="AppSearchView" parent="Widget.AppCompat.SearchView">
         <item name="android:textSize">14sp</item>
     </style>
+
+
 
     <style name="PopupAnimation" parent="Theme.AppCompat.DayNight.NoActionBar">
 

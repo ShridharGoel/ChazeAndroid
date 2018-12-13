@@ -3,7 +3,6 @@ package com.chaze.india.screens.Category;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
-import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,11 +11,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.chaze.india.R;
-import com.chaze.india.models.Business;
-import com.chaze.india.models.CartBusiness;
 import com.chaze.india.models.CategorySearchResults;
 import com.chaze.india.models.Item;
-import com.chaze.india.models.ShopResults;
+import com.chaze.india.models.Ecommerce.ShopResults;
 
 import java.util.ArrayList;
 
@@ -64,10 +61,7 @@ public class ShopCategoryAdapter extends RecyclerView.Adapter<ShopCategoryAdapte
 
             for (int j = 0; j < 25; j++) {
                 items.add(new Item("asdf" + j + i, "asdfsad", false, 43, false, "4", 3, 3, 0, false) {
-                    @Override
-                    public Business getBusiness() {
-                        return null;
-                    }
+
                 });
             }
 

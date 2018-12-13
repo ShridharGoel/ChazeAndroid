@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import com.chaze.india.screens.Cart.RestaurantCart.RestaurantCartActivity;
 import com.chaze.india.screens.base.BaseFragment;
@@ -55,7 +56,7 @@ public class FoodFragment extends BaseFragment implements FoodContract.View {
     RelativeLayout toolbar;
 
     @BindView(R.id.searchbar)
-    SearchView searchView;
+    ConstraintLayout searchView;
 
     @Inject
     FoodContract.Presenter<FoodContract.View> mPresenter;
@@ -85,7 +86,7 @@ public class FoodFragment extends BaseFragment implements FoodContract.View {
 
     private void setupToolBar() {
         searchView.setOnClickListener(v -> goToSearch());
-
+        ((TextView)searchView.findViewById(R.id.searchTextView)).setText("Search For Food and Restaurants..");
         ConstraintLayout cartView = toolbar.findViewById(R.id.cart_container);
 
         cartView.setOnClickListener(v -> {

@@ -1,26 +1,19 @@
 package com.chaze.india.screens.Shop;
 
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.support.v4.content.res.ResourcesCompat;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.widget.NestedScrollView;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.widget.GridView;
-import android.widget.SearchView;
 
 import com.chaze.india.R;
 import com.chaze.india.di.Qualifiers.LinLayoutVert;
 import com.chaze.india.models.CategorySearchResults;
-import com.chaze.india.models.EcomerceCategory;
+import com.chaze.india.models.Ecommerce.EcomerceCategory;
 import com.chaze.india.screens.Homepage.HomeGridAdapter;
 import com.chaze.india.screens.ProductsPostAdapter;
-import com.chaze.india.screens.SubCategory.SubCategoryContract;
 import com.chaze.india.screens.base.BaseActivity;
 
 import java.util.List;
@@ -57,11 +50,8 @@ public class ShopActivity extends BaseActivity implements ShopContract.View {
     ShopContract.Presenter<ShopContract.View> mPresenter;
 
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-
     @BindView(R.id.searchbar)
-    SearchView searchView;
+    ConstraintLayout searchView;
 
     @BindView(R.id.nestedScroll)
     NestedScrollView nestedScrollView;
@@ -74,13 +64,8 @@ public class ShopActivity extends BaseActivity implements ShopContract.View {
         setUnBinder(ButterKnife.bind(this));
         getActivityComponent().inject(this);
 
-        int color = ResourcesCompat.getColor(getResources(), R.color.colorCyan, null); //without theme
-        Drawable drawable = new ColorDrawable(color);
 
         onAttach(this);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("SubCategoryName: ");
-        getSupportActionBar().setBackgroundDrawable(drawable);
 
         mPresenter.onAttach(this);
 

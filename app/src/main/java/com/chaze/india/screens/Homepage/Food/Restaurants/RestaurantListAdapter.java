@@ -3,7 +3,6 @@ package com.chaze.india.screens.Homepage.Food.Restaurants;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.chaze.india.R;
-import com.chaze.india.models.Restaurant;
+import com.chaze.india.models.Food.Restaurant;
 import com.chaze.india.screens.SubCategory.SubCategoryActivity;
 
 import java.util.List;

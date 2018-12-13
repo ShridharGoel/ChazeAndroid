@@ -22,6 +22,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
+            android:transitionName="shop_image_view"
             app:layout_constraintEnd_toStartOf="@+id/constraintLayout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -31,6 +32,7 @@
             android:id="@+id/shop_rating_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:transitionName="shop_rating_view"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -77,6 +79,7 @@
                 android:text="shop Name"
                 android:textColor="@color/textDarkPrimary"
                 android:textSize="@dimen/text_large"
+                android:transitionName="shop_name_view"
                 app:layout_constraintBottom_toTopOf="@+id/shop_address_view"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -87,6 +90,7 @@
                 android:layout_height="wrap_content"
                 android:text="TextView"
                 android:textSize="6sp"
+                android:transitionName="shop_address_view"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/shop_name_view" />
 
@@ -98,7 +102,9 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="8dp"
                 android:text="Status"
+
                 android:textStyle="bold"
+                android:transitionName="status"
                 app:layout_constraintBottom_toBottomOf="@+id/shop_address_view"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/shop_name_view" />
@@ -119,10 +125,12 @@
                 android:id="@+id/textView13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:layout_marginTop="16dp"
                 android:text="Minimum Order Amount:"
+                android:textColor="@color/textDarkPrimary"
+
                 android:textSize="@dimen/text_small"
+                android:transitionName="textView13"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/speacieality_view" />
 
@@ -131,9 +139,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-
                 android:text="Delivery Charge:"
+                android:textColor="@color/textDarkPrimary"
                 android:textSize="@dimen/text_small"
+                android:transitionName="textView17"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
@@ -143,8 +152,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="TextView"
+                android:textColor="@color/textDarkPrimary"
                 android:textSize="@dimen/text_small"
                 android:textStyle="bold"
+                android:transitionName="min_order_view"
                 app:layout_constraintBottom_toBottomOf="@+id/textView13"
                 app:layout_constraintStart_toEndOf="@+id/textView13"
                 app:layout_constraintTop_toTopOf="@+id/textView13" />
@@ -155,21 +166,38 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="TextView"
-
+                android:textColor="@color/textDarkPrimary"
                 android:textSize="@dimen/text_small"
+
                 android:textStyle="bold"
+                android:transitionName="delivery_charge_view"
                 app:layout_constraintBottom_toBottomOf="@+id/textView17"
                 app:layout_constraintStart_toEndOf="@+id/textView17"
                 app:layout_constraintTop_toTopOf="@+id/textView17" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textView5"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="TextView"
-                android:textSize="@dimen/text_small"
-                android:textStyle="bold"
+                android:textColor="@color/textDarkPrimary"
+                android:transitionName="textView5"
+                app:layout_constraintBottom_toBottomOf="@+id/speacieality_view"
+                app:layout_constraintStart_toEndOf="@+id/speacieality_view"
+                app:layout_constraintTop_toTopOf="@+id/speacieality_view" />
+
+
+            <TextView
+                android:id="@+id/speaciality_text"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="TextView"
+                android:textColor="@color/textDarkPrimary"
+                android:transitionName="speaciality_text"
                 app:layout_constraintBottom_toBottomOf="@+id/speacieality_view"
                 app:layout_constraintStart_toEndOf="@+id/speacieality_view"
                 app:layout_constraintTop_toTopOf="@+id/speacieality_view" />

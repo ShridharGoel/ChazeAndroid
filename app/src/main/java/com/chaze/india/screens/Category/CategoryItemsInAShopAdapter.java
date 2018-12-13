@@ -1,7 +1,9 @@
 package com.chaze.india.screens.Category;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 
 import android.support.v7.widget.RecyclerView;
@@ -56,7 +58,12 @@ public class CategoryItemsInAShopAdapter extends RecyclerView.Adapter<CategoryIt
         public SearchItemsFoundInARestaurantViewHolder(View v) {
             super(v);
 
-            v.setOnClickListener(view -> context.startActivity(new Intent(context, ProductInfoPopupActivity.class)));
+            v.setOnClickListener(view -> {
+                context.startActivity(new Intent(context, ProductInfoPopupActivity.class));
+
+                Activity activity = (Activity) context;
+                activity.overridePendingTransition(R.anim.popup_in, R.anim.popup_out);
+            });
         }
 
         void bind(int listIndex) {

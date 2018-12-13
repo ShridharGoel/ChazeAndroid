@@ -2,7 +2,6 @@
 
 package com.chaze.india.screens.base;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -27,13 +26,12 @@ public abstract class BaseActivity extends AppCompatActivity
 
     ActivityComponent mActivityComponent;
     private Unbinder mUnBinder;
-    ProgressDialog progressDialog;
 
 
     @Override
     protected void onPause() {
         super.onPause();
-        progressDialog.hide();
+
     }
 
     @Override
@@ -45,12 +43,11 @@ public abstract class BaseActivity extends AppCompatActivity
                 .applicationComponent(((AppController) getApplication()).getComponent())
                 .build();
 
-        progressDialog = new ProgressDialog(getApplicationContext());
+
 
     }
 
-    public void onAttach(Context c) {
-        progressDialog = new ProgressDialog(c);
+    public void onAttach(Context c){
     }
 
     public ActivityComponent getActivityComponent() {
@@ -73,13 +70,12 @@ public abstract class BaseActivity extends AppCompatActivity
 
     @Override
     public void showLoading() {
-        progressDialog.setMessage("Loading....");
-        progressDialog.show();
+
     }
 
     @Override
     public void hideLoading() {
-        progressDialog.hide();
+
     }
 
     @Override

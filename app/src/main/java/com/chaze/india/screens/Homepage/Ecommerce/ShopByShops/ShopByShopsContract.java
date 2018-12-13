@@ -1,9 +1,7 @@
 package com.chaze.india.screens.Homepage.Ecommerce.ShopByShops;
 
-import com.chaze.india.models.Shop;
-import com.chaze.india.screens.base.MvpContract;
-import com.chaze.india.models.EcomerceCategory;
-import com.chaze.india.models.EcomerceShop;
+import com.chaze.india.models.Ecommerce.Shop;
+import com.chaze.india.models.Ecommerce.ShopListResponse;
 import com.chaze.india.screens.base.MvpContract;
 
 import java.util.List;
@@ -18,7 +16,7 @@ public class ShopByShopsContract {
     public interface View extends MvpContract.View {
         void addItems(List<Shop> items);
 
-        void showShops(List<Shop> lst);
+        void showShops(ShopListResponse shplstrspns);
 
         void showError();
     }

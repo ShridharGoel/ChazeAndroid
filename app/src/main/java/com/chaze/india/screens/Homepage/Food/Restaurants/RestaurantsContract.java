@@ -1,6 +1,6 @@
 package com.chaze.india.screens.Homepage.Food.Restaurants;
 
-import com.chaze.india.models.EcomerceCategory;
+import com.chaze.india.models.Ecommerce.EcomerceCategory;
 import com.chaze.india.screens.base.MvpContract;
 
 import java.util.List;
