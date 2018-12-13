@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.chaze.india.R;
+import com.chaze.india.screens.Authentication.ForgotPassword.ForgotPasswordActivity;
 import com.chaze.india.screens.Homepage.HomeActivity;
 import com.chaze.india.screens.base.BaseActivity;
 
@@ -34,6 +35,8 @@ import butterknife.ButterKnife;
 
 public class OTPConfirmation extends BaseActivity implements OTPConfirmationContract.View {
 
+    String mobileNum;
+
     @BindView(R.id.otp_edit_text)
     EditText enterOtp;
 
@@ -57,13 +60,19 @@ public class OTPConfirmation extends BaseActivity implements OTPConfirmationCont
 
         mPresenter.onAttach(this);
 
-        String mobileNum = getIntent().getStringExtra("Mobile");
+        mobileNum = getIntent().getStringExtra("Mobile");
 
         submitOtpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!TextUtils.isEmpty(enterOtp.getText().toString())) {
-                    mPresenter.doOTPConfirmation(mobileNum, Integer.parseInt(enterOtp.getText().toString()));
+
+                    if(getIntent().getBooleanExtra("ForgotPass", false)) {
+                        mPresenter.doOTPConfirmationForForgotPass(mobileNum, Integer.parseInt(enterOtp.getText().toString()));
+                    }
+                    else {
+                        mPresenter.doOTPConfirmation(mobileNum, Integer.parseInt(enterOtp.getText().toString()));
+                    }
                 }
             }
         });
@@ -87,6 +96,13 @@ public class OTPConfirmation extends BaseActivity implements OTPConfirmationCont
     public void startHomeActivity() {
         Intent homeIntent = new Intent(OTPConfirmation.this, HomeActivity.class);
         startActivity(homeIntent);
+    }
+
+    @Override
+    public void startChangePassActivity() {
+        Intent changePassIntent = new Intent(OTPConfirmation.this, ForgotPasswordActivity.class);
+        changePassIntent.putExtra("Mobile", mobileNum);
+        startActivity(changePassIntent);
     }
 }
 

@@ -1,8 +1,12 @@
 package com.chaze.india.screens.Authentication.Login;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -10,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chaze.india.R;
+import com.chaze.india.screens.Authentication.OTPConfirmation.OTPConfirmation;
 import com.chaze.india.screens.Authentication.Signup.SignUpActivity;
 import com.chaze.india.screens.Homepage.HomeActivity;
 import com.chaze.india.screens.ProductInfo.ProductInfoActivity;
@@ -48,6 +53,7 @@ import timber.log.Timber;
 public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     private static final int RC_SIGN_IN = 10;
+    private String forgotPassMobile;
 
     @BindView(R.id.login_btn)
     TextView loginBtn;
@@ -73,6 +79,9 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     @BindView(R.id.fb_login)
     ImageView fbLogin;
 
+    @BindView(R.id.forgot_pass)
+    TextView forgotPass;
+
     GoogleSignInClient mGoogleSignInClient;
 
     @Inject
@@ -89,6 +98,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
         getActivityComponent().inject(this);
 
         mPresenter.onAttach(this);
+
         signupBtn.setOnClickListener(view -> {
             Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
 
@@ -115,6 +125,39 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
 
             else if(TextUtils.isEmpty(loginPass.getText().toString()))
                 Toast.makeText(this, "Please enter your password.", Toast.LENGTH_SHORT).show();
+        });
+
+        forgotPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                builder.setTitle("Enter your mobile number or email");
+
+                // Set up the input
+                final EditText input = new EditText(LoginActivity.this);
+
+                // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                input.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS | InputType.TYPE_TEXT_VARIATION_PHONETIC);
+                builder.setView(input);
+
+                // Set up the buttons
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        forgotPassMobile = input.getText().toString();
+
+                        mPresenter.hasForgottenPassword(forgotPassMobile);
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                builder.show();
+            }
         });
 
 
@@ -162,6 +205,15 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     }
 
     @Override
-    public void showloginResult() {
+    public void startHomeActivity() {
+        Intent homeIntent = new Intent(LoginActivity.this, HomeActivity.class);
+        startActivity(homeIntent);
+    }
+
+    @Override
+    public void startOTPConfirmationActivity() {
+        Intent otpConfirmationIntent = new Intent(LoginActivity.this, OTPConfirmation.class);
+        otpConfirmationIntent.putExtra("ForgotPass", true);
+        startActivity(otpConfirmationIntent);
     }
 }

@@ -28,19 +28,36 @@ public class LoginPresenter<V extends LoginContract.View> extends BasePresenter<
         super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
 
+    @SuppressLint("CheckResult")
     @Override
     public void doLogin(String mobile, String pass) {
         getCommonAPIManager().getChazeAPIService().loginUser(mobile, pass)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(loginResponse -> {
-                   getMvpView().showloginResult();
+
+                    getMvpView().startHomeActivity();
+
                     Timber.e("Success");
                     //On success
                 }, Throwable -> {
-                    getMvpView().showloginResult();
+
                     Timber.e(Throwable.getMessage());
                     //On error
                 });
     }
+
+    @SuppressLint("CheckResult")
+    @Override
+    public void hasForgottenPassword(String mobile) {
+        getCommonAPIManager().getChazeAPIService().forgotPass(mobile)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(forgotPassResponse -> {
+                    getMvpView().startOTPConfirmationActivity();
+                }, Throwable -> {
+                    Timber.e("Failure: "+Throwable.getMessage());
+                });
+    }
+
 }

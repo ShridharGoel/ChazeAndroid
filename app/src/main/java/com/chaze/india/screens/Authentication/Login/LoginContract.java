@@ -10,12 +10,14 @@ public class LoginContract {
 
     public interface View extends MvpContract.View {
 
-        void showloginResult();
+        void startHomeActivity();
+        void startOTPConfirmationActivity();
 
     }
 
 
     public interface Presenter<V extends View> extends MvpContract.Presenter<V> {
         void doLogin(String mobile, String pass);
+        void hasForgottenPassword(String mobile);
     }
 }

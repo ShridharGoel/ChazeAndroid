@@ -9,6 +9,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import com.chaze.india.di.Qualifiers.ActivityContext;
 import com.chaze.india.di.Qualifiers.LinLayoutHori;
 import com.chaze.india.di.Qualifiers.LinLayoutVert;
+import com.chaze.india.screens.Authentication.ForgotPassword.ForgotPasswordContract;
+import com.chaze.india.screens.Authentication.ForgotPassword.ForgotPasswordPresenter;
 import com.chaze.india.screens.Authentication.Login.LoginContract;
 import com.chaze.india.screens.Authentication.Login.LoginPresenter;
 import com.chaze.india.screens.Authentication.OTPConfirmation.OTPConfirmationContract;
@@ -194,5 +196,8 @@ public class ActivityModule {
         return presenter;
     }
 
-
+    @Provides
+    ForgotPasswordContract.Presenter<ForgotPasswordContract.View> providesForgotPasswordPresenter(ForgotPasswordPresenter<ForgotPasswordContract.View> presenter) {
+        return presenter;
+    }
 }

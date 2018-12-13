@@ -1,6 +1,8 @@
 package com.chaze.india.screens.Authentication.ForgotPassword;
 
 
+import android.annotation.SuppressLint;
+
 import com.chaze.india.repository.network.ICommonAPIManager;
 import com.chaze.india.repository.session.SessionManager;
 import com.chaze.india.screens.base.BasePresenter;
@@ -8,7 +10,10 @@ import com.chaze.india.utils.rx.SchedulerProvider;
 
 import javax.inject.Inject;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.schedulers.Schedulers;
+import timber.log.Timber;
 
 
 public class ForgotPasswordPresenter<V extends ForgotPasswordContract.View> extends BasePresenter<V>
@@ -20,5 +25,18 @@ public class ForgotPasswordPresenter<V extends ForgotPasswordContract.View> exte
     }
 
 
+    @SuppressLint("CheckResult")
+    @Override
+    public void doChangePass(String mobile, String newPass) {
+        getCommonAPIManager().getChazeAPIService().changePass(mobile, newPass)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(forgotPassResponse -> {
+                    getMvpView().startHomeActivity();
+                    Timber.e("Success");
+                }, Throwable -> {
+                    Timber.e("Failure: "+Throwable.getMessage());
+                });
+    }
 }
 
