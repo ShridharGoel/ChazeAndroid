@@ -23,4 +23,12 @@ public class ProductInfoPresenter<V extends ProductInfoContract.View> extends Ba
     public ProductInfoPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {
         super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
+
+    @Override
+    public void loadData() {
+
+
+
+        getMvpView().showData();
+    }
 }

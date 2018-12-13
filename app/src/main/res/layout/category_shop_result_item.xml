@@ -1,28 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="280dp"
-    android:layout_marginBottom="10dp"
-    android:layout_marginTop="10dp"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="4dp"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/shop_name"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:gravity="center_vertical"
-        android:paddingEnd="20dp"
-        android:paddingStart="20dp"
+        android:layout_height="wrap_content"
         android:text="restaurant name"
+        android:padding="4dp"
+        android:textAlignment="textStart"
         android:textSize="16sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.cooltechworks.views.shimmer.ShimmerRecyclerView
         android:id="@+id/recycler_view_shop_items"
         android:layout_width="match_parent"
-        android:layout_height="230dp"
-        android:padding="5dp">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shop_name">
 
     </com.cooltechworks.views.shimmer.ShimmerRecyclerView>
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>

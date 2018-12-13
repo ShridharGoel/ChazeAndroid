@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
+import com.chaze.india.screens.ProductInfo.ProductInfoActivity;
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 
 import android.support.v7.widget.RecyclerView;
@@ -59,7 +60,7 @@ public class CategoryItemsInAShopAdapter extends RecyclerView.Adapter<CategoryIt
             super(v);
 
             v.setOnClickListener(view -> {
-                context.startActivity(new Intent(context, ProductInfoPopupActivity.class));
+                context.startActivity(new Intent(context, ProductInfoActivity.class));
 
                 Activity activity = (Activity) context;
                 activity.overridePendingTransition(R.anim.popup_in, R.anim.popup_out);

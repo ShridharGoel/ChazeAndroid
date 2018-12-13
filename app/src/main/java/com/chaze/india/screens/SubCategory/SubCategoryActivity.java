@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.widget.NestedScrollView;
@@ -63,7 +64,7 @@ public class SubCategoryActivity extends BaseActivity implements SubCategoryCont
     Toolbar toolbar;
 
     @BindView(R.id.searchbar)
-    SearchView searchView;
+    ConstraintLayout searchView;
 
     @BindView(R.id.nestedScroll)
     NestedScrollView nestedScrollView;

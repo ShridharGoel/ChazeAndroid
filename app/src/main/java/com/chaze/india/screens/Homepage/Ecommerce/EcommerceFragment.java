@@ -1,5 +1,6 @@
 package com.chaze.india.screens.Homepage.Ecommerce;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -8,8 +9,11 @@ import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
+
+import com.chaze.india.screens.Shop.ShopActivity;
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 
 import android.text.Html;
@@ -88,8 +92,19 @@ public class EcommerceFragment extends BaseFragment implements EcommerceContract
     private void goToSearch() {
         Intent intent = new Intent(getActivity(), SearchActivity.class);
         intent.putExtra("SearchType", 1);
+
+
+
+
+
+
+        Pair<View, String> p1 = Pair.create((View) searchView, "search");
+        Pair<View, String> p2 = Pair.create((View) tabLayout, "tabs");
+
         ActivityOptionsCompat options = ActivityOptionsCompat.
-                makeSceneTransitionAnimation(getActivity(), (View) searchView, "search");
+                makeSceneTransitionAnimation(getActivity(), p1, p2);
+
+
         startActivity(intent, options.toBundle());
     }
 

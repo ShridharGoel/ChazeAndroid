@@ -1,30 +1,32 @@
 package com.chaze.india.screens.ProductInfo;
 
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
+import android.support.constraint.Group;
+import android.support.v4.view.ViewPager;
 import android.text.Html;
 import android.view.View;
+import android.view.Window;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.chaze.india.R;
-import com.chaze.india.di.Qualifiers.LinLayoutVert;
+import com.chaze.india.screens.ProductInfo.ProductImageSliderAdapter;
+import com.chaze.india.screens.ProductInfo.ProductInfoContract;
 import com.chaze.india.screens.base.BaseActivity;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import timber.log.Timber;
 
-public class ProductInfoActivity extends BaseActivity {
+public class ProductInfoActivity extends BaseActivity implements ProductInfoContract.View {
 
     private TextView[] dots;
 
-    //Todo: Aproduct Popup has to be implemented too
 
     @BindView(R.id.view_pager)
     ViewPager viewPager;
@@ -43,6 +45,11 @@ public class ProductInfoActivity extends BaseActivity {
     @BindView(R.id.description)
     TextView desription;
 
+    @BindView(R.id.tablerow)
+    TableRow detailsRow;
+
+    @BindView(R.id.groupForVariety)
+    Group groupForVarieties;
 
     @Inject
     ProductInfoContract.Presenter<ProductInfoContract.View> presenter;
@@ -52,12 +59,13 @@ public class ProductInfoActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product_info);
+        setContentView(R.layout.activity_product_popup_info);
 
         ButterKnife.bind(this);
         getActivityComponent().inject(this);
-
         setup();
+        presenter.onAttach(this);
+        presenter.loadData();
 
 
     }
@@ -68,9 +76,6 @@ public class ProductInfoActivity extends BaseActivity {
         myViewPagerAdapter = new ProductImageSliderAdapter(this, s);
         viewPager.setAdapter(myViewPagerAdapter);
         viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
-
-
-        //setup Everything else here..by calling presenter
 
 
     }
@@ -112,4 +117,100 @@ public class ProductInfoActivity extends BaseActivity {
         if (dots.length > 0)
             dots[currentPage].setTextColor(colorsActive[currentPage]);
     }
+
+    @Override
+    public void showData() {
+
+
+        showDetails();
+
+        showAvailabilityIn();
+
+        desription.setText("asdfsdfasdf f asdfsdf asdf asdf sdf sdf sdf sdf sdf sdf sdf sdf asdfsdfasdf f asdfsdf asdf asdf sdf sdf sdf sdf sdf sdf sdf sdf asdfsdfasdf f asdfsdf asdf asdf sdf sdf sdf sdf sdf sdf sdf sdf ");
+    }
+
+    private void showDetails() {
+
+        String keys = "Range,5 metres;Brand,Fun;are,blueish;cloth,coton";
+        String keyValues[] = keys.split(";");
+
+
+        for (int i = 0; i < keyValues.length; i++) {
+            TableRow row = new TableRow(this);
+
+
+            View v = View.inflate(ProductInfoActivity.this, R.layout.horizontol_view, null);
+
+
+            Timber.e(keyValues[i].split(",")[0]);
+            ((TextView) v.findViewById(R.id.key)).setText(keyValues[i].split(",")[0]);
+            ((TextView) v.findViewById(R.id.value)).setText(keyValues[i].split(",")[1]);
+
+            row.addView(v);
+
+
+            detailsTableLayout.addView(row);
+
+        }
+    }
+
+
+    private void showAvailabilityIn() {
+
+        String keys = "Size,L,M,Q:color,red,blue,green:type,1,2,3";
+
+        String[] keyValues = keys.split(":");
+
+
+        for (int i = 0; i < keyValues.length; i++) {
+
+            TableRow row = new TableRow(this);
+
+
+            View v = View.inflate(ProductInfoActivity.this, R.layout.varieties_view, null);
+
+
+            String values[] = keyValues[i].split(",");
+
+            Timber.e(values[0]);
+
+
+            ((TextView) v.findViewById(R.id.key)).setText(values[0]);
+
+            TableLayout valuesTable = v.findViewById(R.id.innerVarietiesTable);
+
+            for (int j = 1; j < values.length; j++) {
+
+                TableRow rowrow = new TableRow(this);
+
+
+                View txtView = View.inflate(ProductInfoActivity.this, R.layout.text_view_for_values, null);
+                TextView txt = txtView.findViewById(R.id.values);
+                txt.setText(values[j]);
+                //txt.setBackground(getDrawable(R.drawable.white_rectangle_border_purple));
+                txt.setTextColor(getResources().getColor(R.color.textDarkPrimary));
+                rowrow.addView(txtView);
+                valuesTable.addView(rowrow);
+
+            }
+
+
+            row.addView(v);
+
+
+            varietiesTableLayout.addView(row);
+
+
+        }
+        //    groupForVarieties.setVisibility(View.GONE);
+
+
+    }
+
+
+    private int dpsToPixels(int dps) {
+        final float scale = getResources().getDisplayMetrics().density;
+        return (int) (dps * scale + 0.5f);
+    }
+
 }

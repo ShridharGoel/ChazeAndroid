@@ -12,11 +12,14 @@ public class ProductInfoContract {
 
     public interface View extends MvpContract.View {
 
+        void showData();
+
 
     }
 
 
     public interface Presenter<V extends View> extends MvpContract.Presenter<V> {
 
+        void loadData();
     }
 }
