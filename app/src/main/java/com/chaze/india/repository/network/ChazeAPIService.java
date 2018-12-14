@@ -52,8 +52,9 @@ public interface ChazeAPIService {
             @Field("phone") String mobile);
 
     @FormUrlEncoded
-    @POST("/changepass")    //changePass
+    @POST("/changeForgotPassword")    //changePass
     Single<ChangePassResponse> changePass(
             @Field("phone") String mobile,
+            @Field("otp") int otp,
             @Field("password") String newPass);
 }

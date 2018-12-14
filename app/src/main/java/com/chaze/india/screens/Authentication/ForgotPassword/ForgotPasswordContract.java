@@ -10,6 +10,6 @@ public class ForgotPasswordContract {
 
 
     public interface Presenter<V extends View> extends MvpContract.Presenter<V> {
-        void doChangePass(String mobile, String newPass);
+        void doChangePass(String mobile, int otp, String newPass);
     }
 }

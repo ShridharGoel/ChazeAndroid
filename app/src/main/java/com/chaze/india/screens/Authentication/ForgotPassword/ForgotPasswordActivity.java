@@ -2,6 +2,7 @@ package com.chaze.india.screens.Authentication.ForgotPassword;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,11 +10,16 @@ import android.widget.EditText;
 import com.chaze.india.R;
 import com.chaze.india.screens.Homepage.HomeActivity;
 import com.chaze.india.screens.base.BaseActivity;
+import com.google.gson.Gson;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import timber.log.Timber;
 
 
 /**
@@ -58,17 +64,21 @@ public class ForgotPasswordActivity extends BaseActivity implements ForgotPasswo
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(newPass.getText().toString().equals(confirmNewPass.getText().toString())) {
-                    mPresenter.doChangePass(getIntent().getStringExtra("Mobile"), newPass.getText().toString());
+                if (newPass.getText().toString().equals(confirmNewPass.getText().toString())) {
+
+                    Timber.e("Check "+getIntent().getStringExtra("Mobile"));
+                    mPresenter.doChangePass(getIntent().getStringExtra("Mobile"), Integer.parseInt(getIntent().getStringExtra("OTP")), newPass.getText().toString());
+
                 }
             }
         });
     }
 
-    @Override
-    public void startHomeActivity() {
-        Intent homeIntent = new Intent(ForgotPasswordActivity.this, HomeActivity.class);
-        startActivity(homeIntent);
-    }
-}
+                @Override
+                public void startHomeActivity () {
+                    Intent homeIntent = new Intent(ForgotPasswordActivity.this, HomeActivity.class);
+                    startActivity(homeIntent);
+                }
+            }
+
 
