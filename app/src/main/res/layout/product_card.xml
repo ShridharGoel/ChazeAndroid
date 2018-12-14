@@ -10,33 +10,33 @@
         android:layout_height="match_parent"
         android:padding="15dp">
     <ImageView
-        android:id="@+id/productImage"
+        android:id="@+id/image_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_launcher_background"/>
     <TextView
-        android:id="@+id/productName"
+        android:id="@+id/name_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/productImage"
+        app:layout_constraintTop_toBottomOf="@+id/image_view"
         android:text="Product Name"/>
         <TextView
-            android:id="@+id/productPrice"
+            android:id="@+id/price_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Price"
-            app:layout_constraintTop_toBottomOf="@+id/productName"/>
+            app:layout_constraintTop_toBottomOf="@+id/name_view"/>
         <TextView
-            android:id="@+id/productDiscount"
+            android:id="@+id/discount_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="discount"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/productName"/>
+            app:layout_constraintTop_toBottomOf="@+id/name_view"/>
         <android.support.constraint.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/productDiscount"
+            app:layout_constraintTop_toBottomOf="@+id/discount_view"
             android:background="@color/yellow">
             <TextView
                 android:id="@+id/productRating"

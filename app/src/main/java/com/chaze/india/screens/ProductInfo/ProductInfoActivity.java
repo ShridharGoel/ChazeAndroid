@@ -2,8 +2,10 @@ package com.chaze.india.screens.ProductInfo;
 
 import android.graphics.Point;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.Group;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.view.ViewPager;
 import android.text.Html;
 import android.view.Display;
@@ -18,8 +20,9 @@ import android.widget.TextView;
 import com.chaze.india.R;
 import com.chaze.india.screens.base.BaseActivity;
 
-import java.sql.Time;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -68,12 +71,18 @@ public class ProductInfoActivity extends BaseActivity implements ProductInfoCont
     @BindView(R.id.image_button)
     TextView sheetCloseButton;
 
-    ArrayList<View> viewList =  new ArrayList<>();
+    ArrayList<View> viewList = new ArrayList<>();
+
+    HashMap<String, ArrayList<View>> map = new HashMap<>();
 
     @Inject
     ProductInfoContract.Presenter<ProductInfoContract.View> presenter;
 
     ProductImageSliderAdapter myViewPagerAdapter;
+
+    BottomSheetBehavior sheetBehavior;
+
+    boolean isSheetClosed = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,10 +94,10 @@ public class ProductInfoActivity extends BaseActivity implements ProductInfoCont
 
 
         setup();
+
+
         presenter.onAttach(this);
         presenter.loadData();
-
-
     }
 
     private void setup() {
@@ -97,18 +106,57 @@ public class ProductInfoActivity extends BaseActivity implements ProductInfoCont
         myViewPagerAdapter = new ProductImageSliderAdapter(this, s);
         viewPager.setAdapter(myViewPagerAdapter);
         viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
-        layoutBottomSheet.setVisibility(View.INVISIBLE);
+
+        sheetBehavior = BottomSheetBehavior.from(layoutBottomSheet);
+        sheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                switch (newState) {
+                    case BottomSheetBehavior.STATE_HIDDEN:
+                        break;
+                    case BottomSheetBehavior.STATE_EXPANDED: {
+                        //  btnBottomSheet.setText("Close Sheet");
+                    }
+                    break;
+                    case BottomSheetBehavior.STATE_COLLAPSED: {
+                        //btnBottomSheet.setText("Expand Sheet");
+                        break;
+                    }
+                    case BottomSheetBehavior.STATE_DRAGGING: {
+
+                        if (!isSheetClosed)
+                            sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                        break;
+                    }
+
+                    case BottomSheetBehavior.STATE_SETTLING: {
+                        if (!isSheetClosed)
+                            sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                        break;
+                    }
+
+                }
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+
+            }
+        });
 
         addToCart.setOnClickListener(v -> showSheet());
         sheetCloseButton.setOnClickListener(v -> hideSheet());
-        showVarieties(varitiesSheet);
 
+        addBottomDots(0);
     }
 
     public void hideSheet() {
 
+        isSheetClosed = true;
 
-        layoutBottomSheet.setVisibility(View.INVISIBLE);
+        sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        Timber.e("Close sheet");
+       /* layoutBottomSheet.setVisibility(View.GONE);
         TranslateAnimation animate = new TranslateAnimation(
                 0,                 // fromXDelta
                 0,                 // toXDelta
@@ -116,13 +164,14 @@ public class ProductInfoActivity extends BaseActivity implements ProductInfoCont
                 layoutBottomSheet.getHeight()); // toYDelta
         animate.setDuration(200);
         animate.setFillAfter(true);
-        layoutBottomSheet.startAnimation(animate);
+        layoutBottomSheet.startAnimation(animate);*/
     }
 
     public void showSheet() {
-
-
-        layoutBottomSheet.setVisibility(View.VISIBLE);
+        isSheetClosed = false;
+        Timber.e("Show sheet");
+        sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+       /* layoutBottomSheet.setVisibility(View.VISIBLE);
         TranslateAnimation animate = new TranslateAnimation(
                 0,                 // fromXDelta
                 0,                 // toXDelta
@@ -130,7 +179,7 @@ public class ProductInfoActivity extends BaseActivity implements ProductInfoCont
                 0);                // toYDelta
         animate.setDuration(400);
         animate.setFillAfter(true);
-        layoutBottomSheet.startAnimation(animate);
+        layoutBottomSheet.startAnimation(animate);*/
     }
 
 
@@ -155,21 +204,18 @@ public class ProductInfoActivity extends BaseActivity implements ProductInfoCont
     private void addBottomDots(int currentPage) {
         dots = new TextView[4];
 
-        int[] colorsActive = getResources().getIntArray(R.array.array_dot_active);
-        int[] colorsInactive = getResources().getIntArray(R.array.array_dot_inactive);
-
         dotsLayout.removeAllViews();
 
         for (int i = 0; i < dots.length; i++) {
             dots[i] = new TextView(this);
             dots[i].setText(Html.fromHtml("&#8226;"));
             dots[i].setTextSize(35);
-            dots[i].setTextColor(colorsInactive[currentPage]);
+            dots[i].setTextColor(getResources().getColor(R.color.colorPurple));
             dotsLayout.addView(dots[i]);
         }
 
         if (dots.length > 0)
-            dots[currentPage].setTextColor(colorsActive[currentPage]);
+            dots[currentPage].setTextColor(getResources().getColor(R.color.yellow));
     }
 
     @Override
@@ -177,8 +223,8 @@ public class ProductInfoActivity extends BaseActivity implements ProductInfoCont
 
 
         showDetails();
-
-        showVarieties(varietiesTableLayout);
+        showVarieties(varitiesSheet, true);
+        showVarieties(varietiesTableLayout, false);
 
         desription.setText("asdfsdfasdf f asdfsdf asdf asdf sdf sdf sdf sdf sdf sdf sdf sdf asdfsdfasdf f asdfsdf asdf asdf sdf sdf sdf sdf sdf sdf sdf sdf asdfsdfasdf f asdfsdf asdf asdf sdf sdf sdf sdf sdf sdf sdf sdf ");
     }
@@ -209,63 +255,77 @@ public class ProductInfoActivity extends BaseActivity implements ProductInfoCont
     }
 
 
-    private void showVarieties(TableLayout varietiesTableLayout) {
+    private void showVarieties(TableLayout varietiesTableLayout, boolean isCartSheet) {
 
         String keys = "Size,L,M,Q,asdfsadf,fsdfsfgds,sdf:color,red,blue,green:type,1,2,3";
 
         String[] keyValues = keys.split(":");
 
+        int l = keyValues.length;
+        TableRow row;
+        View v;
+        String values[];
+        TableLayout valuesTable;
+        TableRow rowrow;
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
 
-        for (int i = 0; i < keyValues.length; i++) {
+        int sizex = size.x;
+        int currx;
+        TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT);
+        lp.rightMargin = dpsToPixels(8);
+        lp.bottomMargin = dpsToPixels(8);
 
-            TableRow row = new TableRow(this);
+
+        String key;
+        for (int i = 0; i < l; i++) {
+
+            row = new TableRow(this);
+            v = View.inflate(ProductInfoActivity.this, R.layout.varieties_view, null);
 
 
-            View v = View.inflate(ProductInfoActivity.this, R.layout.varieties_view, null);
-
-
-            String values[] = keyValues[i].split(",");
+            values = keyValues[i].split(",");
 
             Timber.e(values[0]);
 
+            key = values[0];
+            ((TextView) v.findViewById(R.id.key)).setText(key);
 
-            ((TextView) v.findViewById(R.id.key)).setText(values[0]);
+            valuesTable = v.findViewById(R.id.innerVarietiesTable);
 
-            TableLayout valuesTable = v.findViewById(R.id.innerVarietiesTable);
+            rowrow = new TableRow(this);
+            currx = 0;
 
-            TableRow rowrow = new TableRow(this);
 
+            View txtView;
 
-            Display display = getWindowManager().getDefaultDisplay();
+            TextView txt;
 
-            Point size = new Point();
-            display.getSize(size);
-
-            int sizex = size.x;
-            int currx = 0;
-
+            if (isCartSheet)
+                map.put(key, new ArrayList<View>());
 
             for (int j = 1; j < values.length; j++) {
 
 
-                View txtView = View.inflate(ProductInfoActivity.this, R.layout.text_view_for_values, null);
-                TextView txt = txtView.findViewById(R.id.values);
+                txtView = View.inflate(ProductInfoActivity.this, R.layout.text_view_for_values, null);
+                txt = txtView.findViewById(R.id.values);
                 txt.setText(values[j]);
                 txt.setBackground(getDrawable(R.drawable.white_rectangle_border_gray));
                 txt.setTextColor(getResources().getColor(R.color.textDarkPrimary));
 
-                TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT);
+                if (isCartSheet)
+                    map.get(key).add(txt);
 
-                txtView.setOnClickListener(vi -> {
-                    Timber.e((((TextView) (vi.findViewById(R.id.values))).getText().toString()));
-                    ((TextView) (vi.findViewById(R.id.values))).setBackground(getDrawable(R.drawable.yellow_rectangle_border_purple));
-                    broadcast(vi);
-                });
+                if (isCartSheet)
+                    txt.setOnClickListener(vi -> {
+                        Timber.e((((TextView) (vi.findViewById(R.id.values))).getText().toString()));
+                        broadcast(vi);
+                    });
 
-                viewList.add(txtView);
+                // viewList.add(txtView);
 
-                lp.rightMargin = dpsToPixels(8);
-                lp.bottomMargin = dpsToPixels(8);
+
                 txt.setLayoutParams(lp);
                 int width = dpsToPixels(values[j].length() * 30 + 8);
 
@@ -298,11 +358,31 @@ public class ProductInfoActivity extends BaseActivity implements ProductInfoCont
 
     private void broadcast(View vi) {
 
-        for (View v : viewList) {
-            if (v != vi) {
-                v.setBackground(getDrawable(R.drawable.white_rectangle_border_gray));
+
+        for (Map.Entry<String, ArrayList<View>> views : map.entrySet()) {
+
+            viewList = views.getValue();
+            boolean isFound = false;
+            for (View v : viewList) {
+                if (v == vi) {
+                    v.setBackground(getDrawable(R.drawable.yellow_rectangle_border_purple));
+                    isFound = true;
+                    break;
+                }
             }
+
+            if (isFound) {
+                for (View v : viewList) {
+                    if (v != vi) {
+                        v.setBackground(getDrawable(R.drawable.white_rectangle_border_gray));
+                    }
+                }
+
+                break;
+            }
+
         }
+
     }
 
 

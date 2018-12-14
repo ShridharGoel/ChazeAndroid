@@ -5,13 +5,18 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.chaze.india.screens.ProductInfo.ProductInfoActivity;
+import com.chaze.india.screens.Shop.ShopActivity;
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.chaze.india.R;
 import com.chaze.india.models.Item;
@@ -56,14 +61,33 @@ public class CategoryItemsInAShopAdapter extends RecyclerView.Adapter<CategoryIt
     public class SearchItemsFoundInARestaurantViewHolder extends RecyclerView.ViewHolder {
 
 
+        TextView nameView;
+        ImageView imageView;
+        TextView priceView;
+        TextView discountView;
+
+
         public SearchItemsFoundInARestaurantViewHolder(View v) {
             super(v);
 
-            v.setOnClickListener(view -> {
-                context.startActivity(new Intent(context, ProductInfoActivity.class));
+            nameView = v.findViewById(R.id.name_view);
+            imageView = v.findViewById(R.id.image_view);
+            priceView = v.findViewById(R.id.price_view);
+            discountView = v.findViewById(R.id.discount_view);
 
-                Activity activity = (Activity) context;
-                activity.overridePendingTransition(R.anim.popup_in, R.anim.popup_out);
+
+            v.setOnClickListener(view -> {
+
+                Pair<View, String> p1 = Pair.create((View) imageView, "image_view");
+                Pair<View, String> p2 = Pair.create((View) nameView, "name_view");
+                Pair<View, String> p3 = Pair.create((View) priceView, "price_view");
+                Pair<View, String> p4 = Pair.create((View) discountView, "discount_view");
+
+                ActivityOptionsCompat options = ActivityOptionsCompat.
+                        makeSceneTransitionAnimation((Activity) context, p1, p2, p3, p4);
+
+
+                context.startActivity(new Intent(context, ProductInfoActivity.class), options.toBundle());
             });
         }
 

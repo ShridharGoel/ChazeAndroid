@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?><!-- android:scaleX="0.99"
     android:scaleY="0.98"-->
 
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -30,14 +35,15 @@
                 tools:layout_editor_absoluteY="25dp">
 
 
-                <android.support.v4.view.ViewPager
+                <com.chaze.india.utils.HackedViewPager
                     android:id="@+id/view_pager"
-                    android:layout_width="387dp"
+                    android:layout_width="0dp"
                     android:layout_height="300dp"
+                    android:transitionName="image_view"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintHorizontal_bias="0.333"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/productName" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <LinearLayout
                     android:id="@+id/layoutDots"
@@ -66,7 +72,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/view_pager">
 
                     <TextView
-                        android:id="@+id/offerCount"
+                        android:id="@+id/offer_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
@@ -92,10 +98,10 @@
                         android:textColor="@color/textLightPrimary"
                         android:textSize="@dimen/text_large"
                         android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="@+id/offerCount"
+                        app:layout_constraintBottom_toBottomOf="@+id/offer_view"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/offerCount"
-                        app:layout_constraintTop_toTopOf="@+id/offerCount" />
+                        app:layout_constraintStart_toEndOf="@+id/offer_view"
+                        app:layout_constraintTop_toTopOf="@+id/offer_view" />
 
                     <TextView
                         android:id="@+id/textView10"
@@ -128,7 +134,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/view_pager">
 
                     <TextView
-                        android:id="@+id/ratingCount"
+                        android:id="@+id/rating_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -150,9 +156,9 @@
                         android:textColor="@color/textLightPrimary"
                         android:textSize="18sp"
                         android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="@+id/ratingCount"
+                        app:layout_constraintBottom_toBottomOf="@+id/rating_view"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/ratingCount" />
+                        app:layout_constraintTop_toTopOf="@+id/rating_view" />
 
                     <TextView
                         android:id="@+id/ratingUsers"
@@ -171,7 +177,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/ratingCount" />
+                        app:layout_constraintTop_toBottomOf="@+id/rating_view" />
                 </android.support.constraint.ConstraintLayout>
 
                 <android.support.constraint.ConstraintLayout
@@ -188,7 +194,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/view_pager">
 
                     <TextView
-                        android:id="@+id/price"
+                        android:id="@+id/price_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
@@ -196,8 +202,9 @@
                         android:layout_marginTop="8dp"
                         android:text="728 Rs."
                         android:textSize="@dimen/text_very_very_large"
+                        android:transitionName="price_view"
                         app:layout_constraintBottom_toBottomOf="@+id/StockLayout"
-                        app:layout_constraintEnd_toStartOf="@+id/discount"
+                        app:layout_constraintEnd_toStartOf="@+id/discount_view"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/StockLayout" />
@@ -214,12 +221,12 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/discount"
-                        app:layout_constraintTop_toBottomOf="@+id/textView19">
+                        app:layout_constraintStart_toEndOf="@+id/discount_view"
+                        app:layout_constraintTop_toBottomOf="@+id/name_view">
 
 
                         <TextView
-                            android:id="@+id/stockItems"
+                            android:id="@+id/stockItems_view"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="8dp"
@@ -233,7 +240,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:id="@+id/stockText"
+                            android:id="@+id/stockText_description_view"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
@@ -245,25 +252,26 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.333"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/stockItems"
+                            app:layout_constraintTop_toBottomOf="@+id/stockItems_view"
                             app:layout_constraintVertical_bias="0.0" />
                     </android.support.constraint.ConstraintLayout>
 
                     <TextView
-                        android:id="@+id/discount"
+                        android:id="@+id/discount_view"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="15dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
+                        android:transitionName="discount_view"
                         android:text="TextView"
-                        app:layout_constraintBottom_toBottomOf="@+id/price"
+                        app:layout_constraintBottom_toBottomOf="@+id/price_view"
                         app:layout_constraintEnd_toStartOf="@+id/StockLayout"
                         app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/price"
-                        app:layout_constraintTop_toTopOf="@+id/price" />
+                        app:layout_constraintStart_toEndOf="@+id/price_view"
+                        app:layout_constraintTop_toTopOf="@+id/price_view" />
 
                     <TextView
-                        android:id="@+id/textView19"
+                        android:id="@+id/name_view"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
@@ -275,6 +283,7 @@
                         android:textAlignment="center"
                         android:textColor="@color/textDarkPrimary"
                         android:textSize="@dimen/text_very_large"
+                        android:transitionName="name_view"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -588,11 +597,9 @@
 
         </android.support.constraint.ConstraintLayout>
 
-        <include layout="@layout/add_to_cart_sheet"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"/>
 
     </RelativeLayout>
 
+    <include layout="@layout/add_to_cart_sheet" />
 
+</android.support.design.widget.CoordinatorLayout>
