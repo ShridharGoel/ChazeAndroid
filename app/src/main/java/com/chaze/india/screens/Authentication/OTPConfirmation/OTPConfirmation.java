@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.chaze.india.R;
 import com.chaze.india.screens.Authentication.ForgotPassword.ForgotPasswordActivity;
@@ -68,11 +69,14 @@ public class OTPConfirmation extends BaseActivity implements OTPConfirmationCont
                 if(!TextUtils.isEmpty(enterOtp.getText().toString())) {
 
                     if(getIntent().getBooleanExtra("ForgotPass", false)) {
-                        mPresenter.doOTPConfirmationForForgotPass(mobileNum, Integer.parseInt(enterOtp.getText().toString()));
+                        startChangePassActivity();
                     }
                     else {
                         mPresenter.doOTPConfirmation(mobileNum, Integer.parseInt(enterOtp.getText().toString()));
                     }
+                }
+                else {
+                    Toast.makeText(OTPConfirmation.this, "Enter OTP", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -102,6 +106,7 @@ public class OTPConfirmation extends BaseActivity implements OTPConfirmationCont
     public void startChangePassActivity() {
         Intent changePassIntent = new Intent(OTPConfirmation.this, ForgotPasswordActivity.class);
         changePassIntent.putExtra("Mobile", mobileNum);
+        changePassIntent.putExtra("OTP", enterOtp.getText().toString());
         startActivity(changePassIntent);
     }
 }

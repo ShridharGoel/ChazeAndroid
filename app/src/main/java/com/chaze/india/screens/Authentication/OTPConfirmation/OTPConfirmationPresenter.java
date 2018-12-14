@@ -33,7 +33,7 @@ public class OTPConfirmationPresenter<V extends OTPConfirmationContract.View> ex
 
                     getMvpView().startHomeActivity();
                 }, Throwable -> {
-                   Timber.e("Failure: "+Throwable.getMessage());
+                    Timber.e("Failure: " + Throwable.getMessage());
                 });
     }
 
@@ -45,22 +45,8 @@ public class OTPConfirmationPresenter<V extends OTPConfirmationContract.View> ex
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(resendOTPResponse -> {
                     Timber.e("Success");
-                    }, Throwable -> {
-                    Timber.e("Failure: "+Throwable.getMessage());
-                });
-    }
-
-    @SuppressLint("CheckResult")
-    @Override
-    public void doOTPConfirmationForForgotPass(String mobile, int otp) {
-        getCommonAPIManager().getChazeAPIService().confirmOtp(mobile, otp)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(resendOTPResponse -> {
-                    getMvpView().startChangePassActivity();
-                    Timber.e("Success");
                 }, Throwable -> {
-                    Timber.e("Failure: "+Throwable.getMessage());
+                    Timber.e("Failure: " + Throwable.getMessage());
                 });
     }
 }

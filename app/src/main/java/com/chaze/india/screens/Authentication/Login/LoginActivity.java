@@ -214,6 +214,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     public void startOTPConfirmationActivity() {
         Intent otpConfirmationIntent = new Intent(LoginActivity.this, OTPConfirmation.class);
         otpConfirmationIntent.putExtra("ForgotPass", true);
+        otpConfirmationIntent.putExtra("Mobile", forgotPassMobile);
         startActivity(otpConfirmationIntent);
     }
 }

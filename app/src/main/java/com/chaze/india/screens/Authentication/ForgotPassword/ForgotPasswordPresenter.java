@@ -27,11 +27,11 @@ public class ForgotPasswordPresenter<V extends ForgotPasswordContract.View> exte
 
     @SuppressLint("CheckResult")
     @Override
-    public void doChangePass(String mobile, String newPass) {
-        getCommonAPIManager().getChazeAPIService().changePass(mobile, newPass)
+    public void doChangePass(String mobile, int otp, String newPass) {
+        getCommonAPIManager().getChazeAPIService().changePass(mobile, otp, newPass)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(forgotPassResponse -> {
+                .subscribe(changePassResponse -> {
                     getMvpView().startHomeActivity();
                     Timber.e("Success");
                 }, Throwable -> {
