@@ -116,9 +116,14 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
 
         loginSubmitBtn.setOnClickListener(v ->
         {
-            if(!TextUtils.isEmpty(loginMobile.getText().toString()) && !TextUtils.isEmpty(loginPass.getText().toString()))
+            if(!TextUtils.isEmpty(loginMobile.getText().toString()) && !TextUtils.isEmpty(loginPass.getText().toString())) {
 
-            mPresenter.doLogin(loginMobile.getText().toString(), loginPass.getText().toString());
+                if(TextUtils.isDigitsOnly(loginMobile.getText().toString()))
+                    mPresenter.doLogin(loginMobile.getText().toString(), loginPass.getText().toString());
+
+                else
+                    mPresenter.doLoginWithEmail(loginMobile.getText().toString(), loginPass.getText().toString());
+            }
 
             else if(TextUtils.isEmpty(loginMobile.getText().toString()))
                 Toast.makeText(this, "Please enter your mobile number.", Toast.LENGTH_SHORT).show();
@@ -146,7 +151,12 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
                     public void onClick(DialogInterface dialog, int which) {
                         forgotPassMobile = input.getText().toString();
 
-                        mPresenter.hasForgottenPassword(forgotPassMobile);
+                        if(TextUtils.isDigitsOnly(forgotPassMobile)) {
+                            mPresenter.hasForgottenPassword(forgotPassMobile);
+                        }
+                        else {
+                            mPresenter.hasForgottenPasswordWithEmail(forgotPassMobile);
+                        }
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

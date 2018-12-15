@@ -72,7 +72,15 @@ public class OTPConfirmation extends BaseActivity implements OTPConfirmationCont
                         startChangePassActivity();
                     }
                     else {
-                        mPresenter.doOTPConfirmation(mobileNum, Integer.parseInt(enterOtp.getText().toString()));
+
+                        if(TextUtils.isDigitsOnly(mobileNum)) {
+                            mPresenter.doOTPConfirmation(mobileNum, Integer.parseInt(enterOtp.getText().toString()));
+                        }
+
+                        else {
+                            mPresenter.doOTPConfirmationWithEmail(mobileNum, Integer.parseInt(enterOtp.getText().toString()));
+                        }
+
                     }
                 }
                 else {
@@ -91,7 +99,12 @@ public class OTPConfirmation extends BaseActivity implements OTPConfirmationCont
         resendOtpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPresenter.doResendOTP(mobileNum);
+                if(TextUtils.isDigitsOnly(mobileNum)) {
+                    mPresenter.doResendOTP(mobileNum);
+                }
+                else {
+                    mPresenter.doResendOTPWithEmail(mobileNum);
+                }
             }
         });
     }
