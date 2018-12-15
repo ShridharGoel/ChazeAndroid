@@ -81,41 +81,10 @@ public class EcommerceFragment extends BaseFragment implements EcommerceContract
         setUnBinder(ButterKnife.bind(this, view));
         mPresenter.onAttach(this);
 
-        recyclerView.showShimmerAdapter();
+       // recyclerView.showShimmerAdapter();
 
         setupToolBar();
         return view;
-
-    }
-
-
-    private void goToSearch() {
-        Intent intent = new Intent(getActivity(), SearchActivity.class);
-        intent.putExtra("SearchType", 1);
-
-
-
-
-
-
-        Pair<View, String> p1 = Pair.create((View) searchView, "search");
-        Pair<View, String> p2 = Pair.create((View) tabLayout, "tabs");
-
-        ActivityOptionsCompat options = ActivityOptionsCompat.
-                makeSceneTransitionAnimation(getActivity(), p1, p2);
-
-
-        startActivity(intent, options.toBundle());
-    }
-
-    private void setupToolBar() {
-        searchView.setOnClickListener(v -> goToSearch());
-         ConstraintLayout cartView = toolbar.findViewById(R.id.cart_container);
-
-        cartView.setOnClickListener(v -> {
-            startActivity(new Intent(getActivity(), CartActivity.class));
-        });
-
 
     }
 
@@ -131,5 +100,28 @@ public class EcommerceFragment extends BaseFragment implements EcommerceContract
         tabLayout.setupWithViewPager(viewPager);
 
     }
+
+
+    private void goToSearch() {
+        Intent intent = new Intent(getActivity(), SearchActivity.class);
+        intent.putExtra("SearchType", 1);
+        Pair<View, String> p1 = Pair.create((View) searchView, "search");
+        Pair<View, String> p2 = Pair.create((View) tabLayout, "tabs");
+        ActivityOptionsCompat options = ActivityOptionsCompat.
+                makeSceneTransitionAnimation(getActivity(), p1, p2);
+        startActivity(intent, options.toBundle());
+    }
+
+    private void setupToolBar() {
+        searchView.setOnClickListener(v -> goToSearch());
+         ConstraintLayout cartView = toolbar.findViewById(R.id.cart_container);
+
+        cartView.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), CartActivity.class));
+        });
+    }
+
+
+
 
 }

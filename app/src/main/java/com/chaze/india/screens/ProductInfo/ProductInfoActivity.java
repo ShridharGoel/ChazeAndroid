@@ -156,30 +156,12 @@ public class ProductInfoActivity extends BaseActivity implements ProductInfoCont
 
         sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         Timber.e("Close sheet");
-       /* layoutBottomSheet.setVisibility(View.GONE);
-        TranslateAnimation animate = new TranslateAnimation(
-                0,                 // fromXDelta
-                0,                 // toXDelta
-                0,                 // fromYDelta
-                layoutBottomSheet.getHeight()); // toYDelta
-        animate.setDuration(200);
-        animate.setFillAfter(true);
-        layoutBottomSheet.startAnimation(animate);*/
     }
 
     public void showSheet() {
         isSheetClosed = false;
         Timber.e("Show sheet");
         sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-       /* layoutBottomSheet.setVisibility(View.VISIBLE);
-        TranslateAnimation animate = new TranslateAnimation(
-                0,                 // fromXDelta
-                0,                 // toXDelta
-                layoutBottomSheet.getHeight(),  // fromYDelta
-                0);                // toYDelta
-        animate.setDuration(400);
-        animate.setFillAfter(true);
-        layoutBottomSheet.startAnimation(animate);*/
     }
 
 
@@ -351,9 +333,6 @@ public class ProductInfoActivity extends BaseActivity implements ProductInfoCont
 
 
         }
-        //    groupForVarieties.setVisibility(View.GONE);
-
-
     }
 
     private void broadcast(View vi) {

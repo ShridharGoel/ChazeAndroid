@@ -128,7 +128,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/card4_image2"
+                android:id="@+id/card2_image2"
                 android:layout_width="120dp"
                 android:layout_height="96dp"
                 android:layout_marginEnd="8dp"
@@ -154,7 +154,7 @@
                 android:textSize="@dimen/text_medium"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/card4_image2" />
+                app:layout_constraintTop_toBottomOf="@+id/card2_image2" />
 
             <TextView
                 android:id="@+id/card2_item_description2"
@@ -188,7 +188,7 @@
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
 
             <ImageView
-                android:id="@+id/card4_image3"
+                android:id="@+id/card2_image3"
                 android:layout_width="120dp"
                 android:layout_height="96dp"
                 android:layout_marginEnd="8dp"
@@ -212,7 +212,7 @@
                 android:textSize="@dimen/text_medium"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/card4_image3" />
+                app:layout_constraintTop_toBottomOf="@+id/card2_image3" />
 
             <TextView
                 android:id="@+id/card2_item_description3"
@@ -246,7 +246,7 @@
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
 
             <ImageView
-                android:id="@+id/card4_image4"
+                android:id="@+id/card2_image4"
                 android:layout_width="120dp"
                 android:layout_height="96dp"
                 android:layout_marginEnd="8dp"
@@ -270,7 +270,7 @@
 
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/card4_image4" />
+                app:layout_constraintTop_toBottomOf="@+id/card2_image4" />
 
             <TextView
                 android:id="@+id/card2_item_description4"

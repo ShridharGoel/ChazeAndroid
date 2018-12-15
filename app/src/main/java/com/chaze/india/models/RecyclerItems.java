@@ -1,15 +1,16 @@
 package com.chaze.india.models;
 
-import com.chaze.india.models.Ecommerce.PostItems;
+import com.chaze.india.models.Ecommerce.Post;
+import com.chaze.india.models.Ecommerce.Post;
 
 import java.util.ArrayList;
 
 public class RecyclerItems {
     int typeOfPost;
     String categoryOfPost;
-    ArrayList <PostItems> recyclerList;
+    ArrayList <Post> recyclerList;
 
-    public RecyclerItems(int typeOfPost, String categoryOfPost, ArrayList<PostItems> recyclerList) {
+    public RecyclerItems(int typeOfPost, String categoryOfPost, ArrayList<Post> recyclerList) {
         this.typeOfPost = typeOfPost;
         this.categoryOfPost = categoryOfPost;
         this.recyclerList = recyclerList;
@@ -31,11 +32,11 @@ public class RecyclerItems {
         this.categoryOfPost = categoryOfPost;
     }
 
-    public ArrayList<PostItems> getRecyclerList() {
+    public ArrayList<Post> getRecyclerList() {
         return recyclerList;
     }
 
-    public void setRecyclerList(ArrayList<PostItems> recyclerList) {
+    public void setRecyclerList(ArrayList<Post> recyclerList) {
         this.recyclerList = recyclerList;
     }
 }

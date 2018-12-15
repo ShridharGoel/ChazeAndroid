@@ -1,11 +1,13 @@
 package com.chaze.india.repository.network;
 
 
+import com.chaze.india.models.Ecommerce.PostsResponse;
 import com.chaze.india.models.Ecommerce.Shop;
 import com.chaze.india.models.Ecommerce.ShopListResponse;
 
 import java.util.List;
 
+import io.reactivex.Flowable;
 import io.reactivex.Single;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -23,5 +25,8 @@ public interface ECommerceAPIService {
     @GET("shops/")
     Single<ShopListResponse> getShopsList(@Query("offset") int offset);
 
+
+    @GET("products/posts/")
+    Flowable<PostsResponse> getPosts(@Query("limit") int limit);
 
 }

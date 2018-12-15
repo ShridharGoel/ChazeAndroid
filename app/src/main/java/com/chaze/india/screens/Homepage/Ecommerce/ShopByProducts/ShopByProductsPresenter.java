@@ -2,7 +2,11 @@
 
 package com.chaze.india.screens.Homepage.Ecommerce.ShopByProducts;
 
+import android.annotation.SuppressLint;
+
 import com.chaze.india.models.Ecommerce.EcomerceCategory;
+import com.chaze.india.models.Ecommerce.Post;
+import com.chaze.india.models.Ecommerce.PostsResponse;
 import com.chaze.india.repository.network.ICommonAPIManager;
 import com.chaze.india.repository.session.SessionManager;
 import com.chaze.india.screens.base.BasePresenter;
@@ -12,16 +16,20 @@ import org.reactivestreams.Publisher;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
 import io.reactivex.Flowable;
+import io.reactivex.Scheduler;
+import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
 import io.reactivex.processors.PublishProcessor;
+import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
 
@@ -41,52 +49,29 @@ public class ShopByProductsPresenter<V extends ShopByProductsContract.View> exte
         super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
 
-
-
-    public void next(){
+    public void next() {
         pageNumber++;
-        paginator.onNext(pageNumber);
+        subscribeForData(pageNumber);
     }
+
+    Single<PostsResponse> p;
+
 
     /**
      * subscribing for data
      */
-    public void subscribeForData() {
+    public void subscribeForData(int limit) {
 
-        Disposable disposable = paginator
-                .onBackpressureDrop()
-                .concatMap((Function<Integer, Publisher<List<EcomerceCategory>>>) page -> {
-
-                    getMvpView().showLoading();
-                    return dataFromNetwork(page);
-                })
+        getCommonAPIManager().getECommerceAPIService().getPosts(10)
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(items -> {
-                    getMvpView().addItems(items);
-                    getMvpView().hideLoading();
+                .subscribe(postsResponse -> {
+                    getMvpView().addItems(postsResponse.getPosts());
+                }, throwable -> {
+                    Timber.e(throwable.getMessage());
+                    pageNumber--;
                 });
 
-        getCompositeDisposable().add(disposable);
-
-       next();
-
-    }
-
-
-    /**
-     * Simulation of network data
-     */
-    private Flowable<List<EcomerceCategory>> dataFromNetwork(final int page) {
-        Timber.e("" + page);
-        return Flowable.just(true)
-                .delay(2, TimeUnit.SECONDS)
-                .map(value -> {
-                    List<EcomerceCategory> items = new ArrayList<>();
-                    for (int i = 1; i <= 10; i++) {
-                        items.add(new EcomerceCategory("Item " + (page * 10 + i), "asdf","https://drive.google.com/file/d/15b68H448F4jszurUpAAQV6lFPHdY1dv2/view?usp=sharing"));
-                    }
-                    return items;
-                });
     }
 
 

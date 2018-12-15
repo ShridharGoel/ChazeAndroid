@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 
+import com.chaze.india.models.Ecommerce.Post;
 import com.chaze.india.screens.Homepage.HomeActivity;
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 
@@ -30,10 +31,6 @@ import timber.log.Timber;
 public class ShopByProductsFragment extends BaseFragment implements ShopByProductsContract.View {
 
 
-    public ShopByProductsFragment() {
-        Timber.e("ShopByProducts");
-    }
-
     private int totalItemCount, lastVisibleItem, pageNumber = 1;
     private final int VISIBLE_THRESHOLD = 1;
     boolean loading;
@@ -49,6 +46,7 @@ public class ShopByProductsFragment extends BaseFragment implements ShopByProduc
 
     @Inject
     ShopByProductsContract.Presenter<ShopByProductsContract.View> mPresenter;
+    private boolean adapterNotSet;
 
     @Nullable
     @Override
@@ -61,7 +59,7 @@ public class ShopByProductsFragment extends BaseFragment implements ShopByProduc
         getActivityComponent().inject(this);
         setUnBinder(ButterKnife.bind(this, view));
 
-        recyclerView.showShimmerAdapter();
+        //recyclerView.showShimmerAdapter();
         mPresenter.onAttach(this);
         return view;
     }
@@ -71,34 +69,26 @@ public class ShopByProductsFragment extends BaseFragment implements ShopByProduc
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-      //  recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(mLayoutManager);
-       // addItems(null);
-        setUpLoadMoreListener();
-       // mPresenter.subscribeForData();
 
+        recyclerView.setLayoutManager(mLayoutManager);
+        setUpLoadMoreListener();
+        mPresenter.subscribeForData(10);
     }
 
     /**
      * setting listener to get callback for load more
      */
     private void setUpLoadMoreListener() {
-
-
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView,
                                    int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-
-
-                if (dy > 0 ) {
-                    ((HomeActivity)getActivity()).hideBottomBar();
-                } else if (dy < 0 ) {
-                    ((HomeActivity)getActivity()).showBottomBar();
-
+                if (dy > 0) {
+                    ((HomeActivity) getActivity()).hideBottomBar();
+                } else if (dy < 0) {
+                    ((HomeActivity) getActivity()).showBottomBar();
                 }
-
                 totalItemCount = mLayoutManager.getItemCount();
                 lastVisibleItem = mLayoutManager.findLastVisibleItemPosition();
                 if (!loading
@@ -123,8 +113,11 @@ public class ShopByProductsFragment extends BaseFragment implements ShopByProduc
     }
 
     @Override
-    public void addItems(List<EcomerceCategory> items) {
+    public void addItems(List<Post> items) {
+
+        if(!adapterNotSet)recyclerView.setAdapter(adapter);
         adapter.addItems(items);
+        adapterNotSet = true;
     }
 
 }

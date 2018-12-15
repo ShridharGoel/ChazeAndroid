@@ -1,5 +1,6 @@
 package com.chaze.india.screens.Homepage.Ecommerce.ShopByProducts;
 
+import com.chaze.india.models.Ecommerce.Post;
 import com.chaze.india.screens.base.MvpContract;
 import com.chaze.india.models.Ecommerce.EcomerceCategory;
 
@@ -16,12 +17,12 @@ public class ShopByProductsContract {
 
 
 
-        void addItems(List<EcomerceCategory> items);
+        void addItems(List<Post> items);
     }
 
 
     public interface Presenter<V extends View> extends MvpContract.Presenter<V> {
-        void subscribeForData();
+        void subscribeForData(int limit);
         void next();
     }
 }

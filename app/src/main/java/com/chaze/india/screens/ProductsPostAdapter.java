@@ -11,7 +11,8 @@ import android.widget.ImageView;
 
 import com.chaze.india.R;
 import com.chaze.india.models.Ecommerce.EcomerceCategory;
-import com.chaze.india.models.Ecommerce.PostItems;
+import com.chaze.india.models.Ecommerce.Post;
+import com.chaze.india.models.Ecommerce.Post;
 import com.chaze.india.models.RecyclerItems;
 import com.smarteist.autoimageslider.SliderLayout;
 import com.smarteist.autoimageslider.SliderView;
@@ -22,12 +23,14 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class ProductsPostAdapter extends RecyclerView.Adapter{
-    ArrayList<RecyclerItems> cardList;
+import timber.log.Timber;
+
+public class ProductsPostAdapter extends RecyclerView.Adapter {
+    ArrayList<Post> cardList;
     Context context;
 
     @Inject
-    public ProductsPostAdapter(ArrayList<RecyclerItems> cardList, Context context) {
+    public ProductsPostAdapter(ArrayList<Post> cardList, Context context) {
         this.cardList = cardList;
         this.context = context;
     }
@@ -47,85 +50,87 @@ public class ProductsPostAdapter extends RecyclerView.Adapter{
             case 3:
                 view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.ecomerce_card_3, viewGroup, false);
                 return new Card3ViewHolder(view);
-            case 4:    view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.ecomerce_card_4, viewGroup, false);
+            case 4:
+                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.ecomerce_card_4, viewGroup, false);
                 return new Card4ViewHolder(view);
         }
-        return null;
+        view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.ecomerce_card_4, viewGroup, false);
+        return new Card4ViewHolder(view);
     }
 
     @Override
     public int getItemViewType(int position) {
-        switch (cardList.get(position).getTypeOfPost()){
-            case 1 : return 1;
-            case 2: return 2;
-            case 3: return 3;
-            case 4: return 4;
+        switch (cardList.get(position).getType()) {
+            case 1:
+                return 1;
+            case 2:
+                return 2;
+            case 3:
+                return 3;
+            case 4:
+                return 4;
         }
         return super.getItemViewType(position);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-    RecyclerItems object=cardList.get(i);
-    switch (object.getTypeOfPost()){
-        case 1:Picasso.get().load(object.getRecyclerList().get(0).getImageUrl())
-                .error(R.drawable.ic_menu_manage)
-                .into(((Card1ViewHolder)viewHolder).image1);
-            Picasso.get().load(object.getRecyclerList().get(1).getImageUrl())
-                    .error(R.drawable.ic_menu_manage)
-                    .into(((Card1ViewHolder)viewHolder).image2);
-            Picasso.get().load(object.getRecyclerList().get(2).getImageUrl())
-                    .error(R.drawable.ic_menu_manage)
-                    .into(((Card1ViewHolder)viewHolder).image3);
-            break;
-        case 2:
-            Picasso.get().load(object.getRecyclerList().get(0).getImageUrl())
-                    .error(R.drawable.ic_menu_manage)
-                    .into(((Card2ViewHolder)viewHolder).image1);
-            Picasso.get().load(object.getRecyclerList().get(1).getImageUrl())
-                    .error(R.drawable.ic_menu_manage)
-                    .into(((Card2ViewHolder)viewHolder).image2);
-            Picasso.get().load(object.getRecyclerList().get(2).getImageUrl())
-                    .error(R.drawable.ic_menu_manage)
-                    .into(((Card2ViewHolder)viewHolder).image3);
-            Picasso.get().load(object.getRecyclerList().get(3).getImageUrl())
-                    .error(R.drawable.ic_menu_manage)
-                    .into(((Card2ViewHolder)viewHolder).image4);
-            break;
-        case 3:/*Picasso.get().load(object.getRecyclerList().get(0).getImageUrl())
-                .error(R.drawable.ic_menu_manage)
-                .into(((Card3ViewHolder)viewHolder).image1);
-            Picasso.get().load(object.getRecyclerList().get(1).getImageUrl())
-                    .error(R.drawable.ic_menu_gallery)
-                    .into(((Card3ViewHolder)viewHolder).image2);
-            Picasso.get().load(object.getRecyclerList().get(2).getImageUrl())
-                    .error(R.drawable.ic_menu_send)
-                    .into(((Card3ViewHolder)viewHolder).image3);*/
-            for (int j = 0; j < 3; j++) {
+        Post object = cardList.get(i);
+        switch (object.getType()) {
+            case 1:
+                Picasso.get().load(object.getItems().get(0).getImageFirst())
+                        .error(R.drawable.ic_menu_manage)
+                        .into(((Card1ViewHolder) viewHolder).image1);
+                Picasso.get().load(object.getItems().get(1).getImageFirst())
+                        .error(R.drawable.ic_menu_manage)
+                        .into(((Card1ViewHolder) viewHolder).image2);
+                Picasso.get().load(object.getItems().get(2).getImageFirst())
+                        .error(R.drawable.ic_menu_manage)
+                        .into(((Card1ViewHolder) viewHolder).image3);
+                break;
+            case 2:
+                Picasso.get().load(object.getItems().get(0).getImageFirst())
+                        .error(R.drawable.ic_menu_manage)
+                        .into(((Card2ViewHolder) viewHolder).image1);
+                Picasso.get().load(object.getItems().get(1).getImageFirst())
+                        .error(R.drawable.ic_menu_manage)
+                        .into(((Card2ViewHolder) viewHolder).image2);
+                Picasso.get().load(object.getItems().get(2).getImageFirst())
+                        .error(R.drawable.ic_menu_manage)
+                        .into(((Card2ViewHolder) viewHolder).image3);
+                Picasso.get().load(object.getItems().get(3).getImageFirst())
+                        .error(R.drawable.ic_menu_manage)
+                        .into(((Card2ViewHolder) viewHolder).image4);
+                break;
+            case 3:
+                for (int j = 0; j < 3; j++) {
 
-                SliderView sliderView = new SliderView(context);
+                    SliderView sliderView = new SliderView(context);
 
-                switch (i) {
-                    case 0:
-                        sliderView.setImageUrl(object.getRecyclerList().get(0).getImageUrl());
-                        break;
-                    case 1:
-                        sliderView.setImageUrl(object.getRecyclerList().get(1).getImageUrl());
-                        break;
-                    case 2:
-                        sliderView.setImageUrl(object.getRecyclerList().get(2).getImageUrl());
-                        break;
+                    switch (j) {
+                        case 0:
+                            sliderView.setImageUrl(object.getItems().get(0).getImageFirst());
+                            break;
+                        case 1:
+                            sliderView.setImageUrl(object.getItems().get(1).getImageFirst());
+                            break;
+                        case 2:
+                            sliderView.setImageUrl(object.getItems().get(2).getImageFirst());
+                            break;
+                    }
+                    ((Card3ViewHolder) viewHolder).sliderLayout.removeAllViews();
+
+                    ((Card3ViewHolder) viewHolder).sliderLayout.addSliderView(sliderView);
                 }
-                ((Card3ViewHolder)viewHolder).sliderLayout.addSliderView(sliderView);
-            }
 
 
                 break;
-        case 4: Picasso.get().load(object.getRecyclerList().get(0).getImageUrl())
-                .error(R.drawable.ic_menu_manage)
-                .into(((Card4ViewHolder)viewHolder).image1);
+            case 4:
+                Picasso.get().load(object.getItems().get(0).getImageFirst())
+                        .error(R.drawable.ic_menu_manage)
+                        .into(((Card4ViewHolder) viewHolder).image1);
 
-    }
+        }
 
     }
 
@@ -134,114 +139,60 @@ public class ProductsPostAdapter extends RecyclerView.Adapter{
         return cardList.size();
     }
 
-    public void addItems(List<EcomerceCategory> items) {
-        ArrayList<PostItems> postItems= new ArrayList<>();
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","1",0));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","2",1));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","3",2));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","4",3));
-        cardList.add(new RecyclerItems(2,"cat",postItems));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","1",0));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","2",1));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","3",2));
-        cardList.add(new RecyclerItems(1,"cat",postItems));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","1",0));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","2",1));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","3",2));
-        cardList.add(new RecyclerItems(3,"cat",postItems));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","1",0));
-        cardList.add(new RecyclerItems(4,"cat",postItems));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","1",0));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","2",1));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","3",2));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","4",3));
-        cardList.add(new RecyclerItems(2,"cat",postItems));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","1",0));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","2",1));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","3",2));
-        cardList.add(new RecyclerItems(1,"cat",postItems));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","1",0));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","2",1));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","3",2));
-        cardList.add(new RecyclerItems(3,"cat",postItems));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","1",0));
-        cardList.add(new RecyclerItems(4,"cat",postItems));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","1",0));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","2",1));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","3",2));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","4",3));
-        cardList.add(new RecyclerItems(2,"cat",postItems));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","1",0));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","2",1));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","3",2));
-        cardList.add(new RecyclerItems(1,"cat",postItems));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","1",0));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","2",1));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","3",2));
-        cardList.add(new RecyclerItems(3,"cat",postItems));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","1",0));
-        cardList.add(new RecyclerItems(4,"cat",postItems));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","1",0));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","2",1));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","3",2));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","4",3));
-        cardList.add(new RecyclerItems(2,"cat",postItems));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","1",0));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","2",1));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","3",2));
-        cardList.add(new RecyclerItems(1,"cat",postItems));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","1",0));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","2",1));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","3",2));
-        cardList.add(new RecyclerItems(3,"cat",postItems));
-        postItems.add(new PostItems("https://www.flaticon.com/free-icon/trophy_1152912","1",0));
-        cardList.add(new RecyclerItems(4,"cat",postItems));
+    public void addItems(List<Post> items) {
+        for (Post i : items) {
+            Timber.e(i.getItems().get(0).getName());
+            cardList.addAll(items);
+            notifyDataSetChanged();
+        }
 
     }
 
-    public class Card1ViewHolder extends RecyclerView.ViewHolder{
-        ImageView image1,image2,image3;
+    public class Card1ViewHolder extends RecyclerView.ViewHolder {
+        ImageView image1, image2, image3;
+
         public Card1ViewHolder(@NonNull View itemView) {
             super(itemView);
-            image1=itemView.findViewById(R.id.card1_image1);
-            image2=itemView.findViewById(R.id.card1_image2);
-            image3=itemView.findViewById(R.id.card1_image3);
+            image1 = itemView.findViewById(R.id.card1_image1);
+            image2 = itemView.findViewById(R.id.card1_image2);
+            image3 = itemView.findViewById(R.id.card1_image3);
         }
     }
 
-    public class Card2ViewHolder extends RecyclerView.ViewHolder{
+    public class Card2ViewHolder extends RecyclerView.ViewHolder {
         ImageView image1, image2, image3, image4;
 
         public Card2ViewHolder(@NonNull View itemView) {
             super(itemView);
-            image1=itemView.findViewById(R.id.card4_image4);
-            image2=itemView.findViewById(R.id.card4_image4);
-            image3=itemView.findViewById(R.id.card4_image4);
-            image4=itemView.findViewById(R.id.card4_image4);
+            image1 = itemView.findViewById(R.id.card2_image1);
+            image2 = itemView.findViewById(R.id.card2_image2);
+            image3 = itemView.findViewById(R.id.card2_image3);
+            image4 = itemView.findViewById(R.id.card2_image4);
         }
     }
 
-    public class Card3ViewHolder extends RecyclerView.ViewHolder{
-        ImageView image1,image2,image3;
+    public class Card3ViewHolder extends RecyclerView.ViewHolder {
+        ImageView image1, image2, image3;
         SliderLayout sliderLayout;
 
         public Card3ViewHolder(@NonNull View itemView) {
             super(itemView);
-            sliderLayout=itemView.findViewById(R.id.imageSlider);
+            sliderLayout = itemView.findViewById(R.id.imageSlider);
             sliderLayout.setIndicatorAnimation(SliderLayout.Animations.FILL); //set indicator animation by using SliderLayout.Animations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
             sliderLayout.setScrollTimeInSec(1);
-            image1=itemView.findViewById(R.id.card3_image1);
-            image2=itemView.findViewById(R.id.card3_image2);
-            image3=itemView.findViewById(R.id.card3_image3);
+            image1 = itemView.findViewById(R.id.card3_image1);
+            image2 = itemView.findViewById(R.id.card3_image2);
+            image3 = itemView.findViewById(R.id.card3_image3);
         }
     }
 
-    public class Card4ViewHolder extends RecyclerView.ViewHolder{
+    public class Card4ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView image1;
+
         public Card4ViewHolder(@NonNull View itemView) {
             super(itemView);
-            image1=itemView.findViewById(R.id.card4_image);
+            image1 = itemView.findViewById(R.id.card4_image);
         }
     }
 }
