@@ -2,7 +2,7 @@ package com.chaze.india.utils;
 
 public class Constants {
 
-    public static final String Server = "http://chaze-api.herokuapp.com";
+    public static final String Server = "http://chaze.nveenjain.com";
 
 
     public static final String Chaze = Server + "";
