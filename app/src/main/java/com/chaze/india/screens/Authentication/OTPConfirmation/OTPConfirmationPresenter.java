@@ -39,8 +39,36 @@ public class OTPConfirmationPresenter<V extends OTPConfirmationContract.View> ex
 
     @SuppressLint("CheckResult")
     @Override
+    public void doOTPConfirmationWithEmail(String email, int otp) {
+        getCommonAPIManager().getChazeAPIService().confirmOtpWithEmail(email, otp)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(confirmOTPResponse -> {
+                    Timber.e("Success");
+
+                    getMvpView().startHomeActivity();
+                }, Throwable -> {
+                    Timber.e("Failure: " + Throwable.getMessage());
+                });
+    }
+
+    @SuppressLint("CheckResult")
+    @Override
     public void doResendOTP(String mobile) {
         getCommonAPIManager().getChazeAPIService().resendOTP(mobile)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(resendOTPResponse -> {
+                    Timber.e("Success");
+                }, Throwable -> {
+                    Timber.e("Failure: " + Throwable.getMessage());
+                });
+    }
+
+    @SuppressLint("CheckResult")
+    @Override
+    public void doResendOTPWithEmail(String email) {
+        getCommonAPIManager().getChazeAPIService().resendOTPWithMail(email)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(resendOTPResponse -> {

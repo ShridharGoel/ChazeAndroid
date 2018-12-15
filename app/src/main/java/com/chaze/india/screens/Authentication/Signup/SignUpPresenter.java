@@ -47,6 +47,25 @@ public class SignUpPresenter<V extends SignUpContract.View> extends BasePresente
                     Timber.e("Failure: " + Throwable.getMessage());
                 });
         }
+
+    @SuppressLint("CheckResult")
+    @Override
+    public void doSignUpWithEmail(String name, String email, int gender, String pass) {
+        getCommonAPIManager().getChazeAPIService().createUserWithEmail(name, email, gender, pass)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(signUpResponse -> {
+                    //                  getMvpView().showSignUpResult();
+                    Timber.e("Success");
+
+                    getMvpView().startOTPActivity();
+                    //On success
+                }, Throwable -> {
+//                    getMvpView().showSignUpResult();
+                    //On error
+                    Timber.e("Failure: " + Throwable.getMessage());
+                });
+    }
     }
 
 

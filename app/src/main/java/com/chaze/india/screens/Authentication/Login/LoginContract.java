@@ -18,6 +18,8 @@ public class LoginContract {
 
     public interface Presenter<V extends View> extends MvpContract.Presenter<V> {
         void doLogin(String mobile, String pass);
+        void doLoginWithEmail(String email, String pass);
         void hasForgottenPassword(String mobile);
+        void hasForgottenPasswordWithEmail(String email);
     }
 }

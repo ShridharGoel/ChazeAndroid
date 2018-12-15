@@ -2,6 +2,7 @@ package com.chaze.india.screens.Authentication.ForgotPassword;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -66,8 +67,17 @@ public class ForgotPasswordActivity extends BaseActivity implements ForgotPasswo
             public void onClick(View v) {
                 if (newPass.getText().toString().equals(confirmNewPass.getText().toString())) {
 
-                    Timber.e("Check "+getIntent().getStringExtra("Mobile"));
-                    mPresenter.doChangePass(getIntent().getStringExtra("Mobile"), Integer.parseInt(getIntent().getStringExtra("OTP")), newPass.getText().toString());
+                    if(TextUtils.isDigitsOnly(getIntent().getStringExtra("Mobile"))) {
+                        mPresenter.doChangePass(getIntent().getStringExtra("Mobile"),
+                                                Integer.parseInt(getIntent().getStringExtra("OTP")),
+                                                newPass.getText().toString());
+                    }
+
+                    else {
+                        mPresenter.doChangePassWithEmail(getIntent().getStringExtra("Mobile"),
+                                Integer.parseInt(getIntent().getStringExtra("OTP")),
+                                newPass.getText().toString());
+                    }
 
                 }
             }

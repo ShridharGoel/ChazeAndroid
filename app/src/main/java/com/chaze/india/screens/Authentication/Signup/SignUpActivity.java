@@ -3,9 +3,13 @@ package com.chaze.india.screens.Authentication.Signup;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,9 +52,11 @@ import timber.log.Timber;
  * Created by Shridhar Goel on 14/10/18.
  */
 
-public class SignUpActivity extends BaseActivity implements SignUpContract.View {
+public class SignUpActivity extends BaseActivity implements SignUpContract.View, AdapterView.OnItemSelectedListener {
 
     private static final int RC_SIGN_IN = 10;
+    String[] gender = {"Select Gender", "Female", "Male"};
+    int selectedGender;
 
     @BindView(R.id.login_btn)
     TextView loginBtn;
@@ -67,8 +73,8 @@ public class SignUpActivity extends BaseActivity implements SignUpContract.View 
     @BindView(R.id.signup_enter_mobile)
     EditText signUpMobile;
 
-    @BindView(R.id.signup_enter_gender)
-    EditText signUpGender;
+    @BindView(R.id.signup_gender_spinner)
+    Spinner signUpGender;
 
     @BindView(R.id.signup_enter_pass)
     EditText signUpPass;
@@ -100,6 +106,14 @@ public class SignUpActivity extends BaseActivity implements SignUpContract.View 
 
         mPresenter.onAttach(this);
 
+        signUpGender.setOnItemSelectedListener(this);
+
+        //Creating the ArrayAdapter instance having the country list
+        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item, gender);
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //Setting the ArrayAdapter data on the Spinner
+        signUpGender.setAdapter(aa);
+
         loginBtn.setOnClickListener(view -> {
             Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
@@ -117,15 +131,25 @@ public class SignUpActivity extends BaseActivity implements SignUpContract.View 
         signUpSubmitBtn.setOnClickListener(v -> {
             if (!TextUtils.isEmpty(signUpName.getText().toString())
                     && !TextUtils.isEmpty(signUpMobile.getText().toString())
-                    && !TextUtils.isEmpty(signUpGender.getText().toString())
+                    && selectedGender!=-1
                     && !TextUtils.isEmpty(signUpPass.getText().toString())
                     && !TextUtils.isEmpty(signUpConfirmPass.getText().toString())
                     && signUpPass.getText().toString().equals(signUpConfirmPass.getText().toString()))
             {
-                mPresenter.doSignUp(signUpName.getText().toString(),
-                                    signUpMobile.getText().toString(),
-                                    Integer.parseInt(signUpGender.getText().toString()),
-                                    signUpPass.getText().toString());
+                if(TextUtils.isDigitsOnly(signUpMobile.getText().toString())) {
+                    mPresenter.doSignUp(signUpName.getText().toString(),
+                            signUpMobile.getText().toString(),
+                            selectedGender,
+                            signUpPass.getText().toString());
+                }
+
+                else {
+                    mPresenter.doSignUpWithEmail(signUpName.getText().toString(),
+                            signUpMobile.getText().toString(),
+                            selectedGender,
+                            signUpPass.getText().toString());
+                }
+
 
                 /*SharedPreferences.Editor editor=getSharedPreferences(PREF_NAME,MODE_PRIVATE).edit();
                 editor.putString("phone",signUpMobile.getText().toString());
@@ -138,13 +162,13 @@ public class SignUpActivity extends BaseActivity implements SignUpContract.View 
 
             else if(TextUtils.isEmpty(signUpName.getText().toString())) {
                 Toast.makeText(this, "Name cannot be blank", Toast.LENGTH_SHORT).show();
-            } else if (TextUtils.isEmpty(signUpMobile.getText().toString())) {
+            } else if(TextUtils.isEmpty(signUpMobile.getText().toString())) {
                 Toast.makeText(this, "Mobile number cannot be blank", Toast.LENGTH_SHORT).show();
-            } else if(TextUtils.isEmpty(signUpGender.getText().toString())) {
-                Toast.makeText(this, "Gender cannot be blank", Toast.LENGTH_SHORT).show();
-            } else if (TextUtils.isEmpty(signUpPass.getText().toString())) {
+            } else if(selectedGender==-1) {
+                Toast.makeText(this, "Please select gender", Toast.LENGTH_SHORT).show();
+            } else if(TextUtils.isEmpty(signUpPass.getText().toString())) {
                 Toast.makeText(this, "Password cannot be blank", Toast.LENGTH_SHORT).show();
-            } else if (TextUtils.isEmpty(signUpConfirmPass.getText().toString())) {
+            } else if(TextUtils.isEmpty(signUpConfirmPass.getText().toString())) {
                 Toast.makeText(this, "Confirm password field cannot be blank", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "Passwords do not match.", Toast.LENGTH_SHORT).show();
@@ -203,6 +227,16 @@ public class SignUpActivity extends BaseActivity implements SignUpContract.View 
         Intent otpIntent = new Intent(SignUpActivity.this, OTPConfirmation.class);
         otpIntent.putExtra("Mobile", signUpMobile.getText().toString());
         startActivity(otpIntent);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        selectedGender = i-1;
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }
 
