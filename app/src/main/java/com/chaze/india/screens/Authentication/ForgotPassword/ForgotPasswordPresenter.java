@@ -38,5 +38,19 @@ public class ForgotPasswordPresenter<V extends ForgotPasswordContract.View> exte
                     Timber.e("Failure: "+Throwable.getMessage());
                 });
     }
+
+    @SuppressLint("CheckResult")
+    @Override
+    public void doChangePassWithEmail(String email, int otp, String newPass) {
+        getCommonAPIManager().getChazeAPIService().changePassWithEmail(email, otp, newPass)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(changePassResponse -> {
+                    getMvpView().startHomeActivity();
+                    Timber.e("Success");
+                }, Throwable -> {
+                    Timber.e("Failure: "+Throwable.getMessage());
+                });
+    }
 }
 

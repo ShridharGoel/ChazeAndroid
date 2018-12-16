@@ -49,6 +49,25 @@ public class LoginPresenter<V extends LoginContract.View> extends BasePresenter<
 
     @SuppressLint("CheckResult")
     @Override
+    public void doLoginWithEmail(String email, String pass) {
+        getCommonAPIManager().getChazeAPIService().loginUserWithEmail(email, pass)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(loginResponse -> {
+
+                    getMvpView().startHomeActivity();
+
+                    Timber.e("Success");
+                    //On success
+                }, Throwable -> {
+
+                    Timber.e(Throwable.getMessage());
+                    //On error
+                });
+    }
+
+    @SuppressLint("CheckResult")
+    @Override
     public void hasForgottenPassword(String mobile) {
         getCommonAPIManager().getChazeAPIService().forgotPass(mobile)
                 .subscribeOn(Schedulers.io())
@@ -59,5 +78,19 @@ public class LoginPresenter<V extends LoginContract.View> extends BasePresenter<
                     Timber.e("Failure: "+Throwable.getMessage());
                 });
     }
+
+    @SuppressLint("CheckResult")
+    @Override
+    public void hasForgottenPasswordWithEmail(String email) {
+        getCommonAPIManager().getChazeAPIService().forgotPassWithEmail(email)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(forgotPassResponse -> {
+                    getMvpView().startOTPConfirmationActivity();
+                }, Throwable -> {
+                    Timber.e("Failure: "+Throwable.getMessage());
+                });
+    }
+
 
 }
