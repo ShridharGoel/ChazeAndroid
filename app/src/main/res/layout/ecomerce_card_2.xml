@@ -2,9 +2,9 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginBottom="8dp"
     android:layout_width="match_parent"
-    android:layout_height="400dp">
+    android:layout_height="500dp"
+    android:layout_marginBottom="8dp">
 
 
     <ImageView
@@ -12,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="24dp"
-        android:src="@color/colorCyan"
+        android:src="@color/yellowDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,26 +20,31 @@
 
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/topic_name"
         android:layout_width="190dp"
-        android:layout_height="44dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="Title of Post"
         android:textColor="@color/textLightPrimary"
-        android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="@+id/button2"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/viewall"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/button2" />
+        app:layout_constraintTop_toTopOf="@+id/viewall" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/viewall"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="31dp"
+        android:layout_margin="8dp"
+
+        android:background="@drawable/white_rectangle_border_purple"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
         android:text="View All"
+        android:textSize="@dimen/text_medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,7 +59,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/imageView6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11">
+        app:layout_constraintTop_toBottomOf="@+id/viewall">
 
 
         <android.support.constraint.ConstraintLayout
@@ -73,8 +78,8 @@
 
             <ImageView
                 android:id="@+id/card2_image1"
-                android:layout_width="120dp"
-                android:layout_height="96dp"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
@@ -129,8 +134,8 @@
 
             <ImageView
                 android:id="@+id/card2_image2"
-                android:layout_width="120dp"
-                android:layout_height="96dp"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
 
@@ -189,8 +194,8 @@
 
             <ImageView
                 android:id="@+id/card2_image3"
-                android:layout_width="120dp"
-                android:layout_height="96dp"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
@@ -247,8 +252,8 @@
 
             <ImageView
                 android:id="@+id/card2_image4"
-                android:layout_width="120dp"
-                android:layout_height="96dp"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"

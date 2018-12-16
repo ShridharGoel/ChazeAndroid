@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context="com.chaze.india.screens.Homepage.HomeActivity">
 
 
@@ -37,7 +38,7 @@
                     android:id="@+id/ecomerceRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
+                    android:background="@color/colorPurpleLight"
                     android:orientation="horizontal"
                     app:shimmer_demo_angle="20"
                     app:shimmer_demo_child_count="10"

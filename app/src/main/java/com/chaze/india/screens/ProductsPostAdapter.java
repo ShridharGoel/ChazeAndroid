@@ -7,15 +7,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.chaze.india.R;
-import com.chaze.india.models.Ecommerce.EcomerceCategory;
 import com.chaze.india.models.Ecommerce.Post;
-import com.chaze.india.models.Ecommerce.Post;
-import com.chaze.india.models.RecyclerItems;
-import com.smarteist.autoimageslider.SliderLayout;
-import com.smarteist.autoimageslider.SliderView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -29,6 +26,7 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
     ArrayList<Post> cardList;
     Context context;
 
+
     @Inject
     public ProductsPostAdapter(ArrayList<Post> cardList, Context context) {
         this.cardList = cardList;
@@ -40,6 +38,7 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view;
 
+        Timber.e("" + i);
         switch (i) {
             case 1:
                 view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.ecomerce_card_1, viewGroup, false);
@@ -53,13 +52,18 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
             case 4:
                 view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.ecomerce_card_4, viewGroup, false);
                 return new Card4ViewHolder(view);
+            case 5:
+                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.ecomerce_card_4, viewGroup, false);
+                return new Card4ViewHolder(view);
         }
-        view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.ecomerce_card_4, viewGroup, false);
-        return new Card4ViewHolder(view);
+
+        return null;
     }
 
     @Override
     public int getItemViewType(int position) {
+
+        Timber.e(" " + cardList.get(position).getType());
         switch (cardList.get(position).getType()) {
             case 1:
                 return 1;
@@ -69,67 +73,109 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
                 return 3;
             case 4:
                 return 4;
+            case 5:
+                return 5;
         }
+        //return 4;
         return super.getItemViewType(position);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
         Post object = cardList.get(i);
+
+        Timber.e(object.toString());
+
         switch (object.getType()) {
             case 1:
+
+
+                ((Card1ViewHolder) viewHolder).topic.setText(object.getItems().get(0).getBusinessName());
+
                 Picasso.get().load(object.getItems().get(0).getImageFirst())
                         .error(R.drawable.ic_menu_manage)
                         .into(((Card1ViewHolder) viewHolder).image1);
+
+                ((Card1ViewHolder) viewHolder).textName1.setText(object.getItems().get(0).getName());
+
+
                 Picasso.get().load(object.getItems().get(1).getImageFirst())
                         .error(R.drawable.ic_menu_manage)
                         .into(((Card1ViewHolder) viewHolder).image2);
+
+                ((Card1ViewHolder) viewHolder).textName1.setText(object.getItems().get(1).getName());
+
                 Picasso.get().load(object.getItems().get(2).getImageFirst())
                         .error(R.drawable.ic_menu_manage)
                         .into(((Card1ViewHolder) viewHolder).image3);
+
+                ((Card1ViewHolder) viewHolder).textName1.setText(object.getItems().get(2).getName());
+
                 break;
             case 2:
+
+                ((Card2ViewHolder) viewHolder).topic.setText(object.getItems().get(0).getBusinessName());
                 Picasso.get().load(object.getItems().get(0).getImageFirst())
                         .error(R.drawable.ic_menu_manage)
                         .into(((Card2ViewHolder) viewHolder).image1);
+                ((Card2ViewHolder) viewHolder).textName1.setText(object.getItems().get(0).getName());
+                ((Card2ViewHolder) viewHolder).description1.setText("Rs. " + object.getItems().get(0).getPrice());
+
                 Picasso.get().load(object.getItems().get(1).getImageFirst())
                         .error(R.drawable.ic_menu_manage)
                         .into(((Card2ViewHolder) viewHolder).image2);
+
+                ((Card2ViewHolder) viewHolder).textName2.setText(object.getItems().get(1).getName());
+                ((Card2ViewHolder) viewHolder).description2.setText("Rs. " + object.getItems().get(1).getPrice());
+
+
                 Picasso.get().load(object.getItems().get(2).getImageFirst())
                         .error(R.drawable.ic_menu_manage)
                         .into(((Card2ViewHolder) viewHolder).image3);
+                ((Card2ViewHolder) viewHolder).textName3.setText(object.getItems().get(2).getName());
+                ((Card2ViewHolder) viewHolder).description3.setText("Rs. " + object.getItems().get(2).getPrice());
+
                 Picasso.get().load(object.getItems().get(3).getImageFirst())
                         .error(R.drawable.ic_menu_manage)
                         .into(((Card2ViewHolder) viewHolder).image4);
+
+                ((Card2ViewHolder) viewHolder).textName4.setText(object.getItems().get(3).getName());
+                ((Card2ViewHolder) viewHolder).description4.setText("Rs. " + object.getItems().get(3).getPrice());
                 break;
-            case 3:
-                for (int j = 0; j < 3; j++) {
+            case 3: {
 
-                    SliderView sliderView = new SliderView(context);
+                ((Card3ViewHolder) viewHolder).topic.setText(object.getItems().get(0).getBusinessName());
 
-                    switch (j) {
-                        case 0:
-                            sliderView.setImageUrl(object.getItems().get(0).getImageFirst());
-                            break;
-                        case 1:
-                            sliderView.setImageUrl(object.getItems().get(1).getImageFirst());
-                            break;
-                        case 2:
-                            sliderView.setImageUrl(object.getItems().get(2).getImageFirst());
-                            break;
-                    }
-                    ((Card3ViewHolder) viewHolder).sliderLayout.removeAllViews();
+                Picasso.get().load(object.getItems().get(0).getImageFirst())
+                        .error(R.drawable.ic_menu_manage)
+                        .into(((Card3ViewHolder) viewHolder).image1);
 
-                    ((Card3ViewHolder) viewHolder).sliderLayout.addSliderView(sliderView);
-                }
+                ((Card3ViewHolder) viewHolder).text1.setText(object.getItems().get(0).getName());
 
+                Picasso.get().load(object.getItems().get(1).getImageFirst())
+                        .error(R.drawable.ic_menu_manage)
+                        .into(((Card3ViewHolder) viewHolder).image2);
 
+                ((Card3ViewHolder) viewHolder).text2.setText(object.getItems().get(1).getName());
                 break;
-            case 4:
+
+            }
+            case 4: {
+
+                ((Card4ViewHolder) viewHolder).topic.setText(object.getItems().get(0).getBusinessName());
+                ((Card4ViewHolder) viewHolder).name.setText(object.getItems().get(0).getName());
+
+                ((Card4ViewHolder) viewHolder).price.setText("Rs. " + object.getItems().get(0).getPrice().intValue());
                 Picasso.get().load(object.getItems().get(0).getImageFirst())
                         .error(R.drawable.ic_menu_manage)
                         .into(((Card4ViewHolder) viewHolder).image1);
-
+                break;
+            }
+            case 5:
+                Picasso.get().load(object.getItems().get(0).getImageFirst())
+                        .error(R.drawable.ic_menu_manage)
+                        .into(((Card4ViewHolder) viewHolder).image1);
+                break;
         }
 
     }
@@ -150,17 +196,32 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
 
     public class Card1ViewHolder extends RecyclerView.ViewHolder {
         ImageView image1, image2, image3;
+        TextView textName1, textName2, textName3, topic;
+        Button viewall;
 
         public Card1ViewHolder(@NonNull View itemView) {
             super(itemView);
             image1 = itemView.findViewById(R.id.card1_image1);
             image2 = itemView.findViewById(R.id.card1_image2);
             image3 = itemView.findViewById(R.id.card1_image3);
+
+            textName1 = itemView.findViewById(R.id.card1_text1);
+            textName2 = itemView.findViewById(R.id.card1_text2);
+            textName3 = itemView.findViewById(R.id.card1_text3);
+
+            topic = itemView.findViewById(R.id.topic_name);
+
+            viewall = itemView.findViewById(R.id.viewall);
         }
     }
 
     public class Card2ViewHolder extends RecyclerView.ViewHolder {
         ImageView image1, image2, image3, image4;
+        TextView textName1, textName2, textName3, textName4;
+        TextView description1, description2, description3, description4;
+
+        TextView topic;
+        Button viewAll;
 
         public Card2ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -168,31 +229,61 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
             image2 = itemView.findViewById(R.id.card2_image2);
             image3 = itemView.findViewById(R.id.card2_image3);
             image4 = itemView.findViewById(R.id.card2_image4);
+
+            textName1 = itemView.findViewById(R.id.card2_item_name_1);
+            textName2 = itemView.findViewById(R.id.card2_item_name_2);
+            textName3 = itemView.findViewById(R.id.card2_item_name_3);
+            textName4 = itemView.findViewById(R.id.card2_item_name_4);
+
+
+            description1 = itemView.findViewById(R.id.card2_item_description1);
+            description2 = itemView.findViewById(R.id.card2_item_description2);
+            description3 = itemView.findViewById(R.id.card2_item_description3);
+            description4 = itemView.findViewById(R.id.card2_item_description4);
+
+            topic = itemView.findViewById(R.id.topic_name);
+            viewAll = itemView.findViewById(R.id.viewall);
+
+            viewAll.setOnClickListener(view -> {
+                getPosition();
+            });
+
         }
     }
 
     public class Card3ViewHolder extends RecyclerView.ViewHolder {
-        ImageView image1, image2, image3;
-        SliderLayout sliderLayout;
+        ImageView image1, image2;
+        TextView text1, text2;
+        TextView topic;
+        Button viewall;
 
         public Card3ViewHolder(@NonNull View itemView) {
             super(itemView);
-            sliderLayout = itemView.findViewById(R.id.imageSlider);
-            sliderLayout.setIndicatorAnimation(SliderLayout.Animations.FILL); //set indicator animation by using SliderLayout.Animations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
-            sliderLayout.setScrollTimeInSec(1);
+
             image1 = itemView.findViewById(R.id.card3_image1);
             image2 = itemView.findViewById(R.id.card3_image2);
-            image3 = itemView.findViewById(R.id.card3_image3);
+            text1 = itemView.findViewById(R.id.card3_text1);
+            text2 = itemView.findViewById(R.id.card3_text2);
+
+            viewall = itemView.findViewById(R.id.viewall);
+            topic = itemView.findViewById(R.id.topic_name);
         }
     }
 
     public class Card4ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView image1;
+        TextView name, topic, price;
+        Button viewall;
 
         public Card4ViewHolder(@NonNull View itemView) {
             super(itemView);
             image1 = itemView.findViewById(R.id.card4_image);
+            name = itemView.findViewById(R.id.name);
+
+            price = itemView.findViewById(R.id.price);
+            viewall = itemView.findViewById(R.id.viewall);
+            topic = itemView.findViewById(R.id.topic_name);
         }
     }
 }

@@ -14,9 +14,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.chaze.india.R;
-import com.chaze.india.models.RecyclerItems;
-import com.smarteist.autoimageslider.SliderLayout;
-import com.smarteist.autoimageslider.SliderView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -110,7 +107,7 @@ public class HomeCardAdapter extends RecyclerView.Adapter{
                     .error(R.drawable.ic_menu_send)
                     .into(((Card3ViewHolder)viewHolder).image3);*/
                 for (int j = 0; j < 3; j++) {
-
+/*
                     SliderView sliderView = new SliderView(context);
 
                     switch (i) {
@@ -124,7 +121,7 @@ public class HomeCardAdapter extends RecyclerView.Adapter{
                             sliderView.setImageUrl(object.getItems().get(2).getImageFirst());
                             break;
                     }
-                    ((HomeCardAdapter.Card3ViewHolder) viewHolder).sliderLayout.addSliderView(sliderView);
+                    ((HomeCardAdapter.Card3ViewHolder) viewHolder).sliderLayout.addSliderView(sliderView);*/
                 }
 
 
@@ -176,16 +173,10 @@ public class HomeCardAdapter extends RecyclerView.Adapter{
 
     public class Card3ViewHolder extends RecyclerView.ViewHolder {
         ImageView image1, image2, image3;
-        SliderLayout sliderLayout;
 
         public Card3ViewHolder(@NonNull View itemView) {
             super(itemView);
-            sliderLayout = itemView.findViewById(R.id.imageSlider);
-            sliderLayout.setIndicatorAnimation(SliderLayout.Animations.FILL); //set indicator animation by using SliderLayout.Animations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
-            sliderLayout.setScrollTimeInSec(1);
-            image1 = itemView.findViewById(R.id.card3_image1);
-            image2 = itemView.findViewById(R.id.card3_image2);
-            image3 = itemView.findViewById(R.id.card3_image3);
+
         }
     }
 

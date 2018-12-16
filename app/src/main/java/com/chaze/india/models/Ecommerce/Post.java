@@ -3,6 +3,9 @@ package com.chaze.india.models.Ecommerce;
 
 import java.util.List;
 import javax.annotation.Generated;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.Expose;
 
 @Generated("net.hexar.json2pojo")
@@ -30,4 +33,11 @@ public class Post {
         this.type = type;
     }
 
+    @Override
+    public String toString() {
+
+        String json = new GsonBuilder().create().toJson(items);
+
+        return json;
+    }
 }
