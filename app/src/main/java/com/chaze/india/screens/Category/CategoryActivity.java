@@ -4,12 +4,11 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
+import com.chaze.india.models.Ecommerce.Category;
 
 import com.chaze.india.R;
 import com.chaze.india.di.Qualifiers.LinLayoutVert;
 import com.chaze.india.models.CategorySearchResults;
-import com.chaze.india.screens.Cart.EcommerceCart.CartActivity;
 import com.chaze.india.screens.base.BaseActivity;
 
 import javax.inject.Inject;
@@ -37,6 +36,7 @@ public class CategoryActivity extends BaseActivity implements CategoryContract.V
     @BindView(R.id.recycler_view_for_shops_item_list)
     RecyclerView recyclerView;
 
+    Category category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +44,8 @@ public class CategoryActivity extends BaseActivity implements CategoryContract.V
         setContentView(R.layout.activity_category);
         setUnBinder(ButterKnife.bind(this));
         getActivityComponent().inject(this);
+
+        category = (Category)getIntent().getExtras().getSerializable("Category");
 
         setup();
         mPresenter.onAttach(this);

@@ -1,6 +1,7 @@
 
 package com.chaze.india.models.Ecommerce;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.Generated;
@@ -9,21 +10,21 @@ import com.google.gson.annotations.Expose;
 
 @Generated("net.hexar.json2pojo")
 @SuppressWarnings("unused")
-public class Child {
+public class Category implements Serializable {
 
     @Expose
-    private List<Child> children;
+    private List<Category> categories;
     @Expose
     private Long id;
     @Expose
     private String name;
 
-    public List<Child> getChildren() {
-        return children;
+    public List<Category> getCategories() {
+        return categories;
     }
 
-    public void setChildren(List<Child> children) {
-        this.children = children;
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 
     public Long getId() {

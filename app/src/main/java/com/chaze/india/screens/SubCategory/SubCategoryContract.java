@@ -2,6 +2,7 @@ package com.chaze.india.screens.SubCategory;
 
 import com.chaze.india.models.CategorySearchResults;
 import com.chaze.india.models.Ecommerce.EcomerceCategory;
+import com.chaze.india.models.Ecommerce.Post;
 import com.chaze.india.screens.base.MvpContract;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public class SubCategoryContract {
     public interface View extends MvpContract.View {
         void showData(CategorySearchResults results);
 
-        void addItems(List<EcomerceCategory> items);
+        void addItems(List<Post> items);
     }
 
 

@@ -12,9 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.chaze.india.R;
-import com.chaze.india.models.Ecommerce.Child;
-import com.chaze.india.models.Ecommerce.EcomerceCategory;
+import com.chaze.india.models.Ecommerce.Category;
 import com.chaze.india.screens.Category.CategoryActivity;
+import com.chaze.india.screens.SubCategory.SubCategoryActivity;
 
 import java.util.List;
 
@@ -22,9 +22,9 @@ import timber.log.Timber;
 
 public class EcommerceCategoryAdapter extends RecyclerView.Adapter<EcommerceCategoryAdapter.ViewHolder> {
     Context context;
-    List<Child> categoryList;
+    List<Category> categoryList;
 
-    public EcommerceCategoryAdapter(Context context, List<Child> categoryList) {
+    public EcommerceCategoryAdapter(Context context, List<Category> categoryList) {
         this.context = context;
         this.categoryList = categoryList;
     }
@@ -40,7 +40,7 @@ public class EcommerceCategoryAdapter extends RecyclerView.Adapter<EcommerceCate
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        Child item = categoryList.get(i);
+        Category item = categoryList.get(i);
         viewHolder.categoryText.setText(item.getName());
         //viewHolder.imageView.setImageDrawable(item.getImage());
 
@@ -51,9 +51,9 @@ public class EcommerceCategoryAdapter extends RecyclerView.Adapter<EcommerceCate
         return categoryList.size();
     }
 
-    public void addItems(List<Child> children) {
+    public void addItems(List<Category> categories) {
 
-        categoryList = children;
+        categoryList = categories;
         notifyDataSetChanged();
 
     }
@@ -71,7 +71,16 @@ public class EcommerceCategoryAdapter extends RecyclerView.Adapter<EcommerceCate
 
                 Timber.e("Whats HAppening");
 
-                context.startActivity(new Intent(context, CategoryActivity.class));
+                if (categoryList.get(getPosition()).getCategories().size() > 0) {
+                    Intent intent = new Intent(context, SubCategoryActivity.class);
+                    intent.putExtra("Category", categoryList.get(getPosition()));
+                    context.startActivity(intent);
+                } else {
+                    Intent intent = new Intent(context, CategoryActivity.class);
+                    intent.putExtra("Category", categoryList.get(getPosition()));
+                    context.startActivity(intent);
+                }
+
 
             });
 

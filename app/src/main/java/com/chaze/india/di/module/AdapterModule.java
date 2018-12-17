@@ -15,7 +15,6 @@ import com.chaze.india.screens.Homepage.Food.FoodFragment;
 import com.chaze.india.screens.Homepage.Food.FoodPagerAdapter;
 import com.chaze.india.screens.Homepage.Food.Restaurants.RestaurantListAdapter;
 import com.chaze.india.screens.Homepage.HomeBottomNavPagerAdapter;
-import com.chaze.india.screens.Homepage.HomeGridAdapter;
 import com.chaze.india.screens.Homepage.More.MoreFragment;
 import com.chaze.india.screens.Homepage.Purchases.ActiveOrders.ActiveOrdersAdapter;
 import com.chaze.india.screens.Homepage.Purchases.ActiveOrders.ActiveOrdersContract;
@@ -71,12 +70,6 @@ public class AdapterModule {
         adapter.addFragment(moreFragment_object);
         return adapter;
 
-    }
-
-
-    @Provides
-    HomeGridAdapter providesHomeGridAdapter() {
-        return new HomeGridAdapter(mActivity, new ArrayList<>());
     }
 
     @Provides

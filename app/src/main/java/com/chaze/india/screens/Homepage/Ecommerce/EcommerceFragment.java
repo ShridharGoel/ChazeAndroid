@@ -1,8 +1,6 @@
 package com.chaze.india.screens.Homepage.Ecommerce;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,17 +11,13 @@ import android.support.v4.util.Pair;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 
-import com.chaze.india.models.Ecommerce.Child;
-import com.chaze.india.screens.Shop.ShopActivity;
+import com.chaze.india.models.Ecommerce.Category;
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
-import android.widget.SearchView;
-import android.widget.TextView;
 
 
 import com.chaze.india.screens.Cart.EcommerceCart.CartActivity;
@@ -31,7 +25,6 @@ import com.chaze.india.screens.base.BaseFragment;
 import com.chaze.india.screens.search.SearchActivity;
 import com.chaze.india.R;
 import com.chaze.india.di.Qualifiers.LinLayoutHori;
-import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 
 import java.util.ArrayList;
 
@@ -128,11 +121,11 @@ public class EcommerceFragment extends BaseFragment implements EcommerceContract
 
 
     @Override
-    public void showCategories(ArrayList<Child> childs) {
+    public void showCategories(ArrayList<Category> categories) {
 
         if (!recyclerViewShown)
             recyclerView.setAdapter(adapter);
-        adapter.addItems(childs);
+        adapter.addItems(categories);
 
     }
 }

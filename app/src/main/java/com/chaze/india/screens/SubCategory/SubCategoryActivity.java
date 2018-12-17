@@ -1,29 +1,29 @@
 package com.chaze.india.screens.SubCategory;
 
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.GridView;
-import android.widget.SearchView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.chaze.india.R;
+import com.chaze.india.di.Qualifiers.LinLayoutHori;
 import com.chaze.india.di.Qualifiers.LinLayoutVert;
 import com.chaze.india.models.CategorySearchResults;
-import com.chaze.india.models.Ecommerce.EcomerceCategory;
-import com.chaze.india.screens.Homepage.HomeGridAdapter;
+import com.chaze.india.models.Ecommerce.Category;
+import com.chaze.india.models.Ecommerce.Post;
+import com.chaze.india.screens.Homepage.Ecommerce.EcommerceCategoryAdapter;
 import com.chaze.india.screens.ProductsPostAdapter;
 import com.chaze.india.screens.base.BaseActivity;
 import com.chaze.india.screens.search.SearchActivity;
+import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
+
 import java.util.List;
 
 import javax.inject.Inject;
@@ -39,8 +39,9 @@ public class SubCategoryActivity extends BaseActivity implements SubCategoryCont
     boolean loading;
 
 
-    @BindView(R.id.grid)
-    GridView grid;
+    @Inject
+    @LinLayoutHori
+    LinearLayoutManager mLayoutManagerH;
 
     @BindView(R.id.home_recycler_view)
     RecyclerView recyclerView;
@@ -53,15 +54,17 @@ public class SubCategoryActivity extends BaseActivity implements SubCategoryCont
     ProductsPostAdapter postAdapter;
 
     @Inject
-    HomeGridAdapter adapter;
+    EcommerceCategoryAdapter adapter;
 
+    @BindView(R.id.ecomerceRecyclerView)
+    ShimmerRecyclerView categoriesRecyclerView;
 
     @Inject
     SubCategoryContract.Presenter<SubCategoryContract.View> mPresenter;
 
 
     @BindView(R.id.toolbar)
-    Toolbar toolbar;
+    RelativeLayout toolbar;
 
     @BindView(R.id.searchbar)
     ConstraintLayout searchView;
@@ -69,6 +72,7 @@ public class SubCategoryActivity extends BaseActivity implements SubCategoryCont
     @BindView(R.id.nestedScroll)
     NestedScrollView nestedScrollView;
 
+    Category category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,28 +80,27 @@ public class SubCategoryActivity extends BaseActivity implements SubCategoryCont
         setContentView(R.layout.activity_sub_category);
         setUnBinder(ButterKnife.bind(this));
         getActivityComponent().inject(this);
-
-        int color = ResourcesCompat.getColor(getResources(), R.color.colorCyan, null); //without theme
-        Drawable drawable = new ColorDrawable(color);
-
         onAttach(this);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("SubCategoryName: ");
-        getSupportActionBar().setBackgroundDrawable(drawable);
-
         mPresenter.onAttach(this);
 
-        adapter.addItems();
+        category = (Category) getIntent().getExtras().getSerializable("Category");
+        setup();
+        setUpLoadMoreListener();
+    }
 
-        grid.setAdapter(adapter);
-
+    private void setup() {
+        setupToolBar();
+        categoriesRecyclerView.setLayoutManager(mLayoutManagerH);
+        categoriesRecyclerView.setAdapter(adapter);
+        adapter.addItems(category.getCategories());
         recyclerView.setAdapter(postAdapter);
         recyclerView.setLayoutManager(mLayoutManager);
-        postAdapter.addItems(null);
-        setUpLoadMoreListener();
-
         mPresenter.subscribeForData();
+    }
 
+    private void setupToolBar() {
+        TextView toolbarText = toolbar.findViewById(R.id.toolbar_text);
+        toolbarText.setText(category.getName());
     }
 
 
@@ -126,6 +129,7 @@ public class SubCategoryActivity extends BaseActivity implements SubCategoryCont
                     if (!loading
                             && totalItemCount <= (lastVisibleItem + VISIBLE_THRESHOLD)) {
                         mPresenter.next();
+                        loading = true;
                     }
                 }
             }
@@ -151,8 +155,8 @@ public class SubCategoryActivity extends BaseActivity implements SubCategoryCont
     }
 
     @Override
-    public void addItems(List<EcomerceCategory> items) {
-        postAdapter.addItems(null);
+    public void addItems(List<Post> items) {
+        //postAdapter.addItems(null);
     }
 
 

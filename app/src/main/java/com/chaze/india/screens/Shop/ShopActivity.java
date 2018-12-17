@@ -10,11 +10,12 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.GridView;
 
 import com.chaze.india.R;
+import com.chaze.india.di.Qualifiers.LinLayoutHori;
 import com.chaze.india.di.Qualifiers.LinLayoutVert;
 import com.chaze.india.models.CategorySearchResults;
 import com.chaze.india.models.Ecommerce.EcomerceCategory;
 import com.chaze.india.models.Ecommerce.Post;
-import com.chaze.india.screens.Homepage.HomeGridAdapter;
+import com.chaze.india.screens.Homepage.Ecommerce.EcommerceCategoryAdapter;
 import com.chaze.india.screens.ProductsPostAdapter;
 import com.chaze.india.screens.base.BaseActivity;
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
@@ -32,8 +33,9 @@ public class ShopActivity extends BaseActivity implements ShopContract.View {
     private final int VISIBLE_THRESHOLD = 1;
     boolean loading;
 
-    @BindView(R.id.grid)
-    GridView grid;
+    @Inject
+    @LinLayoutHori
+    LinearLayoutManager mLayoutManagerH;
 
     @BindView(R.id.home_recycler_view)
     ShimmerRecyclerView recyclerView;
@@ -46,8 +48,10 @@ public class ShopActivity extends BaseActivity implements ShopContract.View {
     ProductsPostAdapter postAdapter;
 
     @Inject
-    HomeGridAdapter adapter;
+    EcommerceCategoryAdapter adapter;
 
+    @BindView(R.id.ecomerceRecyclerView)
+    ShimmerRecyclerView categoriesRecyclerView;
 
     @Inject
     ShopContract.Presenter<ShopContract.View> mPresenter;
@@ -66,7 +70,6 @@ public class ShopActivity extends BaseActivity implements ShopContract.View {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
-
         setUnBinder(ButterKnife.bind(this));
         getActivityComponent().inject(this);
 
@@ -76,10 +79,15 @@ public class ShopActivity extends BaseActivity implements ShopContract.View {
 
         onAttach(this);
         mPresenter.onAttach(this);
-        adapter.addItems();
-        grid.setAdapter(adapter);
+        setup();
+    }
 
-        postAdapter.setIsByShop(false,shopId);
+    private void setup() {
+
+        categoriesRecyclerView.setAdapter(adapter);
+        categoriesRecyclerView.setLayoutManager(mLayoutManagerH);
+        categoriesRecyclerView.showShimmerAdapter();
+        postAdapter.setIsByShop(false, shopId);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.showShimmerAdapter();
         setUpLoadMoreListener();

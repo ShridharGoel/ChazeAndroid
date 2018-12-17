@@ -4,7 +4,7 @@ package com.chaze.india.screens.Homepage.Ecommerce;
 
 import android.annotation.SuppressLint;
 
-import com.chaze.india.models.Ecommerce.Child;
+import com.chaze.india.models.Ecommerce.Category;
 import com.chaze.india.repository.network.ICommonAPIManager;
 import com.chaze.india.repository.session.SessionManager;
 import com.chaze.india.screens.base.BasePresenter;
@@ -14,7 +14,6 @@ import java.util.ArrayList;
 
 import javax.inject.Inject;
 
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
@@ -38,7 +37,7 @@ public class EcommercePresenter<V extends EcommerceContract.View> extends BasePr
     public void loadCategories() {
         getCommonAPIManager().getECommerceAPIService().getCategories().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(response -> getMvpView().showCategories((ArrayList<Child>) response.getResults()), throwable -> {
+                .subscribe(response -> getMvpView().showCategories((ArrayList<Category>) response.getResults()), throwable -> {
                     Timber.e("Error" + throwable.getMessage());
                 });
     }

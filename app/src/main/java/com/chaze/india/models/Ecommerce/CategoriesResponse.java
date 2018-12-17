@@ -10,15 +10,15 @@ import com.google.gson.annotations.Expose;
 public class CategoriesResponse {
 
     @Expose
-    private List<Child> results;
+    private List<Category> results;
     @Expose
     private Boolean succes;
 
-    public List<Child> getResults() {
+    public List<Category> getResults() {
         return results;
     }
 
-    public void setResults(List<Child> results) {
+    public void setResults(List<Category> results) {
         this.results = results;
     }
 

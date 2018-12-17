@@ -42,6 +42,11 @@ public class SubCategoryPresenter<V extends SubCategoryContract.View> extends Ba
         super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
 
+    @Override
+    public void subscribeForData() {
+
+    }
+
     public void next(){
         pageNumber++;
         paginator.onNext(pageNumber);
@@ -54,37 +59,5 @@ public class SubCategoryPresenter<V extends SubCategoryContract.View> extends Ba
     }
 
 
-    @Override
-    public void subscribeForData() {
-        Disposable disposable = paginator
-                .onBackpressureDrop()
-                .concatMap((Function<Integer, Publisher<List<EcomerceCategory>>>) page -> {
-
-                    getMvpView().showLoading();
-                    return dataFromNetwork(page);
-                })
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(items -> {
-                    getMvpView().addItems(items);
-                    getMvpView().hideLoading();
-                });
-
-        getCompositeDisposable().add(disposable);
-
-        next();
-    }
-
-    private Flowable<List<EcomerceCategory>> dataFromNetwork(final int page) {
-        Timber.e("" + page);
-        return Flowable.just(true)
-                .delay(2, TimeUnit.SECONDS)
-                .map(value -> {
-                    List<EcomerceCategory> items = new ArrayList<>();
-                    for (int i = 1; i <= 10; i++) {
-                        items.add(new EcomerceCategory("Item " + (page * 10 + i), "asdf","https://drive.google.com/file/d/15b68H448F4jszurUpAAQV6lFPHdY1dv2/view?usp=sharing"));
-                    }
-                    return items;
-                });
-    }
 
 }

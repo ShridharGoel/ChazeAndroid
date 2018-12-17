@@ -1,7 +1,6 @@
 package com.chaze.india.screens.Homepage.Ecommerce;
 
-import com.chaze.india.models.Ecommerce.Child;
-import com.chaze.india.screens.base.MvpContract;
+import com.chaze.india.models.Ecommerce.Category;
 import com.chaze.india.screens.base.MvpContract;
 
 import java.util.ArrayList;
@@ -15,7 +14,7 @@ public class EcommerceContract {
 
     public interface View extends MvpContract.View {
 
-        public void showCategories(ArrayList<Child> childs);
+        public void showCategories(ArrayList<Category> categories);
     }
 
 
