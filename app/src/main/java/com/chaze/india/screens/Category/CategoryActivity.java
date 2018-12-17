@@ -3,6 +3,7 @@ package com.chaze.india.screens.Category;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.TextView;
 
 import com.chaze.india.models.Ecommerce.Category;
 
@@ -32,6 +33,8 @@ public class CategoryActivity extends BaseActivity implements CategoryContract.V
     @LinLayoutVert
     LinearLayoutManager layoutManager;
 
+    @BindView(R.id.category_text)
+    TextView toolbarText;
 
     @BindView(R.id.recycler_view_for_shops_item_list)
     RecyclerView recyclerView;
@@ -45,7 +48,7 @@ public class CategoryActivity extends BaseActivity implements CategoryContract.V
         setUnBinder(ButterKnife.bind(this));
         getActivityComponent().inject(this);
 
-        category = (Category)getIntent().getExtras().getSerializable("Category");
+        category = (Category) getIntent().getExtras().getSerializable("Category");
 
         setup();
         mPresenter.onAttach(this);
@@ -54,8 +57,8 @@ public class CategoryActivity extends BaseActivity implements CategoryContract.V
     }
 
 
-
     private void setup() {
+        toolbarText.setText(category.getName());
         recyclerView.setAdapter(shopCategoryAdapter);
         recyclerView.setLayoutManager(layoutManager);
     }

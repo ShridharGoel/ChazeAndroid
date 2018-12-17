@@ -53,7 +53,7 @@ public class EcommerceCategoryAdapter extends RecyclerView.Adapter<EcommerceCate
 
     public void addItems(List<Category> categories) {
 
-        categoryList = categories;
+        categoryList.addAll(categories);
         notifyDataSetChanged();
 
     }
