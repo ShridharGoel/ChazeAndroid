@@ -86,9 +86,9 @@ public class RestaurantsFragment extends BaseFragment implements RestaurantsCont
 
 
                 if (dy > 0 ) {
-                    ((HomeActivity)getActivity()).hideBottomBar();
+                    ((HomeActivity)getActivity()).hideSheet();
                 } else if (dy < 0 ) {
-                    ((HomeActivity)getActivity()).showBottomBar();
+                    ((HomeActivity)getActivity()).showSheet();
 
                 }
 

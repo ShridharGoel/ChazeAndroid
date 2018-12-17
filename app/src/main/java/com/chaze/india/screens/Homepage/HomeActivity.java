@@ -1,7 +1,9 @@
 package com.chaze.india.screens.Homepage;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -29,6 +31,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import timber.log.Timber;
 
 public class HomeActivity extends BaseActivity
         implements HomeContract.View {
@@ -101,7 +104,9 @@ public class HomeActivity extends BaseActivity
     @BindView(R.id.wishlistt)
     TextView wishlistT;
 
-    boolean bottombarShown = true;
+    boolean isSheetClosed = false;
+
+    BottomSheetBehavior sheetBehavior;
 
     int cid = -1;
 
@@ -126,6 +131,45 @@ public class HomeActivity extends BaseActivity
         wishlist.setOnClickListener(v -> addFragment(2));
         purchases.setOnClickListener(v -> addFragment(3));
         more.setOnClickListener(v -> addFragment(4));
+
+
+        sheetBehavior = BottomSheetBehavior.from(bottomBar);
+        sheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                switch (newState) {
+                    case BottomSheetBehavior.STATE_HIDDEN:
+                        break;
+                    case BottomSheetBehavior.STATE_EXPANDED: {
+                        //  btnBottomSheet.setText("Close Sheet");
+                    }
+                    break;
+                    case BottomSheetBehavior.STATE_COLLAPSED: {
+                        //btnBottomSheet.setText("Expand Sheet");
+                        break;
+                    }
+                    case BottomSheetBehavior.STATE_DRAGGING: {
+
+                        if (!isSheetClosed)
+                            sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                        break;
+                    }
+
+                    case BottomSheetBehavior.STATE_SETTLING: {
+                        if (!isSheetClosed)
+                            sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                        break;
+                    }
+
+                }
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+
+            }
+        });
+        showSheet();
     }
 
     private void addFragment(int id) {
@@ -208,7 +252,22 @@ public class HomeActivity extends BaseActivity
     }
 
 
-    public void hideBottomBar() {
+    public void hideSheet() {
+
+        isSheetClosed = true;
+
+        sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        Timber.e("Close sheet");
+    }
+
+    public void showSheet() {
+        isSheetClosed = false;
+        Timber.e("Show sheet");
+        sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+    }
+
+
+   /* public void hideBottomBar() {
 
         if (!bottombarShown) return;
 
@@ -239,7 +298,7 @@ public class HomeActivity extends BaseActivity
         animate.setDuration(400);
         animate.setFillAfter(true);
         bottomBar.startAnimation(animate);
-    }
+    }*/
 
     public void addItems(List<EcomerceCategory> items) {
 

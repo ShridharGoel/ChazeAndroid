@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:elevation="4dp"
     android:id="@+id/bottom_bar"
-    android:paddingTop="4dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/colorPurpleLight"
+    android:elevation="4dp"
     android:paddingBottom="2dp"
+    android:paddingTop="4dp"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="0dp"
+    app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    app:layout_constraintStart_toStartOf="parent">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/ecommerce"
@@ -37,10 +40,10 @@
             android:id="@+id/mallt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
             android:text="Shop"
             android:textColor="@color/textLightPrimary"
             android:textSize="@dimen/text_small"
-            android:layout_marginBottom="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/malli"
             app:layout_constraintStart_toStartOf="@+id/malli"
@@ -74,9 +77,9 @@
             android:id="@+id/foodt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
             android:text="Eat"
             android:textColor="@color/textLightPrimary"
-            android:layout_marginBottom="2dp"
             android:textSize="@dimen/text_small"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -111,8 +114,8 @@
         <TextView
             android:id="@+id/wishlistt"
             android:layout_width="wrap_content"
-            android:layout_marginBottom="2dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
             android:text="Wish List"
             android:textColor="@color/textLightPrimary"
 
@@ -150,8 +153,8 @@
             android:id="@+id/purchasest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Purchases"
             android:layout_marginBottom="2dp"
+            android:text="Purchases"
             android:textColor="@color/textLightPrimary"
 
             android:textSize="@dimen/text_small"
@@ -183,13 +186,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_morew"/>
+            app:srcCompat="@drawable/ic_morew" />
+
         <TextView
             android:id="@+id/moret"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="More"
             android:layout_marginBottom="2dp"
+            android:text="More"
             android:textColor="@color/textLightPrimary"
             android:textSize="@dimen/text_small"
             app:layout_constraintBottom_toBottomOf="parent"
