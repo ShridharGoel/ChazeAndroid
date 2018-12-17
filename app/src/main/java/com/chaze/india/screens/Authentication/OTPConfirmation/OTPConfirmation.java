@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chaze.india.R;
@@ -21,17 +22,16 @@ import butterknife.ButterKnife;
 
 
 /**
- post request on /login
- param: req: OTP code( 6digit) + token
-
-
- return: {
- success:true/false
- error:msg to show if success is false
- token:secret key
- user:
- }
-
+ * post request on /login
+ * param: req: OTP code( 6digit) + token
+ * <p>
+ * <p>
+ * return: {
+ * success:true/false
+ * error:msg to show if success is false
+ * token:secret key
+ * user:
+ * }
  **/
 
 public class OTPConfirmation extends BaseActivity implements OTPConfirmationContract.View {
@@ -46,6 +46,9 @@ public class OTPConfirmation extends BaseActivity implements OTPConfirmationCont
 
     @BindView(R.id.resend_otp_btn)
     Button resendOtpBtn;
+
+    @BindView(R.id.resendtext)
+    TextView resendText;
 
     @Inject
     OTPConfirmationContract.Presenter<OTPConfirmationContract.View> mPresenter;
@@ -66,24 +69,20 @@ public class OTPConfirmation extends BaseActivity implements OTPConfirmationCont
         submitOtpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!TextUtils.isEmpty(enterOtp.getText().toString())) {
+                if (!TextUtils.isEmpty(enterOtp.getText().toString())) {
 
-                    if(getIntent().getBooleanExtra("ForgotPass", false)) {
+                    if (getIntent().getBooleanExtra("ForgotPass", false)) {
                         startChangePassActivity();
-                    }
-                    else {
+                    } else {
 
-                        if(TextUtils.isDigitsOnly(mobileNum)) {
+                        if (TextUtils.isDigitsOnly(mobileNum)) {
                             mPresenter.doOTPConfirmation(mobileNum, Integer.parseInt(enterOtp.getText().toString()));
-                        }
-
-                        else {
+                        } else {
                             mPresenter.doOTPConfirmationWithEmail(mobileNum, Integer.parseInt(enterOtp.getText().toString()));
                         }
 
                     }
-                }
-                else {
+                } else {
                     Toast.makeText(OTPConfirmation.this, "Enter OTP", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -93,16 +92,16 @@ public class OTPConfirmation extends BaseActivity implements OTPConfirmationCont
             @Override
             public void run() {
                 resendOtpBtn.setVisibility(View.VISIBLE);
+                resendText.setVisibility(View.GONE);
             }
         }, 30000);
 
         resendOtpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(TextUtils.isDigitsOnly(mobileNum)) {
+                if (TextUtils.isDigitsOnly(mobileNum)) {
                     mPresenter.doResendOTP(mobileNum);
-                }
-                else {
+                } else {
                     mPresenter.doResendOTPWithEmail(mobileNum);
                 }
             }

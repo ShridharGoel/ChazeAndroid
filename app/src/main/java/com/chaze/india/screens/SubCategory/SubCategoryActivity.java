@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 
@@ -101,14 +102,18 @@ public class SubCategoryActivity extends BaseActivity implements SubCategoryCont
     private void setupToolBar() {
         TextView toolbarText = toolbar.findViewById(R.id.toolbar_text);
         toolbarText.setText(category.getName());
+        searchView.setOnClickListener(v -> goToSearch());
     }
 
 
     private void goToSearch() {
         Intent intent = new Intent(this, SearchActivity.class);
-        intent.putExtra("SearchType", 1);
+        intent.putExtra("SearchType", 0);
+        intent.putExtra("Shop", "-1");
+        intent.putExtra("Category", category);
+        Pair<View, String> p1 = Pair.create((View) searchView, "search");
         ActivityOptionsCompat options = ActivityOptionsCompat.
-                makeSceneTransitionAnimation(this, (View) searchView, "search");
+                makeSceneTransitionAnimation(this, p1);
         startActivity(intent, options.toBundle());
     }
 

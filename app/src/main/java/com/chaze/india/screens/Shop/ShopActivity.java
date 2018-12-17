@@ -2,11 +2,14 @@ package com.chaze.india.screens.Shop;
 
 import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.support.v4.widget.NestedScrollView;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.GridView;
 
 import com.chaze.india.R;
@@ -18,6 +21,7 @@ import com.chaze.india.models.Ecommerce.Post;
 import com.chaze.india.screens.Homepage.Ecommerce.EcommerceCategoryAdapter;
 import com.chaze.india.screens.ProductsPostAdapter;
 import com.chaze.india.screens.base.BaseActivity;
+import com.chaze.india.screens.search.SearchActivity;
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 
 import java.util.List;
@@ -90,6 +94,7 @@ public class ShopActivity extends BaseActivity implements ShopContract.View {
         postAdapter.setIsByShop(false, shopId);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.showShimmerAdapter();
+        searchView.setOnClickListener(v->goToSearch());
         setUpLoadMoreListener();
 
         mPresenter.subscribeForData(0);
@@ -117,6 +122,17 @@ public class ShopActivity extends BaseActivity implements ShopContract.View {
             }
         });
 
+    }
+
+    private void goToSearch() {
+        Intent intent = new Intent(this, SearchActivity.class);
+        intent.putExtra("SearchType", 0);
+        intent.putExtra("Shop", shopId);
+        intent.putExtra("Category", category);
+        Pair<View, String> p1 = Pair.create((View) searchView, "search");
+        ActivityOptionsCompat options = ActivityOptionsCompat.
+                makeSceneTransitionAnimation(this, p1);
+        startActivity(intent, options.toBundle());
     }
 
     @Override

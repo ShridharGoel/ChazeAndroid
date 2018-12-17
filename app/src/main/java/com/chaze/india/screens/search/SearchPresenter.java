@@ -57,7 +57,7 @@ public class SearchPresenter<V extends SearchContract.View> extends BasePresente
     }
 
     @Override
-    public void initSearchHome() {
+    public void initByShopAndCategory() {
 
     }
 
@@ -67,7 +67,7 @@ public class SearchPresenter<V extends SearchContract.View> extends BasePresente
     }
 
     @Override
-    public void initSearchEngineLocal() {
+    public void initCategory() {
 
     }
 

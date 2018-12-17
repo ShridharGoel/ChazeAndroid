@@ -29,7 +29,7 @@
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewall" />
+        app:layout_constraintTop_toBottomOf="@+id/shimmer_view" />
 
     <TextView
         android:id="@+id/name"
@@ -69,20 +69,31 @@
         android:text="Price"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name" />
-
-    <Button
-        android:id="@+id/viewall"
+    <io.supercharge.shimmerlayout.ShimmerLayout
+        android:id="@+id/shimmer_view"
         android:layout_width="wrap_content"
         android:layout_height="28dp"
-        android:layout_marginBottom="4dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="4dp"
-        android:background="@drawable/white_rectangle_border_purple"
-        android:text="View All"
         android:textSize="@dimen/text_medium"
-        app:layout_constraintBottom_toBottomOf="@+id/topic_name"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:text="View All"
+        android:background="@drawable/white_rectangle_border_purple"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/topic_name" />
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <Button
+            android:id="@+id/viewall"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:textSize="@dimen/text_medium"
+            android:text="View All"
+            android:background="@drawable/white_rectangle_border_purple"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </io.supercharge.shimmerlayout.ShimmerLayout>
 
 </android.support.constraint.ConstraintLayout>
 

@@ -22,6 +22,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import io.supercharge.shimmerlayout.ShimmerLayout;
 import timber.log.Timber;
 
 public class ProductsPostAdapter extends RecyclerView.Adapter {
@@ -113,7 +114,8 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
                         .into(((Card1ViewHolder) viewHolder).image3);
 
                 ((Card1ViewHolder) viewHolder).textName1.setText(object.getProducts().get(2).getName());
-
+                ((Card1ViewHolder) viewHolder).shimmerLayout.setShimmerColor(context.getResources().getColor(R.color.white));
+                ((Card1ViewHolder) viewHolder).shimmerLayout.startShimmerAnimation();
                 break;
             case 2:
 
@@ -144,6 +146,8 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
 
                 ((Card2ViewHolder) viewHolder).textName4.setText(object.getProducts().get(3).getName());
                 ((Card2ViewHolder) viewHolder).description4.setText("Rs. " + object.getProducts().get(3).getPrice());
+                ((Card2ViewHolder) viewHolder).shimmerLayout.setShimmerColor(context.getResources().getColor(R.color.white));
+                ((Card2ViewHolder) viewHolder).shimmerLayout.startShimmerAnimation();
                 break;
             case 3: {
 
@@ -160,6 +164,8 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
                         .into(((Card3ViewHolder) viewHolder).image2);
 
                 ((Card3ViewHolder) viewHolder).text2.setText(object.getProducts().get(1).getName());
+                ((Card3ViewHolder) viewHolder).shimmerLayout.setShimmerColor(context.getResources().getColor(R.color.white));
+                ((Card3ViewHolder) viewHolder).shimmerLayout.startShimmerAnimation();
                 break;
 
             }
@@ -172,6 +178,9 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
                 Picasso.get().load(object.getProducts().get(0).getImageFirst())
                         .error(R.drawable.ic_menu_manage)
                         .into(((Card4ViewHolder) viewHolder).image1);
+
+                ((Card4ViewHolder) viewHolder).shimmerLayout.setShimmerColor(context.getResources().getColor(R.color.white));
+                ((Card4ViewHolder) viewHolder).shimmerLayout.startShimmerAnimation();
                 break;
             }
             case 5:
@@ -221,7 +230,7 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
         ImageView image1, image2, image3;
         TextView textName1, textName2, textName3, topic;
         Button viewall;
-
+        ShimmerLayout shimmerLayout;
         public Card1ViewHolder(@NonNull View itemView) {
             super(itemView);
             image1 = itemView.findViewById(R.id.card1_image1);
@@ -233,6 +242,7 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
             textName3 = itemView.findViewById(R.id.card1_text3);
 
             topic = itemView.findViewById(R.id.topic_name);
+            shimmerLayout = itemView.findViewById(R.id.shimmer_view);
 
             viewall = itemView.findViewById(R.id.viewall);
             viewall.setOnClickListener(view -> {
@@ -248,7 +258,7 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
 
         TextView topic;
         Button viewAll;
-
+        ShimmerLayout shimmerLayout;
         public Card2ViewHolder(@NonNull View itemView) {
             super(itemView);
             image1 = itemView.findViewById(R.id.card2_image1);
@@ -266,7 +276,8 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
             description2 = itemView.findViewById(R.id.card2_item_description2);
             description3 = itemView.findViewById(R.id.card2_item_description3);
             description4 = itemView.findViewById(R.id.card2_item_description4);
-
+            shimmerLayout = itemView.findViewById(R.id.shimmer_view);
+            shimmerLayout.startShimmerAnimation();
             topic = itemView.findViewById(R.id.topic_name);
             viewAll = itemView.findViewById(R.id.viewall);
 
@@ -285,7 +296,7 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
         TextView text1, text2;
         TextView topic;
         Button viewall;
-
+        ShimmerLayout shimmerLayout;
         public Card3ViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -293,7 +304,8 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
             image2 = itemView.findViewById(R.id.card3_image2);
             text1 = itemView.findViewById(R.id.card3_text1);
             text2 = itemView.findViewById(R.id.card3_text2);
-
+            shimmerLayout = itemView.findViewById(R.id.shimmer_view);
+            shimmerLayout.startShimmerAnimation();
             viewall = itemView.findViewById(R.id.viewall);
             topic = itemView.findViewById(R.id.topic_name);
             viewall.setOnClickListener(view -> {
@@ -308,6 +320,8 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
         TextView name, topic, price;
         Button viewall;
 
+        ShimmerLayout shimmerLayout;
+
         public Card4ViewHolder(@NonNull View itemView) {
             super(itemView);
             image1 = itemView.findViewById(R.id.card4_image);
@@ -316,6 +330,8 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
             price = itemView.findViewById(R.id.price);
             viewall = itemView.findViewById(R.id.viewall);
             topic = itemView.findViewById(R.id.topic_name);
+            shimmerLayout = itemView.findViewById(R.id.shimmer_view);
+            shimmerLayout.startShimmerAnimation();
             viewall.setOnClickListener(view -> {
                 doOnClick(cardList.get(getPosition()).getKey().toString());
             });

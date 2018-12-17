@@ -2,11 +2,11 @@ package com.chaze.india.screens.search;
 
 
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.LinearLayoutManager;
 
-import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
-
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -14,8 +14,6 @@ import android.widget.TextView;
 import com.chaze.india.R;
 import com.chaze.india.di.Qualifiers.LinLayoutVert;
 import com.chaze.india.screens.base.BaseActivity;
-
-import java.security.acl.Group;
 
 import javax.inject.Inject;
 
@@ -49,6 +47,12 @@ public class SearchActivity extends BaseActivity implements SearchContract.View 
     @BindView(R.id.recycler_view_search)
     RecyclerView recyclerView;
 
+    @BindView(R.id.filterButtons)
+    ConstraintLayout filterButtons;
+
+
+    String shop;
+    String category;
 
     boolean firstButtonSelected = true;
 
@@ -83,8 +87,10 @@ public class SearchActivity extends BaseActivity implements SearchContract.View 
 
         switch (searchType) {
             case 0:
-
-                mPresenter.initSearchHome();
+                filterButtons.setVisibility(View.GONE);
+                shop = extras.getString("Shop");
+                category = extras.getString("Category");
+                mPresenter.initByShopAndCategory();
                 break;
 
             case 1:
@@ -96,10 +102,6 @@ public class SearchActivity extends BaseActivity implements SearchContract.View 
                 changeButtonsTo("Dishes", "Eating Joints");
                 mPresenter.initSearchEngineFood();
                 break;
-
-            case 3:
-                mPresenter.initSearchEngineLocal();
-
         }
     }
 
@@ -135,10 +137,7 @@ public class SearchActivity extends BaseActivity implements SearchContract.View 
 
 
     public void recreateList(String txt) {
-
-
         adapter.recreateList(txt, searchView);
-
     }
 
     @Override

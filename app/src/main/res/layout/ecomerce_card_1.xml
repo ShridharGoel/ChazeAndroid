@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/textLightSecondary"
+    android:background="@color/white"
     android:elevation="4dp"
     android:orientation="horizontal">
 
@@ -21,7 +21,7 @@
         app:layout_constraintEnd_toStartOf="@+id/imageView5"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageView4"
-        app:layout_constraintTop_toBottomOf="@+id/viewall"
+        app:layout_constraintTop_toBottomOf="@+id/shimmer_view"
         app:layout_constraintVertical_bias="0.0">
 
         <ImageView
@@ -126,12 +126,12 @@
         android:textColor="@color/textDarkPrimary"
         android:textSize="@dimen/text_large"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/viewall"
+        app:layout_constraintBottom_toBottomOf="@+id/shimmer_view"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/viewall" />
+        app:layout_constraintTop_toTopOf="@+id/shimmer_view" />
 
-    <Button
-        android:id="@+id/viewall"
+    <io.supercharge.shimmerlayout.ShimmerLayout
+        android:id="@+id/shimmer_view"
         android:layout_width="wrap_content"
         android:layout_height="28dp"
         android:textSize="@dimen/text_medium"
@@ -139,9 +139,21 @@
         android:layout_marginTop="8dp"
         android:text="View All"
         android:background="@drawable/white_rectangle_border_purple"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+    <Button
+        android:id="@+id/viewall"
+        android:layout_width="wrap_content"
+        android:layout_height="28dp"
+        android:textSize="@dimen/text_medium"
+        android:text="View All"
+        android:background="@drawable/white_rectangle_border_purple"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    </io.supercharge.shimmerlayout.ShimmerLayout>
 
 </android.support.constraint.ConstraintLayout>

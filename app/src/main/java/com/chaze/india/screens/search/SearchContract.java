@@ -22,11 +22,11 @@ public class SearchContract {
 
 
     public interface Presenter<V extends View> extends MvpContract.Presenter<V> {
-        void initSearchHome();
+        void initByShopAndCategory();
 
         void initSearchEcommerce();
 
-        void initSearchEngineLocal();
+        void initCategory();
 
         void initSearchEngineFood();
     }

@@ -266,40 +266,6 @@ public class HomeActivity extends BaseActivity
         sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
     }
 
-
-   /* public void hideBottomBar() {
-
-        if (!bottombarShown) return;
-
-        bottombarShown = false;
-
-        bottomBar.setVisibility(View.INVISIBLE);
-        TranslateAnimation animate = new TranslateAnimation(
-                0,                 // fromXDelta
-                0,                 // toXDelta
-                0,                 // fromYDelta
-                bottomBar.getHeight()); // toYDelta
-        animate.setDuration(200);
-        animate.setFillAfter(true);
-        bottomBar.startAnimation(animate);
-    }
-
-    public void showBottomBar() {
-
-        if (bottombarShown) return;
-
-        bottombarShown = true;
-        bottomBar.setVisibility(View.VISIBLE);
-        TranslateAnimation animate = new TranslateAnimation(
-                0,                 // fromXDelta
-                0,                 // toXDelta
-                bottomBar.getHeight(),  // fromYDelta
-                0);                // toYDelta
-        animate.setDuration(400);
-        animate.setFillAfter(true);
-        bottomBar.startAnimation(animate);
-    }*/
-
     public void addItems(List<EcomerceCategory> items) {
 
     }
