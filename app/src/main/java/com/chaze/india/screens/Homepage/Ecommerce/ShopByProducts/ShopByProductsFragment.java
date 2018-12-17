@@ -89,6 +89,9 @@ public class ShopByProductsFragment extends BaseFragment implements ShopByProduc
                 } else if (dy < 0) {
                     ((HomeActivity) getActivity()).showBottomBar();
                 }
+
+
+
                 totalItemCount = mLayoutManager.getItemCount();
                 lastVisibleItem = mLayoutManager.findLastVisibleItemPosition();
                 if (!loading
@@ -115,7 +118,7 @@ public class ShopByProductsFragment extends BaseFragment implements ShopByProduc
     @Override
     public void addItems(List<Post> items) {
 
-        if(!adapterNotSet)recyclerView.setAdapter(adapter);
+        if (!adapterNotSet) recyclerView.setAdapter(adapter);
         adapter.addItems(items);
         adapterNotSet = true;
     }

@@ -2,42 +2,40 @@
 package com.chaze.india.models.Ecommerce;
 
 import java.util.List;
+
 import javax.annotation.Generated;
 
-import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 @Generated("net.hexar.json2pojo")
 @SuppressWarnings("unused")
 public class Post {
 
-    @Expose
-    private List<Item> items;
-    @Expose
-    private int type;
+    @SerializedName("products")
+    private List<Product> mProducts;
+    @SerializedName("seller_id")
+    private Long mSellerId;
 
-    public List<Item> getItems() {
-        return items;
+    public List<Product> getProducts() {
+        return mProducts;
     }
 
-    public void setItems(List<Item> items) {
-        this.items = items;
+    public void setProducts(List<Product> products) {
+        mProducts = products;
     }
 
-    public int getType() {
-        return type;
+    public Long getSellerId() {
+        return mSellerId;
     }
 
-    public void setType(int type) {
-        this.type = type;
+    public void setSellerId(Long sellerId) {
+        mSellerId = sellerId;
     }
 
     @Override
     public String toString() {
-
-        String json = new GsonBuilder().create().toJson(items);
-
+        String json = new GsonBuilder().create().toJson(mProducts);
         return json;
     }
 }

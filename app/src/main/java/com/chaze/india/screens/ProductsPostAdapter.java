@@ -63,16 +63,16 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
     @Override
     public int getItemViewType(int position) {
 
-        Timber.e(" " + cardList.get(position).getType());
-        switch (cardList.get(position).getType()) {
+        //Timber.e(" " + cardList.get(position).getType());
+        switch (cardList.get(position).getProducts().size()) {
             case 1:
-                return 1;
-            case 2:
-                return 2;
-            case 3:
-                return 3;
-            case 4:
                 return 4;
+            case 2:
+                return 3;
+            case 3:
+                return 1;
+            case 4:
+                return 2;
             case 5:
                 return 5;
         }
@@ -86,93 +86,93 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
 
         Timber.e(object.toString());
 
-        switch (object.getType()) {
+        switch (getItemViewType(i)) {
             case 1:
 
 
-                ((Card1ViewHolder) viewHolder).topic.setText(object.getItems().get(0).getBusinessName());
+                ((Card1ViewHolder) viewHolder).topic.setText(object.getProducts().get(0).getBusinessName());
 
-                Picasso.get().load(object.getItems().get(0).getImageFirst())
+                Picasso.get().load(object.getProducts().get(0).getImageFirst())
                         .error(R.drawable.ic_menu_manage)
                         .into(((Card1ViewHolder) viewHolder).image1);
 
-                ((Card1ViewHolder) viewHolder).textName1.setText(object.getItems().get(0).getName());
+                ((Card1ViewHolder) viewHolder).textName1.setText(object.getProducts().get(0).getName());
 
 
-                Picasso.get().load(object.getItems().get(1).getImageFirst())
+                Picasso.get().load(object.getProducts().get(1).getImageFirst())
                         .error(R.drawable.ic_menu_manage)
                         .into(((Card1ViewHolder) viewHolder).image2);
 
-                ((Card1ViewHolder) viewHolder).textName1.setText(object.getItems().get(1).getName());
+                ((Card1ViewHolder) viewHolder).textName1.setText(object.getProducts().get(1).getName());
 
-                Picasso.get().load(object.getItems().get(2).getImageFirst())
+                Picasso.get().load(object.getProducts().get(2).getImageFirst())
                         .error(R.drawable.ic_menu_manage)
                         .into(((Card1ViewHolder) viewHolder).image3);
 
-                ((Card1ViewHolder) viewHolder).textName1.setText(object.getItems().get(2).getName());
+                ((Card1ViewHolder) viewHolder).textName1.setText(object.getProducts().get(2).getName());
 
                 break;
             case 2:
 
-                ((Card2ViewHolder) viewHolder).topic.setText(object.getItems().get(0).getBusinessName());
-                Picasso.get().load(object.getItems().get(0).getImageFirst())
+                ((Card2ViewHolder) viewHolder).topic.setText(object.getProducts().get(0).getBusinessName());
+                Picasso.get().load(object.getProducts().get(0).getImageFirst())
                         .error(R.drawable.ic_menu_manage)
                         .into(((Card2ViewHolder) viewHolder).image1);
-                ((Card2ViewHolder) viewHolder).textName1.setText(object.getItems().get(0).getName());
-                ((Card2ViewHolder) viewHolder).description1.setText("Rs. " + object.getItems().get(0).getPrice());
+                ((Card2ViewHolder) viewHolder).textName1.setText(object.getProducts().get(0).getName());
+                ((Card2ViewHolder) viewHolder).description1.setText("Rs. " + object.getProducts().get(0).getPrice());
 
-                Picasso.get().load(object.getItems().get(1).getImageFirst())
+                Picasso.get().load(object.getProducts().get(1).getImageFirst())
                         .error(R.drawable.ic_menu_manage)
                         .into(((Card2ViewHolder) viewHolder).image2);
 
-                ((Card2ViewHolder) viewHolder).textName2.setText(object.getItems().get(1).getName());
-                ((Card2ViewHolder) viewHolder).description2.setText("Rs. " + object.getItems().get(1).getPrice());
+                ((Card2ViewHolder) viewHolder).textName2.setText(object.getProducts().get(1).getName());
+                ((Card2ViewHolder) viewHolder).description2.setText("Rs. " + object.getProducts().get(1).getPrice());
 
 
-                Picasso.get().load(object.getItems().get(2).getImageFirst())
+                Picasso.get().load(object.getProducts().get(2).getImageFirst())
                         .error(R.drawable.ic_menu_manage)
                         .into(((Card2ViewHolder) viewHolder).image3);
-                ((Card2ViewHolder) viewHolder).textName3.setText(object.getItems().get(2).getName());
-                ((Card2ViewHolder) viewHolder).description3.setText("Rs. " + object.getItems().get(2).getPrice());
+                ((Card2ViewHolder) viewHolder).textName3.setText(object.getProducts().get(2).getName());
+                ((Card2ViewHolder) viewHolder).description3.setText("Rs. " + object.getProducts().get(2).getPrice());
 
-                Picasso.get().load(object.getItems().get(3).getImageFirst())
+                Picasso.get().load(object.getProducts().get(3).getImageFirst())
                         .error(R.drawable.ic_menu_manage)
                         .into(((Card2ViewHolder) viewHolder).image4);
 
-                ((Card2ViewHolder) viewHolder).textName4.setText(object.getItems().get(3).getName());
-                ((Card2ViewHolder) viewHolder).description4.setText("Rs. " + object.getItems().get(3).getPrice());
+                ((Card2ViewHolder) viewHolder).textName4.setText(object.getProducts().get(3).getName());
+                ((Card2ViewHolder) viewHolder).description4.setText("Rs. " + object.getProducts().get(3).getPrice());
                 break;
             case 3: {
 
-                ((Card3ViewHolder) viewHolder).topic.setText(object.getItems().get(0).getBusinessName());
+                ((Card3ViewHolder) viewHolder).topic.setText(object.getProducts().get(0).getBusinessName());
 
-                Picasso.get().load(object.getItems().get(0).getImageFirst())
+                Picasso.get().load(object.getProducts().get(0).getImageFirst())
                         .error(R.drawable.ic_menu_manage)
                         .into(((Card3ViewHolder) viewHolder).image1);
 
-                ((Card3ViewHolder) viewHolder).text1.setText(object.getItems().get(0).getName());
+                ((Card3ViewHolder) viewHolder).text1.setText(object.getProducts().get(0).getName());
 
-                Picasso.get().load(object.getItems().get(1).getImageFirst())
+                Picasso.get().load(object.getProducts().get(1).getImageFirst())
                         .error(R.drawable.ic_menu_manage)
                         .into(((Card3ViewHolder) viewHolder).image2);
 
-                ((Card3ViewHolder) viewHolder).text2.setText(object.getItems().get(1).getName());
+                ((Card3ViewHolder) viewHolder).text2.setText(object.getProducts().get(1).getName());
                 break;
 
             }
             case 4: {
 
-                ((Card4ViewHolder) viewHolder).topic.setText(object.getItems().get(0).getBusinessName());
-                ((Card4ViewHolder) viewHolder).name.setText(object.getItems().get(0).getName());
+                ((Card4ViewHolder) viewHolder).topic.setText(object.getProducts().get(0).getBusinessName());
+                ((Card4ViewHolder) viewHolder).name.setText(object.getProducts().get(0).getName());
 
-                ((Card4ViewHolder) viewHolder).price.setText("Rs. " + object.getItems().get(0).getPrice().intValue());
-                Picasso.get().load(object.getItems().get(0).getImageFirst())
+                ((Card4ViewHolder) viewHolder).price.setText("Rs. " + object.getProducts().get(0).getPrice().intValue());
+                Picasso.get().load(object.getProducts().get(0).getImageFirst())
                         .error(R.drawable.ic_menu_manage)
                         .into(((Card4ViewHolder) viewHolder).image1);
                 break;
             }
             case 5:
-                Picasso.get().load(object.getItems().get(0).getImageFirst())
+                Picasso.get().load(object.getProducts().get(0).getImageFirst())
                         .error(R.drawable.ic_menu_manage)
                         .into(((Card4ViewHolder) viewHolder).image1);
                 break;
@@ -187,7 +187,7 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
 
     public void addItems(List<Post> items) {
         for (Post i : items) {
-            Timber.e(i.getItems().get(0).getName());
+            Timber.e("Fuck " + i.getProducts().get(0).getName());
             cardList.addAll(items);
             notifyDataSetChanged();
         }

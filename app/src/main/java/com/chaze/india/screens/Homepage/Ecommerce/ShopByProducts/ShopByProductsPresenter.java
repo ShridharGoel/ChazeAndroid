@@ -6,7 +6,6 @@ import android.annotation.SuppressLint;
 
 import com.chaze.india.models.Ecommerce.EcomerceCategory;
 import com.chaze.india.models.Ecommerce.Post;
-import com.chaze.india.models.Ecommerce.PostsResponse;
 import com.chaze.india.repository.network.ICommonAPIManager;
 import com.chaze.india.repository.session.SessionManager;
 import com.chaze.india.screens.base.BasePresenter;
@@ -51,10 +50,11 @@ public class ShopByProductsPresenter<V extends ShopByProductsContract.View> exte
 
     public void next() {
         pageNumber++;
+        Timber.e("Next" + pageNumber);
+
+        getMvpView().showLoading();
         subscribeForData(pageNumber);
     }
-
-    Single<PostsResponse> p;
 
 
     /**
@@ -62,11 +62,15 @@ public class ShopByProductsPresenter<V extends ShopByProductsContract.View> exte
      */
     public void subscribeForData(int limit) {
 
-        getCommonAPIManager().getECommerceAPIService().getPosts(10)
+
+        getCommonAPIManager().getECommerceAPIService().getPosts(pageNumber * 10)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(postsResponse -> {
+                    getMvpView().hideLoading();
                     getMvpView().addItems(postsResponse.getPosts());
+
+                    Timber.e("Size:" + postsResponse.getPosts().size());
                 }, throwable -> {
                     Timber.e(throwable.getMessage());
                     pageNumber--;

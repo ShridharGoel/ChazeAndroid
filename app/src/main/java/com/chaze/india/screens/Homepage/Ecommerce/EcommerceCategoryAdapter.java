@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.chaze.india.R;
+import com.chaze.india.models.Ecommerce.Child;
 import com.chaze.india.models.Ecommerce.EcomerceCategory;
 import com.chaze.india.screens.Category.CategoryActivity;
 
@@ -21,9 +22,9 @@ import timber.log.Timber;
 
 public class EcommerceCategoryAdapter extends RecyclerView.Adapter<EcommerceCategoryAdapter.ViewHolder> {
     Context context;
-    List<EcomerceCategory> categoryList;
+    List<Child> categoryList;
 
-    public EcommerceCategoryAdapter(Context context, List<EcomerceCategory> categoryList) {
+    public EcommerceCategoryAdapter(Context context, List<Child> categoryList) {
         this.context = context;
         this.categoryList = categoryList;
     }
@@ -39,7 +40,7 @@ public class EcommerceCategoryAdapter extends RecyclerView.Adapter<EcommerceCate
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        EcomerceCategory item = categoryList.get(i);
+        Child item = categoryList.get(i);
         viewHolder.categoryText.setText(item.getName());
         //viewHolder.imageView.setImageDrawable(item.getImage());
 
@@ -50,10 +51,11 @@ public class EcommerceCategoryAdapter extends RecyclerView.Adapter<EcommerceCate
         return categoryList.size();
     }
 
-    public void addItems() {
+    public void addItems(List<Child> children) {
 
-        for (int i = 0; i < 20; i++)
-            categoryList.add(new EcomerceCategory("peofgdfgple", "bdbdbdb", "https://drive.google.com/file/d/15b68H448F4jszurUpAAQV6lFPHdY1dv2/view?usp=sharing"));
+        categoryList = children;
+        notifyDataSetChanged();
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

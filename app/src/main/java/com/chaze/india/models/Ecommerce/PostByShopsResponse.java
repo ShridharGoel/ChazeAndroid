@@ -3,33 +3,31 @@ package com.chaze.india.models.Ecommerce;
 
 import java.util.List;
 import javax.annotation.Generated;
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 @Generated("net.hexar.json2pojo")
 @SuppressWarnings("unused")
-public class PostsResponse {
+public class PostByShopsResponse {
 
-    @Expose
     @SerializedName("results")
-    private List<Post> posts;
-    @Expose
-    private Boolean success;
+    private List<Post> mPosts;
+    @SerializedName("success")
+    private Boolean mSuccess;
 
     public List<Post> getPosts() {
-        return posts;
+        return mPosts;
     }
 
-    public void setPosts(List<Post> posts) {
-        this.posts = posts;
+    public void setResults(List<Post> posts) {
+        mPosts = posts;
     }
 
     public Boolean getSuccess() {
-        return success;
+        return mSuccess;
     }
 
     public void setSuccess(Boolean success) {
-        this.success = success;
+        mSuccess = success;
     }
 
 }

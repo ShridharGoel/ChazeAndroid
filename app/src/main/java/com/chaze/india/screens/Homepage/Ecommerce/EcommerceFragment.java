@@ -13,6 +13,7 @@ import android.support.v4.util.Pair;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 
+import com.chaze.india.models.Ecommerce.Child;
 import com.chaze.india.screens.Shop.ShopActivity;
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 
@@ -31,6 +32,8 @@ import com.chaze.india.screens.search.SearchActivity;
 import com.chaze.india.R;
 import com.chaze.india.di.Qualifiers.LinLayoutHori;
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
+
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 
@@ -67,6 +70,7 @@ public class EcommerceFragment extends BaseFragment implements EcommerceContract
 
     @Inject
     EcommerceContract.Presenter<EcommerceContract.View> mPresenter;
+    private boolean recyclerViewShown = false;
 
     @Nullable
     @Override
@@ -81,7 +85,9 @@ public class EcommerceFragment extends BaseFragment implements EcommerceContract
         setUnBinder(ButterKnife.bind(this, view));
         mPresenter.onAttach(this);
 
-       // recyclerView.showShimmerAdapter();
+        mPresenter.loadCategories();
+
+        recyclerView.showShimmerAdapter();
 
         setupToolBar();
         return view;
@@ -93,8 +99,7 @@ public class EcommerceFragment extends BaseFragment implements EcommerceContract
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Timber.e("Ecommerce View created");
-        adapter.addItems();
-        recyclerView.setAdapter(adapter);
+
         recyclerView.setLayoutManager(mLayoutManager);
         viewPager.setAdapter(ecommercePagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
@@ -114,7 +119,7 @@ public class EcommerceFragment extends BaseFragment implements EcommerceContract
 
     private void setupToolBar() {
         searchView.setOnClickListener(v -> goToSearch());
-         ConstraintLayout cartView = toolbar.findViewById(R.id.cart_container);
+        ConstraintLayout cartView = toolbar.findViewById(R.id.cart_container);
 
         cartView.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), CartActivity.class));
@@ -122,6 +127,12 @@ public class EcommerceFragment extends BaseFragment implements EcommerceContract
     }
 
 
+    @Override
+    public void showCategories(ArrayList<Child> childs) {
 
+        if (!recyclerViewShown)
+            recyclerView.setAdapter(adapter);
+        adapter.addItems(childs);
 
+    }
 }
