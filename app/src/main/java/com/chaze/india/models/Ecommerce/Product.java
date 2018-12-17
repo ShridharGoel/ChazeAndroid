@@ -2,6 +2,7 @@
 package com.chaze.india.models.Ecommerce;
 
 import javax.annotation.Generated;
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 @Generated("net.hexar.json2pojo")
@@ -9,154 +10,154 @@ import com.google.gson.annotations.SerializedName;
 public class Product {
 
     @SerializedName("business_name")
-    private String mBusinessName;
+    private String businessName;
     @SerializedName("close_time")
-    private String mCloseTime;
-    @SerializedName("discount")
-    private Double mDiscount;
-    @SerializedName("id")
-    private Long mId;
+    private String closeTime;
+    @Expose
+    private Double discount;
+    @Expose
+    private Long id;
     @SerializedName("image_first")
-    private String mImageFirst;
+    private String imageFirst;
     @SerializedName("image_second")
-    private String mImageSecond;
+    private String imageSecond;
     @SerializedName("image_third")
-    private String mImageThird;
-    @SerializedName("name")
-    private String mName;
+    private String imageThird;
+    @Expose
+    private String name;
     @SerializedName("open_time")
-    private String mOpenTime;
-    @SerializedName("price")
-    private Double mPrice;
-    @SerializedName("rating")
-    private Double mRating;
+    private String openTime;
+    @Expose
+    private Double price;
+    @Expose
+    private Double rating;
     @SerializedName("rating_count")
-    private Long mRatingCount;
+    private Long ratingCount;
     @SerializedName("seller_id")
-    private Long mSellerId;
-    @SerializedName("stock")
-    private Long mStock;
+    private Long sellerId;
+    @Expose
+    private Long stock;
     @SerializedName("week_breakdown")
-    private Long mWeekBreakdown;
+    private Long weekBreakdown;
 
     public String getBusinessName() {
-        return mBusinessName;
+        return businessName;
     }
 
     public void setBusinessName(String businessName) {
-        mBusinessName = businessName;
+        this.businessName = businessName;
     }
 
     public String getCloseTime() {
-        return mCloseTime;
+        return closeTime;
     }
 
     public void setCloseTime(String closeTime) {
-        mCloseTime = closeTime;
+        this.closeTime = closeTime;
     }
 
     public Double getDiscount() {
-        return mDiscount;
+        return discount;
     }
 
     public void setDiscount(Double discount) {
-        mDiscount = discount;
+        this.discount = discount;
     }
 
     public Long getId() {
-        return mId;
+        return id;
     }
 
     public void setId(Long id) {
-        mId = id;
+        this.id = id;
     }
 
     public String getImageFirst() {
-        return mImageFirst;
+        return imageFirst;
     }
 
     public void setImageFirst(String imageFirst) {
-        mImageFirst = imageFirst;
+        this.imageFirst = imageFirst;
     }
 
     public String getImageSecond() {
-        return mImageSecond;
+        return imageSecond;
     }
 
     public void setImageSecond(String imageSecond) {
-        mImageSecond = imageSecond;
+        this.imageSecond = imageSecond;
     }
 
     public String getImageThird() {
-        return mImageThird;
+        return imageThird;
     }
 
     public void setImageThird(String imageThird) {
-        mImageThird = imageThird;
+        this.imageThird = imageThird;
     }
 
     public String getName() {
-        return mName;
+        return name;
     }
 
     public void setName(String name) {
-        mName = name;
+        this.name = name;
     }
 
     public String getOpenTime() {
-        return mOpenTime;
+        return openTime;
     }
 
     public void setOpenTime(String openTime) {
-        mOpenTime = openTime;
+        this.openTime = openTime;
     }
 
     public Double getPrice() {
-        return mPrice;
+        return price;
     }
 
     public void setPrice(Double price) {
-        mPrice = price;
+        this.price = price;
     }
 
     public Double getRating() {
-        return mRating;
+        return rating;
     }
 
     public void setRating(Double rating) {
-        mRating = rating;
+        this.rating = rating;
     }
 
     public Long getRatingCount() {
-        return mRatingCount;
+        return ratingCount;
     }
 
     public void setRatingCount(Long ratingCount) {
-        mRatingCount = ratingCount;
+        this.ratingCount = ratingCount;
     }
 
     public Long getSellerId() {
-        return mSellerId;
+        return sellerId;
     }
 
     public void setSellerId(Long sellerId) {
-        mSellerId = sellerId;
+        this.sellerId = sellerId;
     }
 
     public Long getStock() {
-        return mStock;
+        return stock;
     }
 
     public void setStock(Long stock) {
-        mStock = stock;
+        this.stock = stock;
     }
 
     public Long getWeekBreakdown() {
-        return mWeekBreakdown;
+        return weekBreakdown;
     }
 
     public void setWeekBreakdown(Long weekBreakdown) {
-        mWeekBreakdown = weekBreakdown;
+        this.weekBreakdown = weekBreakdown;
     }
 
 }

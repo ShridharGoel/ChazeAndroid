@@ -72,6 +72,7 @@ public class ShopByProductsFragment extends BaseFragment implements ShopByProduc
 
         recyclerView.setLayoutManager(mLayoutManager);
         setUpLoadMoreListener();
+        adapter.setIsByShop(true,"");
         mPresenter.subscribeForData(10);
     }
 
@@ -89,7 +90,6 @@ public class ShopByProductsFragment extends BaseFragment implements ShopByProduc
                 } else if (dy < 0) {
                     ((HomeActivity) getActivity()).showBottomBar();
                 }
-
 
 
                 totalItemCount = mLayoutManager.getItemCount();

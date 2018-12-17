@@ -60,6 +60,7 @@ public class ShopByProductsPresenter<V extends ShopByProductsContract.View> exte
     /**
      * subscribing for data
      */
+    @SuppressLint("CheckResult")
     public void subscribeForData(int limit) {
 
 

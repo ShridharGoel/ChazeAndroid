@@ -2,7 +2,7 @@ package com.chaze.india.repository.network;
 
 
 import com.chaze.india.models.Ecommerce.CategoriesResponse;
-import com.chaze.india.models.Ecommerce.PostByShopsResponse;
+import com.chaze.india.models.Ecommerce.PostsResponse;
 import com.chaze.india.models.Ecommerce.Shop;
 import com.chaze.india.models.Ecommerce.ShopListResponse;
 
@@ -28,9 +28,15 @@ public interface ECommerceAPIService {
 
 
     @GET("products/posts/")
-    Flowable<PostByShopsResponse> getPosts(@Query("limit") int limit);
+    Flowable<PostsResponse> getPosts(@Query("limit") int limit);
+
+
+    @GET("products/posts/")
+    Single<PostsResponse> getPostsForShop(@Query("shop") String id);
 
     @GET("categories/children/")
     Single<CategoriesResponse> getCategories();
 
+    @GET("products/posts/")
+    Single<PostsResponse> getPostsForShopAndCategory(@Query("shop") String shop, @Query("category") String category);
 }

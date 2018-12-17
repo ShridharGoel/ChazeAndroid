@@ -2,6 +2,9 @@
 
 package com.chaze.india.screens.Shop;
 
+import android.annotation.SuppressLint;
+
+import com.chaze.india.models.Category;
 import com.chaze.india.models.Ecommerce.EcomerceCategory;
 import com.chaze.india.repository.network.ICommonAPIManager;
 import com.chaze.india.utils.rx.SchedulerProvider;
@@ -22,6 +25,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
 import io.reactivex.processors.PublishProcessor;
+import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
 
@@ -37,14 +41,12 @@ public class ShopPresenter<V extends ShopContract.View> extends BasePresenter<V>
         super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
 
-    private PublishProcessor<Integer> paginator = PublishProcessor.create();
     private int pageNumber;
 
-
-
-    public void next(){
+    public void next() {
         pageNumber++;
-        paginator.onNext(pageNumber);
+        getMvpView().showLoading();
+        subscribeForData(pageNumber);
     }
 
     @Override
@@ -54,36 +56,41 @@ public class ShopPresenter<V extends ShopContract.View> extends BasePresenter<V>
     }
 
 
-    @Override
-    public void subscribeForData() {
-        Disposable disposable = paginator
-                .onBackpressureDrop()
-                .concatMap((Function<Integer, Publisher<List<EcomerceCategory>>>) page -> {
+    /**
+     * subscribing for data
+     */
+    @SuppressLint("CheckResult")
+    public void subscribeForData(int limit) {
 
-                    getMvpView().showLoading();
-                    return dataFromNetwork(page);
-                })
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(items -> {
-                    getMvpView().addItems(items);
-                    getMvpView().hideLoading();
-                });
 
-        getCompositeDisposable().add(disposable);
+        if (getMvpView().getCategory().equals("-1")) {
+            getCommonAPIManager().getECommerceAPIService().getPostsForShop(getMvpView().getShop())
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(postsResponse -> {
+                        getMvpView().hideLoading();
+                        getMvpView().addItems(postsResponse.getPosts());
 
-        next();
-    }
+                        Timber.e("Size:" + postsResponse.getPosts().size());
+                    }, throwable -> {
+                        Timber.e(throwable.getMessage());
+                        pageNumber--;
+                    });
+        }else{
+            getCommonAPIManager().getECommerceAPIService().getPostsForShopAndCategory(getMvpView().getShop(), getMvpView().getCategory())
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(postsResponse -> {
+                        getMvpView().hideLoading();
+                        getMvpView().addItems(postsResponse.getPosts());
 
-    private Flowable<List<EcomerceCategory>> dataFromNetwork(final int page) {
-        Timber.e("" + page);
-        return Flowable.just(true)
-                .delay(2, TimeUnit.SECONDS)
-                .map(value -> {
-                    List<EcomerceCategory> items = new ArrayList<>();
-                    for (int i = 1; i <= 10; i++) {
-                        items.add(new EcomerceCategory("Item " + (page * 10 + i), "asdf","https://drive.google.com/file/d/15b68H448F4jszurUpAAQV6lFPHdY1dv2/view?usp=sharing"));
-                    }
-                    return items;
-                });
+                        Timber.e("Size:" + postsResponse.getPosts().size());
+                    }, throwable -> {
+                        Timber.e(throwable.getMessage());
+                        pageNumber--;
+                    });
+        }
+
+
     }
 }

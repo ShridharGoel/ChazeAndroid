@@ -1,6 +1,7 @@
 package com.chaze.india.screens;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.chaze.india.R;
 import com.chaze.india.models.Ecommerce.Post;
+import com.chaze.india.screens.Shop.ShopActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -25,7 +27,8 @@ import timber.log.Timber;
 public class ProductsPostAdapter extends RecyclerView.Adapter {
     ArrayList<Post> cardList;
     Context context;
-
+    Boolean isByShop;
+    String shopId;
 
     @Inject
     public ProductsPostAdapter(ArrayList<Post> cardList, Context context) {
@@ -63,7 +66,7 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
     @Override
     public int getItemViewType(int position) {
 
-        //Timber.e(" " + cardList.get(position).getType());
+        Timber.e("products " + cardList.get(position).getProducts().size());
         switch (cardList.get(position).getProducts().size()) {
             case 1:
                 return 4;
@@ -76,8 +79,8 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
             case 5:
                 return 5;
         }
-        //return 4;
-        return super.getItemViewType(position);
+        return 4;
+        //return super.getItemViewType(position);
     }
 
     @Override
@@ -90,7 +93,7 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
             case 1:
 
 
-                ((Card1ViewHolder) viewHolder).topic.setText(object.getProducts().get(0).getBusinessName());
+                ((Card1ViewHolder) viewHolder).topic.setText(""+object.getKey());
 
                 Picasso.get().load(object.getProducts().get(0).getImageFirst())
                         .error(R.drawable.ic_menu_manage)
@@ -114,7 +117,7 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
                 break;
             case 2:
 
-                ((Card2ViewHolder) viewHolder).topic.setText(object.getProducts().get(0).getBusinessName());
+                ((Card2ViewHolder) viewHolder).topic.setText(""+object.getKey());
                 Picasso.get().load(object.getProducts().get(0).getImageFirst())
                         .error(R.drawable.ic_menu_manage)
                         .into(((Card2ViewHolder) viewHolder).image1);
@@ -144,7 +147,7 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
                 break;
             case 3: {
 
-                ((Card3ViewHolder) viewHolder).topic.setText(object.getProducts().get(0).getBusinessName());
+                ((Card3ViewHolder) viewHolder).topic.setText(""+object.getKey());
 
                 Picasso.get().load(object.getProducts().get(0).getImageFirst())
                         .error(R.drawable.ic_menu_manage)
@@ -162,7 +165,7 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
             }
             case 4: {
 
-                ((Card4ViewHolder) viewHolder).topic.setText(object.getProducts().get(0).getBusinessName());
+                ((Card4ViewHolder) viewHolder).topic.setText(""+object.getKey());
                 ((Card4ViewHolder) viewHolder).name.setText(object.getProducts().get(0).getName());
 
                 ((Card4ViewHolder) viewHolder).price.setText("Rs. " + object.getProducts().get(0).getPrice().intValue());
@@ -185,6 +188,11 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
         return cardList.size();
     }
 
+    public void setIsByShop(boolean isByShop, String shopID) {
+        this.isByShop = isByShop;
+        this.shopId = shopID;
+    }
+
     public void addItems(List<Post> items) {
         for (Post i : items) {
             Timber.e("Fuck " + i.getProducts().get(0).getName());
@@ -192,6 +200,21 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
             notifyDataSetChanged();
         }
 
+    }
+
+
+    public void doOnClick(String id) {
+        if (isByShop) {
+            Intent intent = new Intent(context, ShopActivity.class);
+            intent.putExtra("Shop", id);
+            intent.putExtra("Category", "-1");
+            context.startActivity(intent);
+        } else {
+            Intent intent = new Intent(context, ShopActivity.class);
+            intent.putExtra("Shop", shopId);
+            intent.putExtra("Category", id);
+            context.startActivity(intent);
+        }
     }
 
     public class Card1ViewHolder extends RecyclerView.ViewHolder {
@@ -212,6 +235,9 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
             topic = itemView.findViewById(R.id.topic_name);
 
             viewall = itemView.findViewById(R.id.viewall);
+            viewall.setOnClickListener(view -> {
+                doOnClick(cardList.get(getPosition()).getKey().toString());
+            });
         }
     }
 
@@ -245,11 +271,14 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
             viewAll = itemView.findViewById(R.id.viewall);
 
             viewAll.setOnClickListener(view -> {
-                getPosition();
+                doOnClick(cardList.get(getPosition()).getKey().toString());
             });
 
         }
     }
+
+
+
 
     public class Card3ViewHolder extends RecyclerView.ViewHolder {
         ImageView image1, image2;
@@ -267,6 +296,9 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
 
             viewall = itemView.findViewById(R.id.viewall);
             topic = itemView.findViewById(R.id.topic_name);
+            viewall.setOnClickListener(view -> {
+                doOnClick(cardList.get(getPosition()).getKey().toString());
+            });
         }
     }
 
@@ -284,6 +316,9 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
             price = itemView.findViewById(R.id.price);
             viewall = itemView.findViewById(R.id.viewall);
             topic = itemView.findViewById(R.id.topic_name);
+            viewall.setOnClickListener(view -> {
+                doOnClick(cardList.get(getPosition()).getKey().toString());
+            });
         }
     }
 }
