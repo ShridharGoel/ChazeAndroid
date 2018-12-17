@@ -14,7 +14,6 @@ import java.util.List;
 public class ShopByShopsContract {
 
     public interface View extends MvpContract.View {
-        void addItems(List<Shop> items);
 
         void showShops(ShopListResponse shplstrspns);
 

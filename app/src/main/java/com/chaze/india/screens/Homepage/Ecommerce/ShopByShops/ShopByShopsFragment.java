@@ -74,7 +74,6 @@ public class ShopByShopsFragment extends BaseFragment implements ShopByShopsCont
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(mLayoutManager);
         setUpLoadMoreListener();
-        adapter.addItems(null);
         mPresenter.onAttach(this);
         mPresenter.subscribeForData();
 
@@ -123,11 +122,6 @@ public class ShopByShopsFragment extends BaseFragment implements ShopByShopsCont
         loading = true;
     }
 
-
-    @Override
-    public void addItems(List<Shop> items) {
-        adapter.addItems(items);
-    }
 
     @Override
     public void showShops(ShopListResponse lst) {

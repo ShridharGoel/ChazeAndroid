@@ -38,10 +38,10 @@
                     android:id="@+id/ecomerceRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorPurpleLight"
                     android:orientation="horizontal"
                     app:shimmer_demo_angle="20"
                     app:shimmer_demo_child_count="10"
+                    android:background="@color/white"
                     app:shimmer_demo_layout="@layout/shimmer_sample_view"
                     app:shimmer_demo_layout_manager_type="linear_horizontal"
                     app:shimmer_demo_shimmer_color="@color/white" />

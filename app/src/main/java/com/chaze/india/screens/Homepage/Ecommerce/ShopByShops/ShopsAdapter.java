@@ -113,10 +113,11 @@ public class ShopsAdapter extends RecyclerView.Adapter<ShopsAdapter.ViewHolder> 
                 Pair<View, String> p11 = Pair.create((View) ratingBar, "shop_rating_view");
 
                 ActivityOptionsCompat options = ActivityOptionsCompat.
-                        makeSceneTransitionAnimation((Activity) context, p1, p2, p3, p4, p5, p6, p7, p8, p9,p10,p11);
+                        makeSceneTransitionAnimation((Activity) context, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11);
 
-
-                context.startActivity(new Intent(context, ShopActivity.class), options.toBundle());
+                intent.putExtra("Shop", shops.get(getPosition()).getId());
+                intent.putExtra("Category", "-1");
+                context.startActivity(intent, options.toBundle());
             });
         }
     }

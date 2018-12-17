@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
 
-    android:background="@drawable/mall_gray"
+    android:background="@drawable/blank"
     android:layout_height="match_parent">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -16,7 +16,6 @@
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
 
-        android:background="@drawable/mall_gray"
         android:orientation="vertical">
 
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -39,9 +38,10 @@
 
                 <com.chaze.india.utils.HackedViewPager
                     android:id="@+id/view_pager"
-                    android:layout_width="0dp"
-                    android:layout_height="300dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="440dp"
                     android:transitionName="image_view"
+                    android:background="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.333"
                     app:layout_constraintStart_toStartOf="parent"

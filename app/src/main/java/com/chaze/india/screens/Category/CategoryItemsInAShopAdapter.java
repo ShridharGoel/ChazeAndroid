@@ -81,10 +81,9 @@ public class CategoryItemsInAShopAdapter extends RecyclerView.Adapter<CategoryIt
                 Pair<View, String> p1 = Pair.create((View) imageView, "image_view");
                 Pair<View, String> p2 = Pair.create((View) nameView, "name_view");
                 Pair<View, String> p3 = Pair.create((View) priceView, "price_view");
-                Pair<View, String> p4 = Pair.create((View) discountView, "discount_view");
 
                 ActivityOptionsCompat options = ActivityOptionsCompat.
-                        makeSceneTransitionAnimation((Activity) context, p1, p2, p3, p4);
+                        makeSceneTransitionAnimation((Activity) context, p1, p2, p3);
 
 
                 context.startActivity(new Intent(context, ProductInfoActivity.class), options.toBundle());
