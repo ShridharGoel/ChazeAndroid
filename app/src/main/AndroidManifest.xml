@@ -21,13 +21,11 @@
         <activity android:name=".screens.search.SearchActivity" />
         <activity android:name=".screens.Authentication.Login.LoginActivity" />
         <activity android:name=".screens.WelcomeSlides.StartActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".screens.Profile.ProfileActivity"
@@ -54,11 +52,9 @@
         <activity
             android:name=".screens.Authentication.OTPConfirmation.OTPConfirmation"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".screens.Authentication.ForgotPassword.ForgotPasswordActivity"
             android:screenOrientation="portrait" />
-
         <activity android:name=".screens.Checkout.CheckoutActivity" />
         <activity android:name=".screens.Homepage.MyWishList.MyWishListActivity" />
         <activity android:name=".screens.Cart.RestaurantCart.RestaurantCartActivity" />
@@ -69,11 +65,12 @@
         <activity
             android:name=".screens.Homepage.Purchases.ActiveOrders.OrderOfAShop.OrderOfAShopActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/PopupAnimation"></activity>
+            android:theme="@style/PopupAnimation" />
         <activity
             android:name=".screens.ProductInfo.ProductInfoPopupActivity.ProductInfoPopupActivity"
             android:screenOrientation="portrait"
             android:theme="@style/PopupAnimation" />
+        <activity android:name=".screens.RestaurantMenu.RestaurantMenuActivity"></activity>
     </application>
 
 </manifest>

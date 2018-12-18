@@ -77,21 +77,16 @@ dependencies {
     implementation "android.arch.persistence.room:rxjava2:1.1.1"
     testImplementation "android.arch.persistence.room:testing:1.1.1"
 
-
-
     //Google auth
     implementation 'com.google.android.gms:play-services-auth:16.0.1'
 
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.1'
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.1'
 
-
     //Firebase
     implementation 'com.google.firebase:firebase-core:16.0.4'
     implementation 'com.google.firebase:firebase-messaging:17.3.3'
     implementation 'com.google.firebase:firebase-database:16.0.3'
-
-
 
     //picasso
     implementation 'com.squareup.picasso:picasso:2.71828'

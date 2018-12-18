@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="4dp"
+    android:layout_marginTop="4dp"
+    android:orientation="vertical"
+    android:padding="10dp"
+    app:cardElevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp">
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:id="@+id/restaurant_image_offer_container"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp">
+
+                    <ImageView
+                        android:id="@+id/restaurant_image_view"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@color/colorGrayVeryLight"/>
+
+                    <LinearLayout
+                        android:id="@+id/restaurant_offer_container"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:orientation="vertical">
+
+
+                    </LinearLayout>
+                    <!-- <LinearLayout
+                         android:id="@+id/restaurant_offer_container_two"
+                         android:layout_width="80dp"
+                         android:layout_height="80dp"
+                         android:layout_alignParentStart="true"
+                         android:layout_alignParentTop="true"
+                         android:background="@drawable/triangular_background_off"
+                         android:orientation="vertical">
+
+                         <TextView
+                             android:id="@+id/restaurant_offer_view_two"
+                             android:layout_width="60dp"
+                             android:layout_height="wrap_content"
+                             android:gravity="top|start"
+                             android:paddingStart="4dp"
+                             android:paddingTop="2dp"
+                             android:text="15%"
+                             android:textColor="@color/colorPrimary"
+                             android:textSize="14sp" />
+
+                         <TextView
+                             android:id="@+id/textView42"
+                             android:layout_width="40dp"
+                             android:layout_height="wrap_content"
+                             android:layout_marginStart="4dp"
+                             android:text="OFF"
+                             android:textColor="@color/colorPrimary"
+                             android:textSize="10sp" />
+
+
+                     </LinearLayout>-->
+
+
+
+                </FrameLayout>
+
+
+
+
+
+                <com.iarcuschin.simpleratingbar.SimpleRatingBar
+                    android:id="@+id/restaurant_rating_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    app:srb_borderColor="@color/colorGrayVeryLight"
+                    app:srb_fillColor="@color/colorGrayVeryLight"
+                    app:srb_numberOfStars="5"
+                    app:srb_rating="3"
+                    app:srb_starBorderWidth="2"
+                    app:srb_starCornerRadius="0"
+                    app:srb_starSize="12dp"
+                    app:srb_stepSize="0.5"
+                    android:layout_below="@+id/restaurant_image_offer_container"/>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/restaurant_item_name_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:text=""
+                    android:textColor="@color/textDarkPrimary"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/restaurant_status_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/restaurant_item_name_view"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="false"
+                    android:layout_alignParentTop="true"
+                    android:text=""
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/restaurant_address_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="false"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/restaurant_item_name_view"
+                    android:text=""
+                    android:textSize="6sp" />
+
+                <View
+                    android:id="@+id/restaurant_list_separator_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/restaurant_address_view"
+                    android:background="@color/colorGrayLightText" />
+
+                <RelativeLayout
+                    android:id="@+id/speciality"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="false"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/restaurant_list_separator_top"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        android:id="@+id/restaurant_speciality_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:text=""
+                        android:textColor="@color/colorPurple"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/speciality">
+
+
+                    <TextView
+                        android:id="@+id/restaurant_minOrderAmount_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/restaurant_deliveryCharge_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_below="@+id/restaurant_minOrderAmount_view"
+                        android:gravity="center"
+                        android:text=""
+                        android:textSize="10sp" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</android.support.v7.widget.CardView>
