@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
+import com.chaze.india.models.Ecommerce.ShopItem;
 import com.chaze.india.screens.ProductInfo.ProductInfoActivity;
 import com.chaze.india.screens.Shop.ShopActivity;
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
@@ -19,7 +20,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.chaze.india.R;
-import com.chaze.india.models.Item;
 import com.chaze.india.screens.ProductInfo.ProductInfoPopupActivity.ProductInfoPopupActivity;
 
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ public class CategoryItemsInAShopAdapter extends RecyclerView.Adapter<CategoryIt
 
     private static String TAG = CategoryItemsInAShopAdapter.class.getSimpleName();
 
-    private ArrayList<Item> items = new ArrayList<>();
+    private ArrayList<ShopItem> items = new ArrayList<>();
 
     private Context context;
 

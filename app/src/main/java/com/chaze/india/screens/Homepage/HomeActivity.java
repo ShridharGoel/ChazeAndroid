@@ -14,7 +14,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.chaze.india.models.RecyclerItems;
 import com.chaze.india.screens.Homepage.Ecommerce.EcommerceFragment;
 import com.chaze.india.screens.Homepage.Food.FoodFragment;
 import com.chaze.india.screens.Homepage.More.MoreFragment;
@@ -270,9 +269,6 @@ public class HomeActivity extends BaseActivity
 
     }
 
-    public ArrayList<RecyclerItems> loadCards() {
-        return null;
-    }
 
 
 }

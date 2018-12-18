@@ -4,9 +4,9 @@ package com.chaze.india.repository.network;
 import com.chaze.india.models.Authentication.ConfirmOTPResponse;
 import com.chaze.india.models.Authentication.LoginResponse;
 import com.chaze.india.models.Authentication.SignUpResponse;
-import com.chaze.india.models.ChangePassResponse;
+import com.chaze.india.models.Authentication.ChangePassResponse;
 import com.chaze.india.models.Ecommerce.ResendOTPResponse;
-import com.chaze.india.models.ForgotPassResponse;
+import com.chaze.india.models.Authentication.ForgotPassResponse;
 
 import io.reactivex.Single;
 import retrofit2.http.Field;

@@ -9,15 +9,31 @@ import com.chaze.india.R;
 import com.chaze.india.screens.Homepage.Food.Restaurants.RestaurantsContract;
 import com.chaze.india.screens.base.BaseActivity;
 
+import javax.inject.Inject;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class RestaurantMenuActivity extends BaseActivity implements RestaurantMenuContract.View {
 
 
-    private TabLayout mainActivitySlider;
-    private ViewPager RestaurantMenuViewPager;
+    @BindView(R.id.restaurant_menu_activity_slider)
+    TabLayout mainActivitySlider;
+
+    @BindView(R.id.restaurant_menu_activity_view_pager)
+    ViewPager RestaurantMenuViewPager;
+
+   /* @Inject*/
+    RestaurantPagerAdapter restaurantPagerAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant__menu);
+
+        setUnBinder(ButterKnife.bind(this));
+        getActivityComponent().inject(this);
+
     }
 }

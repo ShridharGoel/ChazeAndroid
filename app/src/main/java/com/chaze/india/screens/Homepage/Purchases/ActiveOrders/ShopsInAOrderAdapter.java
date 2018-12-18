@@ -2,7 +2,6 @@ package com.chaze.india.screens.Homepage.Purchases.ActiveOrders;
 
 import android.content.Context;
 import android.content.Intent;
-import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,8 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.chaze.india.R;
-import com.chaze.india.models.CartBusiness;
-import com.chaze.india.models.Item;
+import com.chaze.india.models.Ecommerce.CartBusiness;
 import com.chaze.india.screens.Homepage.Purchases.ActiveOrders.OrderOfAShop.OrderOfAShopActivity;
 
 import java.util.ArrayList;

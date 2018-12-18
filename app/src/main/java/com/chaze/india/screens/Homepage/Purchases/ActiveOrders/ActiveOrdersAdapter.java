@@ -10,8 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.chaze.india.R;
-import com.chaze.india.models.CartBusiness;
-import com.chaze.india.models.Item;
+import com.chaze.india.models.Ecommerce.CartBusiness;
+import com.chaze.india.models.Ecommerce.ShopItem;
 import com.chaze.india.models.Order;
 
 import java.util.ArrayList;
@@ -56,7 +56,7 @@ public class ActiveOrdersAdapter extends RecyclerView.Adapter<ActiveOrdersAdapte
         for (int i = 0; i < 4; i++) {
 
             Order order = new Order();
-            ArrayList<Item> items = new ArrayList<>();
+            ArrayList<ShopItem> items = new ArrayList<>();
 
             for (int j = 0; j < 7; j++) {
                 order.addCartBusiness(new CartBusiness());

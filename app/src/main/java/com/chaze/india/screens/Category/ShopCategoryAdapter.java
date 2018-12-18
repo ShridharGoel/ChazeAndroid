@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.chaze.india.R;
 import com.chaze.india.models.CategorySearchResults;
-import com.chaze.india.models.Item;
 import com.chaze.india.models.Ecommerce.ShopResults;
 
 import java.util.ArrayList;
@@ -57,15 +56,15 @@ public class ShopCategoryAdapter extends RecyclerView.Adapter<ShopCategoryAdapte
         categorySearchResults = new CategorySearchResults();
         for (int i = 0; i < 4; i++) {
 
-            ArrayList<Item> items = new ArrayList<>();
+         /*   ArrayList<Item> items = new ArrayList<>();
 
             for (int j = 0; j < 25; j++) {
                 items.add(new Item("asdf" + j + i, "asdfsad", false, 43, false, "4", 3, 3, 0, false) {
 
                 });
             }
-
-            categorySearchResults.getShopResults().add(new ShopResults("shopName", "asdfsdf", items));
+*/
+            //categorySearchResults.getShopResults().add(new ShopResults("shopName", "asdfsdf", items));
         }
         notifyDataSetChanged();
     }
@@ -83,7 +82,7 @@ public class ShopCategoryAdapter extends RecyclerView.Adapter<ShopCategoryAdapte
         }
 
         public void bind(int i) {
-            ArrayList<Item> items = categorySearchResults.getShopResults().get(i).getItems();
+           /* ArrayList<Item> items = categorySearchResults.getShopResults().get(i).getItems();
             shopNameView.setText(categorySearchResults.getShopResults().get(i).getName());
 
             CategoryItemsInAShopAdapter categoryItemsInAShopAdapter = new CategoryItemsInAShopAdapter(categorySearchResults.getShopResults().get(i).getItems());
@@ -91,7 +90,7 @@ public class ShopCategoryAdapter extends RecyclerView.Adapter<ShopCategoryAdapte
             shopItemsView.setAdapter(categoryItemsInAShopAdapter);
             shopItemsView.setLayoutManager(foundItemsInARestaurantLayoutManager);
             shopItemsView.setHasFixedSize(true);
-
+*/
         }
     }
 }

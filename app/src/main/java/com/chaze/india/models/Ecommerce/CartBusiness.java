@@ -1,8 +1,6 @@
-package com.chaze.india.models;
+package com.chaze.india.models.Ecommerce;
 
 import android.util.Log;
-
-import com.chaze.india.models.Ecommerce.Shop;
 
 import java.io.Serializable;
 import java.util.LinkedList;
@@ -13,7 +11,7 @@ public class CartBusiness implements Serializable {
     private static String TAG = CartBusiness.class.getSimpleName();
 
     private Shop business;
-    private LinkedList<CartItem> cartItems;
+    private LinkedList<EcommerceCartItem> cartItems;
     private int discount;
 
 
@@ -22,7 +20,7 @@ public class CartBusiness implements Serializable {
         business = null;
     }
 
-    public CartBusiness(Shop business, LinkedList<CartItem> cartItems) {
+    public CartBusiness(Shop business, LinkedList<EcommerceCartItem> cartItems) {
         this.business = business;
         this.cartItems = cartItems;
 
@@ -37,15 +35,15 @@ public class CartBusiness implements Serializable {
         this.business = business;
     }
 
-    public LinkedList<CartItem> getCartItems() {
+    public LinkedList<EcommerceCartItem> getCartItems() {
         return cartItems;
     }
 
 
-    public void addItem(CartItem cartItem) {
+    public void addItem(EcommerceCartItem cartItem) {
         Boolean found = false;
         for (int i = 0; i < getCartItems().size(); i++) {
-            Item item =  getCartItems().get(i).getItem();
+            ShopItem item =  getCartItems().get(i).getItem();
             if (item.getProductCode().equals(cartItem.getItem().getProductCode())) {
                 found = true;
                 cartItems.set(i, cartItem);
@@ -58,9 +56,9 @@ public class CartBusiness implements Serializable {
 
     }
 
-    public void deleteItem(CartItem cartItem) {
+    public void deleteItem(EcommerceCartItem cartItem) {
         for (int i = 0; i < getCartItems().size(); i++) {
-            Item item =  getCartItems().get(i).getItem();
+            ShopItem item =  getCartItems().get(i).getItem();
             if (item.getProductCode().equals(cartItem.getItem().getProductCode())) {
                 cartItems.remove(i);
             }
@@ -70,8 +68,8 @@ public class CartBusiness implements Serializable {
         }
     }
 
-    public void updateItemQuantity(CartItem cartItem, int itemQuantity) {
-        CartItem newCartItem = new CartItem(cartItem.getItem(), itemQuantity);
+    public void updateItemQuantity(EcommerceCartItem cartItem, int itemQuantity) {
+        EcommerceCartItem newCartItem = new EcommerceCartItem(cartItem.getItem(), itemQuantity);
         int oldItemIndex = cartItems.indexOf(cartItem);
         if (itemQuantity == 0) {
             deleteItem(cartItem);
@@ -85,8 +83,8 @@ public class CartBusiness implements Serializable {
 
     public int getTotalBeforeDiscount() {
         int price = 0;
-        for (CartItem cartItem : getCartItems()) {
-            price = (int) (price + cartItem.getCartItemPrice());
+        for (EcommerceCartItem cartItem : getCartItems()) {
+            price = (int) (price + cartItem.getItem().getPrice());
         }
         return price;
     }

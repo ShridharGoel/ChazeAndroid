@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-import com.chaze.india.models.CartBusiness;
+import com.chaze.india.models.Ecommerce.CartBusiness;
 import com.chaze.india.models.Ecommerce.CartEcommerce;
 import com.google.gson.Gson;
 
