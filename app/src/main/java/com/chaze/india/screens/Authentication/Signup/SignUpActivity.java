@@ -227,6 +227,7 @@ public class SignUpActivity extends BaseActivity implements SignUpContract.View,
         Intent otpIntent = new Intent(SignUpActivity.this, OTPConfirmation.class);
         otpIntent.putExtra("Mobile", signUpMobile.getText().toString());
         startActivity(otpIntent);
+        finish();
     }
 
     @Override

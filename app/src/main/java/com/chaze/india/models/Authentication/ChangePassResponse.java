@@ -1,4 +1,4 @@
-package com.chaze.india.models;
+package com.chaze.india.models.Authentication;
 
 import com.google.gson.annotations.SerializedName;
 

@@ -1,6 +1,6 @@
 
 
-package com.chaze.india.screens.Proflie;
+package com.chaze.india.screens.Profile;
 
 import com.chaze.india.repository.network.ICommonAPIManager;
 import com.chaze.india.repository.session.SessionManager;
@@ -19,5 +19,15 @@ public class ProfilePresenter<V extends ProfileContract.View> extends BasePresen
 
     public ProfilePresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {
         super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
+    }
+
+    @Override
+    public void fetchDetails(String mobile) {
+
+    }
+
+    @Override
+    public void fetchDetailsWithEmail(String email) {
+
     }
 }

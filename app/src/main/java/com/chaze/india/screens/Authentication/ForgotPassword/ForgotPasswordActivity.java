@@ -24,17 +24,16 @@ import timber.log.Timber;
 
 
 /**
- post request on /login
- param: req: OTP code( 6digit) + token
-
-
- return: {
- success:true/false
- error:msg to show if success is false
- token:secret key
- user:
- }
-
+ * post request on /login
+ * param: req: OTP code( 6digit) + token
+ * <p>
+ * <p>
+ * return: {
+ * success:true/false
+ * error:msg to show if success is false
+ * token:secret key
+ * user:
+ * }
  **/
 
 public class ForgotPasswordActivity extends BaseActivity implements ForgotPasswordContract.View {
@@ -67,13 +66,11 @@ public class ForgotPasswordActivity extends BaseActivity implements ForgotPasswo
             public void onClick(View v) {
                 if (newPass.getText().toString().equals(confirmNewPass.getText().toString())) {
 
-                    if(TextUtils.isDigitsOnly(getIntent().getStringExtra("Mobile"))) {
+                    if (TextUtils.isDigitsOnly(getIntent().getStringExtra("Mobile"))) {
                         mPresenter.doChangePass(getIntent().getStringExtra("Mobile"),
-                                                Integer.parseInt(getIntent().getStringExtra("OTP")),
-                                                newPass.getText().toString());
-                    }
-
-                    else {
+                                Integer.parseInt(getIntent().getStringExtra("OTP")),
+                                newPass.getText().toString());
+                    } else {
                         mPresenter.doChangePassWithEmail(getIntent().getStringExtra("Mobile"),
                                 Integer.parseInt(getIntent().getStringExtra("OTP")),
                                 newPass.getText().toString());
@@ -84,11 +81,12 @@ public class ForgotPasswordActivity extends BaseActivity implements ForgotPasswo
         });
     }
 
-                @Override
-                public void startHomeActivity () {
-                    Intent homeIntent = new Intent(ForgotPasswordActivity.this, HomeActivity.class);
-                    startActivity(homeIntent);
-                }
-            }
+    @Override
+    public void startHomeActivity() {
+        Intent homeIntent = new Intent(ForgotPasswordActivity.this, HomeActivity.class);
+        startActivity(homeIntent);
+        finish();
+    }
+}
 
 

@@ -112,6 +112,7 @@ public class OTPConfirmation extends BaseActivity implements OTPConfirmationCont
     public void startHomeActivity() {
         Intent homeIntent = new Intent(OTPConfirmation.this, HomeActivity.class);
         startActivity(homeIntent);
+        finish();
     }
 
     @Override
@@ -120,6 +121,7 @@ public class OTPConfirmation extends BaseActivity implements OTPConfirmationCont
         changePassIntent.putExtra("Mobile", mobileNum);
         changePassIntent.putExtra("OTP", enterOtp.getText().toString());
         startActivity(changePassIntent);
+        finish();
     }
 }
 
