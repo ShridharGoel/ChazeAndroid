@@ -11,12 +11,14 @@ import com.chaze.india.repository.session.ISessionManager;
 import com.chaze.india.repository.session.SessionManager;
 import com.chaze.india.screens.base.BaseActivity;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.chaze.india.R.*;
 
-public class ProfileActivity extends BaseActivity {
+public class ProfileActivity extends BaseActivity implements ProfileContract.View {
 
 
     //Todo: UI and update info settings
@@ -42,8 +44,9 @@ public class ProfileActivity extends BaseActivity {
     @BindView(id.editAddress)
     ImageView editAddress;
 
-    //   @Inject
-
+  /*  @Inject
+    ProfileContract.Presenter<ProfileContract.View> mPresenter;
+*/
     SessionManager sharedPreference;
 
     @Override
@@ -52,13 +55,20 @@ public class ProfileActivity extends BaseActivity {
         setContentView(layout.activity_profile);
 
         ButterKnife.bind(this);
-        // getActivityComponent().inject(this);
+
+        getActivityComponent().inject(this);
+
+        // mPresenter.onAttach(this);
 
         sharedPreference = new SessionManager(getApplicationContext());
 
         displayDetails();
 
-
+        /*if(sharedPreference.getPhoneNo()!=null)
+            mPresenter.fetchDetails(sharedPreference.getPhoneNo());
+        else
+            mPresenter.fetchDetailsWithEmail(sharedPreference.getUserEmail());
+*/
         editName.setOnClickListener(view -> {
             name.setEnabled(true);
             name.setFocusable(true);

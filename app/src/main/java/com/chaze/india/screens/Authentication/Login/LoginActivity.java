@@ -218,6 +218,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     public void startHomeActivity() {
         Intent homeIntent = new Intent(LoginActivity.this, HomeActivity.class);
         startActivity(homeIntent);
+        finish();
     }
 
     @Override
@@ -226,5 +227,6 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
         otpConfirmationIntent.putExtra("ForgotPass", true);
         otpConfirmationIntent.putExtra("Mobile", forgotPassMobile);
         startActivity(otpConfirmationIntent);
+        finish();
     }
 }
