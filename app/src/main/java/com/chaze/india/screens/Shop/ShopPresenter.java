@@ -49,6 +49,33 @@ public class ShopPresenter<V extends ShopContract.View> extends BasePresenter<V>
         subscribeForData(pageNumber);
     }
 
+    @SuppressLint("CheckResult")
+    @Override
+    public void getSubCategories() {
+
+        if (getMvpView().getCategory().equals("-1")) {
+            getCommonAPIManager().getECommerceAPIService().getSubCategories(getMvpView().getShop(), getMvpView().getCategory())
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(response -> {
+                        getMvpView().showCategories(response.getResults());
+                        Timber.e("Size:" + response.getResults().size());
+                    }, throwable -> {
+                        Timber.e(throwable.getMessage());
+                    });
+        } else {
+            getCommonAPIManager().getECommerceAPIService().getSubCategories(getMvpView().getShop(), getMvpView().getCategory())
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(response -> {
+                        getMvpView().showCategories(response.getResults());
+                        Timber.e("Size:" + response.getResults().size());
+                    }, throwable -> {
+                        Timber.e(throwable.getMessage());
+                    });
+        }
+    }
+
     @Override
     public void onAttach(V mvpView) {
         super.onAttach(mvpView);
@@ -76,7 +103,7 @@ public class ShopPresenter<V extends ShopContract.View> extends BasePresenter<V>
                         Timber.e(throwable.getMessage());
                         pageNumber--;
                     });
-        }else{
+        } else {
             getCommonAPIManager().getECommerceAPIService().getPostsForShopAndCategory(getMvpView().getShop(), getMvpView().getCategory())
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())

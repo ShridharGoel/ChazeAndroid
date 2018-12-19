@@ -94,7 +94,7 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
             case 1:
 
 
-                ((Card1ViewHolder) viewHolder).topic.setText(""+object.getKey());
+                ((Card1ViewHolder) viewHolder).topic.setText(""+object.getName());
 
                 Picasso.get().load(object.getProducts().get(0).getImageFirst())
                         .error(R.drawable.ic_menu_manage)
@@ -119,7 +119,7 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
                 break;
             case 2:
 
-                ((Card2ViewHolder) viewHolder).topic.setText(""+object.getKey());
+                ((Card2ViewHolder) viewHolder).topic.setText(""+object.getName());
                 Picasso.get().load(object.getProducts().get(0).getImageFirst())
                         .error(R.drawable.ic_menu_manage)
                         .into(((Card2ViewHolder) viewHolder).image1);
@@ -151,7 +151,7 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
                 break;
             case 3: {
 
-                ((Card3ViewHolder) viewHolder).topic.setText(""+object.getKey());
+                ((Card3ViewHolder) viewHolder).topic.setText(""+object.getName());
 
                 Picasso.get().load(object.getProducts().get(0).getImageFirst())
                         .error(R.drawable.ic_menu_manage)
@@ -171,7 +171,7 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
             }
             case 4: {
 
-                ((Card4ViewHolder) viewHolder).topic.setText(""+object.getKey());
+                ((Card4ViewHolder) viewHolder).topic.setText(""+object.getName());
                 ((Card4ViewHolder) viewHolder).name.setText(object.getProducts().get(0).getName());
 
                 ((Card4ViewHolder) viewHolder).price.setText("Rs. " + object.getProducts().get(0).getPrice().intValue());

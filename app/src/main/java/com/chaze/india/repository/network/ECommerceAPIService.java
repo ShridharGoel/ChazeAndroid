@@ -5,6 +5,7 @@ import com.chaze.india.models.Ecommerce.CategoriesResponse;
 import com.chaze.india.models.Ecommerce.PostsResponse;
 import com.chaze.india.models.Ecommerce.Shop;
 import com.chaze.india.models.Ecommerce.ShopListResponse;
+import com.chaze.india.models.Ecommerce.SubCategoriesResponse;
 
 import java.util.List;
 
@@ -39,4 +40,7 @@ public interface ECommerceAPIService {
 
     @GET("products/posts/")
     Single<PostsResponse> getPostsForShopAndCategory(@Query("shop") String shop, @Query("category") String category);
+
+    @GET("categories/subcategories/")
+    Single<SubCategoriesResponse> getSubCategories(@Query("shop") String shop, @Query("category") String category);
 }
