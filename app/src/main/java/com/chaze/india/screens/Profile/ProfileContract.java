@@ -1,4 +1,4 @@
-package com.chaze.india.screens.Proflie;
+package com.chaze.india.screens.Profile;
 
 import com.chaze.india.screens.base.MvpContract;
 import com.chaze.india.screens.base.MvpContract;
@@ -17,6 +17,7 @@ public class ProfileContract {
 
 
     public interface Presenter<V extends View> extends MvpContract.Presenter<V> {
-
+        void fetchDetails(String mobile);
+        void fetchDetailsWithEmail(String email);
     }
 }

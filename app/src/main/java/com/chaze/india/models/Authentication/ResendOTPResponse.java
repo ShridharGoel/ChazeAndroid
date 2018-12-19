@@ -1,4 +1,4 @@
-package com.chaze.india.models.Ecommerce;
+package com.chaze.india.models.Authentication;
 
 /**
  * Created by Shridhar Goel on 11/12/18.

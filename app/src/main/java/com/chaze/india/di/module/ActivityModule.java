@@ -39,6 +39,8 @@ import com.chaze.india.screens.Homepage.Purchases.PurchasesContract;
 import com.chaze.india.screens.Homepage.Purchases.PurchasesPresenter;
 import com.chaze.india.screens.ProductInfo.ProductInfoContract;
 import com.chaze.india.screens.ProductInfo.ProductInfoPresenter;
+import com.chaze.india.screens.Profile.ProfileContract;
+import com.chaze.india.screens.Profile.ProfilePresenter;
 import com.chaze.india.screens.Shop.ShopContract;
 import com.chaze.india.screens.Shop.ShopPresenter;
 import com.chaze.india.screens.SubCategory.SubCategoryContract;
@@ -200,4 +202,10 @@ public class ActivityModule {
     ForgotPasswordContract.Presenter<ForgotPasswordContract.View> providesForgotPasswordPresenter(ForgotPasswordPresenter<ForgotPasswordContract.View> presenter) {
         return presenter;
     }
+
+    @Provides
+    ProfileContract.Presenter<ProfileContract.View> providesProfilePresenter(ProfilePresenter<ProfileContract.View> presenter) {
+        return presenter;
+    }
 }
+
