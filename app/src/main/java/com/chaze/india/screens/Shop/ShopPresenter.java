@@ -4,27 +4,15 @@ package com.chaze.india.screens.Shop;
 
 import android.annotation.SuppressLint;
 
-import com.chaze.india.models.Category;
-import com.chaze.india.models.Ecommerce.EcomerceCategory;
 import com.chaze.india.repository.network.ICommonAPIManager;
 import com.chaze.india.utils.rx.SchedulerProvider;
 import com.chaze.india.repository.session.SessionManager;
 import com.chaze.india.screens.base.BasePresenter;
 
-import org.reactivestreams.Publisher;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 import javax.inject.Inject;
 
-import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Function;
-import io.reactivex.processors.PublishProcessor;
 import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
@@ -46,15 +34,15 @@ public class ShopPresenter<V extends ShopContract.View> extends BasePresenter<V>
     public void next() {
         pageNumber++;
         getMvpView().showLoading();
-        subscribeForData(pageNumber);
+        getPosts(pageNumber);
     }
 
     @SuppressLint("CheckResult")
     @Override
     public void getSubCategories() {
 
-        if (getMvpView().getCategory().equals("-1")) {
-            getCommonAPIManager().getECommerceAPIService().getSubCategories(getMvpView().getShop(), getMvpView().getCategory())
+        if (getMvpView().getCategoryId().equals("-1")) {
+            getCommonAPIManager().getECommerceAPIService().getSubCategories(getMvpView().getShopId(), getMvpView().getCategoryId())
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(response -> {
@@ -64,7 +52,7 @@ public class ShopPresenter<V extends ShopContract.View> extends BasePresenter<V>
                         Timber.e(throwable.getMessage());
                     });
         } else {
-            getCommonAPIManager().getECommerceAPIService().getSubCategories(getMvpView().getShop(), getMvpView().getCategory())
+            getCommonAPIManager().getECommerceAPIService().getSubCategories(getMvpView().getShopId(), getMvpView().getCategoryId())
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(response -> {
@@ -76,27 +64,37 @@ public class ShopPresenter<V extends ShopContract.View> extends BasePresenter<V>
         }
     }
 
+    @SuppressLint({"CheckResult", "TimberExceptionLogging"})
     @Override
-    public void onAttach(V mvpView) {
-        super.onAttach(mvpView);
-
+    public void getShop() {
+        getCommonAPIManager().getECommerceAPIService().getShop(getMvpView().getShopId()).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(shopResponse -> {
+                    getMvpView().showShopDetails(shopResponse.getShops().get(0));
+                }, Throwable -> {
+                    Timber.e(Throwable.getMessage());
+                });
     }
 
+    @Override
+    public void getProducts() {
+
+    }
 
     /**
      * subscribing for data
      */
     @SuppressLint("CheckResult")
-    public void subscribeForData(int limit) {
+    public void getPosts(int limit) {
 
 
-        if (getMvpView().getCategory().equals("-1")) {
-            getCommonAPIManager().getECommerceAPIService().getPostsForShop(getMvpView().getShop())
+        if (getMvpView().getCategoryId().equals("-1")) {
+            getCommonAPIManager().getECommerceAPIService().getPostsForShop(getMvpView().getShopId())
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(postsResponse -> {
                         getMvpView().hideLoading();
-                        getMvpView().addItems(postsResponse.getPosts());
+                        getMvpView().shopPosts(postsResponse.getPosts());
 
                         Timber.e("Size:" + postsResponse.getPosts().size());
                     }, throwable -> {
@@ -104,12 +102,12 @@ public class ShopPresenter<V extends ShopContract.View> extends BasePresenter<V>
                         pageNumber--;
                     });
         } else {
-            getCommonAPIManager().getECommerceAPIService().getPostsForShopAndCategory(getMvpView().getShop(), getMvpView().getCategory())
+            getCommonAPIManager().getECommerceAPIService().getPostsForShopAndCategory(getMvpView().getShopId(), getMvpView().getCategoryId())
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(postsResponse -> {
                         getMvpView().hideLoading();
-                        getMvpView().addItems(postsResponse.getPosts());
+                        getMvpView().shopPosts(postsResponse.getPosts());
 
                         Timber.e("Size:" + postsResponse.getPosts().size());
                     }, throwable -> {

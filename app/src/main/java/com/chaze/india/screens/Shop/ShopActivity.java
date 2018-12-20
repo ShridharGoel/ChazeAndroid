@@ -8,22 +8,24 @@ import android.support.v4.widget.NestedScrollView;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.chaze.india.R;
 import com.chaze.india.di.Qualifiers.LinLayoutHori;
 import com.chaze.india.di.Qualifiers.LinLayoutVert;
 import com.chaze.india.models.CategorySearchResults;
-import com.chaze.india.models.Ecommerce.EcomerceCategory;
 import com.chaze.india.models.Ecommerce.Post;
+import com.chaze.india.models.Ecommerce.Product;
+import com.chaze.india.models.Ecommerce.Shop;
 import com.chaze.india.models.Ecommerce.SubCategory;
-import com.chaze.india.screens.Homepage.Ecommerce.EcommerceCategoryAdapter;
 import com.chaze.india.screens.ProductsPostAdapter;
 import com.chaze.india.screens.base.BaseActivity;
 import com.chaze.india.screens.search.SearchActivity;
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
+import com.iarcuschin.simpleratingbar.SimpleRatingBar;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -72,6 +74,30 @@ public class ShopActivity extends BaseActivity implements ShopContract.View {
     NestedScrollView nestedScrollView;
 
 
+    @BindView(R.id.shop_name_view)
+    TextView shopName;
+
+    @BindView(R.id.shop_address_view)
+    TextView address;
+    @BindView(R.id.status)
+    TextView status;
+
+    @BindView(R.id.shop_rating_view)
+    SimpleRatingBar ratingBar;
+
+    @BindView(R.id.shop_image_view)
+    ImageView imageView;
+
+    @BindView(R.id.min_order_view)
+    TextView minOrderView;
+
+    @BindView(R.id.delivery_charge_view)
+    TextView deliverChargeView;
+
+    @BindView(R.id.speaciality_text)
+    TextView speciality;
+
+
     String shopId, category;
 
     @Override
@@ -87,20 +113,22 @@ public class ShopActivity extends BaseActivity implements ShopContract.View {
 
         onAttach(this);
         mPresenter.onAttach(this);
+        mPresenter.onAttach(this);
         setup();
     }
 
     private void setup() {
 
+        postAdapter.setIsByShop(false, shopId);
         categoriesRecyclerView.setAdapter(adapter);
         categoriesRecyclerView.setLayoutManager(mLayoutManagerH);
         categoriesRecyclerView.showShimmerAdapter();
         searchView.setOnClickListener(v -> goToSearch());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.showShimmerAdapter();
-
+        mPresenter.getShop();
         mPresenter.getSubCategories();
-        mPresenter.subscribeForData(0);
+        mPresenter.getPosts(0);
     }
 
     /**
@@ -140,44 +168,53 @@ public class ShopActivity extends BaseActivity implements ShopContract.View {
 
 
 
-    @Override
-    public void addItems(List<Post> items) {
-        if (!adapterNotSet) recyclerView.setAdapter(postAdapter);
-        postAdapter.addItems(items);
-        adapterNotSet = true;
-    }
 
     @Override
-    public String getShop() {
+    public String getShopId() {
         return shopId;
     }
 
     @Override
-    public String getCategory() {
+    public String getCategoryId() {
         return category;
     }
 
     @Override
     public void showCategories(List<SubCategory> results) {
         if (results.size() > 0) {
-            showPosts();
+            setUpLoadMoreListener();
         } else {
-            showProducts();
+            mPresenter.getProducts();
         }
         adapter.addItems(results);
     }
 
-    private void showProducts() {
-        mPresenter.getProducts();
+    @Override
+    public void shopPosts(List<Post> items) {
+        if (!adapterNotSet) recyclerView.setAdapter(postAdapter);
+        postAdapter.addItems(items);
+        adapterNotSet = true;
     }
 
-    public void showListOfProducts() {
+    @Override
+    public void showProducts(List<Product> products) {
         recyclerView.setAdapter(productsAdapter);
     }
 
-    private void showPosts() {
-        postAdapter.setIsByShop(false, shopId);
-        setUpLoadMoreListener();
+    @Override
+    public void showShopDetails(Shop shop) {
+        shopName.setText(shop.getName());
+
+        address.setText(shop.getAddress());
+        Picasso.get().load(shop.getImageUrl()).into(imageView);
+        if ((shop.getStatus() == 1)) {
+            status.setText("Open");
+           // status.setBackgroundColor(getResources().getColor(R.color.));
+        } else {
+            status.setText("Closed");
+        }
+
+        speciality.setText(shop.getCode());
     }
 
 
@@ -193,10 +230,6 @@ public class ShopActivity extends BaseActivity implements ShopContract.View {
         loading = true;
     }
 
-    @Override
-    public void showData(CategorySearchResults results) {
-
-    }
 
 }
 

@@ -161,7 +161,7 @@ public class SubCategoryActivity extends BaseActivity implements SubCategoryCont
 
     @Override
     public void addItems(List<Post> items) {
-        //postAdapter.addItems(null);
+        //postAdapter.shopPosts(null);
     }
 
 

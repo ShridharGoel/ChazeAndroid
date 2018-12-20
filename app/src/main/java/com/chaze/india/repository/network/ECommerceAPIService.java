@@ -14,6 +14,7 @@ import io.reactivex.Single;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -43,4 +44,7 @@ public interface ECommerceAPIService {
 
     @GET("categories/subcategories/")
     Single<SubCategoriesResponse> getSubCategories(@Query("shop") String shop, @Query("category") String category);
+
+    @GET("shops/{shop}")
+    Single<ShopListResponse> getShop(@Path("shop") String id);
 }

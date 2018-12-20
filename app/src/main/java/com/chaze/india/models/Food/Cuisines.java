@@ -12,7 +12,7 @@ public class Cuisines {
         this.image = image;
     }
 
-    public String getCategory() {
+    public String getCategoryId() {
         return category;
     }
 

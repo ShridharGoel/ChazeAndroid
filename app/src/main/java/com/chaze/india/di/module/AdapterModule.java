@@ -21,6 +21,7 @@ import com.chaze.india.screens.Homepage.Purchases.ActiveOrders.ActiveOrdersPrese
 import com.chaze.india.screens.Homepage.Purchases.ActiveOrders.TimeLineAdapter;
 import com.chaze.india.screens.Homepage.Purchases.PurchasesPagerAdapter;
 import com.chaze.india.screens.ProductsPostAdapter;
+import com.chaze.india.screens.Shop.ShopItemListAdapter;
 import com.chaze.india.screens.Shop.SubCategoryAdapter;
 import com.chaze.india.screens.search.SearchSuggestionsAdapter;
 
@@ -96,6 +97,7 @@ public class AdapterModule {
         return new ActiveOrdersAdapter(mActivity, new ArrayList<>());
     }
 
+
     @Provides
     FoodPagerAdapter providesFoodPagerAdapter() {
         return new FoodPagerAdapter(mActivity.getSupportFragmentManager());
@@ -114,6 +116,12 @@ public class AdapterModule {
     @Provides
     RestaurantListAdapter providesRestaurantListAdapter() {
         return new RestaurantListAdapter(mActivity, new ArrayList<>());
+    }
+
+
+    @Provides
+    ShopItemListAdapter providesShopItemList() {
+        return new ShopItemListAdapter(new ArrayList<>(), mActivity);
     }
 
     @Provides
