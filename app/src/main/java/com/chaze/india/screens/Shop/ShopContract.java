@@ -23,15 +23,17 @@ public class ShopContract {
 
         void shopPosts(List<Post> items);
 
-        String getShopId();
+        Long getShopId();
 
-        String getCategoryId();
+        Long getCategoryId();
 
         void showCategories(List<SubCategory> results);
 
         void showProducts(List<Product> products);
 
         void showShopDetails(Shop shop);
+
+        void showError(String message);
     }
 
 

@@ -29,7 +29,9 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
     ArrayList<Post> cardList;
     Context context;
     Boolean isByShop;
-    String shopId;
+    Long shopId;
+    Long categoryId;
+    Boolean isFromCategory = false;
 
     @Inject
     public ProductsPostAdapter(ArrayList<Post> cardList, Context context) {
@@ -88,13 +90,13 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
         Post object = cardList.get(i);
 
-        Timber.e(object.toString());
+        Timber.e("" + i);
 
         switch (getItemViewType(i)) {
             case 1:
 
 
-                ((Card1ViewHolder) viewHolder).topic.setText(""+object.getName());
+                ((Card1ViewHolder) viewHolder).topic.setText("" + object.getName());
 
                 Picasso.get().load(object.getProducts().get(0).getImageFirst())
                         .error(R.drawable.ic_menu_manage)
@@ -119,7 +121,7 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
                 break;
             case 2:
 
-                ((Card2ViewHolder) viewHolder).topic.setText(""+object.getName());
+                ((Card2ViewHolder) viewHolder).topic.setText("" + object.getName());
                 Picasso.get().load(object.getProducts().get(0).getImageFirst())
                         .error(R.drawable.ic_menu_manage)
                         .into(((Card2ViewHolder) viewHolder).image1);
@@ -151,7 +153,7 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
                 break;
             case 3: {
 
-                ((Card3ViewHolder) viewHolder).topic.setText(""+object.getName());
+                ((Card3ViewHolder) viewHolder).topic.setText("" + object.getName());
 
                 Picasso.get().load(object.getProducts().get(0).getImageFirst())
                         .error(R.drawable.ic_menu_manage)
@@ -171,7 +173,7 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
             }
             case 4: {
 
-                ((Card4ViewHolder) viewHolder).topic.setText(""+object.getName());
+                ((Card4ViewHolder) viewHolder).topic.setText("" + object.getName());
                 ((Card4ViewHolder) viewHolder).name.setText(object.getProducts().get(0).getName());
 
                 ((Card4ViewHolder) viewHolder).price.setText("Rs. " + object.getProducts().get(0).getPrice().intValue());
@@ -197,26 +199,36 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
         return cardList.size();
     }
 
-    public void setIsByShop(boolean isByShop, String shopID) {
+    public void setIsByShop(boolean isByShop, Long shopID) {
         this.isByShop = isByShop;
         this.shopId = shopID;
+    }
+
+    public void setIsFromCategory(boolean isFromCategory, Long category) {
+        this.isByShop = true;
+        this.categoryId = category;
+        this.isFromCategory = isFromCategory;
     }
 
     public void addItems(List<Post> items) {
         for (Post i : items) {
             Timber.e("Fuck " + i.getProducts().get(0).getName());
-            cardList.addAll(items);
+            cardList.add(i);
             notifyDataSetChanged();
         }
 
     }
 
 
-    public void doOnClick(String id) {
+    public void doOnClick(Long id) {
         if (isByShop) {
             Intent intent = new Intent(context, ShopActivity.class);
             intent.putExtra("Shop", id);
-            intent.putExtra("Category", "-1");
+            if (isFromCategory)
+                intent.putExtra("Category", categoryId);
+            else
+                intent.putExtra("Category", Long.valueOf(-1));
+
             context.startActivity(intent);
         } else {
             Intent intent = new Intent(context, ShopActivity.class);
@@ -231,6 +243,7 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
         TextView textName1, textName2, textName3, topic;
         Button viewall;
         ShimmerLayout shimmerLayout;
+
         public Card1ViewHolder(@NonNull View itemView) {
             super(itemView);
             image1 = itemView.findViewById(R.id.card1_image1);
@@ -246,7 +259,7 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
 
             viewall = itemView.findViewById(R.id.viewall);
             viewall.setOnClickListener(view -> {
-                doOnClick(cardList.get(getPosition()).getKey().toString());
+                doOnClick(cardList.get(getPosition()).getKey());
             });
         }
     }
@@ -259,6 +272,7 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
         TextView topic;
         Button viewAll;
         ShimmerLayout shimmerLayout;
+
         public Card2ViewHolder(@NonNull View itemView) {
             super(itemView);
             image1 = itemView.findViewById(R.id.card2_image1);
@@ -282,13 +296,11 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
             viewAll = itemView.findViewById(R.id.viewall);
 
             viewAll.setOnClickListener(view -> {
-                doOnClick(cardList.get(getPosition()).getKey().toString());
+                doOnClick(cardList.get(getPosition()).getKey());
             });
 
         }
     }
-
-
 
 
     public class Card3ViewHolder extends RecyclerView.ViewHolder {
@@ -297,6 +309,7 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
         TextView topic;
         Button viewall;
         ShimmerLayout shimmerLayout;
+
         public Card3ViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -309,7 +322,7 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
             viewall = itemView.findViewById(R.id.viewall);
             topic = itemView.findViewById(R.id.topic_name);
             viewall.setOnClickListener(view -> {
-                doOnClick(cardList.get(getPosition()).getKey().toString());
+                doOnClick(cardList.get(getPosition()).getKey());
             });
         }
     }
@@ -333,7 +346,7 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
             shimmerLayout = itemView.findViewById(R.id.shimmer_view);
             shimmerLayout.startShimmerAnimation();
             viewall.setOnClickListener(view -> {
-                doOnClick(cardList.get(getPosition()).getKey().toString());
+                doOnClick(cardList.get(getPosition()).getKey());
             });
         }
     }

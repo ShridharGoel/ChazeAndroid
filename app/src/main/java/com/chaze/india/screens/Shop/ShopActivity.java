@@ -33,6 +33,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import timber.log.Timber;
 
 public class ShopActivity extends BaseActivity implements ShopContract.View {
 
@@ -55,12 +56,12 @@ public class ShopActivity extends BaseActivity implements ShopContract.View {
     ProductsPostAdapter postAdapter;
 
     @Inject
-    ShopItemListAdapter productsAdapter;
+    ProductsListAdapter productsAdapter;
 
     @Inject
     SubCategoryAdapter adapter;
 
-    @BindView(R.id.ecomerceRecyclerView)
+    @BindView(R.id.categories_recycler_view)
     ShimmerRecyclerView categoriesRecyclerView;
 
     @Inject
@@ -98,7 +99,8 @@ public class ShopActivity extends BaseActivity implements ShopContract.View {
     TextView speciality;
 
 
-    String shopId, category;
+    long shopId;
+    long category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,34 +110,34 @@ public class ShopActivity extends BaseActivity implements ShopContract.View {
         getActivityComponent().inject(this);
 
         Intent intent = getIntent();
-        shopId = intent.getExtras().getString("Shop");
-        category = intent.getExtras().getString("Category");
+        shopId = intent.getExtras().getLong("Shop");
+        category = intent.getExtras().getLong("Category");
 
         onAttach(this);
-        mPresenter.onAttach(this);
         mPresenter.onAttach(this);
         setup();
     }
 
     private void setup() {
 
-        postAdapter.setIsByShop(false, shopId);
-        categoriesRecyclerView.setAdapter(adapter);
-        categoriesRecyclerView.setLayoutManager(mLayoutManagerH);
+
+        recyclerView.showShimmerAdapter();
         categoriesRecyclerView.showShimmerAdapter();
+        adapter.setShopId(shopId);
+        postAdapter.setIsByShop(false, shopId);
+        categoriesRecyclerView.setLayoutManager(mLayoutManagerH);
+
         searchView.setOnClickListener(v -> goToSearch());
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.showShimmerAdapter();
         mPresenter.getShop();
         mPresenter.getSubCategories();
-        mPresenter.getPosts(0);
     }
 
     /**
      * setting listener to get callback for load more
      */
     private void setUpLoadMoreListener() {
-
+        mPresenter.getPosts(0);
 
         nestedScrollView.setOnScrollChangeListener((NestedScrollView.OnScrollChangeListener) (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
             if (v.getChildAt(v.getChildCount() - 1) != null) {
@@ -167,15 +169,13 @@ public class ShopActivity extends BaseActivity implements ShopContract.View {
     }
 
 
-
-
     @Override
-    public String getShopId() {
+    public Long getShopId() {
         return shopId;
     }
 
     @Override
-    public String getCategoryId() {
+    public Long getCategoryId() {
         return category;
     }
 
@@ -186,6 +186,7 @@ public class ShopActivity extends BaseActivity implements ShopContract.View {
         } else {
             mPresenter.getProducts();
         }
+        categoriesRecyclerView.setAdapter(adapter);
         adapter.addItems(results);
     }
 
@@ -199,6 +200,7 @@ public class ShopActivity extends BaseActivity implements ShopContract.View {
     @Override
     public void showProducts(List<Product> products) {
         recyclerView.setAdapter(productsAdapter);
+        productsAdapter.addItems(products);
     }
 
     @Override
@@ -209,12 +211,17 @@ public class ShopActivity extends BaseActivity implements ShopContract.View {
         Picasso.get().load(shop.getImageUrl()).into(imageView);
         if ((shop.getStatus() == 1)) {
             status.setText("Open");
-           // status.setBackgroundColor(getResources().getColor(R.color.));
+            // status.setBackgroundColor(getResources().getColor(R.color.));
         } else {
             status.setText("Closed");
         }
 
         speciality.setText(shop.getCode());
+    }
+
+    @Override
+    public void showError(String message) {
+        Timber.e(message);
     }
 
 

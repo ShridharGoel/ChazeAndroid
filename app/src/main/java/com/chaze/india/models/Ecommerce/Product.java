@@ -5,9 +5,11 @@ import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 @Generated("net.hexar.json2pojo")
 @SuppressWarnings("unused")
-public class Product {
+public class Product implements Serializable{
 
     @SerializedName("business_name")
     private String businessName;

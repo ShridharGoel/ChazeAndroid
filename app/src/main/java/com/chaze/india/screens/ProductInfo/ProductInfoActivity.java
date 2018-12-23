@@ -18,6 +18,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.chaze.india.R;
+import com.chaze.india.models.Ecommerce.Product;
 import com.chaze.india.screens.base.BaseActivity;
 
 import java.util.ArrayList;
@@ -82,7 +83,34 @@ public class ProductInfoActivity extends BaseActivity implements ProductInfoCont
 
     BottomSheetBehavior sheetBehavior;
 
+
+    @BindView(R.id.offer_view)
+    TextView discount;
+
+
+    @BindView(R.id.rating_view)
+    TextView rating;
+
+
+    @BindView(R.id.ratingUsers)
+    TextView ratingUsers;
+
+
+    @BindView(R.id.price_view)
+    TextView price;
+
+    @BindView(R.id.stockItems_view)
+    TextView stock;
+
+    @BindView(R.id.discount_view)
+    TextView discountedPrice;
+
+    @BindView(R.id.name_view)
+    TextView name;
+
     boolean isSheetClosed = false;
+
+    Product product;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +121,7 @@ public class ProductInfoActivity extends BaseActivity implements ProductInfoCont
         getActivityComponent().inject(this);
 
 
+        product = (Product) getIntent().getExtras().getSerializable("Product");
         setup();
 
 
@@ -102,7 +131,10 @@ public class ProductInfoActivity extends BaseActivity implements ProductInfoCont
 
     private void setup() {
 
-        String[] s = new String[4];
+        String[] s = new String[3];
+        s[0] = product.getImageFirst();
+        s[1] = product.getImageSecond();
+        s[2] = product.getImageThird();
         myViewPagerAdapter = new ProductImageSliderAdapter(this, s);
         viewPager.setAdapter(myViewPagerAdapter);
         viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
@@ -202,6 +234,15 @@ public class ProductInfoActivity extends BaseActivity implements ProductInfoCont
 
     @Override
     public void showData() {
+        name.setText(product.getName());
+        rating.setText(String.valueOf(product.getRating()));
+        if (product.getDiscount() != null && product.getDiscount() != 0)
+            discountedPrice.setText(String.valueOf(product.getPrice() * (1 - (product.getDiscount() / 100))));
+        else discountedPrice.setVisibility(View.GONE);
+
+        discount.setText(String.valueOf(product.getDiscount()));
+        price.setText(String.valueOf(product.getPrice()));
+        stock.setText(String.valueOf(product.getStock()));
 
 
         showDetails();

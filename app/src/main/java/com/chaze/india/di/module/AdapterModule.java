@@ -21,6 +21,7 @@ import com.chaze.india.screens.Homepage.Purchases.ActiveOrders.ActiveOrdersPrese
 import com.chaze.india.screens.Homepage.Purchases.ActiveOrders.TimeLineAdapter;
 import com.chaze.india.screens.Homepage.Purchases.PurchasesPagerAdapter;
 import com.chaze.india.screens.ProductsPostAdapter;
+import com.chaze.india.screens.Shop.ProductsListAdapter;
 import com.chaze.india.screens.Shop.ShopItemListAdapter;
 import com.chaze.india.screens.Shop.SubCategoryAdapter;
 import com.chaze.india.screens.search.SearchSuggestionsAdapter;
@@ -122,6 +123,11 @@ public class AdapterModule {
     @Provides
     ShopItemListAdapter providesShopItemList() {
         return new ShopItemListAdapter(new ArrayList<>(), mActivity);
+    }
+
+    @Provides
+    ProductsListAdapter providesProductListList() {
+        return new ProductsListAdapter(mActivity, new ArrayList<>());
     }
 
     @Provides

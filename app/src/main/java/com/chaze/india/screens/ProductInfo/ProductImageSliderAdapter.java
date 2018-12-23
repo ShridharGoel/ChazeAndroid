@@ -29,9 +29,10 @@ public class ProductImageSliderAdapter extends PagerAdapter {
         View view = layoutInflater.inflate(R.layout.product_info_slide, container, false);
         PhotoView imageView = ((PhotoView) view.findViewById(R.id.image));
 
-        Picasso.get().load("https://www.dhresource.com/webp/m/0x0s/f2-albu-g7-M00-FF-E9-rBVaSVpnDAiAVjpLAAKFeXiLUr4605.jpg/men-039-s-pu-leather-jackets-winter-fashion.jpg")
-                .error(R.drawable.ic_menu_manage)
-                .into(imageView);
+        if (urls[position] != null)
+            Picasso.get().load(urls[position])
+                    .error(R.drawable.ic_action_cart)
+                    .into(imageView);
 
         container.addView(view);
 

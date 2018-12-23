@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
+    android:elevation="5dp"
+    android:background="@drawable/yellow_rectangle_border_purple"
+    android:layout_height="wrap_content">
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/card4_image"
+        android:layout_width="209dp"
+        android:layout_height="128dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:text="Item Name"
+
+        android:textAlignment="center"
+        android:textColor="@color/textDarkPrimary"
+        android:textSize="@dimen/text_large"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topic_name" />
+
+    <TextView
+        android:id="@+id/topic_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Shop or topic Name"
+        android:textColor="@color/textDarkPrimary"
+        android:textSize="@dimen/text_large"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/textDarkPrimary"
+        android:textSize="@dimen/text_large"
+        android:text="Price"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
+    <io.supercharge.shimmerlayout.ShimmerLayout
+        android:id="@+id/shimmer_view"
+        android:layout_width="wrap_content"
+        android:layout_height="28dp"
+        android:textSize="@dimen/text_medium"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:text="View All"
+        android:background="@drawable/white_rectangle_border_purple"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+    </io.supercharge.shimmerlayout.ShimmerLayout>
+
+</android.support.constraint.ConstraintLayout>
+
+</android.support.v7.widget.CardView>

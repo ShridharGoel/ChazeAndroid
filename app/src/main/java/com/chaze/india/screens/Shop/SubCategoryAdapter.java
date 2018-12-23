@@ -24,6 +24,8 @@ public class SubCategoryAdapter extends RecyclerView.Adapter<SubCategoryAdapter.
     Context context;
     List<SubCategory> categoryList;
 
+    Long shopId;
+
     public SubCategoryAdapter(Context context, List<SubCategory> categoryList) {
         this.context = context;
         this.categoryList = categoryList;
@@ -53,9 +55,16 @@ public class SubCategoryAdapter extends RecyclerView.Adapter<SubCategoryAdapter.
 
     public void addItems(List<SubCategory> categories) {
 
-        categoryList.addAll(categories);
-        notifyDataSetChanged();
+        for (SubCategory sc : categories) {
+            categoryList.add(sc);
+            notifyDataSetChanged();
+        }
 
+
+    }
+
+    void setShopId(Long shopId) {
+        this.shopId = shopId;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -70,18 +79,11 @@ public class SubCategoryAdapter extends RecyclerView.Adapter<SubCategoryAdapter.
             imageView.setOnClickListener(v -> {
 
                 Timber.e("Whats HAppening");
-/*
-                if (categoryList.get(getPosition()).getCategories().size() > 0) {
-                    Intent intent = new Intent(context, SubCategoryActivity.class);
-                    intent.putExtra("Category", categoryList.get(getPosition()));
-                    context.startActivity(intent);
-                } else {
-                    Intent intent = new Intent(context, CategoryActivity.class);
-                    intent.putExtra("Category", categoryList.get(getPosition()));
-                    context.startActivity(intent);
-                }*/
 
-
+                Intent intent = new Intent(context, ShopActivity.class);
+                intent.putExtra("Shop", shopId);
+                intent.putExtra("Category", categoryList.get(getPosition()).getId());
+                context.startActivity(intent);
             });
 
         }

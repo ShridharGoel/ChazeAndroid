@@ -3,9 +3,12 @@ package com.chaze.india.repository.network;
 
 import com.chaze.india.models.Ecommerce.CategoriesResponse;
 import com.chaze.india.models.Ecommerce.PostsResponse;
+import com.chaze.india.models.Ecommerce.ProductListResponse;
 import com.chaze.india.models.Ecommerce.Shop;
 import com.chaze.india.models.Ecommerce.ShopListResponse;
 import com.chaze.india.models.Ecommerce.SubCategoriesResponse;
+
+import org.androidannotations.annotations.rest.Get;
 
 import java.util.List;
 
@@ -34,17 +37,23 @@ public interface ECommerceAPIService {
 
 
     @GET("products/posts/")
-    Single<PostsResponse> getPostsForShop(@Query("shop") String id);
+    Single<PostsResponse> getPostsForShop(@Query("shop") Long id);
 
     @GET("categories/children/")
     Single<CategoriesResponse> getCategories();
 
     @GET("products/posts/")
-    Single<PostsResponse> getPostsForShopAndCategory(@Query("shop") String shop, @Query("category") String category);
+    Single<PostsResponse> getPostsForShopAndCategory(@Query("shop") Long shop, @Query("category") Long category);
+
+    @GET("products/posts/")
+    Single<PostsResponse> getPostsForCategory(@Query("category") Long category);
 
     @GET("categories/subcategories/")
-    Single<SubCategoriesResponse> getSubCategories(@Query("shop") String shop, @Query("category") String category);
+    Single<SubCategoriesResponse> getSubCategories(@Query("shop") Long shop, @Query("category") Long category);
 
     @GET("shops/{shop}")
-    Single<ShopListResponse> getShop(@Path("shop") String id);
+    Single<ShopListResponse> getShop(@Path("shop") Long id);
+
+    @GET("products/shopAndCategory")
+    Single<ProductListResponse> getProductsByShopAndCategory(@Query("category") Long categoryId, @Query("shop") Long shopId);
 }

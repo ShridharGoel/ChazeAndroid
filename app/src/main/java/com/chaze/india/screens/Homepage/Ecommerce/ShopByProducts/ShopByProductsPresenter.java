@@ -40,13 +40,13 @@ public class ShopByProductsPresenter<V extends ShopByProductsContract.View> exte
         implements ShopByProductsContract.Presenter<V> {
 
 
-    private PublishProcessor<Integer> paginator = PublishProcessor.create();
     private int pageNumber;
 
     @Inject
     public ShopByProductsPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {
         super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
     }
+
 
     public void next() {
         pageNumber++;

@@ -86,7 +86,6 @@ public class SubCategoryActivity extends BaseActivity implements SubCategoryCont
 
         category = (Category) getIntent().getExtras().getSerializable("Category");
         setup();
-        setUpLoadMoreListener();
     }
 
     private void setup() {
@@ -96,7 +95,8 @@ public class SubCategoryActivity extends BaseActivity implements SubCategoryCont
         adapter.addItems(category.getCategories());
         recyclerView.setAdapter(postAdapter);
         recyclerView.setLayoutManager(mLayoutManager);
-        mPresenter.subscribeForData();
+        setUpLoadMoreListener();
+        mPresenter.getPosts(category.getId(), 0);
     }
 
     private void setupToolBar() {
@@ -118,11 +118,7 @@ public class SubCategoryActivity extends BaseActivity implements SubCategoryCont
     }
 
 
-    /**
-     * setting listener to get callback for load more
-     */
     private void setUpLoadMoreListener() {
-
 
         nestedScrollView.setOnScrollChangeListener((NestedScrollView.OnScrollChangeListener) (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
             if (v.getChildAt(v.getChildCount() - 1) != null) {
@@ -161,7 +157,13 @@ public class SubCategoryActivity extends BaseActivity implements SubCategoryCont
 
     @Override
     public void addItems(List<Post> items) {
-        //postAdapter.shopPosts(null);
+        postAdapter.setIsFromCategory(true, category.getId());
+        postAdapter.addItems(items);
+    }
+
+    @Override
+    public Long getCategory() {
+        return category.getId();
     }
 
 

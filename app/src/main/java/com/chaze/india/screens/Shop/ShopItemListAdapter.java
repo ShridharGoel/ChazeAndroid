@@ -14,10 +14,12 @@ import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
 import com.chaze.india.R;
+import com.chaze.india.models.Ecommerce.Product;
 import com.chaze.india.models.Food.RestaurantItem;
 import com.iarcuschin.simpleratingbar.SimpleRatingBar;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ShopItemListAdapter extends RecyclerView.Adapter<ShopItemListAdapter.RestaurantItemViewHolder> {
 
@@ -67,6 +69,7 @@ public class ShopItemListAdapter extends RecyclerView.Adapter<ShopItemListAdapte
     public int getItemCount() {
         return restaurantItemArrayList.size();
     }
+
 
     public class RestaurantItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
