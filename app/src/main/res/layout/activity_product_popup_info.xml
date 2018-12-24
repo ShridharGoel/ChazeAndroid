@@ -63,8 +63,8 @@
 
                 <android.support.constraint.ConstraintLayout
                     android:id="@+id/linearLayout"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/offer_circle_bg"
@@ -125,8 +125,8 @@
 
                 <android.support.constraint.ConstraintLayout
                     android:id="@+id/linearLayout2"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/offer_circle_bg"
@@ -139,7 +139,7 @@
                         android:id="@+id/rating_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
+                        android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
                         android:text="4"
                         android:textColor="@color/textLightPrimary"
@@ -152,7 +152,7 @@
                         android:layout_width="14dp"
                         android:layout_height="15dp"
                         android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="4dp"
+                        android:layout_marginEnd="8dp"
                         android:layout_marginTop="4dp"
                         android:background="@drawable/ic_star_black_24dp"
                         android:textColor="@color/textLightPrimary"

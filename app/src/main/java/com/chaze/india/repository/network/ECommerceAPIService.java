@@ -1,6 +1,8 @@
 package com.chaze.india.repository.network;
 
 
+import com.chaze.india.models.Ecommerce.CartResponse;
+import com.chaze.india.models.Ecommerce.CartUpdateResponse;
 import com.chaze.india.models.Ecommerce.CategoriesResponse;
 import com.chaze.india.models.Ecommerce.CategoriesShopResponse;
 import com.chaze.india.models.Ecommerce.PostsResponse;
@@ -11,6 +13,7 @@ import com.chaze.india.models.Ecommerce.SubCategoriesResponse;
 import com.chaze.india.models.SuggestionsResponse;
 
 import org.androidannotations.annotations.rest.Get;
+import org.androidannotations.annotations.rest.Head;
 
 import java.util.List;
 
@@ -19,6 +22,8 @@ import io.reactivex.Single;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -64,4 +69,16 @@ public interface ECommerceAPIService {
 
     @GET("shops/category/{category}")
     Single<CategoriesShopResponse> getShopForCategory(@Path("category") Long category);
+
+    @GET("cart")
+    Single<CartResponse> getCart(@Header("token") String token);
+
+
+    @FormUrlEncoded
+    @POST("cart/addToCart")
+    Single<CartUpdateResponse> addItemToCart(@Header("token") String token, @Field("product_id") Long productId, @Field("quantity") int quantity, @Field("description") String description);
+
+    @FormUrlEncoded
+    @POST("cart/removeFromCart")
+    Single<CartUpdateResponse> remoteItemFromCart(@Header("token") String token, @Field("product_id") Long productId);
 }

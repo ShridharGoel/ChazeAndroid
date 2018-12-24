@@ -2,6 +2,7 @@ package com.chaze.india.repository.session;
 
 import com.chaze.india.models.Ecommerce.CartBusiness;
 import com.chaze.india.models.Ecommerce.CartEcommerce;
+import com.chaze.india.models.Ecommerce.CartResponse;
 
 import java.util.Date;
 
@@ -61,9 +62,9 @@ public interface ISessionManager {
 
     CartBusiness getCurrentCartStateFood();
 
-    void setCurrentCartStateEcommerce(CartEcommerce cartEcommerce);
+    void setCurrentCartStateEcommerce(CartResponse cartEcommerce);
 
-    CartEcommerce getCurrentCartStateEcommerce();
+    CartResponse getCurrentCartStateEcommerce();
 
 
     void setPreviousOrderCartEcommerce(CartEcommerce cartEcommerce);
@@ -89,5 +90,9 @@ public interface ISessionManager {
     void setFcmToken(String fcmToken);
 
     String getFcmToken();
+
+    void setToken(String token);
+
+    String getToken();
 
 }
