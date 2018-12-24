@@ -23,11 +23,7 @@ public class AppController extends Application {
     }
 
     @Inject
-
     SessionManager mSessionManager;
-
-    @Inject
-    CartManager mCartManager;
 
     @Inject
     ICommonAPIManager iCommonAPIManager;

@@ -32,7 +32,10 @@ public class CartManager {
 
     private boolean toUpdateCart = false;
 
-    @Inject
+    public CartManager(Context c) {
+    }
+
+   /* @Inject
     public CartManager(Context c, SessionManager sessionManager, ICommonAPIManager commonAPIManager) {
         this.context = context;
         this.sessionManager = new SessionManager(context);
@@ -142,6 +145,6 @@ public class CartManager {
     private void broadCastUpdate(Long productId, int quantity, String description) {
 
     }
-
+*/
 
 }

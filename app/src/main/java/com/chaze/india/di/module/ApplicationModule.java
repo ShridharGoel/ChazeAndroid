@@ -49,13 +49,11 @@ public class ApplicationModule {
         return new SessionManager(c);
     }
 
-
     @Provides
     @ApplicationScope
-    CartManager cartManager(@ApplicationContext Context c, SessionManager sessionManager, ICommonAPIManager commonAPIManager){
-        return new CartManager(c, sessionManager,commonAPIManager);
+    CartManager cartManager(@ApplicationContext Context c){
+        return new CartManager(c);
     }
-
     @Provides
     @ApplicationScope
     SchedulerProvider provideSchedulerProvider() {
