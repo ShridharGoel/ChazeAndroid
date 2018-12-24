@@ -39,20 +39,19 @@ public class ProductsListAdapter extends RecyclerView.Adapter<ProductsListAdapte
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.product_view_linear, viewGroup, false);
+                .inflate(R.layout.product_view_grid, viewGroup, false);
 
         return new ViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        (viewHolder).topic.setText("" + products.get(i).getName());
-        (viewHolder).name.setText(products.get(i).getName());
+        (viewHolder).nameView.setText("" + products.get(i).getName());
 
-        (viewHolder).price.setText("Rs. " + products.get(i).getPrice().intValue());
+        (viewHolder).priceView.setText("Rs. " + products.get(i).getPrice().intValue());
         Picasso.get().load(products.get(i).getImageFirst())
                 .error(R.drawable.ic_menu_manage)
-                .into((viewHolder).image1);
+                .into((viewHolder).imageView);
 
     }
 
@@ -67,23 +66,30 @@ public class ProductsListAdapter extends RecyclerView.Adapter<ProductsListAdapte
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView image1;
-        TextView name, topic, price;
 
 
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
+        TextView nameView;
+        ImageView imageView;
+        TextView priceView;
 
-            image1 = itemView.findViewById(R.id.card4_image);
-            name = itemView.findViewById(R.id.name);
+        public ViewHolder(@NonNull View v) {
+            super(v);
+            nameView = v.findViewById(R.id.name_view);
+            imageView = v.findViewById(R.id.image_view);
+            priceView = v.findViewById(R.id.price_view);
 
-            price = itemView.findViewById(R.id.price);
-            topic = itemView.findViewById(R.id.topic_name);
+            v.setOnClickListener(view -> {
 
-            itemView.setOnClickListener(v -> {
                 Intent intent = new Intent(context, ProductInfoActivity.class);
                 intent.putExtra("Product", products.get(getPosition()));
-                context.startActivity(intent);
+
+                Pair<View, String> p1 = Pair.create((View) imageView, "image_view");
+                Pair<View, String> p2 = Pair.create((View) nameView, "name_view");
+                Pair<View, String> p3 = Pair.create((View) priceView, "price_view");
+                ActivityOptionsCompat options = ActivityOptionsCompat.
+                        makeSceneTransitionAnimation((Activity) context, p1, p2, p3);
+
+                context.startActivity(intent, options.toBundle());
             });
         }
     }

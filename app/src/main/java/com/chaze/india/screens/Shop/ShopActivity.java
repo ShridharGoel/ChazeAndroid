@@ -6,6 +6,7 @@ import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
 import android.support.v4.widget.NestedScrollView;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 
 import android.view.View;
@@ -199,6 +200,7 @@ public class ShopActivity extends BaseActivity implements ShopContract.View {
 
     @Override
     public void showProducts(List<Product> products) {
+        recyclerView.setLayoutManager(new GridLayoutManager(this,2 ));
         recyclerView.setAdapter(productsAdapter);
         productsAdapter.addItems(products);
     }
@@ -208,7 +210,9 @@ public class ShopActivity extends BaseActivity implements ShopContract.View {
         shopName.setText(shop.getName());
 
         address.setText(shop.getAddress());
-        Picasso.get().load(shop.getImageUrl()).into(imageView);
+        Picasso.get().load(shop.getImageUrl())
+                .placeholder(R.drawable.shop_place_holder)
+                .into(imageView);
         if ((shop.getStatus() == 1)) {
             status.setText("Open");
             // status.setBackgroundColor(getResources().getColor(R.color.));
@@ -239,6 +243,3 @@ public class ShopActivity extends BaseActivity implements ShopContract.View {
 
 
 }
-
-
-//Todo: Implementation of final category and shop, just shop list of products rather than shops

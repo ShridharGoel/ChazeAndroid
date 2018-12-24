@@ -2,6 +2,7 @@ package com.chaze.india.repository.network;
 
 
 import com.chaze.india.models.Ecommerce.CategoriesResponse;
+import com.chaze.india.models.Ecommerce.CategoriesShopResponse;
 import com.chaze.india.models.Ecommerce.PostsResponse;
 import com.chaze.india.models.Ecommerce.ProductListResponse;
 import com.chaze.india.models.Ecommerce.Shop;
@@ -59,5 +60,8 @@ public interface ECommerceAPIService {
     Single<ProductListResponse> getProductsByShopAndCategory(@Query("category") Long categoryId, @Query("shop") Long shopId);
 
     @GET("products/suggestions")
-    Single<SuggestionsResponse> getSuggestions(@Query("query")String query);
+    Single<SuggestionsResponse> getSuggestions(@Query("query") String query);
+
+    @GET("shops/category/{category}")
+    Single<CategoriesShopResponse> getShopForCategory(@Path("category") Long category);
 }

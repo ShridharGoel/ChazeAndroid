@@ -126,6 +126,11 @@ public class AdapterModule {
     }
 
     @Provides
+    ShopCategoryAdapter providesShopCategoryAdapter() {
+        return new ShopCategoryAdapter(new ArrayList<>(), mActivity);
+    }
+
+    @Provides
     ProductsListAdapter providesProductListList() {
         return new ProductsListAdapter(mActivity, new ArrayList<>());
     }
@@ -141,10 +146,6 @@ public class AdapterModule {
     }
 
 
-    @Provides
-    ShopCategoryAdapter providesShopCategoryAdapter() {
-        return new ShopCategoryAdapter();
-    }
 
 
     @Provides

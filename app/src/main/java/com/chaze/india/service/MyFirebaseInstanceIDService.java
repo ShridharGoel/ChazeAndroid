@@ -52,7 +52,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
     }
 
     private void storeTokenInDjango(String refreshedToken) {
-            iCommonAPIManager.getDeliveryAPIService();
+           // iCommonAPIManager.getDeliveryAPIService();
     }
 
 

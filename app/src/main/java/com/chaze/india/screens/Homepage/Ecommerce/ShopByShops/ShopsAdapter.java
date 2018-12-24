@@ -47,8 +47,8 @@ public class ShopsAdapter extends RecyclerView.Adapter<ShopsAdapter.ViewHolder> 
         viewHolder.speciality.setText(item.getTaxDescription());
         Picasso.get()
                 .load(item.getImageUrl())
-                .placeholder(R.drawable.ic_menu_camera)
-                .error(R.drawable.ic_menu_gallery)
+                .placeholder(R.drawable.shop_place_holder)
+                .error(R.drawable.shop_place_holder)
                 .into(viewHolder.imageView);
 
         viewHolder.name.setText(item.getName());
@@ -120,8 +120,8 @@ public class ShopsAdapter extends RecyclerView.Adapter<ShopsAdapter.ViewHolder> 
                 ActivityOptionsCompat options = ActivityOptionsCompat.
                         makeSceneTransitionAnimation((Activity) context, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11);
 
-                intent.putExtra("Shop",String.valueOf(shops.get(getPosition()).getId()));
-                intent.putExtra("Category", "-1");
+                intent.putExtra("Shop",shops.get(getPosition()).getId());
+                intent.putExtra("Category", Long.valueOf(-1));
                 //context.startActivity(intent);
                 context.startActivity(intent, options.toBundle());
             });
