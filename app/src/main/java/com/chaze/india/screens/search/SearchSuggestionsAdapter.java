@@ -2,6 +2,8 @@ package com.chaze.india.screens.search;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+
+import com.chaze.india.models.Suggestion;
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 
 import android.support.v7.widget.RecyclerView;
@@ -14,16 +16,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chaze.india.R;
-import com.chaze.india.models.SearchResult;
 
 import java.util.List;
 
 public class SearchSuggestionsAdapter extends RecyclerView.Adapter<SearchSuggestionsAdapter.ViewHolder> {
     Context context;
-    List<SearchResult> suggestions;
+    List<Suggestion> suggestions;
     SearchView searchView;
 
-    public SearchSuggestionsAdapter(Context context, List<SearchResult> suggestions) {
+    public SearchSuggestionsAdapter(Context context, List<Suggestion> suggestions) {
         this.context = context;
         this.suggestions = suggestions;
     }
@@ -39,8 +40,8 @@ public class SearchSuggestionsAdapter extends RecyclerView.Adapter<SearchSuggest
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        SearchResult item = suggestions.get(i);
-        viewHolder.searchText.setText(item.getText());
+        Suggestion item = suggestions.get(i);
+        viewHolder.searchText.setText(item.getName());
         //viewHolder.imageView.setImageDrawable(item.getImage());
 
     }
@@ -51,13 +52,10 @@ public class SearchSuggestionsAdapter extends RecyclerView.Adapter<SearchSuggest
     }
 
 
-    public void recreateList(String txt, SearchView searchView) {
+    public void recreateList(List<Suggestion> list, SearchView searchView) {
         suggestions.clear();
         this.searchView = searchView;
-
-        for (int i = 0; i < 40; i++)
-            suggestions.add(new SearchResult(" " + txt + " " + txt));
-
+        suggestions.addAll(list);
         notifyDataSetChanged();
     }
 

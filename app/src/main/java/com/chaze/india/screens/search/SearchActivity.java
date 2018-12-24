@@ -13,7 +13,10 @@ import android.widget.TextView;
 
 import com.chaze.india.R;
 import com.chaze.india.di.Qualifiers.LinLayoutVert;
+import com.chaze.india.models.Suggestion;
 import com.chaze.india.screens.base.BaseActivity;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -136,8 +139,13 @@ public class SearchActivity extends BaseActivity implements SearchContract.View 
     }
 
 
-    public void recreateList(String txt) {
+    public void recreateList(List<Suggestion> txt) {
         adapter.recreateList(txt, searchView);
+    }
+
+    @Override
+    public void showError(String message) {
+        Timber.e(message);
     }
 
     @Override

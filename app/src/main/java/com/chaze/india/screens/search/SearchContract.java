@@ -2,8 +2,10 @@ package com.chaze.india.screens.search;
 
 import android.widget.SearchView;
 
+import com.chaze.india.models.Suggestion;
 import com.chaze.india.screens.base.MvpContract;
-import com.chaze.india.screens.base.MvpContract;
+
+import java.util.List;
 
 
 /**
@@ -17,7 +19,9 @@ public class SearchContract {
 
         SearchView getSearchView();
 
-        void recreateList(String result);
+        void recreateList(List<Suggestion> suggestions);
+
+        void showError(String message);
     }
 
 

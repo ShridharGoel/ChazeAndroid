@@ -7,6 +7,7 @@ import com.chaze.india.models.Ecommerce.ProductListResponse;
 import com.chaze.india.models.Ecommerce.Shop;
 import com.chaze.india.models.Ecommerce.ShopListResponse;
 import com.chaze.india.models.Ecommerce.SubCategoriesResponse;
+import com.chaze.india.models.SuggestionsResponse;
 
 import org.androidannotations.annotations.rest.Get;
 
@@ -56,4 +57,7 @@ public interface ECommerceAPIService {
 
     @GET("products/shopAndCategory")
     Single<ProductListResponse> getProductsByShopAndCategory(@Query("category") Long categoryId, @Query("shop") Long shopId);
+
+    @GET("products/suggestions")
+    Single<SuggestionsResponse> getSuggestions(@Query("query")String query);
 }
