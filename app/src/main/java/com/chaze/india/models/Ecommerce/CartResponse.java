@@ -12,35 +12,35 @@ import com.google.gson.annotations.SerializedName;
 @SuppressWarnings("unused")
 public class CartResponse {
 
-
+    @SerializedName("error")
+    private String mError;
     @SerializedName("results")
-    private List<CartShop> mCartShops;
+    private List<CartShop> cartShops;
     @SerializedName("success")
     private Boolean mSuccess;
 
-    @Expose
-    private String error;
-
-    public List<CartShop> getmCartShops() {
-        return mCartShops;
+    public String getmError() {
+        return mError;
     }
 
-    public String getError() {
-        return this.error;
+    public void setmError(String mError) {
+        this.mError = mError;
     }
 
-
-
-    public void setmCartShops(List<CartShop> cartShops) {
-        mCartShops = cartShops;
+    public List<CartShop> getCartShops() {
+        return cartShops;
     }
 
-    public Boolean getSuccess() {
+    public void setCartShops(List<CartShop> mResults) {
+        this.cartShops = mResults;
+    }
+
+    public Boolean getmSuccess() {
         return mSuccess;
     }
 
-    public void setSuccess(Boolean success) {
-        mSuccess = success;
+    public void setmSuccess(Boolean mSuccess) {
+        this.mSuccess = mSuccess;
     }
 
 }

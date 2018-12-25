@@ -26,8 +26,6 @@ public class CartManager {
     private Context context;
     private ICommonAPIManager commonAPIManager;
 
-    private boolean toUpdateCart = false;
-
 
     @Inject
     public CartManager(Context c, SessionManager sessionManager, ICommonAPIManager commonAPIManager) {
@@ -55,7 +53,7 @@ public class CartManager {
         if (cart == null) return ans;
         try {
             for (CartShop cs :
-                    cart.getmCartShops()) {
+                    cart.getCartShops()) {
                 ans = ans + cs.getProducts().size();
             }
         } catch (Exception e) {
@@ -66,7 +64,6 @@ public class CartManager {
 
 
     public void addItemToCart(Product product, Long quantity, String description, TextView cartCountBadge) {
-        toUpdateCart = true;
         addItemToServer(product.getId(), quantity, description, cartCountBadge);
     }
 
@@ -78,13 +75,13 @@ public class CartManager {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(cartResponse -> {
-                    if (cartResponse.getSuccess()) {
+                    if (cartResponse.getmSuccess()) {
                         this.cart = cartResponse;
                     } else {
                         this.cart = new CartResponse();
-                        Timber.e(cartResponse.getError());
+                        Timber.e(cartResponse.getmError());
+                        Toast.makeText(context, cartResponse.getmError(), Toast.LENGTH_SHORT).show();
                     }
-                    toUpdateCart = false;
                 }, throwable -> {
                     Timber.e(throwable.getMessage());
                     Toast.makeText(context, "Sorry, Some Error has Occured...", Toast.LENGTH_SHORT).show();
@@ -96,20 +93,15 @@ public class CartManager {
         commonAPIManager.getECommerceAPIService().addItemToCart(sessionManager.getToken(), productId, quantity, description)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(cartUpdateResponse -> {
+                .subscribe(cartResponse -> {
 
                     Toast.makeText(context, "Product Added Succesfully...", Toast.LENGTH_SHORT).show();
-                    if (cartUpdateResponse.getSuccess()) {
-
+                    if (cartResponse.getmSuccess()) {
                         cartCountBadge.setText(String.valueOf(getItemsCount()));
-                        if (toUpdateCart) {
-                            updateCartFromApi();
-                        } else {
-                            broadCastUpdate(productId, quantity, description);
-                        }
+                        this.cart = cartResponse;
                     } else {
-                        Timber.e(cartUpdateResponse.getResults());
-                        Toast.makeText(context, cartUpdateResponse.getResults(), Toast.LENGTH_SHORT).show();
+                        Timber.e(cartResponse.getmError());
+                        Toast.makeText(context, cartResponse.getmError(), Toast.LENGTH_SHORT).show();
                     }
                 }, throwable -> {
                     Timber.e(throwable.getMessage());
@@ -142,9 +134,9 @@ public class CartManager {
 
     public CartItem checkIfThisProductPresent(Long productId, Long sellerId) {
 
-        if (cart.getmCartShops() == null) return null;
+        if (cart.getCartShops() == null) return null;
         for (CartShop cs :
-                cart.getmCartShops()) {
+                cart.getCartShops()) {
 
             if (cs.getKey().equals(sellerId)) {
                 for (CartItem ci :

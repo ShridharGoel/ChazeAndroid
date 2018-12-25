@@ -163,7 +163,7 @@ public class ProductInfoActivity extends BaseActivity implements ProductInfoCont
 
         presenter.onAttach(this);
         presenter.loadData(product);
-        cartCountBadge.setText(presenter.getItemsCount());
+        cartCountBadge.setText("" + presenter.getItemsCount());
     }
 
     private void setup() {
