@@ -1,44 +1,43 @@
+
 package com.chaze.india.models.Authentication;
 
-/**
- * Created by Shridhar Goel on 13/10/18.
- */
+import javax.annotation.Generated;
 
+import com.google.gson.annotations.SerializedName;
+
+@Generated("net.hexar.json2pojo")
+@SuppressWarnings("unused")
 public class LoginResponse {
 
-    Boolean isLoginError;
-    String userName, userId, mobile, email, pass;
+    @SerializedName("result")
+    private User mUser;
+    @SerializedName("success")
+    private Boolean mSuccess;
+    @SerializedName("token")
+    private String mToken;
 
-    public LoginResponse(Boolean isLoginError, String userName, String userId, String mobile, String email, String pass) {
-        this.isLoginError = isLoginError;
-        this.userName = userName;
-        this.userId = userId;
-        this.mobile = mobile;
-        this.email = email;
-        this.pass = pass;
+    public User getmUser() {
+        return mUser;
     }
 
-    public Boolean getLoginError() {
-        return isLoginError;
+    public void setmUser(User user) {
+        mUser = user;
     }
 
-    public String getUserName() {
-        return userName;
+    public Boolean getSuccess() {
+        return mSuccess;
     }
 
-    public String getUserId() {
-        return userId;
+    public void setSuccess(Boolean success) {
+        mSuccess = success;
     }
 
-    public String getMobile() {
-        return mobile;
+    public String getToken() {
+        return mToken;
     }
 
-    public String getEmail() {
-        return email;
+    public void setToken(String token) {
+        mToken = token;
     }
 
-    public String getPass() {
-        return pass;
-    }
 }

@@ -3,6 +3,7 @@ package com.chaze.india.screens.Authentication.Login;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -33,18 +34,17 @@ import butterknife.ButterKnife;
 import timber.log.Timber;
 
 /**
- post request on /login
- param: email or mobile
- password:
-
- return: {
-    success:false/true
-    error:
-    token:secret key
-    user:
- }
-
-**/
+ * post request on /login
+ * param: email or mobile
+ * password:
+ * <p>
+ * return: {
+ * success:false/true
+ * error:
+ * token:secret key
+ * user:
+ * }
+ **/
 
 /**
  * Created by Shridhar Goel on 14/10/18.
@@ -87,101 +87,87 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     @Inject
     LoginContract.Presenter<LoginContract.View> mPresenter;
 
+    boolean isFromLaunch = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         ButterKnife.bind(this);
-
         getActivityComponent().inject(this);
-
         mPresenter.onAttach(this);
+
+        try {
+            isFromLaunch = getIntent().getExtras().getBoolean("is_from_launch");
+            isFromLaunch = true;
+        } catch (Exception ignored) {
+
+        }
+
+        setup();
+    }
+
+    private void setup() {
 
         signupBtn.setOnClickListener(view -> {
             Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
-
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
             finish();
             overridePendingTransition(0, 0);
         });
 
-        skipBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-            startActivity(intent);
-            finish();
-        });
+        if (isFromLaunch)
+            skipBtn.setOnClickListener(v -> {
+                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                startActivity(intent);
+                finish();
+            });
+        else skipBtn.setOnClickListener(v -> finish());
 
-        loginSubmitBtn.setOnClickListener(v ->
-        {
-            if(!TextUtils.isEmpty(loginMobile.getText().toString()) && !TextUtils.isEmpty(loginPass.getText().toString())) {
-
-                if(TextUtils.isDigitsOnly(loginMobile.getText().toString()))
+        loginSubmitBtn.setOnClickListener(v -> {
+            if (!TextUtils.isEmpty(loginMobile.getText().toString()) && !TextUtils.isEmpty(loginPass.getText().toString())) {
+                if (TextUtils.isDigitsOnly(loginMobile.getText().toString()))
                     mPresenter.doLogin(loginMobile.getText().toString(), loginPass.getText().toString());
-
                 else
                     mPresenter.doLoginWithEmail(loginMobile.getText().toString(), loginPass.getText().toString());
-            }
-
-            else if(TextUtils.isEmpty(loginMobile.getText().toString()))
+            } else if (TextUtils.isEmpty(loginMobile.getText().toString()))
                 Toast.makeText(this, "Please enter your mobile number.", Toast.LENGTH_SHORT).show();
 
-            else if(TextUtils.isEmpty(loginPass.getText().toString()))
+            else if (TextUtils.isEmpty(loginPass.getText().toString()))
                 Toast.makeText(this, "Please enter your password.", Toast.LENGTH_SHORT).show();
         });
-
-        forgotPass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                builder.setTitle("Enter your mobile number or email");
-
-                // Set up the input
-                final EditText input = new EditText(LoginActivity.this);
-
-                // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-                input.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS | InputType.TYPE_TEXT_VARIATION_PHONETIC);
-                builder.setView(input);
-
-                // Set up the buttons
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        forgotPassMobile = input.getText().toString();
-
-                        if(TextUtils.isDigitsOnly(forgotPassMobile)) {
-                            mPresenter.hasForgottenPassword(forgotPassMobile);
-                        }
-                        else {
-                            mPresenter.hasForgottenPasswordWithEmail(forgotPassMobile);
-                        }
-                    }
-                });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-
-                builder.show();
-            }
+        forgotPass.setOnClickListener(v -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+            builder.setTitle("Enter your mobile number or email");
+            // Set up the input
+            final EditText input = new EditText(LoginActivity.this);
+            // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+            input.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS | InputType.TYPE_TEXT_VARIATION_PHONETIC);
+            builder.setView(input);
+            // Set up the buttons
+            builder.setPositiveButton("OK", (dialog, which) -> {
+                forgotPassMobile = input.getText().toString();
+                if (TextUtils.isDigitsOnly(forgotPassMobile)) {
+                    mPresenter.hasForgottenPassword(forgotPassMobile);
+                } else {
+                    mPresenter.hasForgottenPasswordWithEmail(forgotPassMobile);
+                }
+            });
+            builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
+            builder.show();
         });
-
-
-    googleLogin.setOnClickListener(v -> {
-        // Configure sign-in to request the user's ID, email address, and basic
-        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-        // Build a GoogleSignInClient with the options specified by gso.
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-        signIn();
-    });
-}
+        googleLogin.setOnClickListener(v -> {
+            // Configure sign-in to request the user's ID, email address, and basic
+            // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestEmail()
+                    .build();
+            // Build a GoogleSignInClient with the options specified by gso.
+            mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+            signIn();
+        });
+    }
 
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
@@ -202,10 +188,19 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
-            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            GoogleSignInAccount acct = completedTask.getResult(ApiException.class);
+            if (acct != null) {
+                String personName = acct.getDisplayName();
+                String personGivenName = acct.getGivenName();
+                String personFamilyName = acct.getFamilyName();
+                String personEmail = acct.getEmail();
+                String personId = acct.getId();
+                Uri personPhoto = acct.getPhotoUrl();
+            }
             // Signed in successfully, show authenticated UI.
             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
             startActivity(intent);
+            finish();
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.

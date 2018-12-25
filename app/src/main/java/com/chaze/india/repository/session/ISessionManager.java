@@ -1,5 +1,6 @@
 package com.chaze.india.repository.session;
 
+import com.chaze.india.models.Authentication.User;
 import com.chaze.india.models.Ecommerce.CartBusiness;
 import com.chaze.india.models.Ecommerce.CartEcommerce;
 import com.chaze.india.models.Ecommerce.CartResponse;
@@ -95,4 +96,7 @@ public interface ISessionManager {
 
     String getToken();
 
+    void setUser(User user);
+
+    User getUser();
 }

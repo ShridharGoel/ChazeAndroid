@@ -4,10 +4,12 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import com.chaze.india.models.Authentication.User;
 import com.chaze.india.models.Ecommerce.CartBusiness;
 import com.chaze.india.models.Ecommerce.CartEcommerce;
 import com.chaze.india.models.Ecommerce.CartResponse;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.Date;
 
@@ -61,9 +63,6 @@ public class SessionManager implements ISessionManager {
 
     private static final String GMAIL_USER_SAVED_EMAIL = "fbUserSavedEmail";
 
-    private static final String PREVIOUS_ORDER_ID = "previousOrderId";
-
-    private static final String IS_PREVIOUS_ORDER_RATED = "isPreviousOrderRated";
 
     private static final String PREVIOUS_ORDER_CART_FOOD = "previousOrderCart";
 
@@ -78,6 +77,8 @@ public class SessionManager implements ISessionManager {
 
     private static final String TOKEN = "token";
 
+
+    private static final String USER = "user";
 
     @Inject
     public SessionManager(Context c) {
@@ -363,4 +364,18 @@ public class SessionManager implements ISessionManager {
         return pref.getString(TOKEN, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAxLCJ2YWwiOjIsImlhdCI6MTU0NDY0MDM1NX0.I9vJ5DURfUofoYh4MEj5tlyL7IuceKlWZRgmpzSW1Go");
     }
 
+    @Override
+    public void setUser(User user) {
+        Gson gson = new Gson();
+        String json = gson.toJson(user);
+        editor.putString(USER, json);
+        editor.commit();
+    }
+
+    @Override
+    public User getUser() {
+        Gson gson = new Gson();
+        String json = pref.getString(USER, null);
+        return gson.fromJson(json, User.class);
+    }
 }
