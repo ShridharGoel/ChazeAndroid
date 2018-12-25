@@ -2,164 +2,203 @@
 package com.chaze.india.models.Ecommerce;
 
 import javax.annotation.Generated;
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
 @Generated("net.hexar.json2pojo")
 @SuppressWarnings("unused")
-public class Product implements Serializable{
+public class Product implements Serializable {
 
     @SerializedName("business_name")
-    private String businessName;
+    private String mBusinessName;
+    @SerializedName("category_name")
+    private String mCategoryName;
     @SerializedName("close_time")
-    private String closeTime;
-    @Expose
-    private Double discount;
-    @Expose
-    private Long id;
+    private String mCloseTime;
+    @SerializedName("description")
+    private String mDescription;
+    @SerializedName("details")
+    private String mDetails;
+    @SerializedName("discount")
+    private Double mDiscount;
+    @SerializedName("id")
+    private Long mId;
     @SerializedName("image_first")
-    private String imageFirst;
+    private String mImageFirst;
     @SerializedName("image_second")
-    private String imageSecond;
+    private String mImageSecond;
     @SerializedName("image_third")
-    private String imageThird;
-    @Expose
-    private String name;
+    private String mImageThird;
+    @SerializedName("name")
+    private String mName;
     @SerializedName("open_time")
-    private String openTime;
-    @Expose
-    private Double price;
-    @Expose
-    private Double rating;
+    private String mOpenTime;
+    @SerializedName("price")
+    private Double mPrice;
+    @SerializedName("rating")
+    private Double mRating;
     @SerializedName("rating_count")
-    private Long ratingCount;
+    private Long mRatingCount;
     @SerializedName("seller_id")
-    private Long sellerId;
-    @Expose
-    private Long stock;
+    private Long mSellerId;
+    @SerializedName("stock")
+    private Long mStock;
+    @SerializedName("varieties")
+    private String mVarieties;
     @SerializedName("week_breakdown")
-    private Long weekBreakdown;
+    private Long mWeekBreakdown;
 
     public String getBusinessName() {
-        return businessName;
+        return mBusinessName;
     }
 
     public void setBusinessName(String businessName) {
-        this.businessName = businessName;
+        mBusinessName = businessName;
+    }
+
+    public String getCategoryName() {
+        return mCategoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        mCategoryName = categoryName;
     }
 
     public String getCloseTime() {
-        return closeTime;
+        return mCloseTime;
     }
 
     public void setCloseTime(String closeTime) {
-        this.closeTime = closeTime;
+        mCloseTime = closeTime;
+    }
+
+    public String getDescription() {
+        return mDescription;
+    }
+
+    public void setDescription(String description) {
+        mDescription = description;
+    }
+
+    public String getDetails() {
+        return mDetails;
+    }
+
+    public void setDetails(String details) {
+        mDetails = details;
     }
 
     public Double getDiscount() {
-        return discount;
+        return mDiscount;
     }
 
     public void setDiscount(Double discount) {
-        this.discount = discount;
+        mDiscount = discount;
     }
 
     public Long getId() {
-        return id;
+        return mId;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        mId = id;
     }
 
     public String getImageFirst() {
-        return imageFirst;
+        return mImageFirst;
     }
 
     public void setImageFirst(String imageFirst) {
-        this.imageFirst = imageFirst;
+        mImageFirst = imageFirst;
     }
 
     public String getImageSecond() {
-        return imageSecond;
+        return mImageSecond;
     }
 
     public void setImageSecond(String imageSecond) {
-        this.imageSecond = imageSecond;
+        mImageSecond = imageSecond;
     }
 
     public String getImageThird() {
-        return imageThird;
+        return mImageThird;
     }
 
     public void setImageThird(String imageThird) {
-        this.imageThird = imageThird;
+        mImageThird = imageThird;
     }
 
     public String getName() {
-        return name;
+        return mName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        mName = name;
     }
 
     public String getOpenTime() {
-        return openTime;
+        return mOpenTime;
     }
 
     public void setOpenTime(String openTime) {
-        this.openTime = openTime;
+        mOpenTime = openTime;
     }
 
     public Double getPrice() {
-        return price;
+        return mPrice;
     }
 
     public void setPrice(Double price) {
-        this.price = price;
+        mPrice = price;
     }
 
     public Double getRating() {
-        return rating;
+        return mRating;
     }
 
     public void setRating(Double rating) {
-        this.rating = rating;
+        mRating = rating;
     }
 
     public Long getRatingCount() {
-        return ratingCount;
+        return mRatingCount;
     }
 
     public void setRatingCount(Long ratingCount) {
-        this.ratingCount = ratingCount;
+        mRatingCount = ratingCount;
     }
 
     public Long getSellerId() {
-        return sellerId;
+        return mSellerId;
     }
 
     public void setSellerId(Long sellerId) {
-        this.sellerId = sellerId;
+        mSellerId = sellerId;
     }
 
     public Long getStock() {
-        return stock;
+        return mStock;
     }
 
     public void setStock(Long stock) {
-        this.stock = stock;
+        mStock = stock;
+    }
+
+    public String getVarieties() {
+        return mVarieties;
+    }
+
+    public void setVarieties(String varieties) {
+        mVarieties = varieties;
     }
 
     public Long getWeekBreakdown() {
-        return weekBreakdown;
+        return mWeekBreakdown;
     }
 
     public void setWeekBreakdown(Long weekBreakdown) {
-        this.weekBreakdown = weekBreakdown;
+        mWeekBreakdown = weekBreakdown;
     }
 
 }

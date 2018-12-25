@@ -41,7 +41,7 @@
 
 
         <ImageView
-            android:id="@+id/image"
+            android:id="@+id/sheet_image"
             android:layout_width="88dp"
             android:layout_height="88dp"
             android:layout_marginStart="8dp"
@@ -51,7 +51,7 @@
             app:srcCompat="@drawable/side_nav_bar" />
 
         <TextView
-            android:id="@+id/name"
+            android:id="@+id/sheet_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -66,11 +66,11 @@
             android:textColor="@color/textDarkPrimary"
             android:textSize="@dimen/text_very_large"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/image"
+            app:layout_constraintStart_toEndOf="@+id/sheet_image"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/price_view"
+            android:id="@+id/sheet_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -81,8 +81,8 @@
             android:text="Rs. 561"
             android:textColor="@color/colorPurple"
             android:textSize="@dimen/text_very_very_large"
-            app:layout_constraintStart_toEndOf="@+id/image"
-            app:layout_constraintTop_toBottomOf="@+id/name" />
+            app:layout_constraintStart_toEndOf="@+id/sheet_image"
+            app:layout_constraintTop_toBottomOf="@+id/sheet_name" />
 
 
         <ScrollView
@@ -94,7 +94,7 @@
             android:background="#eee"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/image">
+            app:layout_constraintTop_toBottomOf="@+id/sheet_image">
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
@@ -112,8 +112,7 @@
                     android:paddingRight="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/view8">
+                    app:layout_constraintStart_toStartOf="parent">
 
                     <TableRow
                         android:layout_width="match_parent"
@@ -217,6 +216,7 @@
 
 
         <TextView
+            android:id="@+id/confirm"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="56dp"

@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.chaze.india.R;
 import com.chaze.india.models.Ecommerce.Post;
+import com.chaze.india.screens.ProductInfo.ProductInfoActivity;
 import com.chaze.india.screens.Shop.ShopActivity;
 import com.squareup.picasso.Picasso;
 
@@ -102,6 +103,11 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
                         .error(R.drawable.ic_menu_manage)
                         .into(((Card1ViewHolder) viewHolder).image1);
 
+                ((Card1ViewHolder) viewHolder).image1.setOnClickListener(v -> {
+                    Intent intent = new Intent(context, ProductInfoActivity.class);
+                    intent.putExtra("Product", object.getProducts().get(0));
+                    context.startActivity(intent);
+                });
                 ((Card1ViewHolder) viewHolder).textName1.setText(object.getProducts().get(0).getName());
 
 
@@ -109,11 +115,24 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
                         .error(R.drawable.ic_menu_manage)
                         .into(((Card1ViewHolder) viewHolder).image2);
 
+                ((Card1ViewHolder) viewHolder).image2.setOnClickListener(v -> {
+                    Intent intent = new Intent(context, ProductInfoActivity.class);
+                    intent.putExtra("Product", object.getProducts().get(1));
+                    context.startActivity(intent);
+                });
+
+
                 ((Card1ViewHolder) viewHolder).textName1.setText(object.getProducts().get(1).getName());
 
                 Picasso.get().load(object.getProducts().get(2).getImageFirst())
                         .error(R.drawable.ic_menu_manage)
                         .into(((Card1ViewHolder) viewHolder).image3);
+
+                ((Card1ViewHolder) viewHolder).image3.setOnClickListener(v -> {
+                    Intent intent = new Intent(context, ProductInfoActivity.class);
+                    intent.putExtra("Product", object.getProducts().get(2));
+                    context.startActivity(intent);
+                });
 
                 ((Card1ViewHolder) viewHolder).textName1.setText(object.getProducts().get(2).getName());
                 ((Card1ViewHolder) viewHolder).shimmerLayout.setShimmerColor(context.getResources().getColor(R.color.white));
@@ -127,6 +146,12 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
                         .into(((Card2ViewHolder) viewHolder).image1);
                 ((Card2ViewHolder) viewHolder).textName1.setText(object.getProducts().get(0).getName());
                 ((Card2ViewHolder) viewHolder).description1.setText("Rs. " + object.getProducts().get(0).getPrice());
+
+                ((Card2ViewHolder) viewHolder).image1.setOnClickListener(v -> {
+                    Intent intent = new Intent(context, ProductInfoActivity.class);
+                    intent.putExtra("Product", object.getProducts().get(0));
+                    context.startActivity(intent);
+                });
 
                 Picasso.get().load(object.getProducts().get(1).getImageFirst())
                         .error(R.drawable.ic_menu_manage)
@@ -338,7 +363,7 @@ public class ProductsPostAdapter extends RecyclerView.Adapter {
         public Card4ViewHolder(@NonNull View itemView) {
             super(itemView);
             image1 = itemView.findViewById(R.id.card4_image);
-            name = itemView.findViewById(R.id.name);
+            name = itemView.findViewById(R.id.sheet_name);
 
             price = itemView.findViewById(R.id.price);
             viewall = itemView.findViewById(R.id.viewall);

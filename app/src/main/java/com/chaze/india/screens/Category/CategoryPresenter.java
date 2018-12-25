@@ -5,6 +5,8 @@ package com.chaze.india.screens.Category;
 import android.annotation.SuppressLint;
 
 import com.chaze.india.models.CategorySearchResults;
+import com.chaze.india.repository.CartManager;
+import com.chaze.india.repository.CartManager;
 import com.chaze.india.repository.network.ICommonAPIManager;
 import com.chaze.india.repository.session.SessionManager;
 import com.chaze.india.screens.base.BasePresenter;
@@ -28,8 +30,8 @@ public class CategoryPresenter<V extends CategoryContract.View> extends BasePres
         implements CategoryContract.Presenter<V> {
 
     @Inject
-    public CategoryPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {
-        super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
+    public CategoryPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager, CartManager cartManager) {
+        super(dataManager, schedulerProvider, compositeDisposable, sessionManager, cartManager);
     }
 
 

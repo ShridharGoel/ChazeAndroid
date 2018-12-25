@@ -4,7 +4,7 @@ import com.chaze.india.di.Qualifiers.ApplicationScope;
 import com.chaze.india.di.Qualifiers.ChazeAPIQual;
 import com.chaze.india.di.Qualifiers.EcommerceAPIQual;
 import com.chaze.india.di.Qualifiers.FoodOrderingAPIQual;
-import com.chaze.india.repository.network.ICommonAPIManager;
+import com.chaze.india.repository.CartManager;import com.chaze.india.repository.network.ICommonAPIManager;
 import com.chaze.india.repository.network.ChazeAPIService;
 import com.chaze.india.repository.network.CommonAPIManager;
 import com.chaze.india.repository.network.ECommerceAPIService;

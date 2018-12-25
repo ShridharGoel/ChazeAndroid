@@ -14,7 +14,7 @@ public class CartItem {
     @SerializedName("category")
     private Long mCategory;
     @SerializedName("description")
-    private Object mDescription;
+    private String mDescription;
     @SerializedName("discount")
     private Double mDiscount;
     @SerializedName("id")
@@ -50,11 +50,11 @@ public class CartItem {
         mCategory = category;
     }
 
-    public Object getDescription() {
+    public String getDescription() {
         return mDescription;
     }
 
-    public void setDescription(Object description) {
+    public void setDescription(String description) {
         mDescription = description;
     }
 

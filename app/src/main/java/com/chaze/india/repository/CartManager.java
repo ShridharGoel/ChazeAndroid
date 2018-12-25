@@ -1,27 +1,23 @@
 package com.chaze.india.repository;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.chaze.india.R;
+import com.chaze.india.models.Ecommerce.CartItem;
 import com.chaze.india.models.Ecommerce.CartResponse;
 import com.chaze.india.models.Ecommerce.CartShop;
 import com.chaze.india.models.Ecommerce.Product;
 import com.chaze.india.repository.network.ICommonAPIManager;
 import com.chaze.india.repository.session.SessionManager;
+import com.google.gson.Gson;
 
 import javax.inject.Inject;
 
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
-
-import static android.support.constraint.Constraints.TAG;
 
 public class CartManager {
 
@@ -32,15 +28,14 @@ public class CartManager {
 
     private boolean toUpdateCart = false;
 
-    public CartManager(Context c) {
-    }
 
-   /* @Inject
+    @Inject
     public CartManager(Context c, SessionManager sessionManager, ICommonAPIManager commonAPIManager) {
-        this.context = context;
-        this.sessionManager = new SessionManager(context);
+        this.context = c;
+        this.sessionManager = sessionManager;
         this.commonAPIManager = commonAPIManager;
         this.cart = getCart();
+        updateCartFromApi();
     }
 
     public CartResponse getCart() {
@@ -55,59 +50,58 @@ public class CartManager {
         sessionManager.setCurrentCartStateEcommerce(cart);
     }
 
-
-    public void addItemToCart(Product product, int quantity, String description) {
-        final CartResponse cartToAddItemTo = getCart();
-        if (cartToAddItemTo.getmCartShops().isEmpty()) {
-            toUpdateCart = true;
-            addItemToServer(product.getId(), quantity, description);
-        } else {
-
-
-            boolean isAdded = false;
-            for (CartShop cartShop :
-                    cartToAddItemTo.getmCartShops()) {
-                if (cartShop.getKey().equals(product.getSellerId())) {
-                    addItemToServer(product.getId(), quantity, description);
-                    isAdded = true;
-                    break;
-                }
+    public int getItemsCount() {
+        int ans = 0;
+        if (cart == null) return ans;
+        try {
+            for (CartShop cs :
+                    cart.getmCartShops()) {
+                ans = ans + cs.getProducts().size();
             }
-
-            if (isAdded && quantity == 0) updateCartFromApi();
-
-            if (!isAdded) {
-                toUpdateCart = true;
-                addItemToServer(product.getId(), quantity, description);
-            }
+        } catch (Exception e) {
+            return 0;
         }
+        return ans;
     }
 
 
+    public void addItemToCart(Product product, Long quantity, String description, TextView cartCountBadge) {
+        toUpdateCart = true;
+        addItemToServer(product.getId(), quantity, description, cartCountBadge);
+    }
 
 
     @SuppressLint("CheckResult")
-    private void updateCartFromApi() {
+    public void updateCartFromApi() {
+        Timber.e(sessionManager.getToken());
         commonAPIManager.getECommerceAPIService().getCart(sessionManager.getToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(cartResponse -> {
-                    this.cart = cartResponse;
+                    if (cartResponse.getSuccess()) {
+                        this.cart = cartResponse;
+                    } else {
+                        this.cart = new CartResponse();
+                        Timber.e(cartResponse.getError());
+                    }
                     toUpdateCart = false;
                 }, throwable -> {
                     Timber.e(throwable.getMessage());
                     Toast.makeText(context, "Sorry, Some Error has Occured...", Toast.LENGTH_SHORT).show();
                 });
-
     }
 
     @SuppressLint("CheckResult")
-    private void addItemToServer(Long productId, int quantity, String description) {
+    private void addItemToServer(Long productId, Long quantity, String description, TextView cartCountBadge) {
         commonAPIManager.getECommerceAPIService().addItemToCart(sessionManager.getToken(), productId, quantity, description)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(cartUpdateResponse -> {
+
+                    Toast.makeText(context, "Product Added Succesfully...", Toast.LENGTH_SHORT).show();
                     if (cartUpdateResponse.getSuccess()) {
+
+                        cartCountBadge.setText(String.valueOf(getItemsCount()));
                         if (toUpdateCart) {
                             updateCartFromApi();
                         } else {
@@ -142,9 +136,27 @@ public class CartManager {
                 });
     }
 
-    private void broadCastUpdate(Long productId, int quantity, String description) {
+    private void broadCastUpdate(Long productId, Long quantity, String description) {
 
     }
-*/
+
+    public CartItem checkIfThisProductPresent(Long productId, Long sellerId) {
+
+        if (cart.getmCartShops() == null) return null;
+        for (CartShop cs :
+                cart.getmCartShops()) {
+
+            if (cs.getKey().equals(sellerId)) {
+                for (CartItem ci :
+                        cs.getProducts()) {
+                    if (ci.getId().equals(productId)) return ci;
+                }
+                return null;
+            }
+
+        }
+        return null;
+    }
+
 
 }

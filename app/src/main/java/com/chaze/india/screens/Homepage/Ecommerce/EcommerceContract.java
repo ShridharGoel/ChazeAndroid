@@ -15,10 +15,14 @@ public class EcommerceContract {
     public interface View extends MvpContract.View {
 
         public void showCategories(ArrayList<Category> categories);
+
+        public void setCartCountBadge(int countBadge);
     }
 
 
     public interface Presenter<V extends View> extends MvpContract.Presenter<V> {
+
+        public void getCartCount();
 
         public void loadCategories();
     }

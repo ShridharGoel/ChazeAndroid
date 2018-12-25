@@ -5,10 +5,11 @@ package com.chaze.india.screens.base;
  */
 
 
-import com.chaze.india.repository.network.ICommonAPIManager;
+import com.chaze.india.repository.CartManager;
+import com.chaze.india.repository.CartManager;import com.chaze.india.repository.network.ICommonAPIManager;
 import com.chaze.india.repository.session.SessionManager;
 import com.chaze.india.utils.rx.SchedulerProvider;
-import com.chaze.india.repository.network.ICommonAPIManager;
+import com.chaze.india.repository.CartManager;import com.chaze.india.repository.network.ICommonAPIManager;
 import com.chaze.india.repository.session.SessionManager;
 import com.chaze.india.utils.rx.SchedulerProvider;
 
@@ -32,16 +33,17 @@ public class BasePresenter<V extends MvpContract.View> implements MvpContract.Pr
     private final SchedulerProvider mSchedulerProvider;
     private final CompositeDisposable mCompositeDisposable;
     private final SessionManager sessionManager;
-
+    private final CartManager cartManager;
 
     @Inject
     public BasePresenter(ICommonAPIManager dataManager,
                          SchedulerProvider schedulerProvider,
-                         CompositeDisposable compositeDisposable, SessionManager sessionManager) {
+                         CompositeDisposable compositeDisposable, SessionManager sessionManager, CartManager cartManager) {
         this.mCommonAPIManager = dataManager;
         this.mSchedulerProvider = schedulerProvider;
         this.mCompositeDisposable = compositeDisposable;
-        this.sessionManager=sessionManager;
+        this.sessionManager = sessionManager;
+        this.cartManager = cartManager;
     }
 
     @Override
@@ -79,6 +81,10 @@ public class BasePresenter<V extends MvpContract.View> implements MvpContract.Pr
 
     public SessionManager getSessionManager() {
         return sessionManager;
+    }
+
+    public CartManager getCartManager() {
+        return cartManager;
     }
 
     public boolean isViewAttached() {

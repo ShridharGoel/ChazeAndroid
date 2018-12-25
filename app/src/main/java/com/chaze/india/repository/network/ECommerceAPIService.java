@@ -76,7 +76,7 @@ public interface ECommerceAPIService {
 
     @FormUrlEncoded
     @POST("cart/addToCart")
-    Single<CartUpdateResponse> addItemToCart(@Header("token") String token, @Field("product_id") Long productId, @Field("quantity") int quantity, @Field("description") String description);
+    Single<CartUpdateResponse> addItemToCart(@Header("token") String token, @Field("product_id") Long productId, @Field("quantity") Long quantity, @Field("description") String description);
 
     @FormUrlEncoded
     @POST("cart/removeFromCart")

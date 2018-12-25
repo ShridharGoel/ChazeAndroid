@@ -14,7 +14,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.chaze.india.AppController;
 import com.chaze.india.R;
+import com.chaze.india.repository.CartManager;
 import com.chaze.india.screens.Authentication.OTPConfirmation.OTPConfirmation;
 import com.chaze.india.screens.Authentication.Signup.SignUpActivity;
 import com.chaze.india.screens.Homepage.HomeActivity;
@@ -54,6 +56,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     private static final int RC_SIGN_IN = 10;
     private String forgotPassMobile;
+
 
     @BindView(R.id.login_btn)
     TextView loginBtn;
@@ -108,6 +111,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     }
 
     private void setup() {
+
 
         signupBtn.setOnClickListener(view -> {
             Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);

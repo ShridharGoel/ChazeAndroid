@@ -5,7 +5,6 @@ import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.chaze.india.R;
 import com.github.chrisbanes.photoview.PhotoView;
@@ -27,7 +26,7 @@ public class ProductImageSliderAdapter extends PagerAdapter {
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View view = layoutInflater.inflate(R.layout.product_info_slide, container, false);
-        PhotoView imageView = ((PhotoView) view.findViewById(R.id.image));
+        PhotoView imageView = ((PhotoView) view.findViewById(R.id.sheet_image));
 
         if (urls[position] != null)
             Picasso.get().load(urls[position])

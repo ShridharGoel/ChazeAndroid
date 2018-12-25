@@ -10,19 +10,27 @@ import android.support.v4.view.ViewPager;
 import android.text.Html;
 import android.view.Display;
 import android.view.View;
-import android.view.animation.TranslateAnimation;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.chaze.india.R;
+import com.chaze.india.models.Ecommerce.CartBusiness;
+import com.chaze.india.models.Ecommerce.CartItem;
+import com.chaze.india.models.Ecommerce.Detail;
 import com.chaze.india.models.Ecommerce.Product;
+import com.chaze.india.models.Ecommerce.Variety;
 import com.chaze.india.screens.base.BaseActivity;
+import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -72,17 +80,23 @@ public class ProductInfoActivity extends BaseActivity implements ProductInfoCont
     @BindView(R.id.image_button)
     TextView sheetCloseButton;
 
-    ArrayList<View> viewList = new ArrayList<>();
+    @BindView(R.id.sheet_image)
+    ImageView sheetImage;
 
-    HashMap<String, ArrayList<View>> map = new HashMap<>();
+    @BindView(R.id.sheet_name)
+    TextView sheetName;
 
-    @Inject
-    ProductInfoContract.Presenter<ProductInfoContract.View> presenter;
+    @BindView(R.id.sheet_price)
+    TextView sheetPriceView;
 
-    ProductImageSliderAdapter myViewPagerAdapter;
+    @BindView(R.id.cart_decrease_quantity)
+    TextView decreaseQuantity;
 
-    BottomSheetBehavior sheetBehavior;
+    @BindView(R.id.cart_increase_quantity)
+    TextView increaseQuantity;
 
+    @BindView(R.id.cart_item_quantity)
+    TextView quantityCount;
 
     @BindView(R.id.offer_view)
     TextView discount;
@@ -108,6 +122,28 @@ public class ProductInfoActivity extends BaseActivity implements ProductInfoCont
     @BindView(R.id.name_view)
     TextView name;
 
+    @BindView(R.id.confirm)
+    TextView confirm;
+
+    @BindView(R.id.cart_count_badge)
+    TextView cartCountBadge;
+
+    @Inject
+    ProductInfoContract.Presenter<ProductInfoContract.View> presenter;
+
+    ArrayList<View> viewList = new ArrayList<>();
+
+    HashMap<String, ArrayList<View>> map = new HashMap<>();
+
+    ProductImageSliderAdapter myViewPagerAdapter;
+
+    BottomSheetBehavior sheetBehavior;
+
+    Detail[] selectedVariety;
+    String selectedVarietyString;
+
+    Long quantity = Long.valueOf(0);
+
     boolean isSheetClosed = false;
 
     Product product;
@@ -126,11 +162,11 @@ public class ProductInfoActivity extends BaseActivity implements ProductInfoCont
 
 
         presenter.onAttach(this);
-        presenter.loadData();
+        presenter.loadData(product);
+        cartCountBadge.setText(presenter.getItemsCount());
     }
 
     private void setup() {
-
         String[] s = new String[3];
         s[0] = product.getImageFirst();
         s[1] = product.getImageSecond();
@@ -182,6 +218,60 @@ public class ProductInfoActivity extends BaseActivity implements ProductInfoCont
         addBottomDots(0);
     }
 
+    private void setupSheet(CartItem ci) {
+
+        if (ci != null) {
+            quantity = ci.getQuantity();
+            selectedVarietyString = ci.getDescription();
+            if (selectedVarietyString != null) {
+                selectedVariety = (new Gson()).fromJson(selectedVarietyString, Detail[].class);
+            }
+        }
+        Picasso.get().load(product.getImageFirst()).placeholder(R.drawable.shop_place_holder).into(sheetImage);
+        quantityCount.setText(String.valueOf(quantity));
+        decreaseQuantity.setOnClickListener(v -> {
+            if (quantity == 0) {
+                Toast.makeText(this, "Count is already Zero", Toast.LENGTH_SHORT).show();
+            } else {
+                quantity--;
+                quantityCount.setText(String.valueOf(quantity));
+            }
+        });
+
+        increaseQuantity.setOnClickListener(v -> {
+            quantity++;
+            quantityCount.setText(String.valueOf(quantity));
+        });
+
+        confirm.setOnClickListener(v -> {
+            if (ci == null || !ci.getQuantity().equals(quantity)) {
+
+                boolean isDone = true;
+                for (int i = 0; i < selectedVariety.length; i++) {
+                    if (selectedVariety[i].getValue() == null) {
+                        Toast.makeText(this, "" + selectedVariety[i].getType() + " not selected", Toast.LENGTH_SHORT).show();
+                        isDone = false;
+                        break;
+                    }
+                }
+
+
+                if (isDone) {
+                    presenter.addItems(product, quantity, selectedVarietyString, cartCountBadge);
+                    Timber.e(selectedVarietyString);
+                }
+            }
+            showProgress();
+        });
+
+        sheetName.setText(product.getName());
+        sheetPriceView.setText("Rs. " + product.getPrice());
+
+    }
+
+    private void showProgress() {
+    }
+
     public void hideSheet() {
 
         isSheetClosed = true;
@@ -192,7 +282,7 @@ public class ProductInfoActivity extends BaseActivity implements ProductInfoCont
 
     public void showSheet() {
         isSheetClosed = false;
-        Timber.e("Show sheet");
+//        Timber.e("Show sheet");
         sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
     }
 
@@ -233,7 +323,9 @@ public class ProductInfoActivity extends BaseActivity implements ProductInfoCont
     }
 
     @Override
-    public void showData() {
+    public void showData(CartItem ci) {
+
+        setupSheet(ci);
         name.setText(product.getName());
         rating.setText(String.valueOf(product.getRating()));
         if (product.getDiscount() != null && product.getDiscount() != 0)
@@ -244,55 +336,47 @@ public class ProductInfoActivity extends BaseActivity implements ProductInfoCont
         price.setText(String.valueOf(product.getPrice()));
         stock.setText(String.valueOf(product.getStock()));
 
-
         showDetails();
         showVarieties(varitiesSheet, true);
         showVarieties(varietiesTableLayout, false);
-
-        desription.setText("asdfsdfasdf f asdfsdf asdf asdf sdf sdf sdf sdf sdf sdf sdf sdf asdfsdfasdf f asdfsdf asdf asdf sdf sdf sdf sdf sdf sdf sdf sdf asdfsdfasdf f asdfsdf asdf asdf sdf sdf sdf sdf sdf sdf sdf sdf ");
+        desription.setText(product.getDescription());
     }
 
     private void showDetails() {
+        Detail[] details = (new Gson()).fromJson(product.getDetails(), Detail[].class);
 
-        String keys = "Range,5 metres;Brand,Fun;are,blueish;cloth,coton";
-        String keyValues[] = keys.split(";");
-
-
-        for (int i = 0; i < keyValues.length; i++) {
+        for (int i = 0; i < details.length; i++) {
             TableRow row = new TableRow(this);
-
-
             View v = View.inflate(ProductInfoActivity.this, R.layout.horizontol_view, null);
-
-
-            Timber.e(keyValues[i].split(",")[0]);
-            ((TextView) v.findViewById(R.id.key)).setText(keyValues[i].split(",")[0]);
-            ((TextView) v.findViewById(R.id.value)).setText(keyValues[i].split(",")[1]);
-
+//            Timber.e(details[i].getType());
+            ((TextView) v.findViewById(R.id.key)).setText(details[i].getType());
+            ((TextView) v.findViewById(R.id.value)).setText(details[i].getValue());
             row.addView(v);
-
-
             detailsTableLayout.addView(row);
-
         }
     }
 
-
     private void showVarieties(TableLayout varietiesTableLayout, boolean isCartSheet) {
 
-        String keys = "Size,L,M,Q,asdfsadf,fsdfsfgds,sdf:color,red,blue,green:type,1,2,3";
+        Variety[] varieties = (new Gson()).fromJson(product.getVarieties(), Variety[].class);
 
-        String[] keyValues = keys.split(":");
+        if (isCartSheet && selectedVariety == null) {
+            selectedVariety = new Detail[varieties.length];
+            for (int i = 0; i < selectedVariety.length; i++) {
+                selectedVariety[i] = new Detail();
+            }
+        }
 
-        int l = keyValues.length;
+
+        int l = varieties.length;
         TableRow row;
         View v;
-        String values[];
         TableLayout valuesTable;
         TableRow rowrow;
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
+
 
         int sizex = size.x;
         int currx;
@@ -303,61 +387,51 @@ public class ProductInfoActivity extends BaseActivity implements ProductInfoCont
 
         String key;
         for (int i = 0; i < l; i++) {
-
             row = new TableRow(this);
             v = View.inflate(ProductInfoActivity.this, R.layout.varieties_view, null);
 
+//            Timber.e(varieties[i].getKey());
 
-            values = keyValues[i].split(",");
 
-            Timber.e(values[0]);
+            key = varieties[i].getKey();
 
-            key = values[0];
             ((TextView) v.findViewById(R.id.key)).setText(key);
-
             valuesTable = v.findViewById(R.id.innerVarietiesTable);
-
             rowrow = new TableRow(this);
             currx = 0;
-
-
             View txtView;
-
             TextView txt;
 
-            if (isCartSheet)
+            if (isCartSheet) {
+                selectedVariety[i].setType(key);
                 map.put(key, new ArrayList<View>());
+            }
 
-            for (int j = 1; j < values.length; j++) {
 
+            for (int j = 0; j < varieties[i].getValues().size(); j++) {
 
                 txtView = View.inflate(ProductInfoActivity.this, R.layout.text_view_for_values, null);
                 txt = txtView.findViewById(R.id.values);
-                txt.setText(values[j]);
+                txt.setText(varieties[i].getValues().get(j));
                 txt.setBackground(getDrawable(R.drawable.white_rectangle_border_gray));
                 txt.setTextColor(getResources().getColor(R.color.textDarkPrimary));
 
-                if (isCartSheet)
+                if (isCartSheet) {
                     map.get(key).add(txt);
-
-                if (isCartSheet)
                     txt.setOnClickListener(vi -> {
                         Timber.e((((TextView) (vi.findViewById(R.id.values))).getText().toString()));
                         broadcast(vi);
                     });
-
-                // viewList.add(txtView);
-
+                }
 
                 txt.setLayoutParams(lp);
-                int width = dpsToPixels(values[j].length() * 30 + 8);
+                int width = dpsToPixels(varieties[i].getValues().get(j).length() * 30 + 8);
 
                 rowrow.addView(txtView);
 
 
                 currx += width + dpsToPixels(16);
 
-                Timber.e("Sizex=" + sizex + ", currx = " + currx);
 
                 if (1.2 * currx > sizex) {
                     currx = 0;
@@ -368,24 +442,54 @@ public class ProductInfoActivity extends BaseActivity implements ProductInfoCont
             valuesTable.addView(rowrow);
 
             row.addView(v);
-
-
             varietiesTableLayout.addView(row);
+        }
 
 
+        if (isCartSheet && selectedVarietyString != null) {
+            highlightSelectedChoicesInSheet();
         }
     }
 
-    private void broadcast(View vi) {
-
-
+    private void highlightSelectedChoicesInSheet() {
         for (Map.Entry<String, ArrayList<View>> views : map.entrySet()) {
-
             viewList = views.getValue();
+            String key = views.getKey();
+            for (int i = 0; i < selectedVariety.length; i++) {
+                if (key.equals(selectedVariety[i].getType()) && selectedVariety[i].getValue() != null) {
+                    for (int j = 0; j < viewList.size(); j++) {
+                        if (((TextView) viewList.get(j)).getText().toString().equals(selectedVariety[i].getValue())) {
+                            viewList.get(j).setBackground(getDrawable(R.drawable.yellow_rectangle_border_purple));
+                        }
+                    }
+                }
+            }
+        }
+
+
+    }
+
+    private void broadcast(View vi) {
+        for (Map.Entry<String, ArrayList<View>> views : map.entrySet()) {
+            viewList = views.getValue();
+            String key = views.getKey();
             boolean isFound = false;
             for (View v : viewList) {
                 if (v == vi) {
                     v.setBackground(getDrawable(R.drawable.yellow_rectangle_border_purple));
+
+                    for (int i = 0; i < selectedVariety.length; i++) {
+                        if (key.equals(selectedVariety[i].getType())) {
+                            selectedVariety[i].setValue(((TextView) v).getText().toString());
+                            break;
+                        }
+                    }
+                    selectedVarietyString = (new Gson()).toJson(selectedVariety);
+                    /*Timber.e("Befor: " + selectedVarietyString);
+                    selectedVariety = (new Gson()).fromJson(selectedVarietyString, Detail[].class);
+                    selectedVarietyString = (new Gson()).toJson(selectedVariety);
+                    Timber.e("After: " + selectedVarietyString);*/
+
                     isFound = true;
                     break;
                 }
@@ -402,7 +506,6 @@ public class ProductInfoActivity extends BaseActivity implements ProductInfoCont
             }
 
         }
-
     }
 
 
