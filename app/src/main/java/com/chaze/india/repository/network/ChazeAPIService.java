@@ -3,6 +3,7 @@ package com.chaze.india.repository.network;
 
 import com.chaze.india.models.Authentication.ConfirmOTPResponse;
 import com.chaze.india.models.Authentication.LoginResponse;
+import com.chaze.india.models.Authentication.ProfileResponse;
 import com.chaze.india.models.Authentication.SignUpResponse;
 import com.chaze.india.models.Authentication.ChangePassResponse;
 
@@ -13,6 +14,8 @@ import io.reactivex.Completable;
 import io.reactivex.Single;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 /**
@@ -106,14 +109,9 @@ public interface ChazeAPIService {
             @Field("password") String pass,
             @Field("google_id") String google_id);
 
-    /*@FormUrlEncoded
+    @FormUrlEncoded
     @GET("/profile")    //Fetch profile details
     Single<ProfileResponse> fetchProfile(
-            @Field("phone") String mobile);
-
-    @FormUrlEncoded
-    @GET("/profile")    //Fetch profile details with Email
-    Single<ProfileResponse> fetchProfileWithEmail(
-            @Field("email") String email);*/
+            @Header("token") String token);
 }
 

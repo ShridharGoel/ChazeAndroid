@@ -7,9 +7,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.chaze.india.R;
+import com.chaze.india.models.Authentication.User;
 import com.chaze.india.repository.session.ISessionManager;
 import com.chaze.india.repository.session.SessionManager;
 import com.chaze.india.screens.base.BaseActivity;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -44,9 +47,9 @@ public class ProfileActivity extends BaseActivity implements ProfileContract.Vie
     @BindView(id.editAddress)
     ImageView editAddress;
 
-  /*  @Inject
+    @Inject
     ProfileContract.Presenter<ProfileContract.View> mPresenter;
-*/
+
     SessionManager sharedPreference;
 
     @Override
@@ -58,17 +61,14 @@ public class ProfileActivity extends BaseActivity implements ProfileContract.Vie
 
         getActivityComponent().inject(this);
 
-        // mPresenter.onAttach(this);
+        mPresenter.onAttach(this);
 
         sharedPreference = new SessionManager(getApplicationContext());
 
         displayDetails();
 
-        /*if(sharedPreference.getPhoneNo()!=null)
-            mPresenter.fetchDetails(sharedPreference.getPhoneNo());
-        else
-            mPresenter.fetchDetailsWithEmail(sharedPreference.getUserEmail());
-*/
+        mPresenter.fetchDetails();
+
         editName.setOnClickListener(view -> {
             name.setEnabled(true);
             name.setFocusable(true);
@@ -167,5 +167,13 @@ public class ProfileActivity extends BaseActivity implements ProfileContract.Vie
         email.setText(sharedPreference.getUserEmail());
         gender.setText(sharedPreference.getGender());
         address.setText(sharedPreference.getAddress());
+    }
+
+     public void saveDetails(User user) {
+        sharedPreference.setUserName(user.getName());
+        sharedPreference.setPhoneNo(user.getPhone().toString());
+        sharedPreference.setUserEmail(user.getEmail());
+        sharedPreference.setGender(user.getGender());
+        sharedPreference.setAddress(user.getAddress().toString());
     }
 }
