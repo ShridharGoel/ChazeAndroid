@@ -11,11 +11,13 @@ public class SignUpContract {
 
         void showSignUpResult();
         void startOTPActivity();
+        void startHomeActivity();
 
     }
 
     public interface Presenter<V extends View> extends MvpContract.Presenter<V> {
         void doSignUp(String name, String mobile, int gender, String pass);
         void doSignUpWithEmail(String name, String email, int gender, String pass);
+        void doGoogleLogin(String name, String email, int gender, String pass, String google_id);
     }
 }
