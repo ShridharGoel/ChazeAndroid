@@ -13,18 +13,9 @@ import io.reactivex.subjects.PublishSubject;
 public class CartContract {
 
     public interface View extends MvpContract.View {
-
-        void setSubjectToAdapter(PublishSubject<CartShop> subject);
-
-        void showFull(CartShop cartShop);
-
-        void showOnActivity();
     }
 
-
     public interface Presenter<V extends View> extends MvpContract.Presenter<V> {
-
-        void show();
 
     }
 }

@@ -37,7 +37,7 @@ public class CartManager {
     }
 
     public CartResponse getCart() {
-        if (this.cart!=null) {
+        if (this.cart != null) {
             return this.cart;
         }
         return new CartResponse();
@@ -62,6 +62,27 @@ public class CartManager {
         return ans;
     }
 
+    public int getTotalBill() {
+        int ans = 0;
+        if (cart == null || cart.getCartShops() == null || cart.getCartShops().isEmpty())
+            return ans;
+
+        for (CartShop cm :
+                cart.getCartShops()) {
+            ans += cm.getTotalToPay();
+        }
+        return ans;
+    }
+
+    public interface AddItemsCallBack {
+        public void onItemAdded();
+
+        public void onError();
+    }
+
+    public void addItemToCart(Long id, Long quantity, String description, AddItemsCallBack addItemsCallBack) {
+        addItemToServer(id, quantity, description, addItemsCallBack);
+    }
 
     public void addItemToCart(Product product, Long quantity, String description, TextView cartCountBadge) {
         addItemToServer(product.getId(), quantity, description, cartCountBadge);
@@ -106,6 +127,29 @@ public class CartManager {
                         Toast.makeText(context, cartResponse.getmError(), Toast.LENGTH_SHORT).show();
                     }
                 }, throwable -> {
+                    Timber.e(throwable.getMessage());
+                    Toast.makeText(context, "Sorry, Some Error has Occured...", Toast.LENGTH_SHORT).show();
+                });
+    }
+
+    @SuppressLint("CheckResult")
+    private void addItemToServer(Long productId, Long quantity, String description, AddItemsCallBack addItemsCallBack) {
+        commonAPIManager.getECommerceAPIService().addItemToCart(sessionManager.getToken(), productId, quantity, description)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(cartResponse -> {
+
+                    Toast.makeText(context, "Product Added Succesfully...", Toast.LENGTH_SHORT).show();
+                    if (cartResponse.getmSuccess()) {
+                        addItemsCallBack.onItemAdded();
+                        this.cart = cartResponse;
+                    } else {
+                        addItemsCallBack.onError();
+                        Timber.e(cartResponse.getmError());
+                        Toast.makeText(context, cartResponse.getmError(), Toast.LENGTH_SHORT).show();
+                    }
+                }, throwable -> {
+                    addItemsCallBack.onError();
                     Timber.e(throwable.getMessage());
                     Toast.makeText(context, "Sorry, Some Error has Occured...", Toast.LENGTH_SHORT).show();
                 });

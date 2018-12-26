@@ -1,5 +1,6 @@
 package com.chaze.india.screens.Cart.EcommerceCart;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetBehavior;
@@ -12,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.chaze.india.R;
 import com.chaze.india.di.Qualifiers.LinLayoutVert;
@@ -41,24 +43,17 @@ public class CartActivity extends BaseActivity implements CartContract.View {
     LinearLayoutManager layoutManager;
 
     @Inject
-    CartItemsAdapter cartItemsAdapter;
-
-    @BindView(R.id.bottom_sheet)
-    LinearLayout layoutBottomSheet;
-
-    @BindView(R.id.cart_items_recycler)
-    RecyclerView recyclerViewCartItems;
-
-    @Inject
     CartContract.Presenter<CartContract.View> mPresenter;
-
-    @BindView(R.id.close_button_container)
-    RelativeLayout relativeLayout;
-
-    BottomSheetBehavior sheetBehavior;
 
     @BindView(R.id.checkout_button)
     Button button;
+
+    @BindView(R.id.total_bill)
+    TextView totalBill;
+
+    public interface UpdateGrandTotal {
+        void updateGrandTotal();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,39 +65,14 @@ public class CartActivity extends BaseActivity implements CartContract.View {
         setup();
     }
 
+    @SuppressLint("SetTextI18n")
     private void setup() {
-        cartBusinessAdapter.addItems(cartManager.getCart());
+        totalBill.setText("Rs. " + cartManager.getTotalBill());
+        cartBusinessAdapter.setCartManager(cartManager, () -> totalBill.setText("Rs. " + cartManager.getTotalBill()));
         recyclerView.setAdapter(cartBusinessAdapter);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerViewCartItems.setAdapter(cartItemsAdapter);
-        LinearLayoutManager layoutManagerCart = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        recyclerViewCartItems.setLayoutManager(layoutManagerCart);
-        sheetBehavior = BottomSheetBehavior.from(layoutBottomSheet);
-        sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-        sheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-        mPresenter.show();
+
         button.setOnClickListener(v -> this.startActivity(new Intent(this, CheckoutActivity.class)));
-    }
-
-    @Override
-    public void setSubjectToAdapter(PublishSubject<CartShop> cartShopPublishSubject) {
-        cartBusinessAdapter.setSubject(cartShopPublishSubject);
-    }
-
-    @Override
-    public void showFull(CartShop cartShop) {
-        cartItemsAdapter.addItems(cartShop);
-        sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-    }
-
-    @Override
-    public void showOnActivity() {
-
-    }
-
-    @OnClick(R.id.close_button_container)
-    public void toggleBottomSheet() {
-        sheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
     }
 
 

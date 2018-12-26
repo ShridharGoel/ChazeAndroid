@@ -25,7 +25,6 @@ public class CheckoutActivity extends BaseActivity implements CheckoutContract.V
     @BindView(R.id.checkoutAddress)
     EditText checkoutAddress;
 
-    SessionManager sharedPreference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,18 +33,15 @@ public class CheckoutActivity extends BaseActivity implements CheckoutContract.V
 
         setUnBinder(ButterKnife.bind(this));
 
-        sharedPreference = new SessionManager(getApplicationContext());
+
         setExistingData();
 
     }
 
     private void setExistingData() {
-        checkoutName.setText(sharedPreference.getUserName());
-        checkoutAddress.setText(sharedPreference.getAddress());
-        checkoutPhone.setText(sharedPreference.getPhoneNo());
-        checkoutEmail.setText(sharedPreference.getUserEmail());
-    }
 
+    }
+/*
     @OnClick({R.id.editCheckoutName,R.id.editCheckoutEmail,R.id.editCheckoutPhone,R.id.editCheckoutAddress})
     public void OnClick(ImageView imageView){
         switch (imageView.getId()){
@@ -102,5 +98,5 @@ public class CheckoutActivity extends BaseActivity implements CheckoutContract.V
                     imageView.setImageResource(R.drawable.ic_edit_black_24dp);
                 });break;
     }
-}
+}*/
 }

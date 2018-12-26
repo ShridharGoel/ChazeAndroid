@@ -24,27 +24,12 @@ import io.reactivex.subjects.PublishSubject;
 public class CartPresenter<V extends CartContract.View> extends BasePresenter<V>
         implements CartContract.Presenter<V> {
 
-    PublishSubject<CartShop> subject;
 
 
 
     @Inject
     public CartPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager, CartManager cartManager) {
         super(dataManager, schedulerProvider, compositeDisposable, sessionManager, cartManager);
-    }
-
-    @Override
-    public void onAttach(V mvpView) {
-        super.onAttach(mvpView);
-        subject = PublishSubject.create();
-        getMvpView().setSubjectToAdapter(subject);
-        subject.subscribe((cartShop) -> getMvpView().showFull(cartShop));
-
-    }
-
-    @Override
-    public void show() {
-        getMvpView().showOnActivity();
     }
 
 

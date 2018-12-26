@@ -2,6 +2,7 @@ package com.chaze.india.di.module;
 
 import android.support.v7.app.AppCompatActivity;
 
+import com.chaze.india.models.Ecommerce.CartItem;
 import com.chaze.india.models.Ecommerce.Post;
 import com.chaze.india.screens.Cart.EcommerceCart.CartBusinessAdapter;
 import com.chaze.india.screens.Cart.EcommerceCart.CartItemsAdapter;
@@ -142,10 +143,10 @@ public class AdapterModule {
 
     @Provides
     CartItemsAdapter providesCartItemsAdapter() {
-        return new CartItemsAdapter(new LinkedList<>());
+        return new CartItemsAdapter(new LinkedList<>(), null, () -> {
+
+        });
     }
-
-
 
 
     @Provides
