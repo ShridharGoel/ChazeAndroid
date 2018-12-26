@@ -26,6 +26,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
+import java.util.Random;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -54,6 +56,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     private static final int RC_SIGN_IN = 10;
     private String forgotPassMobile;
+    private int MAX_LENGTH = 12;
 
     @BindView(R.id.login_btn)
     TextView loginBtn;
@@ -204,8 +207,42 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             // Signed in successfully, show authenticated UI.
-            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-            startActivity(intent);
+
+            GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
+            if (acct != null) {
+                String personName = acct.getDisplayName();
+                String personEmail = acct.getEmail();
+                String personId = acct.getId();
+                String pass = generateRandomString();
+                final int[] gender = new int[1];
+
+                AlertDialog.Builder b = new AlertDialog.Builder(this);
+                b.setTitle("Select Gender");
+                String[] types = {"Male", "Female"};
+                b.setItems(types, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+                        switch(which){
+                            case 0:
+                                gender[0] = 1;
+                                break;
+                            case 1:
+                                gender[0] = 0;
+                                break;
+                        }
+                        mPresenter.doGoogleLogin(personName, personEmail, gender[0], pass, personId);
+                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                        startActivity(intent);
+                    }
+
+                });
+
+                b.show();
+
+            }
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
@@ -228,5 +265,17 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
         otpConfirmationIntent.putExtra("Mobile", forgotPassMobile);
         startActivity(otpConfirmationIntent);
         finish();
+    }
+
+    public String generateRandomString() {
+        Random generator = new Random();
+        StringBuilder randomStringBuilder = new StringBuilder();
+        int randomLength = generator.nextInt(MAX_LENGTH);
+        char tempChar;
+        for (int i = 0; i < randomLength; i++){
+            tempChar = (char) (generator.nextInt(96) + 32);
+            randomStringBuilder.append(tempChar);
+        }
+        return randomStringBuilder.toString();
     }
 }

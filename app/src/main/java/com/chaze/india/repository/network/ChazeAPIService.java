@@ -8,6 +8,7 @@ import com.chaze.india.models.Authentication.ChangePassResponse;
 import com.chaze.india.models.Authentication.ResendOTPResponse;
 import com.chaze.india.models.Authentication.ForgotPassResponse;
 
+import io.reactivex.Completable;
 import io.reactivex.Single;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -94,6 +95,15 @@ public interface ChazeAPIService {
             @Field("email") String email,
             @Field("otp") int otp,
             @Field("password") String newPass);
+
+    @FormUrlEncoded
+    @POST("/signup")    //loginWithGoogle
+    Single<SignUpResponse> loginWithGoogle(
+            @Field("name") String name,
+            @Field("email") String email,
+            @Field("gender") int gender,
+            @Field("password") String pass,
+            @Field("google_id") String google_id);
 
     /*@FormUrlEncoded
     @GET("/profile")    //Fetch profile details
