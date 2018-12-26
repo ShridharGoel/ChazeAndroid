@@ -45,9 +45,7 @@ public interface ActivityComponent {
 
     void inject(SplashActivity activity);
 
-
     void inject(ProfileActivity profileActivity);
-
 
     void inject(SearchActivity searchActivity);
     void inject(EcommerceFragment ecommerceFragment);
