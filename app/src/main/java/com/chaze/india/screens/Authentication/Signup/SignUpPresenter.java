@@ -36,7 +36,7 @@ public class SignUpPresenter<V extends SignUpContract.View> extends BasePresente
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(signUpResponse -> {
-  //                  getMvpView().showSignUpResult();
+                    //                  getMvpView().showSignUpResult();
                     Timber.e("Success");
 
                     getMvpView().startOTPActivity();
@@ -46,7 +46,7 @@ public class SignUpPresenter<V extends SignUpContract.View> extends BasePresente
                     //On error
                     Timber.e("Failure: " + Throwable.getMessage());
                 });
-        }
+    }
 
     @SuppressLint("CheckResult")
     @Override
@@ -66,6 +66,19 @@ public class SignUpPresenter<V extends SignUpContract.View> extends BasePresente
                     Timber.e("Failure: " + Throwable.getMessage());
                 });
     }
+
+    @SuppressLint("CheckResult")
+    @Override
+    public void doGoogleLogin(String name, String email, int gender, String pass, String google_id) {
+        getCommonAPIManager().getChazeAPIService().loginWithGoogle(name, email, gender, pass, google_id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(signUpResponse -> {
+                    getMvpView().startHomeActivity();
+                }, Throwable -> {
+                    Timber.e("Failure: " + Throwable.getMessage());
+                });
     }
+}
 
 
