@@ -205,10 +205,9 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
-            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            GoogleSignInAccount acct = completedTask.getResult(ApiException.class);
             // Signed in successfully, show authenticated UI.
 
-            GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
             if (acct != null) {
                 String personName = acct.getDisplayName();
                 String personEmail = acct.getEmail();
