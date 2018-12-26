@@ -9,16 +9,20 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.chaze.india.R;
+import com.chaze.india.models.Ecommerce.CartItem;
+import com.chaze.india.models.Ecommerce.CartShop;
 import com.chaze.india.models.Ecommerce.ShopItem;
 import com.chaze.india.models.Ecommerce.EcommerceCartItem;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 public class CartItemsAdapter extends RecyclerView.Adapter<CartItemsAdapter.ViewHolder> {
-    LinkedList<EcommerceCartItem> cartItems;
+    List<CartItem> cartItems;
 
 
-    public CartItemsAdapter(LinkedList<EcommerceCartItem> cartItems) {
+    public CartItemsAdapter(List<CartItem> cartItems) {
         this.cartItems = cartItems;
     }
 
@@ -34,7 +38,6 @@ public class CartItemsAdapter extends RecyclerView.Adapter<CartItemsAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         viewHolder.bind(i);
-
     }
 
     @Override
@@ -42,9 +45,9 @@ public class CartItemsAdapter extends RecyclerView.Adapter<CartItemsAdapter.View
         return cartItems.size();
     }
 
-    public void addItems() {
-
-
+    public void addItems(CartShop cartShop) {
+        cartItems = new ArrayList<>();
+        cartItems.addAll(cartShop.getProducts());
         notifyDataSetChanged();
     }
 
@@ -69,21 +72,14 @@ public class CartItemsAdapter extends RecyclerView.Adapter<CartItemsAdapter.View
         }
 
         public void bind(int i) {
-            final EcommerceCartItem cartItem = cartItems.get(i);
-            final ShopItem restaurantItem = cartItem.getItem();
-
-
-            cartItemName.setText(cartItems.get(i).getItem().getName());
-            cartItemQuantity.setText(String.valueOf(cartItems.get(i).getItemQuantity()));
-            cartItemPrice.setText(String.valueOf(cartItems.get(i).getItem().getPrice()));
-
+            final CartItem cartItem = cartItems.get(i);
+            cartItemName.setText(cartItems.get(i).getName());
+            cartItemQuantity.setText(String.valueOf(cartItems.get(i).getQuantity()));
+            cartItemPrice.setText(String.valueOf(cartItems.get(i).getPrice()));
             cartItemIncreaseQuantity.setOnClickListener(v -> {
 
-
             });
-
             cartItemDecreaseQuantity.setOnClickListener(v -> {
-
 
             });
         }

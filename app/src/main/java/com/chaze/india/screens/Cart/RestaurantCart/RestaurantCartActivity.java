@@ -3,14 +3,11 @@ package com.chaze.india.screens.Cart.RestaurantCart;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 
 import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
-import android.widget.LinearLayout;
 
 import com.chaze.india.R;
-import com.chaze.india.screens.Cart.EcommerceCart.CartContract;
 import com.chaze.india.screens.Cart.EcommerceCart.CartItemsAdapter;
 import com.chaze.india.screens.Checkout.CheckoutActivity;
 import com.chaze.india.screens.base.BaseActivity;
@@ -49,7 +46,6 @@ public class RestaurantCartActivity extends BaseActivity implements RestaurantCa
 
         recyclerViewCartItems.setAdapter(cartItemsAdapter);
 
-        cartItemsAdapter.addItems();
         LinearLayoutManager layoutManagerCart = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerViewCartItems.setLayoutManager(layoutManagerCart);
 

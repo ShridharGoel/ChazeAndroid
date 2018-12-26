@@ -1,5 +1,6 @@
 package com.chaze.india.screens.Cart.EcommerceCart;
 
+import com.chaze.india.models.Ecommerce.CartShop;
 import com.chaze.india.screens.base.MvpContract;
 
 import io.reactivex.subjects.PublishSubject;
@@ -13,9 +14,9 @@ public class CartContract {
 
     public interface View extends MvpContract.View {
 
-        void setSubjectToAdapter(PublishSubject<String> subject);
+        void setSubjectToAdapter(PublishSubject<CartShop> subject);
 
-        void showFull(String str);
+        void showFull(CartShop cartShop);
 
         void showOnActivity();
     }
@@ -24,5 +25,6 @@ public class CartContract {
     public interface Presenter<V extends View> extends MvpContract.Presenter<V> {
 
         void show();
+
     }
 }

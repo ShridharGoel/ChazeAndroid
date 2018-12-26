@@ -37,8 +37,8 @@ public class CartManager {
     }
 
     public CartResponse getCart() {
-        if (sessionManager.getCurrentCartStateEcommerce() != null) {
-            return sessionManager.getCurrentCartStateEcommerce();
+        if (this.cart!=null) {
+            return this.cart;
         }
         return new CartResponse();
     }
@@ -77,8 +77,10 @@ public class CartManager {
                 .subscribe(cartResponse -> {
                     if (cartResponse.getmSuccess()) {
                         this.cart = cartResponse;
+                        sessionManager.setCurrentCartStateEcommerce(this.cart);
                     } else {
                         this.cart = new CartResponse();
+                        sessionManager.setCurrentCartStateEcommerce(this.cart);
                         Timber.e(cartResponse.getmError());
                         Toast.makeText(context, cartResponse.getmError(), Toast.LENGTH_SHORT).show();
                     }
@@ -132,6 +134,7 @@ public class CartManager {
 
     }
 
+    //Todo:Use update method in AddProduct in mercahnt app
     public CartItem checkIfThisProductPresent(Long productId, Long sellerId) {
 
         if (cart.getCartShops() == null) return null;

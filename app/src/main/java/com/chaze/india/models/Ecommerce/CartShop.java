@@ -2,7 +2,9 @@
 package com.chaze.india.models.Ecommerce;
 
 import java.util.List;
+
 import javax.annotation.Generated;
+
 import com.google.gson.annotations.SerializedName;
 
 @Generated("net.hexar.json2pojo")
@@ -48,6 +50,38 @@ public class CartShop {
 
     public void setProducts(List<CartItem> products) {
         mProducts = products;
+    }
+
+
+    public int getTotalBillBeforDiscount() {
+
+        if (mProducts == null || mProducts.size() == 0) return 0;
+        int ans = 0;
+        for (int i = 0; i < mProducts.size();i++) {
+            ans += mProducts.get(i).getPrice() * mProducts.get(i).getQuantity();
+        }
+        return ans;
+    }
+
+    public int getTotalToPay() {
+        return (int) (getTotalAfterDiscount() + getDeliveryCharge());
+    }
+
+    public int getTotalAfterDiscount() {
+        return (getTotalBillBeforDiscount() - getDiscountApplied());
+    }
+
+    public int getDiscountApplied() {
+        if (mProducts == null || mProducts.size() == 0) return 0;
+
+        int ans = 0;
+
+        for (int i = 0; i < mProducts.size(); i++) {
+            if (mProducts.get(i).getDiscount() != null)
+                ans += ((mProducts.get(i).getPrice() * mProducts.get(i).getDiscount()) * mProducts.get(i).getQuantity()) / 100;
+        }
+        return ans;
+
     }
 
 }

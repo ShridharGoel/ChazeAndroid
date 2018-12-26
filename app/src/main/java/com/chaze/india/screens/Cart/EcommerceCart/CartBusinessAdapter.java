@@ -8,25 +8,32 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.chaze.india.R;
 import com.chaze.india.models.Ecommerce.CartBusiness;
+import com.chaze.india.models.Ecommerce.CartResponse;
+import com.chaze.india.models.Ecommerce.CartShop;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.reactivex.subjects.PublishSubject;
 
-public class CartBusinessAdapter extends RecyclerView.Adapter<CartBusinessAdapter.ViewHolder>{
+public class CartBusinessAdapter extends RecyclerView.Adapter<CartBusinessAdapter.ViewHolder> {
     Context context;
-    List<CartBusiness> cartBusinesses;
-    PublishSubject<String> subject;
+    List<CartShop> cartBusinesses;
+    PublishSubject<CartShop> subject;
 
-    public void setSubject(PublishSubject<String> subject) {
+    public void setSubject(PublishSubject<CartShop> subject) {
         this.subject = subject;
     }
 
-    public CartBusinessAdapter(Context context, List<CartBusiness> cartBusinesses) {
+    public CartBusinessAdapter(Context context, List<CartShop> cartBusinesses) {
         this.context = context;
         this.cartBusinesses = cartBusinesses;
     }
@@ -42,9 +49,18 @@ public class CartBusinessAdapter extends RecyclerView.Adapter<CartBusinessAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        CartBusiness item=cartBusinesses.get(i);
-       // viewHolder.categoryText.setText("asdfsdfsdff");
+        CartShop shop = cartBusinesses.get(i);
+        viewHolder.name.setText(cartBusinesses.get(i).getName());
+        viewHolder.billTotalView.setText("" + shop.getTotalBillBeforDiscount());
+        if (shop.getDiscountApplied() != 0) {
+            viewHolder.discountApplied.setText("" + shop.getDiscountApplied());
+        } else {
+            viewHolder.discountContainer.setVisibility(View.GONE);
+        }
+        viewHolder.deliveryCharge.setText("" + shop.getDeliveryCharge());
 
+        viewHolder.amountToPay.setText("" + shop.getTotalToPay());
+        viewHolder.total.setText("" + shop.getTotalAfterDiscount());
     }
 
     @Override
@@ -52,23 +68,52 @@ public class CartBusinessAdapter extends RecyclerView.Adapter<CartBusinessAdapte
         return cartBusinesses.size();
     }
 
-    public void addItems() {
+    public void addItems(CartResponse cart) {
 
-        for (int i = 0; i < 4; i++)
-            cartBusinesses.add(new CartBusiness());
-
+        if (cart != null && cart.getCartShops() != null)
+            cartBusinesses.addAll(cart.getCartShops());
         notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+
+        @BindView(R.id.cart_business_image_view)
         ImageView imageView;
-        TextView categoryText;
+
+        @BindView(R.id.cart_business_name_view)
+        TextView name;
+
+        @BindView(R.id.bill_total_view)
+        TextView billTotalView;
+
+
+        @BindView(R.id.discount_container)
+        RelativeLayout discountContainer;
+
+        @BindView(R.id.discount_applied)
+        TextView discountApplied;
+
+        @BindView(R.id.taxContainer)
+        LinearLayout taxContainer;
+
+        @BindView(R.id.tax_applied)
+        TextView taxApplied;
+
+
+        @BindView(R.id.amount_total)
+        TextView total;
+
+        @BindView(R.id.delivery_charge)
+        TextView deliveryCharge;
+
+
+        @BindView(R.id.amount_to_pay)
+        TextView amountToPay;
+
         public ViewHolder(@NonNull View itemView) {
-
             super(itemView);
-
-            itemView.setOnClickListener(v->subject.onNext(""+getPosition()));
-          //  imageView=itemView.findViewById(R.id.categoryImage);
+            ButterKnife.bind(this, itemView);
+            itemView.setOnClickListener(v -> subject.onNext(cartBusinesses.get(getPosition())));
         }
 
     }

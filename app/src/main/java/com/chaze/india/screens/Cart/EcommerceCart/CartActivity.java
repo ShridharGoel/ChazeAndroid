@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v7.widget.LinearLayoutManager;
-import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
+
+import com.chaze.india.models.Ecommerce.CartShop;
+import com.chaze.india.repository.CartManager;
 
 import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
@@ -28,6 +30,8 @@ public class CartActivity extends BaseActivity implements CartContract.View {
     @BindView(R.id.recycler_view_cart)
     RecyclerView recyclerView;
 
+    @Inject
+    CartManager cartManager;
 
     @Inject
     CartBusinessAdapter cartBusinessAdapter;
@@ -60,44 +64,35 @@ public class CartActivity extends BaseActivity implements CartContract.View {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
-
         setUnBinder(ButterKnife.bind(this));
-
         getActivityComponent().inject(this);
-
-
         mPresenter.onAttach(this);
+        setup();
+    }
 
-        cartBusinessAdapter.addItems();
+    private void setup() {
+        cartBusinessAdapter.addItems(cartManager.getCart());
         recyclerView.setAdapter(cartBusinessAdapter);
         recyclerView.setLayoutManager(layoutManager);
-
         recyclerViewCartItems.setAdapter(cartItemsAdapter);
-
-        cartItemsAdapter.addItems();
         LinearLayoutManager layoutManagerCart = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerViewCartItems.setLayoutManager(layoutManagerCart);
-
         sheetBehavior = BottomSheetBehavior.from(layoutBottomSheet);
-
         sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         sheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-
         mPresenter.show();
-
-        button.setOnClickListener(v->this.startActivity(new Intent(this, CheckoutActivity.class)));
-
+        button.setOnClickListener(v -> this.startActivity(new Intent(this, CheckoutActivity.class)));
     }
 
     @Override
-    public void setSubjectToAdapter(PublishSubject<String> subject) {
-        cartBusinessAdapter.setSubject(subject);
+    public void setSubjectToAdapter(PublishSubject<CartShop> cartShopPublishSubject) {
+        cartBusinessAdapter.setSubject(cartShopPublishSubject);
     }
 
     @Override
-    public void showFull(String str) {
+    public void showFull(CartShop cartShop) {
+        cartItemsAdapter.addItems(cartShop);
         sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-
     }
 
     @Override
@@ -107,9 +102,7 @@ public class CartActivity extends BaseActivity implements CartContract.View {
 
     @OnClick(R.id.close_button_container)
     public void toggleBottomSheet() {
-
         sheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-
     }
 
 
