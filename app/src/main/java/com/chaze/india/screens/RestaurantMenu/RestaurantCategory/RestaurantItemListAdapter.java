@@ -119,8 +119,7 @@ public class RestaurantItemListAdapter extends RecyclerView.Adapter<RestaurantIt
             restaurantItemQuantity = (TextView)itemView.findViewById(R.id.restaurant_item_quantity);
             restaurantItemIncreaseQuantity = (TextView)itemView.findViewById(R.id.restaurant_item_increase_quantity);
             restaurantItemDecreaseQuantity = (TextView)itemView.findViewById(R.id.restaurant_item_decrease_quantity);
-            itemOffer = (TextView)itemView.findViewById(R.id.offer_price);
-            scratch = (View)itemView.findViewById(R.id.scratch_off);
+
 
         }
 

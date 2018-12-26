@@ -72,7 +72,7 @@ public class ShopByProductsFragment extends BaseFragment implements ShopByProduc
 
         recyclerView.setLayoutManager(mLayoutManager);
         setUpLoadMoreListener();
-        adapter.setIsByShop(true,"");
+        adapter.setIsByShop(true, Long.valueOf(-1));
         mPresenter.subscribeForData(10);
     }
 

@@ -2,7 +2,8 @@ package com.chaze.india.screens.Authentication.Signup;
 
 import android.annotation.SuppressLint;
 
-import com.chaze.india.repository.network.ICommonAPIManager;
+import com.chaze.india.repository.CartManager;
+import com.chaze.india.repository.CartManager;import com.chaze.india.repository.network.ICommonAPIManager;
 import com.chaze.india.repository.session.SessionManager;
 import com.chaze.india.screens.base.BasePresenter;
 import com.chaze.india.utils.rx.SchedulerProvider;
@@ -25,8 +26,8 @@ public class SignUpPresenter<V extends SignUpContract.View> extends BasePresente
         implements SignUpContract.Presenter<V> {
 
     @Inject
-    public SignUpPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {
-        super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
+    public SignUpPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager, CartManager cartManager) {
+        super(dataManager, schedulerProvider, compositeDisposable, sessionManager, cartManager);
     }
 
     @SuppressLint("CheckResult")

@@ -1,6 +1,6 @@
 package com.chaze.india.screens.Homepage.Purchases.ActiveOrders.OrderOfAShop;
 
-import com.chaze.india.repository.network.ICommonAPIManager;
+import com.chaze.india.repository.CartManager;import com.chaze.india.repository.network.ICommonAPIManager;
 import com.chaze.india.repository.session.SessionManager;
 import com.chaze.india.screens.base.BasePresenter;
 import com.chaze.india.utils.rx.SchedulerProvider;
@@ -13,8 +13,8 @@ import io.reactivex.subjects.PublishSubject;
 public class OrderOfAShopPresenter<V extends OrderOfAShopContract.View> extends BasePresenter<V> implements OrderOfAShopContract.Presenter<V> {
     PublishSubject<String> subject;
     @Inject
-    public OrderOfAShopPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {
-        super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
+    public OrderOfAShopPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager, CartManager cartManager) {
+        super(dataManager, schedulerProvider, compositeDisposable, sessionManager, cartManager);
     }
 
 

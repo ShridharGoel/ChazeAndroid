@@ -81,7 +81,6 @@ public class EcommerceCategoryAdapter extends RecyclerView.Adapter<EcommerceCate
                     context.startActivity(intent);
                 }
 
-
             });
 
         }

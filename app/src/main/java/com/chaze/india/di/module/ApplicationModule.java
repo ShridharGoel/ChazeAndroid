@@ -9,6 +9,7 @@ import android.content.Context;
 import com.chaze.india.di.Qualifiers.ApplicationContext;
 import com.chaze.india.di.Qualifiers.ApplicationScope;
 import com.chaze.india.repository.CartManager;
+import com.chaze.india.repository.CartManager;import com.chaze.india.repository.network.ICommonAPIManager;
 import com.chaze.india.repository.session.SessionManager;
 import com.chaze.india.utils.rx.AppSchedulerProvider;
 import com.chaze.india.utils.rx.SchedulerProvider;
@@ -20,7 +21,7 @@ import dagger.Provides;
  * Created by Shubham Vishwakarma on 4/10/18.
  */
 
-@Module
+@Module(includes = NetworkModule.class)
 public class ApplicationModule {
 
     private final Application mApplication;
@@ -36,6 +37,7 @@ public class ApplicationModule {
         return mApplication;
     }
 
+
     @Provides
     @ApplicationScope
     Application provideApplication() {
@@ -44,15 +46,14 @@ public class ApplicationModule {
 
     @Provides
     @ApplicationScope
-    SessionManager provideSessionManager(@ApplicationContext Context c){
+    SessionManager provideSessionManager(@ApplicationContext Context c) {
         return new SessionManager(c);
     }
 
-
     @Provides
     @ApplicationScope
-    CartManager cartManager(@ApplicationContext Context c){
-        return new CartManager(c);
+    CartManager cartManager(@ApplicationContext Context c, SessionManager sessionManager, ICommonAPIManager commonAPIManager) {
+        return new CartManager(c, sessionManager, commonAPIManager);
     }
 
     @Provides

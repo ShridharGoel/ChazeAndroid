@@ -4,7 +4,8 @@ package com.chaze.india.screens.search;
 
 import android.annotation.SuppressLint;
 
-import com.chaze.india.repository.network.ICommonAPIManager;
+import com.chaze.india.models.SuggestionsResponse;
+import com.chaze.india.repository.CartManager;import com.chaze.india.repository.network.ICommonAPIManager;
 import com.chaze.india.repository.session.SessionManager;
 import com.chaze.india.screens.base.BasePresenter;
 import com.chaze.india.utils.rx.SchedulerProvider;
@@ -15,6 +16,8 @@ import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
+import io.reactivex.Scheduler;
+import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Function;
@@ -30,8 +33,8 @@ public class SearchPresenter<V extends SearchContract.View> extends BasePresente
         implements SearchContract.Presenter<V> {
 
     @Inject
-    public SearchPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {
-        super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
+    public SearchPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager, CartManager cartManager) {
+        super(dataManager, schedulerProvider, compositeDisposable, sessionManager, cartManager);
     }
 
 
@@ -43,19 +46,18 @@ public class SearchPresenter<V extends SearchContract.View> extends BasePresente
         RxSearchObservable.fromView(getMvpView().getSearchView())
                 .debounce(300, TimeUnit.MILLISECONDS)
                 .distinctUntilChanged()
-                .switchMap((Function<String, ObservableSource<String>>) this::dataFromNetwork)
+                .map(a -> getCommonAPIManager().getECommerceAPIService().getSuggestions(a))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(result->getMvpView().recreateList(result), Timber::e, () -> Timber.d("completed"));
+                .subscribe(result -> {
+                            result.subscribeOn(Schedulers.io())
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe(suggestionsResponse -> {
+                                        getMvpView().recreateList(suggestionsResponse.getData());
+                                    }, Throwable -> getMvpView().showError(Throwable.getMessage()));
+                        }
+                        , throwable -> getMvpView().showError(throwable.getMessage()));
     }
-
-    //Simulation of network data..
-    private Observable<String> dataFromNetwork(final String query) {
-        return Observable.just(true)
-                .delay(2, TimeUnit.SECONDS)
-                .map(value -> query);
-    }
-
     @Override
     public void initByShopAndCategory() {
 

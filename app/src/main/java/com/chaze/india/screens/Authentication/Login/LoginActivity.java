@@ -233,8 +233,6 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
                                 break;
                         }
                         mPresenter.doGoogleLogin(personName, personEmail, gender[0], pass, personId);
-                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                        startActivity(intent);
                     }
 
                 });

@@ -1,6 +1,9 @@
 package com.chaze.india.screens.ProductInfo;
 
-import com.chaze.india.screens.base.MvpContract;
+import android.widget.TextView;
+
+import com.chaze.india.models.Ecommerce.CartItem;
+import com.chaze.india.models.Ecommerce.Product;
 import com.chaze.india.screens.base.MvpContract;
 
 
@@ -12,7 +15,7 @@ public class ProductInfoContract {
 
     public interface View extends MvpContract.View {
 
-        void showData();
+        void showData(CartItem ci);
 
 
     }
@@ -20,6 +23,11 @@ public class ProductInfoContract {
 
     public interface Presenter<V extends View> extends MvpContract.Presenter<V> {
 
-        void loadData();
+
+        void loadData(Product product);
+
+        int getItemsCount();
+
+        void addItems(Product id, Long quantity, String description, TextView cartCountBadge);
     }
 }

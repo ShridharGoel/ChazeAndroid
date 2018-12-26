@@ -4,9 +4,12 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-import com.chaze.india.models.CartBusiness;
+import com.chaze.india.models.Authentication.User;
+import com.chaze.india.models.Ecommerce.CartBusiness;
 import com.chaze.india.models.Ecommerce.CartEcommerce;
+import com.chaze.india.models.Ecommerce.CartResponse;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.Date;
 
@@ -38,15 +41,15 @@ public class SessionManager implements ISessionManager {
 
     private static final String KEY_CART_ECOMMERCE = "currentCartStateEcommerce";
 
-    private static final String USER_MOBILE="phone_no";
+    private static final String USER_MOBILE = "phone_no";
 
-    private static final String USER_NAME="user_name";
+    private static final String USER_NAME = "user_name";
 
-    private static final String USER_EMAIL="user_email";
+    private static final String USER_EMAIL = "user_email";
 
-    private static final String USER_ADDRESS="user_address";
+    private static final String USER_ADDRESS = "user_address";
 
-    private static final String USER_GENDER="user_gender";
+    private static final String USER_GENDER = "user_gender";
 
     private static final String KEY_CART_FOOD = "currentCartStateFood";
 
@@ -60,9 +63,6 @@ public class SessionManager implements ISessionManager {
 
     private static final String GMAIL_USER_SAVED_EMAIL = "fbUserSavedEmail";
 
-    private static final String PREVIOUS_ORDER_ID = "previousOrderId";
-
-    private static final String IS_PREVIOUS_ORDER_RATED = "isPreviousOrderRated";
 
     private static final String PREVIOUS_ORDER_CART_FOOD = "previousOrderCart";
 
@@ -73,8 +73,12 @@ public class SessionManager implements ISessionManager {
 
     private static final String ADDRESS = "address";
 
-    private static final String FCM_TOKEN="fcm_token";
+    private static final String FCM_TOKEN = "fcm_token";
 
+    private static final String TOKEN = "token";
+
+
+    private static final String USER = "user";
 
     @Inject
     public SessionManager(Context c) {
@@ -85,35 +89,35 @@ public class SessionManager implements ISessionManager {
 
     @Override
     public void setUserEmail(String email) {
-        editor.putString(USER_EMAIL,email);
+        editor.putString(USER_EMAIL, email);
         editor.commit();
     }
 
     @Override
     public String getUserEmail() {
-        return pref.getString(USER_EMAIL,null);
+        return pref.getString(USER_EMAIL, null);
     }
 
     @Override
     public void setUserAddress(String address) {
-        editor.putString(USER_ADDRESS,address);
+        editor.putString(USER_ADDRESS, address);
         editor.commit();
     }
 
     @Override
     public String getUserAddress() {
-        return pref.getString(USER_ADDRESS,null);
+        return pref.getString(USER_ADDRESS, null);
     }
 
     @Override
     public void setGender(String gender) {
-        editor.putString(USER_GENDER,gender);
+        editor.putString(USER_GENDER, gender);
         editor.commit();
     }
 
     @Override
     public String getGender() {
-        return pref.getString(USER_GENDER,null);
+        return pref.getString(USER_GENDER, null);
     }
 
     @Override
@@ -124,24 +128,24 @@ public class SessionManager implements ISessionManager {
 
     @Override
     public void setPhoneNo(String userPhone) {
-        editor.putString(USER_MOBILE,userPhone);
+        editor.putString(USER_MOBILE, userPhone);
         editor.commit();
     }
 
     @Override
     public String getPhoneNo() {
-        return pref.getString(USER_MOBILE,null);
+        return pref.getString(USER_MOBILE, null);
     }
 
     @Override
     public void setFcmToken(String fcmToken) {
-        editor.putString(FCM_TOKEN,fcmToken);
+        editor.putString(FCM_TOKEN, fcmToken);
         editor.commit();
     }
 
     @Override
     public String getFcmToken() {
-        return pref.getString(FCM_TOKEN,null);
+        return pref.getString(FCM_TOKEN, null);
     }
 
     @Override
@@ -256,7 +260,7 @@ public class SessionManager implements ISessionManager {
     }
 
     @Override
-    public void setCurrentCartStateEcommerce(CartEcommerce cartEcommerce) {
+    public void setCurrentCartStateEcommerce(CartResponse cartEcommerce) {
         Gson gson = new Gson();
         String json = gson.toJson(cartEcommerce);
         editor.putString(KEY_CART_ECOMMERCE, json);
@@ -267,11 +271,12 @@ public class SessionManager implements ISessionManager {
     }
 
     @Override
-    public CartEcommerce getCurrentCartStateEcommerce() {
+    public CartResponse getCurrentCartStateEcommerce() {
         Gson gson = new Gson();
         String json = pref.getString(KEY_CART_ECOMMERCE, null);
-        CartEcommerce cart = gson.fromJson(json, CartEcommerce.class);
+        if (json == null) return null;
 
+        CartResponse cart = gson.fromJson(json, CartResponse.class);
         return cart;
     }
 
@@ -338,13 +343,39 @@ public class SessionManager implements ISessionManager {
 
     @Override
     public void setUserName(String userName) {
-        editor.putString(USER_NAME,userName);
+        editor.putString(USER_NAME, userName);
         editor.commit();
     }
 
     @Override
     public String getUserName() {
         //this function returns null by default
-        return pref.getString(USER_NAME,null);
+        return pref.getString(USER_NAME, null);
+    }
+
+    @Override
+    public void setToken(String token) {
+        editor.putString(TOKEN, token);
+        editor.commit();
+    }
+
+    @Override
+    public String getToken() {
+        return pref.getString(TOKEN, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAxLCJ2YWwiOjIsImlhdCI6MTU0NDY0MDM1NX0.I9vJ5DURfUofoYh4MEj5tlyL7IuceKlWZRgmpzSW1Go");
+    }
+
+    @Override
+    public void setUser(User user) {
+        Gson gson = new Gson();
+        String json = gson.toJson(user);
+        editor.putString(USER, json);
+        editor.commit();
+    }
+
+    @Override
+    public User getUser() {
+        Gson gson = new Gson();
+        String json = pref.getString(USER, null);
+        return gson.fromJson(json, User.class);
     }
 }

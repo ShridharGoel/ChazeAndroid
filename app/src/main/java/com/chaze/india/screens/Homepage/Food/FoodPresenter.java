@@ -3,7 +3,7 @@
 package com.chaze.india.screens.Homepage.Food;
 
 import com.chaze.india.models.Food.Restaurant;
-import com.chaze.india.repository.network.ICommonAPIManager;
+import com.chaze.india.repository.CartManager;import com.chaze.india.repository.network.ICommonAPIManager;
 import com.chaze.india.repository.session.SessionManager;
 import com.chaze.india.screens.base.BasePresenter;
 import com.chaze.india.utils.rx.SchedulerProvider;
@@ -32,8 +32,8 @@ public class FoodPresenter<V extends FoodContract.View> extends BasePresenter<V>
     private int pageNumber;
 
     @Inject
-    public FoodPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {
-        super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
+    public FoodPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager, CartManager cartManager) {
+        super(dataManager, schedulerProvider, compositeDisposable, sessionManager, cartManager);
     }
 
 

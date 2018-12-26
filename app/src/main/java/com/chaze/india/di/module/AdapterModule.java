@@ -3,7 +3,6 @@ package com.chaze.india.di.module;
 import android.support.v7.app.AppCompatActivity;
 
 import com.chaze.india.models.Ecommerce.Post;
-import com.chaze.india.models.RecyclerItems;
 import com.chaze.india.screens.Cart.EcommerceCart.CartBusinessAdapter;
 import com.chaze.india.screens.Cart.EcommerceCart.CartItemsAdapter;
 import com.chaze.india.screens.Category.ShopCategoryAdapter;
@@ -22,6 +21,9 @@ import com.chaze.india.screens.Homepage.Purchases.ActiveOrders.ActiveOrdersPrese
 import com.chaze.india.screens.Homepage.Purchases.ActiveOrders.TimeLineAdapter;
 import com.chaze.india.screens.Homepage.Purchases.PurchasesPagerAdapter;
 import com.chaze.india.screens.ProductsPostAdapter;
+import com.chaze.india.screens.Shop.ProductsListAdapter;
+import com.chaze.india.screens.Shop.ShopItemListAdapter;
+import com.chaze.india.screens.Shop.SubCategoryAdapter;
 import com.chaze.india.screens.search.SearchSuggestionsAdapter;
 
 import java.util.ArrayList;
@@ -49,7 +51,6 @@ public class AdapterModule {
     SearchSuggestionsAdapter getSearchSuggestionsAdapter() {
         return new SearchSuggestionsAdapter(mActivity, new ArrayList<>());
     }
-
 
 
     @Provides
@@ -97,6 +98,7 @@ public class AdapterModule {
         return new ActiveOrdersAdapter(mActivity, new ArrayList<>());
     }
 
+
     @Provides
     FoodPagerAdapter providesFoodPagerAdapter() {
         return new FoodPagerAdapter(mActivity.getSupportFragmentManager());
@@ -108,8 +110,29 @@ public class AdapterModule {
     }
 
     @Provides
+    SubCategoryAdapter providesSubCategoryAdapter() {
+        return new SubCategoryAdapter(mActivity, new ArrayList<>());
+    }
+
+    @Provides
     RestaurantListAdapter providesRestaurantListAdapter() {
         return new RestaurantListAdapter(mActivity, new ArrayList<>());
+    }
+
+
+    @Provides
+    ShopItemListAdapter providesShopItemList() {
+        return new ShopItemListAdapter(new ArrayList<>(), mActivity);
+    }
+
+    @Provides
+    ShopCategoryAdapter providesShopCategoryAdapter() {
+        return new ShopCategoryAdapter(new ArrayList<>(), mActivity);
+    }
+
+    @Provides
+    ProductsListAdapter providesProductListList() {
+        return new ProductsListAdapter(mActivity, new ArrayList<>());
     }
 
     @Provides
@@ -123,10 +146,6 @@ public class AdapterModule {
     }
 
 
-    @Provides
-    ShopCategoryAdapter providesShopCategoryAdapter() {
-        return new ShopCategoryAdapter();
-    }
 
 
     @Provides

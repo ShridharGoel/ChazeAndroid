@@ -57,7 +57,7 @@
 
 
             <com.cooltechworks.views.shimmer.ShimmerRecyclerView xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/ecomerceRecyclerView"
+                android:id="@+id/categories_recycler_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

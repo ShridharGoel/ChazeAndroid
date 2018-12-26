@@ -3,7 +3,10 @@
 package com.chaze.india.screens.Authentication.Login;
 
 import android.annotation.SuppressLint;
+import android.widget.Toast;
 
+import com.chaze.india.repository.CartManager;
+import com.chaze.india.repository.CartManager;
 import com.chaze.india.repository.network.ICommonAPIManager;
 import com.chaze.india.repository.session.SessionManager;
 import com.chaze.india.screens.base.BasePresenter;
@@ -24,8 +27,8 @@ public class LoginPresenter<V extends LoginContract.View> extends BasePresenter<
         implements LoginContract.Presenter<V> {
 
     @Inject
-    public LoginPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {
-        super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
+    public LoginPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager, CartManager cartManager) {
+        super(dataManager, schedulerProvider, compositeDisposable, sessionManager, cartManager);
     }
 
     @SuppressLint("CheckResult")
@@ -35,15 +38,16 @@ public class LoginPresenter<V extends LoginContract.View> extends BasePresenter<
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(loginResponse -> {
-
-                    getMvpView().startHomeActivity();
-
+                    if (loginResponse.getSuccess()) {
+                        getSessionManager().setUser(loginResponse.getmUser());
+                        getSessionManager().setToken(loginResponse.getToken());
+                        getCartManager().updateCartFromApi();
+                        getMvpView().startHomeActivity();
+                    }
                     Timber.e("Success");
                     //On success
                 }, Throwable -> {
-
-                    Timber.e(Throwable.getMessage());
-                    //On error
+                    getMvpView().onError(Throwable.getMessage());
                 });
     }
 
@@ -54,15 +58,15 @@ public class LoginPresenter<V extends LoginContract.View> extends BasePresenter<
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(loginResponse -> {
-
-                    getMvpView().startHomeActivity();
-
+                    if (loginResponse.getSuccess()) {
+                        getSessionManager().setUser(loginResponse.getmUser());
+                        getSessionManager().setToken(loginResponse.getToken());
+                        getMvpView().startHomeActivity();
+                    }
                     Timber.e("Success");
                     //On success
                 }, Throwable -> {
-
-                    Timber.e(Throwable.getMessage());
-                    //On error
+                    getMvpView().onError(Throwable.getMessage());
                 });
     }
 
@@ -75,7 +79,8 @@ public class LoginPresenter<V extends LoginContract.View> extends BasePresenter<
                 .subscribe(forgotPassResponse -> {
                     getMvpView().startOTPConfirmationActivity();
                 }, Throwable -> {
-                    Timber.e("Failure: "+Throwable.getMessage());
+                    getMvpView().onError(Throwable.getMessage());
+
                 });
     }
 
@@ -88,7 +93,7 @@ public class LoginPresenter<V extends LoginContract.View> extends BasePresenter<
                 .subscribe(forgotPassResponse -> {
                     getMvpView().startOTPConfirmationActivity();
                 }, Throwable -> {
-                    Timber.e("Failure: "+Throwable.getMessage());
+                    getMvpView().onError(Throwable.getMessage());
                 });
     }
 

@@ -2,7 +2,7 @@
 
 package com.chaze.india.screens.Cart.RestaurantCart;
 
-import com.chaze.india.repository.network.ICommonAPIManager;
+import com.chaze.india.repository.CartManager;import com.chaze.india.repository.network.ICommonAPIManager;
 import com.chaze.india.repository.session.SessionManager;
 import com.chaze.india.screens.base.BasePresenter;
 import com.chaze.india.utils.rx.SchedulerProvider;
@@ -23,8 +23,8 @@ public class RestaurantCartPresenter<V extends RestaurantCartContract.View> exte
     PublishSubject<String> subject;
 
     @Inject
-    public RestaurantCartPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {
-        super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
+    public RestaurantCartPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager, CartManager cartManager) {
+        super(dataManager, schedulerProvider, compositeDisposable, sessionManager, cartManager);
     }
 
     @Override

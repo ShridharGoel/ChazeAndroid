@@ -4,7 +4,7 @@ package com.chaze.india.screens.RestaurantMenu;
 
 import android.annotation.SuppressLint;
 
-import com.chaze.india.repository.network.ICommonAPIManager;
+import com.chaze.india.repository.CartManager;import com.chaze.india.repository.network.ICommonAPIManager;
 import com.chaze.india.repository.session.SessionManager;
 import com.chaze.india.screens.base.BasePresenter;
 import com.chaze.india.screens.search.RxSearchObservable;
@@ -31,8 +31,8 @@ public class RestaurantMenuPresenter<V extends RestaurantMenuContract.View> exte
         implements RestaurantMenuContract.Presenter<V> {
 
     @Inject
-    public RestaurantMenuPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {
-        super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
+    public RestaurantMenuPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager, CartManager cartManager) {
+        super(dataManager, schedulerProvider, compositeDisposable, sessionManager, cartManager);
     }
 
 

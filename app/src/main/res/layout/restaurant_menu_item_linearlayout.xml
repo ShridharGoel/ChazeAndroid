@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="8dp"
-    android:layout_marginEnd="8dp"
     android:layout_marginBottom="4dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginStart="8dp"
     android:layout_marginTop="4dp"
     android:orientation="vertical"
     android:padding="10dp"
@@ -29,6 +29,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
+
                 <ImageView
                     android:id="@+id/veg"
                     android:layout_width="20dp"
@@ -55,14 +56,6 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginRight="16dp">
 
-                <View
-                    android:id="@+id/scratch_off"
-                    android:layout_width="72dp"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_marginTop="14dp"
-                    android:background="#ff0000" />
-
                 <TextView
                     android:id="@+id/price"
                     android:layout_width="wrap_content"
@@ -86,14 +79,14 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/item_info_view"
             android:layout_margin="5dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <com.iarcuschin.simpleratingbar.SimpleRatingBar
-                android:layout_centerVertical="true"
                 android:id="@+id/ratingView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_marginTop="5dp"
                 android:layout_weight="0"
                 app:srb_borderColor="@color/yellow"
@@ -107,10 +100,10 @@
 
 
             <TextView
-                android:layout_centerVertical="true"
                 android:id="@+id/ratingCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_toEndOf="@+id/ratingView"
@@ -129,31 +122,20 @@
                 app:mfb_type="heart"
                 android:layout_toRightOf="@+id/offer_price"/>-->
 
-            <TextView
-                android:layout_toStartOf="@+id/restaurant_item_add_to_cart_switcher"
-                android:id="@+id/offer_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="15dp"
-                android:text="\u20B9 150"
-                android:textColor="#FF0000"
-                android:textSize="14sp" />
-
 
             <ViewSwitcher
-                android:layout_centerVertical="true"
                 android:id="@+id/restaurant_item_add_to_cart_switcher"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true">
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true">
 
 
                 <android.support.v7.widget.CardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:cardElevation="0dp"
-                    app:cardCornerRadius="3dp">
+                    app:cardCornerRadius="3dp"
+                    app:cardElevation="0dp">
 
                     <RelativeLayout
                         android:id="@+id/restaurant_item_add"
@@ -171,16 +153,17 @@
 
                     </RelativeLayout>
                 </android.support.v7.widget.CardView>
+
                 <RelativeLayout
                     android:id="@+id/restaurant_item_quantity_container"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:background="@drawable/curved_rectangle_border_3dp"
-                    android:paddingStart="4dp"
-                    android:paddingEnd="4dp"
-                    android:paddingTop="2dp"
+                    android:gravity="center"
                     android:paddingBottom="2dp"
-                    android:gravity="center">
+                    android:paddingEnd="4dp"
+                    android:paddingStart="4dp"
+                    android:paddingTop="2dp">
 
                     <TextView
                         android:id="@+id/restaurant_item_decrease_quantity"
@@ -197,13 +180,13 @@
                         android:id="@+id/restaurant_item_quantity"
                         android:layout_width="30dp"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_centerVertical="true"
                         android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:gravity="center"
                         android:text="5"
                         android:textColor="@color/colorPurpleLight"
-                        android:textStyle="bold"
-                        android:textSize="16sp"/>
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/restaurant_item_increase_quantity"
@@ -221,8 +204,6 @@
             </ViewSwitcher>
 
         </RelativeLayout>
-
-
 
 
     </RelativeLayout>

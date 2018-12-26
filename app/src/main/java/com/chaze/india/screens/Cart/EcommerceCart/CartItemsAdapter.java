@@ -2,8 +2,6 @@ package com.chaze.india.screens.Cart.EcommerceCart;
 
 import android.support.annotation.NonNull;
 
-import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
-
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,16 +9,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.chaze.india.R;
-import com.chaze.india.models.CartItem;
-import com.chaze.india.models.Item;
+import com.chaze.india.models.Ecommerce.ShopItem;
+import com.chaze.india.models.Ecommerce.EcommerceCartItem;
 
 import java.util.LinkedList;
 
 public class CartItemsAdapter extends RecyclerView.Adapter<CartItemsAdapter.ViewHolder> {
-    LinkedList<CartItem> cartItems;
+    LinkedList<EcommerceCartItem> cartItems;
 
 
-    public CartItemsAdapter(LinkedList<CartItem> cartItems) {
+    public CartItemsAdapter(LinkedList<EcommerceCartItem> cartItems) {
         this.cartItems = cartItems;
     }
 
@@ -46,10 +44,6 @@ public class CartItemsAdapter extends RecyclerView.Adapter<CartItemsAdapter.View
 
     public void addItems() {
 
-        for (int i = 0; i < 4; i++)
-            cartItems.add(new CartItem(new Item("asdf", "asdfsad", false, 43, false, "4", 3, 3, 0, false) {
-
-            }, 4));
 
         notifyDataSetChanged();
     }
@@ -75,13 +69,13 @@ public class CartItemsAdapter extends RecyclerView.Adapter<CartItemsAdapter.View
         }
 
         public void bind(int i) {
-            final CartItem cartItem = cartItems.get(i);
-            final Item restaurantItem = cartItem.getItem();
+            final EcommerceCartItem cartItem = cartItems.get(i);
+            final ShopItem restaurantItem = cartItem.getItem();
 
 
             cartItemName.setText(cartItems.get(i).getItem().getName());
             cartItemQuantity.setText(String.valueOf(cartItems.get(i).getItemQuantity()));
-            cartItemPrice.setText(String.valueOf(cartItems.get(i).getCartItemPrice()));
+            cartItemPrice.setText(String.valueOf(cartItems.get(i).getItem().getPrice()));
 
             cartItemIncreaseQuantity.setOnClickListener(v -> {
 

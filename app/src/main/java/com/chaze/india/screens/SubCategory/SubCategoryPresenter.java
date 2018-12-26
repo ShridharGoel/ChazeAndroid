@@ -2,26 +2,18 @@
 
 package com.chaze.india.screens.SubCategory;
 
-import com.chaze.india.models.Ecommerce.EcomerceCategory;
-import com.chaze.india.repository.network.ICommonAPIManager;
+import android.annotation.SuppressLint;
+
+import com.chaze.india.repository.CartManager;import com.chaze.india.repository.network.ICommonAPIManager;
 import com.chaze.india.repository.session.SessionManager;
 import com.chaze.india.screens.base.BasePresenter;
 import com.chaze.india.utils.rx.SchedulerProvider;
 
-import org.reactivestreams.Publisher;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 import javax.inject.Inject;
 
-import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Function;
-import io.reactivex.processors.PublishProcessor;
+import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
 
@@ -32,24 +24,35 @@ import timber.log.Timber;
 public class SubCategoryPresenter<V extends SubCategoryContract.View> extends BasePresenter<V>
         implements SubCategoryContract.Presenter<V> {
 
-    private PublishProcessor<Integer> paginator = PublishProcessor.create();
-    private int pageNumber;
+    private Long pageNumber = Long.valueOf(0);
 
 
     @Inject
     public
-    SubCategoryPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {
-        super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
+    SubCategoryPresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager, CartManager cartManager) {
+        super(dataManager, schedulerProvider, compositeDisposable, sessionManager, cartManager);
     }
 
+    @SuppressLint("CheckResult")
     @Override
-    public void subscribeForData() {
-
+    public void getPosts(Long limit, int i) {
+        getCommonAPIManager().getECommerceAPIService().getPostsForCategory(getMvpView().getCategory())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(postsResponse -> {
+                    getMvpView().hideLoading();
+                    getMvpView().addItems(postsResponse.getPosts());
+                    Timber.e("Size:" + postsResponse.getPosts().size());
+                }, throwable -> {
+                    Timber.e(throwable.getMessage());
+                    pageNumber--;
+                });
     }
 
     public void next(){
         pageNumber++;
-        paginator.onNext(pageNumber);
+        getMvpView().showLoading();
+        getPosts(pageNumber, 0);
     }
 
     @Override

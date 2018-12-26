@@ -6,7 +6,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import com.chaze.india.AppController;
 import com.chaze.india.di.component.DaggerServiceComponent;
 import com.chaze.india.di.component.ServiceComponent;
-import com.chaze.india.repository.network.ICommonAPIManager;
+import com.chaze.india.repository.CartManager;import com.chaze.india.repository.network.ICommonAPIManager;
 import com.chaze.india.repository.session.SessionManager;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
@@ -52,7 +52,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
     }
 
     private void storeTokenInDjango(String refreshedToken) {
-            iCommonAPIManager.getDeliveryAPIService();
+           // iCommonAPIManager.getDeliveryAPIService();
     }
 
 

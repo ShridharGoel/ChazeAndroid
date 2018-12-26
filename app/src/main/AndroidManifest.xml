@@ -19,7 +19,13 @@
             android:label="@string/title_activity_home"
             android:screenOrientation="portrait" />
         <activity android:name=".screens.search.SearchActivity" />
-        <activity android:name=".screens.Authentication.Login.LoginActivity" />
+        <activity android:name=".screens.Authentication.Login.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".screens.WelcomeSlides.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -17,6 +17,7 @@ import com.chaze.india.R;
 import com.chaze.india.models.Ecommerce.Shop;
 import com.chaze.india.screens.Shop.ShopActivity;
 import com.iarcuschin.simpleratingbar.SimpleRatingBar;
+import com.squareup.picasso.Picasso;
 
 import android.support.v4.util.Pair;
 
@@ -43,14 +44,24 @@ public class ShopsAdapter extends RecyclerView.Adapter<ShopsAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         Shop item = shops.get(i);
-        // viewHolder.categoryText.setText(item.getName());
-        /*Picasso.get()
-                .load(item.getImageResourceId())
-                .placeholder(R.drawable.ic_menu_camera)
-                .error(R.drawable.ic_menu_gallery)
-                .into(viewHolder.imageView);*/
-        //viewHolder.imageView.setImageResource(R.drawable.cart_badge);
-        //viewHolder.imageView.setImageDrawable(item.getImage());
+        viewHolder.speciality.setText(item.getTaxDescription());
+        Picasso.get()
+                .load(item.getImageUrl())
+                .placeholder(R.drawable.shop_place_holder)
+                .error(R.drawable.shop_place_holder)
+                .into(viewHolder.imageView);
+
+        viewHolder.name.setText(item.getName());
+        viewHolder.ratingBar.setRating((float) 4.5);
+        viewHolder.address.setText(item.getAddress());
+        viewHolder.minOrderAmount.setText(String.valueOf(item.getMinOrder()));
+        if (item.getStatus() == 1) {
+            viewHolder.status.setText("Open");
+        } else {
+            viewHolder.status.setText("Closed");
+        }
+
+        viewHolder.deliveryView.setText(item.getMessage());
 
     }
 
@@ -60,12 +71,7 @@ public class ShopsAdapter extends RecyclerView.Adapter<ShopsAdapter.ViewHolder> 
     }
 
     public void addItems(List<Shop> lst) {
-
-        for (int i = 0; i < 20; i++) shops.add(new Shop());
-
-        //shops.addAll(lst);
-
-
+        shops.addAll(lst);
         notifyDataSetChanged();
     }
 
@@ -97,7 +103,6 @@ public class ShopsAdapter extends RecyclerView.Adapter<ShopsAdapter.ViewHolder> 
 
                 Intent intent = new Intent(context, ShopActivity.class);
 
-
                 Pair<View, String> p1 = Pair.create((View) imageView, "shop_image_view");
                 Pair<View, String> p2 = Pair.create((View) name, "shop_name_view");
                 Pair<View, String> p3 = Pair.create((View) address, "shop_address_view");
@@ -115,8 +120,9 @@ public class ShopsAdapter extends RecyclerView.Adapter<ShopsAdapter.ViewHolder> 
                 ActivityOptionsCompat options = ActivityOptionsCompat.
                         makeSceneTransitionAnimation((Activity) context, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11);
 
-                intent.putExtra("Shop", shops.get(getPosition()).getId());
-                intent.putExtra("Category", "-1");
+                intent.putExtra("Shop",shops.get(getPosition()).getId());
+                intent.putExtra("Category", Long.valueOf(-1));
+                //context.startActivity(intent);
                 context.startActivity(intent, options.toBundle());
             });
         }

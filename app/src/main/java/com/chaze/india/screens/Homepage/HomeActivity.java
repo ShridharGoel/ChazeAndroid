@@ -14,7 +14,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.chaze.india.models.RecyclerItems;
+import com.chaze.india.AppController;
+import com.chaze.india.di.Qualifiers.ApplicationScope;
 import com.chaze.india.screens.Homepage.Ecommerce.EcommerceFragment;
 import com.chaze.india.screens.Homepage.Food.FoodFragment;
 import com.chaze.india.screens.Homepage.More.MoreFragment;
@@ -38,11 +39,11 @@ public class HomeActivity extends BaseActivity
 
 
     @Inject
-    CartManager cartManager;
-
-    @Inject
     HomeContract.Presenter<HomeContract.View> mPresenter;
 
+
+    @Inject
+    CartManager cartManager;
 
     @BindView(R.id.fragment)
     FrameLayout fragmentContainer;
@@ -117,6 +118,7 @@ public class HomeActivity extends BaseActivity
         setUnBinder(ButterKnife.bind(this));
         getActivityComponent().inject(this);
 
+        Timber.e(cartManager.toString());
         mPresenter.onAttach(this);
         addFragment(0);
 
@@ -268,10 +270,6 @@ public class HomeActivity extends BaseActivity
 
     public void addItems(List<EcomerceCategory> items) {
 
-    }
-
-    public ArrayList<RecyclerItems> loadCards() {
-        return null;
     }
 
 

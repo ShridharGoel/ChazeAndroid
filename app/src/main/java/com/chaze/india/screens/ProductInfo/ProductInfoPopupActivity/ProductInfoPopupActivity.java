@@ -5,14 +5,13 @@ import android.support.constraint.Group;
 import android.support.v4.view.ViewPager;
 import android.text.Html;
 import android.view.View;
-import android.view.Window;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.chaze.india.R;
+import com.chaze.india.models.Ecommerce.CartItem;
 import com.chaze.india.screens.ProductInfo.ProductImageSliderAdapter;
 import com.chaze.india.screens.ProductInfo.ProductInfoContract;
 import com.chaze.india.screens.base.BaseActivity;
@@ -65,7 +64,7 @@ public class ProductInfoPopupActivity extends BaseActivity implements ProductInf
         getActivityComponent().inject(this);
         setup();
         presenter.onAttach(this);
-        presenter.loadData();
+       // presenter.loadData(product);
 
 
     }
@@ -119,7 +118,7 @@ public class ProductInfoPopupActivity extends BaseActivity implements ProductInf
     }
 
     @Override
-    public void showData() {
+    public void showData(CartItem ci) {
 
 
         showDetails();

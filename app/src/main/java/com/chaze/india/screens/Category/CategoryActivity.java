@@ -10,7 +10,11 @@ import com.chaze.india.models.Ecommerce.Category;
 import com.chaze.india.R;
 import com.chaze.india.di.Qualifiers.LinLayoutVert;
 import com.chaze.india.models.CategorySearchResults;
+import com.chaze.india.models.Ecommerce.ShopForCategory;
 import com.chaze.india.screens.base.BaseActivity;
+import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -49,23 +53,28 @@ public class CategoryActivity extends BaseActivity implements CategoryContract.V
         getActivityComponent().inject(this);
 
         category = (Category) getIntent().getExtras().getSerializable("Category");
-
+        shopCategoryAdapter.setCategoryId(category.getId());
         setup();
         mPresenter.onAttach(this);
-
+        mPresenter.getShops();
 
     }
 
 
     private void setup() {
         toolbarText.setText(category.getName());
-        recyclerView.setAdapter(shopCategoryAdapter);
+
         recyclerView.setLayoutManager(layoutManager);
     }
 
+    @Override
+    public Long getCategory() {
+        return category.getId();
+    }
 
     @Override
-    public void showData(CategorySearchResults results) {
-        shopCategoryAdapter.addItems();
+    public void addShops(List<ShopForCategory> shopForCategories) {
+        recyclerView.setAdapter(shopCategoryAdapter);
+        shopCategoryAdapter.addItems(shopForCategories);
     }
 }

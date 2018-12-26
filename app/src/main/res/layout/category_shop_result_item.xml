@@ -21,22 +21,29 @@
 
         <TextView
             android:id="@+id/shop_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="4dp"
             android:paddingLeft="8dp"
-            android:text="restaurant name"
+            android:paddingTop="4dp"
+            android:text="Shop name"
             android:textColor="@color/textDarkPrimary"
-            android:textSize="18sp"
 
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
         <com.cooltechworks.views.shimmer.ShimmerRecyclerView
             android:id="@+id/recycler_view_shop_items"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:shimmer_demo_angle="20"
+            app:shimmer_demo_child_count="10"
+            android:background="@color/white"
+            app:shimmer_demo_layout="@layout/shimmer_sample_view"
+            app:shimmer_demo_layout_manager_type="linear_horizontal"
+            app:shimmer_demo_shimmer_color="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/shop_name">
@@ -54,6 +61,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/shop_name" />
+
+        <Button
+            android:id="@+id/view_all"
+            android:layout_width="77dp"
+            android:layout_height="31dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/white_rectangle_border_purple"
+            android:text="View All"
+            app:layout_constraintBottom_toBottomOf="@+id/shop_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/shop_name" />
 
     </android.support.constraint.ConstraintLayout>
 

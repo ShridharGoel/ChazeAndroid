@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 
 import com.chaze.india.screens.Cart.EcommerceCart.CartActivity;
@@ -61,6 +62,9 @@ public class EcommerceFragment extends BaseFragment implements EcommerceContract
     @BindView(R.id.searchbar)
     ConstraintLayout searchView;
 
+    @BindView(R.id.cart_count_badge)
+    TextView cartCountBadge;
+
     @Inject
     EcommerceContract.Presenter<EcommerceContract.View> mPresenter;
     private boolean recyclerViewShown = false;
@@ -77,7 +81,7 @@ public class EcommerceFragment extends BaseFragment implements EcommerceContract
         getActivityComponent().inject(this);
         setUnBinder(ButterKnife.bind(this, view));
         mPresenter.onAttach(this);
-
+        mPresenter.getCartCount();
         mPresenter.loadCategories();
 
         recyclerView.showShimmerAdapter();
@@ -117,6 +121,11 @@ public class EcommerceFragment extends BaseFragment implements EcommerceContract
         cartView.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), CartActivity.class));
         });
+    }
+
+    @Override
+    public void setCartCountBadge(int count) {
+        cartCountBadge.setText(String.valueOf(count));
     }
 
 

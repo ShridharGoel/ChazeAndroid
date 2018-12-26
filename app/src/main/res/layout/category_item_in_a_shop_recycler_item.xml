@@ -20,7 +20,7 @@
         <ImageView
             android:id="@+id/image_view"
             android:layout_width="150dp"
-            android:layout_height="147dp"
+            android:layout_height="148dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
@@ -66,8 +66,7 @@
                 android:layout_marginTop="4dp"
                 android:text="Price"
                 android:textColor="@color/colorPurple"
-                android:textSize="@dimen/text_very_large"
-                android:textStyle="bold"
+                android:textSize="@dimen/text_large"
                 android:transitionName="price_view"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -76,10 +75,9 @@
 
             <com.iarcuschin.simpleratingbar.SimpleRatingBar
                 android:id="@+id/shop_rating_view"
-                android:layout_width="76dp"
-                android:layout_height="18dp"
+                android:layout_width="79dp"
+                android:layout_height="13dp"
 
-                android:layout_marginEnd="8dp"
                 android:transitionName="shop_rating_view"
                 app:layout_constraintBottom_toBottomOf="@+id/price_view"
                 app:layout_constraintEnd_toEndOf="parent"

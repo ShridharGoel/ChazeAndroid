@@ -1,8 +1,10 @@
 package com.chaze.india.screens.Category;
 
+import com.chaze.india.models.Ecommerce.ShopForCategory;
 import com.chaze.india.screens.base.MvpContract;
 import com.chaze.india.models.CategorySearchResults;
-import com.chaze.india.screens.base.MvpContract;
+
+import java.util.List;
 
 
 /**
@@ -12,12 +14,15 @@ import com.chaze.india.screens.base.MvpContract;
 public class CategoryContract {
 
     public interface View extends MvpContract.View {
-        void showData(CategorySearchResults results);
 
+        Long getCategory();
+
+        void addShops(List<ShopForCategory> shopForCategories);
     }
 
 
     public interface Presenter<V extends View> extends MvpContract.Presenter<V> {
 
+        void getShops();
     }
 }

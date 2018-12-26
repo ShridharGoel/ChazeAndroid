@@ -6,10 +6,8 @@ public interface ICommonAPIManager {
 
     FoodOrderingAPIService getFoodOrderingAPIService();
 
-    SearchEngineAPIService getSearchEngineAPIService();
 
     ECommerceAPIService getECommerceAPIService();
 
-    DeliveryAPIService getDeliveryAPIService();
 
 }

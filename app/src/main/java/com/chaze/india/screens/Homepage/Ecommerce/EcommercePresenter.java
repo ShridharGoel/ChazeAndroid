@@ -5,6 +5,7 @@ package com.chaze.india.screens.Homepage.Ecommerce;
 import android.annotation.SuppressLint;
 
 import com.chaze.india.models.Ecommerce.Category;
+import com.chaze.india.repository.CartManager;
 import com.chaze.india.repository.network.ICommonAPIManager;
 import com.chaze.india.repository.session.SessionManager;
 import com.chaze.india.screens.base.BasePresenter;
@@ -28,8 +29,14 @@ public class EcommercePresenter<V extends EcommerceContract.View> extends BasePr
         implements EcommerceContract.Presenter<V> {
 
     @Inject
-    public EcommercePresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager) {
-        super(dataManager, schedulerProvider, compositeDisposable, sessionManager);
+    public EcommercePresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager, CartManager cartManager) {
+        super(dataManager, schedulerProvider, compositeDisposable, sessionManager, cartManager);
+    }
+
+
+    @Override
+    public void getCartCount() {
+        getMvpView().setCartCountBadge(getCartManager().getItemsCount());
     }
 
     @SuppressLint("CheckResult")

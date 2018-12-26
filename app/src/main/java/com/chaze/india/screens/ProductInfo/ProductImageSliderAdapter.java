@@ -5,7 +5,6 @@ import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.chaze.india.R;
 import com.github.chrisbanes.photoview.PhotoView;
@@ -27,11 +26,12 @@ public class ProductImageSliderAdapter extends PagerAdapter {
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View view = layoutInflater.inflate(R.layout.product_info_slide, container, false);
-        PhotoView imageView = ((PhotoView) view.findViewById(R.id.image));
+        PhotoView imageView = ((PhotoView) view.findViewById(R.id.sheet_image));
 
-        Picasso.get().load("https://www.dhresource.com/webp/m/0x0s/f2-albu-g7-M00-FF-E9-rBVaSVpnDAiAVjpLAAKFeXiLUr4605.jpg/men-039-s-pu-leather-jackets-winter-fashion.jpg")
-                .error(R.drawable.ic_menu_manage)
-                .into(imageView);
+        if (urls[position] != null)
+            Picasso.get().load(urls[position])
+                    .error(R.drawable.ic_action_cart)
+                    .into(imageView);
 
         container.addView(view);
 

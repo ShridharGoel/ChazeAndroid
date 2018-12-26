@@ -12,25 +12,17 @@ public class CommonAPIManager implements ICommonAPIManager {
     FoodOrderingAPIService mFoodOrderingAPIService;
 
     private
-    SearchEngineAPIService mSearchEngineAPIService;
-
-    private
     ECommerceAPIService mECommerceAPIService;
 
-    private
-    DeliveryAPIService mDeliveryAPIService;
 
 
     @Inject
     public CommonAPIManager(ChazeAPIService mChazeAPIService,
                             FoodOrderingAPIService mFoodOrderingAPIService,
-                            SearchEngineAPIService mSearchEngineAPIService,
-                            ECommerceAPIService mECommerceAPIService, DeliveryAPIService mDeliveryAPIService) {
+                            ECommerceAPIService mECommerceAPIService) {
         this.mChazeAPIService = mChazeAPIService;
         this.mFoodOrderingAPIService = mFoodOrderingAPIService;
-        this.mSearchEngineAPIService = mSearchEngineAPIService;
         this.mECommerceAPIService = mECommerceAPIService;
-        this.mDeliveryAPIService = mDeliveryAPIService;
 
     }
 
@@ -44,19 +36,11 @@ public class CommonAPIManager implements ICommonAPIManager {
         return mFoodOrderingAPIService;
     }
 
-    @Override
-    public SearchEngineAPIService getSearchEngineAPIService() {
-        return mSearchEngineAPIService;
-    }
 
     @Override
     public ECommerceAPIService getECommerceAPIService() {
         return mECommerceAPIService;
     }
 
-    @Override
-    public DeliveryAPIService getDeliveryAPIService() {
-        return mDeliveryAPIService;
-    }
 
 }
