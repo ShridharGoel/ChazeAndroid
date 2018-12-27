@@ -5,6 +5,7 @@ import com.chaze.india.models.Ecommerce.CartResponse;
 import com.chaze.india.models.Ecommerce.CartUpdateResponse;
 import com.chaze.india.models.Ecommerce.CategoriesResponse;
 import com.chaze.india.models.Ecommerce.CategoriesShopResponse;
+import com.chaze.india.models.Ecommerce.OrderResponse;
 import com.chaze.india.models.Ecommerce.PostsResponse;
 import com.chaze.india.models.Ecommerce.ProductListResponse;
 import com.chaze.india.models.Ecommerce.Shop;
@@ -81,4 +82,9 @@ public interface ECommerceAPIService {
     @FormUrlEncoded
     @POST("cart/removeFromCart")
     Single<CartUpdateResponse> remoteItemFromCart(@Header("token") String token, @Field("product_id") Long productId);
+
+    @FormUrlEncoded
+    @POST("orders/order")
+    Single<OrderResponse> placeOrder(@Header("token") String token, @Field("quantity") String quantity, @Field("description") String description, @Field("phone") Long phone, @Field("address") String address, @Field("products") String products);
+
 }

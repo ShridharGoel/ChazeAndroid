@@ -9,23 +9,23 @@ import com.google.gson.annotations.SerializedName;
 public class User {
 
     @SerializedName("address")
-    private Object mAddress;
+    private String mAddress;
     @SerializedName("email")
     private String mEmail;
     @SerializedName("facebook_id")
-    private Object mFacebookId;
+    private String mFacebookId;
     @SerializedName("firebase_token")
-    private Object mFirebaseToken;
+    private String mFirebaseToken;
     @SerializedName("gender")
     private String mGender;
     @SerializedName("id")
     private Long mId;
     @SerializedName("last_phone_otp")
-    private String mLastPhoneOtp;
+    private Long mLastPhoneOtp;
     @SerializedName("last_verified_email")
-    private Object mLastVerifiedEmail;
+    private String mLastVerifiedEmail;
     @SerializedName("last_verified_phone")
-    private Object mLastVerifiedPhone;
+    private Long mLastVerifiedPhone;
     @SerializedName("merchant")
     private Long mMerchant;
     @SerializedName("name")
@@ -33,11 +33,11 @@ public class User {
     @SerializedName("phone")
     private Long mPhone;
 
-    public Object getAddress() {
+    public String getAddress() {
         return mAddress;
     }
 
-    public void setAddress(Object address) {
+    public void setAddress(String address) {
         mAddress = address;
     }
 
@@ -49,19 +49,19 @@ public class User {
         mEmail = email;
     }
 
-    public Object getFacebookId() {
+    public String getFacebookId() {
         return mFacebookId;
     }
 
-    public void setFacebookId(Object facebookId) {
+    public void setFacebookId(String facebookId) {
         mFacebookId = facebookId;
     }
 
-    public Object getFirebaseToken() {
+    public String getFirebaseToken() {
         return mFirebaseToken;
     }
 
-    public void setFirebaseToken(Object firebaseToken) {
+    public void setFirebaseToken(String firebaseToken) {
         mFirebaseToken = firebaseToken;
     }
 
@@ -81,27 +81,27 @@ public class User {
         mId = id;
     }
 
-    public String getLastPhoneOtp() {
+    public Long getLastPhoneOtp() {
         return mLastPhoneOtp;
     }
 
-    public void setLastPhoneOtp(String lastPhoneOtp) {
+    public void setLastPhoneOtp(Long lastPhoneOtp) {
         mLastPhoneOtp = lastPhoneOtp;
     }
 
-    public Object getLastVerifiedEmail() {
+    public String getLastVerifiedEmail() {
         return mLastVerifiedEmail;
     }
 
-    public void setLastVerifiedEmail(Object lastVerifiedEmail) {
+    public void setLastVerifiedEmail(String lastVerifiedEmail) {
         mLastVerifiedEmail = lastVerifiedEmail;
     }
 
-    public Object getLastVerifiedPhone() {
+    public Long getLastVerifiedPhone() {
         return mLastVerifiedPhone;
     }
 
-    public void setLastVerifiedPhone(Object lastVerifiedPhone) {
+    public void setLastVerifiedPhone(Long lastVerifiedPhone) {
         mLastVerifiedPhone = lastVerifiedPhone;
     }
 

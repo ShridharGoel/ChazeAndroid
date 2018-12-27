@@ -23,6 +23,8 @@ import com.chaze.india.screens.Cart.RestaurantCart.RestaurantCartContract;
 import com.chaze.india.screens.Cart.RestaurantCart.RestaurantCartPresenter;
 import com.chaze.india.screens.Category.CategoryContract;
 import com.chaze.india.screens.Category.CategoryPresenter;
+import com.chaze.india.screens.Checkout.CheckoutContract;
+import com.chaze.india.screens.Checkout.CheckoutPresenter;
 import com.chaze.india.screens.Homepage.Ecommerce.EcommerceContract;
 import com.chaze.india.screens.Homepage.Ecommerce.EcommercePresenter;
 import com.chaze.india.screens.Homepage.Ecommerce.ShopByProducts.ShopByProductsPresenter;
@@ -205,6 +207,11 @@ public class ActivityModule {
 
     @Provides
     ProfileContract.Presenter<ProfileContract.View> providesProfilePresenter(ProfilePresenter<ProfileContract.View> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    CheckoutContract.Presenter<CheckoutContract.View> providesCheckoutContract(CheckoutPresenter<CheckoutContract.View> presenter) {
         return presenter;
     }
 }
