@@ -174,6 +174,6 @@ public class ProfileActivity extends BaseActivity implements ProfileContract.Vie
         sharedPreference.setPhoneNo(user.getPhone().toString());
         sharedPreference.setUserEmail(user.getEmail());
         sharedPreference.setGender(user.getGender());
-        sharedPreference.setAddress(user.getAddress().toString());
+        sharedPreference.setAddress(user.getAddress());
     }
 }

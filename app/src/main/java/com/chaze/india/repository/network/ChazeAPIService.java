@@ -109,7 +109,6 @@ public interface ChazeAPIService {
             @Field("password") String pass,
             @Field("google_id") String google_id);
 
-    @FormUrlEncoded
     @GET("/profile")    //Fetch profile details
     Single<ProfileResponse> fetchProfile(
             @Header("token") String token);
