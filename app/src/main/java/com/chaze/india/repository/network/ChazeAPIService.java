@@ -3,15 +3,19 @@ package com.chaze.india.repository.network;
 
 import com.chaze.india.models.Authentication.ConfirmOTPResponse;
 import com.chaze.india.models.Authentication.LoginResponse;
+import com.chaze.india.models.Authentication.ProfileResponse;
 import com.chaze.india.models.Authentication.SignUpResponse;
 import com.chaze.india.models.Authentication.ChangePassResponse;
 
 import com.chaze.india.models.Authentication.ResendOTPResponse;
 import com.chaze.india.models.Authentication.ForgotPassResponse;
 
+import io.reactivex.Completable;
 import io.reactivex.Single;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 /**
@@ -96,14 +100,18 @@ public interface ChazeAPIService {
             @Field("otp") int otp,
             @Field("password") String newPass);
 
-    /*@FormUrlEncoded
-    @GET("/profile")    //Fetch profile details
-    Single<ProfileResponse> fetchProfile(
-            @Field("phone") String mobile);
+    @FormUrlEncoded
+    @POST("/signup")    //loginWithGoogle
+    Single<SignUpResponse> loginWithGoogle(
+            @Field("name") String name,
+            @Field("email") String email,
+            @Field("gender") int gender,
+            @Field("password") String pass,
+            @Field("google_id") String google_id);
 
     @FormUrlEncoded
-    @GET("/profile")    //Fetch profile details with Email
-    Single<ProfileResponse> fetchProfileWithEmail(
-            @Field("email") String email);*/
+    @GET("/profile")    //Fetch profile details
+    Single<ProfileResponse> fetchProfile(
+            @Header("token") String token);
 }
 

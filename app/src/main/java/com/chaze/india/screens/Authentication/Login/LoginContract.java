@@ -21,5 +21,6 @@ public class LoginContract {
         void doLoginWithEmail(String email, String pass);
         void hasForgottenPassword(String mobile);
         void hasForgottenPasswordWithEmail(String email);
+        void doGoogleLogin(String name, String email, int gender, String pass, String google_id);
     }
 }

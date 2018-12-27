@@ -1,5 +1,7 @@
 package com.chaze.india.screens.Authentication.Signup;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -26,6 +28,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
+import java.util.Random;
+
 import javax.annotation.Nullable;
 import javax.inject.Inject;
 
@@ -35,17 +39,16 @@ import timber.log.Timber;
 
 
 /**
- post request on /login
- param: req: password(min 8 length), gender(M/F) , name(String greater than 5), email or phone
-
-
- return: {
- success:true/false
- error:msg to show if success is false
- token:secret key
- user:
- }
-
+ * post request on /login
+ * param: req: password(min 8 length), gender(M/F) , name(String greater than 5), email or phone
+ * <p>
+ * <p>
+ * return: {
+ * success:true/false
+ * error:msg to show if success is false
+ * token:secret key
+ * user:
+ * }
  **/
 
 /**
@@ -55,8 +58,9 @@ import timber.log.Timber;
 public class SignUpActivity extends BaseActivity implements SignUpContract.View, AdapterView.OnItemSelectedListener {
 
     private static final int RC_SIGN_IN = 10;
-    String[] gender = {"Select Gender", "Female", "Male"};
-    int selectedGender;
+    private String[] gender = {"Select Gender", "Female", "Male"};
+    private int selectedGender;
+    private int MAX_LENGTH = 12;
 
     @BindView(R.id.login_btn)
     TextView loginBtn;
@@ -109,7 +113,7 @@ public class SignUpActivity extends BaseActivity implements SignUpContract.View,
         signUpGender.setOnItemSelectedListener(this);
 
         //Creating the ArrayAdapter instance having the country list
-        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item, gender);
+        ArrayAdapter aa = new ArrayAdapter(this, android.R.layout.simple_spinner_item, gender);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Setting the ArrayAdapter data on the Spinner
         signUpGender.setAdapter(aa);
@@ -131,19 +135,16 @@ public class SignUpActivity extends BaseActivity implements SignUpContract.View,
         signUpSubmitBtn.setOnClickListener(v -> {
             if (!TextUtils.isEmpty(signUpName.getText().toString())
                     && !TextUtils.isEmpty(signUpMobile.getText().toString())
-                    && selectedGender!=-1
+                    && selectedGender != -1
                     && !TextUtils.isEmpty(signUpPass.getText().toString())
                     && !TextUtils.isEmpty(signUpConfirmPass.getText().toString())
-                    && signUpPass.getText().toString().equals(signUpConfirmPass.getText().toString()))
-            {
-                if(TextUtils.isDigitsOnly(signUpMobile.getText().toString())) {
+                    && signUpPass.getText().toString().equals(signUpConfirmPass.getText().toString())) {
+                if (TextUtils.isDigitsOnly(signUpMobile.getText().toString())) {
                     mPresenter.doSignUp(signUpName.getText().toString(),
                             signUpMobile.getText().toString(),
                             selectedGender,
                             signUpPass.getText().toString());
-                }
-
-                else {
+                } else {
                     mPresenter.doSignUpWithEmail(signUpName.getText().toString(),
                             signUpMobile.getText().toString(),
                             selectedGender,
@@ -155,20 +156,18 @@ public class SignUpActivity extends BaseActivity implements SignUpContract.View,
                 editor.putString("phone",signUpMobile.getText().toString());
                 editor.putString("name",signUpName.getText().toString());
                 editor.apply();*/
-                SessionManager sharedPreference=new SessionManager(getBaseContext());
+                SessionManager sharedPreference = new SessionManager(getBaseContext());
                 sharedPreference.setPhoneNo(signUpMobile.getText().toString());
                 sharedPreference.setUserName(signUpName.getText().toString());
-            }
-
-            else if(TextUtils.isEmpty(signUpName.getText().toString())) {
+            } else if (TextUtils.isEmpty(signUpName.getText().toString())) {
                 Toast.makeText(this, "Name cannot be blank", Toast.LENGTH_SHORT).show();
-            } else if(TextUtils.isEmpty(signUpMobile.getText().toString())) {
+            } else if (TextUtils.isEmpty(signUpMobile.getText().toString())) {
                 Toast.makeText(this, "Mobile number cannot be blank", Toast.LENGTH_SHORT).show();
-            } else if(selectedGender==-1) {
+            } else if (selectedGender == -1) {
                 Toast.makeText(this, "Please select gender", Toast.LENGTH_SHORT).show();
-            } else if(TextUtils.isEmpty(signUpPass.getText().toString())) {
+            } else if (TextUtils.isEmpty(signUpPass.getText().toString())) {
                 Toast.makeText(this, "Password cannot be blank", Toast.LENGTH_SHORT).show();
-            } else if(TextUtils.isEmpty(signUpConfirmPass.getText().toString())) {
+            } else if (TextUtils.isEmpty(signUpConfirmPass.getText().toString())) {
                 Toast.makeText(this, "Confirm password field cannot be blank", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "Passwords do not match.", Toast.LENGTH_SHORT).show();
@@ -206,10 +205,40 @@ public class SignUpActivity extends BaseActivity implements SignUpContract.View,
 
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
-            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            GoogleSignInAccount acct = completedTask.getResult(ApiException.class);
             // Signed in successfully, show authenticated UI.
-            Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
-            startActivity(intent);
+
+            if (acct != null) {
+                String personName = acct.getDisplayName();
+                String personEmail = acct.getEmail();
+                String personId = acct.getId();
+                String pass = generateRandomString();
+                final int[] gender = new int[1];
+
+                AlertDialog.Builder b = new AlertDialog.Builder(this);
+                b.setTitle("Select Gender");
+                String[] types = {"Male", "Female"};
+                b.setItems(types, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+                        switch (which) {
+                            case 0:
+                                gender[0] = 1;
+                                break;
+                            case 1:
+                                gender[0] = 0;
+                                break;
+                        }
+                        mPresenter.doGoogleLogin(personName, personEmail, gender[0], pass, personId);
+                    }
+
+                });
+
+                b.show();
+            }
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
@@ -231,13 +260,32 @@ public class SignUpActivity extends BaseActivity implements SignUpContract.View,
     }
 
     @Override
+    public void startHomeActivity() {
+        Intent homeIntent = new Intent(SignUpActivity.this, HomeActivity.class);
+        startActivity(homeIntent);
+        finish();
+    }
+
+    @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        selectedGender = i-1;
+        selectedGender = i - 1;
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+
+    public String generateRandomString() {
+        Random generator = new Random();
+        StringBuilder randomStringBuilder = new StringBuilder();
+        int randomLength = generator.nextInt(MAX_LENGTH);
+        char tempChar;
+        for (int i = 0; i < randomLength; i++){
+            tempChar = (char) (generator.nextInt(96) + 32);
+            randomStringBuilder.append(tempChar);
+        }
+        return randomStringBuilder.toString();
     }
 }
 

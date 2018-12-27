@@ -97,5 +97,18 @@ public class LoginPresenter<V extends LoginContract.View> extends BasePresenter<
                 });
     }
 
+    @SuppressLint("CheckResult")
+    @Override
+    public void doGoogleLogin(String name, String email, int gender, String pass, String google_id) {
+        getCommonAPIManager().getChazeAPIService().loginWithGoogle(name, email, gender, pass, google_id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(signUpResponse -> {
+                    getMvpView().startHomeActivity();
+                }, Throwable -> {
+                    Timber.e("Failure: "+Throwable.getMessage());
+                });
+    }
+
 
 }
