@@ -9,6 +9,8 @@ import com.chaze.india.repository.session.SessionManager;
 import com.chaze.india.screens.base.BasePresenter;
 import com.chaze.india.utils.rx.SchedulerProvider;
 
+import javax.inject.Inject;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
@@ -22,6 +24,7 @@ import timber.log.Timber;
 public class ProfilePresenter<V extends ProfileContract.View> extends BasePresenter<V>
         implements ProfileContract.Presenter<V> {
 
+    @Inject
     public ProfilePresenter(ICommonAPIManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable, SessionManager sessionManager, CartManager cartManager) {
         super(dataManager, schedulerProvider, compositeDisposable, sessionManager, cartManager);
     }
